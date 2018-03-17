@@ -87,7 +87,7 @@ public class KioskActivity extends AppCompatActivity {
     }
 
     /**
-     * camera() calls  the camera App
+     * camera() calls  the camera App when the User press the camera button
      */
     public void camera(){
         Button cameraApp = findViewById(R.id.camera);
