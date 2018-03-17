@@ -14,18 +14,19 @@
         android:text="@string/time_left" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/unlockPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/unlock_phone" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/phone" />
 
     <Button
+        android:id="@+id/camera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/camera" />
