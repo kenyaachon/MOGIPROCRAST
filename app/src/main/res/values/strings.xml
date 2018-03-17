@@ -4,4 +4,8 @@
     <string name="title_activity_trivia">TriviaActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="time_left">Time Left until phone unlocks: 5:00mins</string>
+    <string name="unlock_phone">Unlock Phone</string>
+    <string name="phone">Phone</string>
+    <string name="camera">camera</string>
 </resources>
