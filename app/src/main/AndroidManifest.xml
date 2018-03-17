@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.iruss.mogivisions.experiment">
+    <uses-permission android:name="android.permission.CAMERA"> </uses-permission>
+
 
     <application
         android:allowBackup="true"
@@ -14,13 +16,18 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.VIEW"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".TriviaActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_trivia"
-            android:theme="@style/FullscreenTheme"></activity>
+            android:theme="@style/FullscreenTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.iruss.mogivisions.experiment.KioskActivity"/>
+        </activity>
     </application>
 
 </manifest>
