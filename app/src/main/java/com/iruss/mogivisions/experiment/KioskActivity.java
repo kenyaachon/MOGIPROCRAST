@@ -20,6 +20,7 @@ public class KioskActivity extends AppCompatActivity {
 
         response();
         call();
+        camera();
     }
 
 
@@ -84,5 +85,21 @@ public class KioskActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * camera() calls  the camera App
+     */
+    public void camera(){
+        Button cameraApp = findViewById(R.id.camera);
+        cameraApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent cameraIntent = new Intent("android.media.action.IMAGE_CAPTURE");
+                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivity(cameraIntent);
+            }
+        });
+    }
+
 
 }
