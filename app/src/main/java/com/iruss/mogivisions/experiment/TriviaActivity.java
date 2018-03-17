@@ -162,16 +162,16 @@ public class TriviaActivity extends AppCompatActivity {
     }
 
 
-    /**
+    /*
      * Need to have something that measures the amount of attempts
      * -Then displays the number of trials left
      */
 
-    /**
+    /*
      * A method to create the challenge from the puzzles
      */
 
-    /**
+    /*
      * A method for connecting to the API to choose what puzzle is going to be used
      * whether it is randomly chosen or purposefully chosen
      */
