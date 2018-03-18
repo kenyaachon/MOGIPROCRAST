@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ExperimentAndroid.iml" filepath="$PROJECT_DIR$/ExperimentAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MOGIAPP.iml" filepath="$PROJECT_DIR$/MOGIAPP.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
