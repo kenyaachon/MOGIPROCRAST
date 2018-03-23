@@ -27,11 +27,15 @@ public class TriviaAPI {
     //Topic of the trivia questions
     String category;
 
-    //Question type: multiple choice (0) or true/false (1)
+    //com.iruss.mogivisions.experiment.Question type: multiple choice (0) or true/false (1)
     int questionType;
 
     //Level of difficulty for the questions
     int questionDifficulty;
+
+    // Constant with JSON to be used offline
+    static final String OFFLINE_TRIVIA_JSON = "{\"response_code\":0,\"results\":[{\"category\":\"Science: Computers\",\"type\":\"boolean\",\"difficulty\":\"medium\",\"question\":\"The HTML5 standard was published in 2014.\",\"correct_answer\":\"True\",\"incorrect_answers\":[\"False\"]},{\"category\":\"Entertainment: Music\",\"type\":\"multiple\",\"difficulty\":\"medium\",\"question\":\"Who wrote the musical composition, &quot;Rhapsody In Blue&quot;?\",\"correct_answer\":\"George Gershwin\",\"incorrect_answers\":[\"Irving Berlin\",\"Duke Ellington\",\"Johnny Mandel\"]},{\"category\":\"Animals\",\"type\":\"multiple\",\"difficulty\":\"medium\",\"question\":\"What is the scientific name for the &quot;Polar Bear&quot;?\",\"correct_answer\":\"Ursus Maritimus\",\"incorrect_answers\":[\"Polar Bear\",\"Ursus Spelaeus\",\"Ursus Arctos\"]},{\"category\":\"Animals\",\"type\":\"multiple\",\"difficulty\":\"hard\",\"question\":\"What scientific family does the Aardwolf belong to?\",\"correct_answer\":\"Hyaenidae\",\"incorrect_answers\":[\"Canidae\",\"Felidae\",\"Eupleridae\"]},{\"category\":\"Science: Computers\",\"type\":\"multiple\",\"difficulty\":\"medium\",\"question\":\"In the server hosting industry IaaS stands for...\",\"correct_answer\":\"Infrastructure as a Service\",\"incorrect_answers\":[\"Internet as a Service\",\"Internet and a Server\",\"Infrastructure as a Server\"]},{\"category\":\"Entertainment: Video Games\",\"type\":\"multiple\",\"difficulty\":\"medium\",\"question\":\"In the Portal series of games, who was the founder of Aperture Science?\",\"correct_answer\":\"Cave Johnson\",\"incorrect_answers\":[\"GLaDOs\",\"Wallace Breen\",\"Gordon Freeman\"]},{\"category\":\"Entertainment: Video Games\",\"type\":\"multiple\",\"difficulty\":\"easy\",\"question\":\"When was Left 4 Dead 2 released?\",\"correct_answer\":\"November 17, 2009\",\"incorrect_answers\":[\"May 3, 2008\",\"November 30, 2009\",\"June 30, 2010\"]},{\"category\":\"Entertainment: Television\",\"type\":\"boolean\",\"difficulty\":\"medium\",\"question\":\"Klingons respect their disabled comrades, and those who are old, injuried, and helpless.\",\"correct_answer\":\"False\",\"incorrect_answers\":[\"True\"]},{\"category\":\"Entertainment: Film\",\"type\":\"multiple\",\"difficulty\":\"medium\",\"question\":\"Leonardo Di Caprio won his first Best Actor Oscar for his performance in which film?\",\"correct_answer\":\"The Revenant\",\"incorrect_answers\":[\"The Wolf Of Wall Street\",\"Shutter Island\",\"Inception\"]},{\"category\":\"Entertainment: Television\",\"type\":\"multiple\",\"difficulty\":\"hard\",\"question\":\"Which of the following actors portrayed the Ninth Doctor in the British television show &quot;Doctor Who&quot;?\",\"correct_answer\":\"Christopher Eccleston\",\"incorrect_answers\":[\"David Tennant\",\"Matt Smith\",\"Tom Baker\"]}]}";
+
 
     /*
       *Method tests for internet connectivity

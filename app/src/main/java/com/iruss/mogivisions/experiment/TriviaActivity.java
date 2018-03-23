@@ -1,12 +1,15 @@
 package com.iruss.mogivisions.experiment;
 
 import android.annotation.SuppressLint;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+
+import java.util.ArrayList;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -106,6 +109,11 @@ public class TriviaActivity extends AppCompatActivity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+
+        // Get trivia questions (currently just offline)
+        ArrayList<TriviaQuestion> triviaQuestions =
+                TriviaQuestion.createQuestionsFromJSON(TriviaAPI.OFFLINE_TRIVIA_JSON);
+        testQuestions(triviaQuestions);
     }
 
     @Override
@@ -175,4 +183,14 @@ public class TriviaActivity extends AppCompatActivity {
      * A method for connecting to the API to choose what puzzle is going to be used
      * whether it is randomly chosen or purposefully chosen
      */
+
+    // TODO: Move this into test suite and make it so that it's pass/fail
+    private void testQuestions(ArrayList<TriviaQuestion> questions) {
+        String tag = "Test questions";
+        Log.d(tag, "Number of questions: " + questions.size());
+        Log.d(tag, "First question: " + questions.get(0).getQuestion());
+        Log.d(tag, "First answer: " + questions.get(0).getCorrectAnswer());
+        Log.d(tag, "Number of incorrect answers: " + questions.get(0).getIncorrectAnswers().size());
+
+    }
 }
