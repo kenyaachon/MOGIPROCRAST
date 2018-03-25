@@ -114,6 +114,10 @@ public class TriviaActivity extends AppCompatActivity {
         ArrayList<TriviaQuestion> triviaQuestions =
                 TriviaQuestion.createQuestionsFromJSON(TriviaAPI.OFFLINE_TRIVIA_JSON);
         testQuestions(triviaQuestions);
+
+        //call the trivia Api
+        TriviaAPI triviaAPI = new TriviaAPI();
+        triviaAPI.networkCheck(this);
     }
 
     @Override
