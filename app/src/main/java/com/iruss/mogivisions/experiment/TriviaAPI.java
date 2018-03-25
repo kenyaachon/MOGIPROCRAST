@@ -11,6 +11,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
+//import android.support.v4.app.ActivityCompat;
+//import android.support.v4.content.ContextCompat;
 
 /**
  * Trivia API object created
@@ -43,31 +46,33 @@ public class TriviaAPI {
       * else the triviaAPI gets the offline database app
      */
 
-    public boolean decision(Context context){
+    public String decision(Context context){
         ConnectivityManager cm =
                 (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         //Get Permission to read network status
 
         //Gets network state
+
         try {
             NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
             boolean isConnected = activeNetwork != null &&
                     activeNetwork.isConnectedOrConnecting();
             //checks if there is internet
+            Log.d("attempt", "Attept is working");
+
+            //returns the database questions from online
             if(isConnected){
-                callDB();
-                return true;
-            }
-            else{
-                getOfflineDB();
+                Log.d("Test", "Internet Connection is Available");
+                return callDB();
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
 
         }
-        return false;
+        Log.d("Internet Test", "Going to use ");
+        return getOfflineDB();
     }
 
     /*
@@ -75,16 +80,21 @@ public class TriviaAPI {
      * returns true if Permission to use Camera is allowed
      */
 
-    /*
+
     int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 1;
-    public boolean networkCheck(){
-        if (ContextCompat.checkSelfPermission(this,
+    public boolean networkCheck(TriviaActivity triviaActivity){
+        //public boolean networkCheck(){
+        Log.d("attempt", "network attempt");
+
+        //if (ContextCompat.checkSelfPermission(this,
+        if (ContextCompat.checkSelfPermission(triviaActivity,
                 Manifest.permission.ACCESS_NETWORK_STATE)
                 != PackageManager.PERMISSION_GRANTED) {
 
             // Permission is not granted
             // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+            //if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+            if (ActivityCompat.shouldShowRequestPermissionRationale(triviaActivity,
                     Manifest.permission.ACCESS_NETWORK_STATE)) {
 
                 // Show an explanation to the user *asynchronously* -- don't block
@@ -94,9 +104,13 @@ public class TriviaAPI {
             } else {
 
                 // No explanation needed; request the permission
-                ActivityCompat.requestPermissions(this,
+                        //ActivityCompat.requestPermissions(this,
+                        ActivityCompat.requestPermissions(triviaActivity,
                         new String[]{Manifest.permission.ACCESS_NETWORK_STATE},
                         MY_PERMISSIONS_REQUEST_READ_CONTACTS);
+                        //findouts network status
+                        decision(triviaActivity);
+
 
                 // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
                 // app-defined int constant. The callback method gets the
@@ -105,10 +119,11 @@ public class TriviaAPI {
             }
         } else {
             // Permission has already been granted
+            decision(triviaActivity);
             return true;
         }
         return false;
-    }**/
+    }
 
 
     /**
@@ -123,16 +138,17 @@ public class TriviaAPI {
      *method to call the openTDB database
      * returns true if able to successfully call the Database
      */
-    public boolean callDB(){
-        return true;
+    public String callDB(){
+
+        return "";
     }
 
 
     /*
       *method to get the offline trivia file
      */
-    public void getOfflineDB(){
-
+    public String getOfflineDB(){
+        return OFFLINE_TRIVIA_JSON;
     }
 
 
