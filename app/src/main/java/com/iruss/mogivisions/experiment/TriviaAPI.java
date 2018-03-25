@@ -12,6 +12,8 @@ import android.net.NetworkInfo;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+
+import java.util.ArrayList;
 //import android.support.v4.app.ActivityCompat;
 //import android.support.v4.content.ContextCompat;
 
@@ -46,7 +48,7 @@ public class TriviaAPI {
       * else the triviaAPI gets the offline database app
      */
 
-    public String decision(Context context){
+    public ArrayList<TriviaQuestion> decision(Context context){
         ConnectivityManager cm =
                 (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -138,17 +140,31 @@ public class TriviaAPI {
      *method to call the openTDB database
      * returns true if able to successfully call the Database
      */
-    public String callDB(){
-
-        return "";
+    public ArrayList<TriviaQuestion> callDB(){
+        return new ArrayList<TriviaQuestion>();
     }
 
 
     /*
       *method to get the offline trivia file
      */
-    public String getOfflineDB(){
-        return OFFLINE_TRIVIA_JSON;
+    public ArrayList<TriviaQuestion> getOfflineDB(){
+        // Get trivia questions (currently just offline)
+        ArrayList<TriviaQuestion> triviaQuestions =
+                TriviaQuestion.createQuestionsFromJSON(TriviaAPI.OFFLINE_TRIVIA_JSON);
+        testQuestions(triviaQuestions);
+
+        return triviaQuestions;
+    }
+
+    // TODO: Move this into test suite and make it so that it's pass/fail
+    private void testQuestions(ArrayList<TriviaQuestion> questions) {
+        String tag = "Test questions";
+        Log.d(tag, "Number of questions: " + questions.size());
+        Log.d(tag, "First question: " + questions.get(0).getQuestion());
+        Log.d(tag, "First answer: " + questions.get(0).getCorrectAnswer());
+        Log.d(tag, "Number of incorrect answers: " + questions.get(0).getIncorrectAnswers().size());
+
     }
 
 
