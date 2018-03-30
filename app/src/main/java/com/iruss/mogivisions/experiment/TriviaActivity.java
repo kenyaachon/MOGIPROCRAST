@@ -124,8 +124,6 @@ public class TriviaActivity extends AppCompatActivity {
 
         //call the trivia Api
         TriviaAPI triviaAPI = new TriviaAPI(this);
-        //triviaAPI.networkCheck();
-
     }
 
 
@@ -187,15 +185,9 @@ public class TriviaActivity extends AppCompatActivity {
 
 
     /*
-     * A method to create the challenge from the puzzles
+     * A method to create the challenge
+     * display the question and possible resonses in the TriviaActivity
      */
-
-    /*
-     * A method for connecting to the API to choose what puzzle is going to be used
-     * whether it is randomly chosen or purposefully chosen
-     */
-
-    //method to display the question in the TriviaActivity
     // TODO: Make a test for this method
     public boolean displayQuestions(ArrayList<TriviaQuestion> triviaQuestions){
 
@@ -209,22 +201,38 @@ public class TriviaActivity extends AppCompatActivity {
 
         //Randomly select question
         Random randomizer = new Random();
+        //randomlly gets the next question
         triviaQuestion = triviaQuestions.get(randomizer.nextInt(triviaQuestions.size()));
 
         questionView.setText(triviaQuestion.getQuestion());
-        //Tests whether the question is a true or false question
-        if(triviaQuestion.getIncorrectAnswers().size() < 2){
+        ArrayList<String> responses = new ArrayList<>();
+        responses.addAll(triviaQuestion.getIncorrectAnswers());
+
+        int randompositiion = randomizer.nextInt(4);
+        responses.add(randompositiion, triviaQuestion.getCorrectAnswer());
+
+        //always sets the responses for the first 2 buttons
+        questionResponse1.setText(responses.get(0));
+        questionResponse2.setText(responses.get(1));
+
+
+        //Sets the texts of the button to the possible responses for the user to choose
+        //Checks how many possible responses there are and then displays the same amount of response buttons
+        if(responses.size() == 2){
             questionResponse3.setVisibility(View.GONE);
             questionResponse4.setVisibility(View.GONE);
-        }else{
-            //need to display to set buttons to other possible responses
-            //only create click listener if more than 2 incorrect answers
-            questionResponse3.setOnClickListener(myClickListener);
-            questionResponse4.setOnClickListener(myClickListener);
+        }else if (responses.size() == 3){
+            questionResponse3.setText(responses.get(2));
+            questionResponse4.setVisibility(View.GONE);
+        }else if (responses.size() == 4) {
+            questionResponse3.setText(responses.get(2));
+            questionResponse4.setText(responses.get(3));
         }
-        //always set the clickListner for true and false
+        //sets the Clicklistener for all the buttons
         questionResponse1.setOnClickListener(myClickListener);
         questionResponse2.setOnClickListener(myClickListener);
+        questionResponse3.setOnClickListener(myClickListener);
+        questionResponse4.setOnClickListener(myClickListener);
 
         return true;
     }
@@ -233,14 +241,17 @@ public class TriviaActivity extends AppCompatActivity {
 
     //method for showing how many trials remaining someone has and how many they have used
 
-    //Button click Listener
+    //Button click Listener for check the response to a users click
     // TODO: Make a test for this method
     private final View.OnClickListener myClickListener = new View.OnClickListener(){
         @Override
         public void onClick(View view) {
             Button tempButton = findViewById(view.getId());
-            if(tempButton.getText() == triviaQuestion.getCorrectAnswer());{
+            if(tempButton.getText().equals(triviaQuestion.getCorrectAnswer())){
                 Log.d("Test", "Correct response chosen");
+            }
+            else {
+                Log.d("Test", "Incorrect response chosen");
             }
         }
     };
