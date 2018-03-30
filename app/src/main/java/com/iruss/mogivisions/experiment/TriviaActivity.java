@@ -1,5 +1,6 @@
 package com.iruss.mogivisions.experiment;
 
+
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,8 +9,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -32,6 +36,12 @@ public class TriviaActivity extends AppCompatActivity {
      * Some older devices needs a small delay between UI widget updates
      * and a change of the status and navigation bar.
      */
+
+    TriviaQuestion triviaQuestion;
+
+
+
+
     private static final int UI_ANIMATION_DELAY = 300;
     private final Handler mHideHandler = new Handler();
     private View mContentView;
@@ -44,12 +54,13 @@ public class TriviaActivity extends AppCompatActivity {
             // Note that some of these constants are new as of API 16 (Jelly Bean)
             // and API 19 (KitKat). It is safe to use them, as they are inlined
             // at compile-time and do nothing on earlier devices.
+            /*
             mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LOW_PROFILE
                     | View.SYSTEM_UI_FLAG_FULLSCREEN
                     | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                     | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                     | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);*/
         }
     };
     private View mControlsView;
@@ -94,31 +105,32 @@ public class TriviaActivity extends AppCompatActivity {
 
         mVisible = true;
         mControlsView = findViewById(R.id.fullscreen_content_controls);
-        mContentView = findViewById(R.id.fullscreen_content);
+        //mContentView = findViewById(R.id.fullscreen_content);
 
 
         // Set up the user interaction to manually show or hide the system UI.
-        mContentView.setOnClickListener(new View.OnClickListener() {
+        /*mContentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 toggle();
             }
-        });
+        });*/
 
         // Upon interacting with UI controls, delay any scheduled hide()
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
 
-        // Get trivia questions (currently just offline)
-        ArrayList<TriviaQuestion> triviaQuestions =
-                TriviaQuestion.createQuestionsFromJSON(TriviaAPI.OFFLINE_TRIVIA_JSON);
-        testQuestions(triviaQuestions);
 
         //call the trivia Api
-        TriviaAPI triviaAPI = new TriviaAPI();
-        triviaAPI.networkCheck(this);
+        TriviaAPI triviaAPI = new TriviaAPI(this);
+        //triviaAPI.networkCheck();
+
     }
+
+
+
+
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -155,8 +167,8 @@ public class TriviaActivity extends AppCompatActivity {
     @SuppressLint("InlinedApi")
     private void show() {
         // Show the system bar
-        mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
+        //mContentView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+        //        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION);
         mVisible = true;
 
         // Schedule a runnable to display UI elements after a delay
@@ -175,11 +187,6 @@ public class TriviaActivity extends AppCompatActivity {
 
 
     /*
-     * Need to have something that measures the amount of attempts
-     * -Then displays the number of trials left
-     */
-
-    /*
      * A method to create the challenge from the puzzles
      */
 
@@ -188,13 +195,55 @@ public class TriviaActivity extends AppCompatActivity {
      * whether it is randomly chosen or purposefully chosen
      */
 
-    // TODO: Move this into test suite and make it so that it's pass/fail
-    private void testQuestions(ArrayList<TriviaQuestion> questions) {
-        String tag = "Test questions";
-        Log.d(tag, "Number of questions: " + questions.size());
-        Log.d(tag, "First question: " + questions.get(0).getQuestion());
-        Log.d(tag, "First answer: " + questions.get(0).getCorrectAnswer());
-        Log.d(tag, "Number of incorrect answers: " + questions.get(0).getIncorrectAnswers().size());
+    //method to display the question in the TriviaActivity
+    // TODO: Make a test for this method
+    public boolean displayQuestions(ArrayList<TriviaQuestion> triviaQuestions){
 
+        //Displays question
+        TextView questionView = findViewById(R.id.questionText);
+        //Response buttons with questions
+        Button questionResponse1 = findViewById(R.id.questionResponse1);
+        Button questionResponse2 = findViewById(R.id.questionResponse2);
+        Button questionResponse3 = findViewById(R.id.questionResponse3);
+        Button questionResponse4 = findViewById(R.id.questionResponse4);
+
+        //Randomly select question
+        Random randomizer = new Random();
+        triviaQuestion = triviaQuestions.get(randomizer.nextInt(triviaQuestions.size()));
+
+        questionView.setText(triviaQuestion.getQuestion());
+        //Tests whether the question is a true or false question
+        if(triviaQuestion.getIncorrectAnswers().size() < 2){
+            questionResponse3.setVisibility(View.GONE);
+            questionResponse4.setVisibility(View.GONE);
+        }else{
+            //need to display to set buttons to other possible responses
+            //only create click listener if more than 2 incorrect answers
+            questionResponse3.setOnClickListener(myClickListener);
+            questionResponse4.setOnClickListener(myClickListener);
+        }
+        //always set the clickListner for true and false
+        questionResponse1.setOnClickListener(myClickListener);
+        questionResponse2.setOnClickListener(myClickListener);
+
+        return true;
     }
+
+    //checks score at the end if it does not reach a certain point then person has to redo
+
+    //method for showing how many trials remaining someone has and how many they have used
+
+    //Button click Listener
+    // TODO: Make a test for this method
+    private final View.OnClickListener myClickListener = new View.OnClickListener(){
+        @Override
+        public void onClick(View view) {
+            Button tempButton = findViewById(view.getId());
+            if(tempButton.getText() == triviaQuestion.getCorrectAnswer());{
+                Log.d("Test", "Correct response chosen");
+            }
+        }
+    };
+
+
 }
