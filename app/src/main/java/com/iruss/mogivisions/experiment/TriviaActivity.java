@@ -208,7 +208,7 @@ public class TriviaActivity extends AppCompatActivity {
         ArrayList<String> responses = new ArrayList<>();
         responses.addAll(triviaQuestion.getIncorrectAnswers());
 
-        int randompositiion = randomizer.nextInt(4);
+        int randompositiion = randomizer.nextInt(responses.size() + 1);
         responses.add(randompositiion, triviaQuestion.getCorrectAnswer());
 
         //always sets the responses for the first 2 buttons
