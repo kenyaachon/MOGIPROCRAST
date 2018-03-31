@@ -168,7 +168,13 @@ public class TriviaAPI {
      */
     public ArrayList<TriviaQuestion> callDB(){
         //returns an emptry arrayList of type TriviaQuestions
-        return new ArrayList<TriviaQuestion>();
+        HttpHandler sh = new HttpHandler();
+        String openTDBURL = "https://opentdb.com/api.php?amount=14";
+        String requestedDB = sh.makeServiceCall(openTDBURL);
+        TriviaQuestion triviaQuestiontemp = new TriviaQuestion();
+
+        //return new ArrayList<TriviaQuestion>();
+        return triviaQuestiontemp.createQuestionsFromJSON(requestedDB);
     }
 
 
