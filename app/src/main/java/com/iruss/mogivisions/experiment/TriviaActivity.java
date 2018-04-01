@@ -123,7 +123,8 @@ public class TriviaActivity extends AppCompatActivity {
 
 
         //call the trivia Api
-        TriviaAPI triviaAPI = new TriviaAPI(this);
+        //TriviaAPI triviaAPI = new TriviaAPI(this);
+        new TriviaAPI(this);
     }
 
 
@@ -201,15 +202,15 @@ public class TriviaActivity extends AppCompatActivity {
 
         //Randomly select question
         Random randomizer = new Random();
-        //randomlly gets the next question
+        //randomly gets the next question
         triviaQuestion = triviaQuestions.get(randomizer.nextInt(triviaQuestions.size()));
 
         questionView.setText(triviaQuestion.getQuestion());
         ArrayList<String> responses = new ArrayList<>();
         responses.addAll(triviaQuestion.getIncorrectAnswers());
 
-        int randompositiion = randomizer.nextInt(responses.size() + 1);
-        responses.add(randompositiion, triviaQuestion.getCorrectAnswer());
+        int randomposition = randomizer.nextInt(responses.size() + 1);
+        responses.add(randomposition, triviaQuestion.getCorrectAnswer());
 
         //always sets the responses for the first 2 buttons
         questionResponse1.setText(responses.get(0));

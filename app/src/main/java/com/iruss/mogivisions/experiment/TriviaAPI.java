@@ -9,12 +9,15 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import static android.content.ContentValues.TAG;
 //import android.support.v4.app.ActivityCompat;
 //import android.support.v4.content.ContextCompat;
 
@@ -61,7 +64,7 @@ public class TriviaAPI {
      */
 
     //public ArrayList<TriviaQuestion> decision(Context context){
-    public boolean decision(Context context){
+    private boolean decision(Context context){
         ConnectivityManager cm =
                 (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -79,8 +82,8 @@ public class TriviaAPI {
             //returns the database questions from online
             if(isConnected){
                 Log.d("Test", "Internet Connection is Available");
+                //Sends the retrivied from the online TriviaDB to the TriviaActivity
                 triviaActivity.displayQuestions(callDB());
-                //return callDB()=;
                 return true;
             }
         } catch (Exception e) {
@@ -91,7 +94,6 @@ public class TriviaAPI {
         Log.d("Internet Test", "Going to use ");
         triviaActivity.displayQuestions(getOfflineDB());
         return false;
-        //return getOfflineDB();
     }
 
     /*
@@ -100,7 +102,7 @@ public class TriviaAPI {
      * and false otherwise
      */
     private int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 1;
-    public boolean networkCheck(){
+    private boolean networkCheck(){
         //public boolean networkCheck(){
         Log.d("attempt", "network attempt");
 
@@ -166,22 +168,17 @@ public class TriviaAPI {
      *method to call the openTDB database
      * returns true if able to successfully call the Database
      */
-    public ArrayList<TriviaQuestion> callDB(){
-        //returns an emptry arrayList of type TriviaQuestions
-        HttpHandler sh = new HttpHandler();
-        String openTDBURL = "https://opentdb.com/api.php?amount=14";
-        String requestedDB = sh.makeServiceCall(openTDBURL);
-        TriviaQuestion triviaQuestiontemp = new TriviaQuestion();
-
-        //return new ArrayList<TriviaQuestion>();
-        return triviaQuestiontemp.createQuestionsFromJSON(requestedDB);
+    private ArrayList<TriviaQuestion> callDB(){
+        GetTriviaDB getTriviaDB = new GetTriviaDB();
+        getTriviaDB.execute();
+        return getTriviaDB.getTriviaQuestions();
     }
 
 
     /*
       *method to get the offline trivia file
      */
-    public ArrayList<TriviaQuestion> getOfflineDB(){
+    private ArrayList<TriviaQuestion> getOfflineDB(){
         // Get trivia questions (currently just offline)
         ArrayList<TriviaQuestion> triviaQuestions =
                 TriviaQuestion.createQuestionsFromJSON(TriviaAPI.OFFLINE_TRIVIA_JSON);
@@ -199,6 +196,57 @@ public class TriviaAPI {
         Log.d(tag, "First answer: " + questions.get(0).getCorrectAnswer());
         Log.d(tag, "Number of incorrect answers: " + questions.get(0).getIncorrectAnswers().size());
 
+    }
+
+
+    /**
+     * Calls the online TriviaDB
+     */
+    private class GetTriviaDB extends AsyncTask<Void, Void, Void> {
+        private TriviaQuestion triviaQuestion;
+        private ArrayList<TriviaQuestion> triviaQuestionArrayList;
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Toast.makeText(triviaActivity,"Json Data is downloading"
+                    ,Toast.LENGTH_LONG).show();
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg0) {
+            //Gets the JSON data from topenTDB
+            HttpHandler sh = new HttpHandler();
+            String openTDBURL = "https://opentdb.com/api.php?amount=10";
+            String requestedDB = sh.makeServiceCall(openTDBURL);
+
+            //Parses the JSON data into a list of questions
+            Log.e(TAG, "Response from url: " + requestedDB);
+            if (requestedDB != null) {
+                triviaQuestion = new TriviaQuestion();
+                triviaQuestionArrayList = triviaQuestion.createQuestionsFromJSON(requestedDB);
+
+            } else {
+                Log.e(TAG, "Couldn't get json from server.");
+                triviaActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(triviaActivity.getApplicationContext(),
+                                "Couldn't get json from server. Check LogCat for possible errors!",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+            return null;
+        }
+
+        /**
+         * Allows to access the triviaQuestions
+         * @return
+         */
+        protected ArrayList<TriviaQuestion> getTriviaQuestions(){
+            return triviaQuestionArrayList;
+        }
     }
 
 

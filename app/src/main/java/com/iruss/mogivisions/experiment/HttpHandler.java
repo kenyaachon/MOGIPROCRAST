@@ -47,9 +47,8 @@ public class HttpHandler {
             }
             response = sb.toString();
             */
-            if(response.length() > 0){
-                Log.d("Test", "Online database retrieved successfully");
-            }
+            Log.d("Test", "Online database retrieved successfully");
+
         } catch (MalformedURLException e) {
             Log.e(TAG, "MalformedURLException: " + e.getMessage());
         } catch (ProtocolException e) {
