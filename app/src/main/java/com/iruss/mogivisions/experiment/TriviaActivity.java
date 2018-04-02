@@ -39,6 +39,12 @@ public class TriviaActivity extends AppCompatActivity {
 
     TriviaQuestion triviaQuestion;
 
+    private TextView questionView;
+    //Response buttons with questions
+    private Button questionResponse1;
+    private Button questionResponse2;
+    private Button questionResponse3;
+    private Button questionResponse4;
 
 
 
@@ -121,10 +127,26 @@ public class TriviaActivity extends AppCompatActivity {
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
 
+        questionView = findViewById(R.id.questionText);
+        //Response buttons with questions
+        questionResponse1 = findViewById(R.id.questionResponse1);
+        questionResponse2 = findViewById(R.id.questionResponse2);
+        questionResponse3 = findViewById(R.id.questionResponse3);
+        questionResponse4 = findViewById(R.id.questionResponse4);
+
+        //make the buttons not visible until the buttons are ready
+        questionView.setVisibility(View.GONE);
+        questionResponse1.setVisibility(View.GONE);
+        questionResponse2.setVisibility(View.GONE);
+        questionResponse3.setVisibility(View.GONE);
+        questionResponse4.setVisibility(View.GONE);
+
 
         //call the trivia Api
         //TriviaAPI triviaAPI = new TriviaAPI(this);
         new TriviaAPI(this);
+
+
     }
 
 
@@ -192,20 +214,13 @@ public class TriviaActivity extends AppCompatActivity {
     // TODO: Make a test for this method
     public boolean displayQuestions(ArrayList<TriviaQuestion> triviaQuestions){
 
-        //Displays question
-        TextView questionView = findViewById(R.id.questionText);
-        //Response buttons with questions
-        Button questionResponse1 = findViewById(R.id.questionResponse1);
-        Button questionResponse2 = findViewById(R.id.questionResponse2);
-        Button questionResponse3 = findViewById(R.id.questionResponse3);
-        Button questionResponse4 = findViewById(R.id.questionResponse4);
-
         //Randomly select question
         Random randomizer = new Random();
         //randomly gets the next question
         triviaQuestion = triviaQuestions.get(randomizer.nextInt(triviaQuestions.size()));
 
         questionView.setText(triviaQuestion.getQuestion());
+        questionView.setVisibility(View.VISIBLE);
         ArrayList<String> responses = new ArrayList<>();
         responses.addAll(triviaQuestion.getIncorrectAnswers());
 
@@ -220,14 +235,17 @@ public class TriviaActivity extends AppCompatActivity {
         //Sets the texts of the button to the possible responses for the user to choose
         //Checks how many possible responses there are and then displays the same amount of response buttons
         if(responses.size() == 2){
-            questionResponse3.setVisibility(View.GONE);
-            questionResponse4.setVisibility(View.GONE);
+            questionResponse1.setVisibility(View.VISIBLE);
+            questionResponse2.setVisibility(View.VISIBLE);
         }else if (responses.size() == 3){
             questionResponse3.setText(responses.get(2));
-            questionResponse4.setVisibility(View.GONE);
+            questionResponse3.setVisibility(View.GONE);
         }else if (responses.size() == 4) {
             questionResponse3.setText(responses.get(2));
             questionResponse4.setText(responses.get(3));
+            questionResponse3.setVisibility(View.VISIBLE);
+            questionResponse4.setVisibility(View.VISIBLE);
+
         }
         //sets the Clicklistener for all the buttons
         questionResponse1.setOnClickListener(myClickListener);
