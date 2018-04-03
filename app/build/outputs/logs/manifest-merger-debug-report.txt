@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:2:1-33:12
-INJECTED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:2:1-33:12
-INJECTED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:2:1-33:12
-INJECTED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:2:1-33:12
+ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:2:1-39:12
 MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/Peter/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/7fb7cf555c8a09db89733549179d87a4/AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/Peter/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/3a5aec19968c71062c7674632a11aa2f/AndroidManifest.xml:2:1-11:12
 MERGED from [com.android.support:support-v4:26.1.0] /Users/Peter/.gradle/caches/transforms-1/files-1.1/support-v4-26.1.0.aar/5d6c77ec779b5a3fa150fa05479db93c/AndroidManifest.xml:17:1-31:12
@@ -15,20 +15,20 @@ MERGED from [com.android.support:support-core-utils:26.1.0] /Users/Peter/.gradle
 MERGED from [com.android.support:support-core-ui:26.1.0] /Users/Peter/.gradle/caches/transforms-1/files-1.1/support-core-ui-26.1.0.aar/07cfb23775db6a96f2345a30bdd792f3/AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-compat:26.1.0] /Users/Peter/.gradle/caches/transforms-1/files-1.1/support-compat-26.1.0.aar/99b92c3ae59964583b5e04fb52f0938d/AndroidManifest.xml:17:1-31:12
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/Peter/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/555fea0b330f3f3c9c8b0ba8601922e3/AndroidManifest.xml:17:1-30:12
-INJECTED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:2:1-33:12
-INJECTED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:2:1-33:12
-INJECTED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:2:1-33:12
+INJECTED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:2:1-39:12
+INJECTED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:2:1-39:12
 	package
 		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:3:5-47
 		INJECTED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml
-		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:2:1-33:12
+		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:2:1-39:12
 		INJECTED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml
 	android:versionCode
 		INJECTED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml
-		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:2:1-33:12
+		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:2:1-39:12
 		INJECTED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:2:11-69
@@ -36,8 +36,16 @@ uses-permission#android.permission.CAMERA
 ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:4:5-82
 	android:name
 		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:4:22-62
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:5:5-95
+	android:name
+		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:5:22-76
+uses-permission#android.permission.INTERNET
+ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:6:5-67
+	android:name
+		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:6:22-64
 application
-ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:7:5-31:19
+ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:9:5-37:19
 MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/Peter/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/7fb7cf555c8a09db89733549179d87a4/AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:appcompat-v7:26.1.0] /Users/Peter/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/7fb7cf555c8a09db89733549179d87a4/AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /Users/Peter/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/3a5aec19968c71062c7674632a11aa2f/AndroidManifest.xml:9:5-20
@@ -61,51 +69,59 @@ MERGED from [com.android.support:support-compat:26.1.0] /Users/Peter/.gradle/cac
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/Peter/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/555fea0b330f3f3c9c8b0ba8601922e3/AndroidManifest.xml:24:5-28:19
 MERGED from [android.arch.lifecycle:runtime:1.0.0] /Users/Peter/.gradle/caches/transforms-1/files-1.1/runtime-1.0.0.aar/555fea0b330f3f3c9c8b0ba8601922e3/AndroidManifest.xml:24:5-28:19
 	android:supportsRtl
-		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:12:9-35
+		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:14:9-35
 	android:label
-		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:10:9-41
+		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:12:9-41
 	android:roundIcon
-		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:11:9-54
+		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:13:9-54
 	android:icon
-		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:9:9-43
+		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:11:9-43
 	android:allowBackup
-		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:8:9-35
+		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:10:9-35
 	android:theme
-		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:13:9-40
+		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:15:9-40
 activity#com.iruss.mogivisions.experiment.KioskActivity
-ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:14:9-21:20
+ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:16:9-23:20
 	android:name
-		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:14:19-48
+		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:16:19-48
 intent-filter#android.intent.action.MAIN+android.intent.action.VIEW+android.intent.category.LAUNCHER
-ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:15:13-20:29
+ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:17:13-22:29
 action#android.intent.action.MAIN
-ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:16:17-69
+ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:18:17-69
 	android:name
-		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:16:25-66
+		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:18:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:18:17-77
+ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:20:17-77
 	android:name
-		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:18:27-74
+		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:20:27-74
 action#android.intent.action.VIEW
-ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:19:17-68
+ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:21:17-68
 	android:name
-		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:19:25-66
+		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:21:25-66
 activity#com.iruss.mogivisions.experiment.TriviaActivity
-ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:22:9-30:20
+ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:24:9-32:20
 	android:label
-		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:25:13-58
+		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:27:13-58
 	android:configChanges
-		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:24:13-74
+		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:26:13-74
 	android:theme
-		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:26:13-51
+		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:28:13-51
 	android:name
-		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:23:13-43
+		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:25:13-43
 meta-data#android.support.PARENT_ACTIVITY
-ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:27:13-29:81
+ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:29:13-31:81
 	android:value
-		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:29:17-79
+		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:31:17-79
 	android:name
-		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:28:17-63
+		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:30:17-63
+activity#com.iruss.mogivisions.experiment.SettingsActivity
+ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:33:9-36:60
+	android:parentActivityName
+		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:36:13-57
+	android:label
+		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:35:13-45
+	android:name
+		ADDED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml:34:13-45
 uses-sdk
 INJECTED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/src/main/AndroidManifest.xml

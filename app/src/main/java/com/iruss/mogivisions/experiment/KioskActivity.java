@@ -2,14 +2,17 @@ package com.iruss.mogivisions.experiment;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 /**
@@ -25,8 +28,20 @@ public class KioskActivity extends AppCompatActivity {
         response();
         call();
         camera();
+        settings();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Update text about lockout time
+        TextView textView = findViewById(R.id.textView);
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        int hours = Integer.parseInt(sharedPref.getString("lockout_time", "12"));
+        textView.setText("Unlock time: " + hours + " hours");
+    }
 
     /**
      * Need a button for going to the Challenge_Activity
@@ -99,6 +114,20 @@ public class KioskActivity extends AppCompatActivity {
                      Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                      startActivity(cameraIntent);
                  }
+            }
+        });
+    }
+
+    /**
+     * camera() calls  the camera App when the User press the camera button
+     */
+    public void settings(){
+        Button settingsButton = findViewById(R.id.settings);
+
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(KioskActivity.this, SettingsActivity.class);
+                startActivity(intent);
             }
         });
     }
