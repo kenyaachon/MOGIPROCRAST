@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -37,7 +38,9 @@ public class TriviaActivity extends AppCompatActivity {
      * and a change of the status and navigation bar.
      */
 
-    TriviaQuestion triviaQuestion;
+    private ArrayList<TriviaQuestion> triviaQuestions;
+
+    private TriviaQuestion triviaQuestion;
 
     private TextView questionView;
     //Response buttons with questions
@@ -45,6 +48,16 @@ public class TriviaActivity extends AppCompatActivity {
     private Button questionResponse2;
     private Button questionResponse3;
     private Button questionResponse4;
+
+
+    //Number of trials possible
+    private static final int trials = 3;
+
+    private TextView trialsView;
+
+    //Number of trials remaining
+    private int attemptsMade = 0;
+
 
 
 
@@ -141,6 +154,8 @@ public class TriviaActivity extends AppCompatActivity {
         questionResponse3.setVisibility(View.GONE);
         questionResponse4.setVisibility(View.GONE);
 
+        //Gets the text that shows how many trials you have
+        trialsView = findViewById(R.id.trialsRemaining);
 
         //call the trivia Api
         //TriviaAPI triviaAPI = new TriviaAPI(this);
@@ -213,17 +228,19 @@ public class TriviaActivity extends AppCompatActivity {
      */
     // TODO: Make a test for this method
     public boolean displayQuestions(ArrayList<TriviaQuestion> triviaQuestions){
-
+        this.triviaQuestions = triviaQuestions;
         //Randomly select question
         Random randomizer = new Random();
         //randomly gets the next question
         triviaQuestion = triviaQuestions.get(randomizer.nextInt(triviaQuestions.size()));
 
+        //settings the question to be displayed
         questionView.setText(triviaQuestion.getQuestion());
         questionView.setVisibility(View.VISIBLE);
         ArrayList<String> responses = new ArrayList<>();
         responses.addAll(triviaQuestion.getIncorrectAnswers());
 
+        //randomly adding the correct answer into the list of possible answers
         int randomposition = randomizer.nextInt(responses.size() + 1);
         responses.add(randomposition, triviaQuestion.getCorrectAnswer());
 
@@ -271,6 +288,20 @@ public class TriviaActivity extends AppCompatActivity {
             }
             else {
                 Log.d("Test", "Incorrect response chosen");
+                if(attemptsMade == trials){
+                    //call kill
+
+                    //display a message to user that they are out of attempts and go back to KioskActivity
+                    Log.d("Test", "You are out of attempts");
+                    //finishActivity();
+                    TriviaActivity.super.onBackPressed();
+                }else{
+                    displayQuestions(triviaQuestions);
+                    attemptsMade += 1;
+                    String trialsStr = "Trials remaining: ";
+                    trialsStr.concat(Integer.toString(trials - attemptsMade));
+                    trialsView.setText(trialsStr);
+                }
             }
         }
     };
