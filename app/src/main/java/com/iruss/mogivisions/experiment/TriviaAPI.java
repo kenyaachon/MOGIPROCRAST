@@ -83,7 +83,8 @@ public class TriviaAPI {
             if(isConnected){
                 Log.d("Test", "Internet Connection is Available");
                 //Sends the retrivied from the online TriviaDB to the TriviaActivity
-                triviaActivity.displayQuestions(callDB());
+                //triviaActivity.displayQuestions(callDB());
+                callDB();
                 return true;
             }
         } catch (Exception e) {
@@ -168,10 +169,12 @@ public class TriviaAPI {
      *method to call the openTDB database
      * returns true if able to successfully call the Database
      */
-    private ArrayList<TriviaQuestion> callDB(){
+    private void callDB(){
+        /*
         GetTriviaDB getTriviaDB = new GetTriviaDB();
         getTriviaDB.execute();
-        return getTriviaDB.getTriviaQuestions();
+        return getTriviaDB.getTriviaQuestions();*/
+        new GetTriviaDB().execute();
     }
 
 
@@ -241,12 +244,16 @@ public class TriviaAPI {
         }
 
         /**
-         * Allows to access the triviaQuestions
-         * @return
+         * Once JSON data is retrieved from the database, send it to the TriviaActivity
+         * @param result
          */
-        protected ArrayList<TriviaQuestion> getTriviaQuestions(){
-            return triviaQuestionArrayList;
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            triviaActivity.displayQuestions(triviaQuestionArrayList);
+
         }
+
     }
 
 

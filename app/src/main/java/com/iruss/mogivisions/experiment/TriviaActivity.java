@@ -293,13 +293,13 @@ public class TriviaActivity extends AppCompatActivity {
 
                     //display a message to user that they are out of attempts and go back to KioskActivity
                     Log.d("Test", "You are out of attempts");
-                    //finishActivity();
                     TriviaActivity.super.onBackPressed();
                 }else{
                     displayQuestions(triviaQuestions);
                     attemptsMade += 1;
                     String trialsStr = "Trials remaining: ";
-                    trialsStr.concat(Integer.toString(trials - attemptsMade));
+                    int displayTrials = trials - attemptsMade;
+                    trialsStr.concat(Integer.toString(displayTrials));
                     trialsView.setText(trialsStr);
                 }
             }
