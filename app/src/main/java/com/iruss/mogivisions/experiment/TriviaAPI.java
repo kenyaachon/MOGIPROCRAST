@@ -227,6 +227,7 @@ public class TriviaAPI {
             Log.e(TAG, "Response from url: " + requestedDB);
             if (requestedDB != null) {
                 triviaQuestion = new TriviaQuestion();
+                //parse the json data from the online triviaDB
                 triviaQuestionArrayList = triviaQuestion.createQuestionsFromJSON(requestedDB);
 
             } else {
