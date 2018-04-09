@@ -2,6 +2,7 @@ package com.iruss.mogivisions.experiment;
 
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBar;
@@ -244,6 +245,8 @@ public class TriviaActivity extends AppCompatActivity {
         int randomposition = randomizer.nextInt(responses.size() + 1);
         responses.add(randomposition, triviaQuestion.getCorrectAnswer());
 
+
+
         //always sets the responses for the first 2 buttons
         questionResponse1.setText(responses.get(0));
         questionResponse2.setText(responses.get(1));
@@ -270,6 +273,9 @@ public class TriviaActivity extends AppCompatActivity {
         questionResponse3.setOnClickListener(myClickListener);
         questionResponse4.setOnClickListener(myClickListener);
 
+        //resetbuttons text and color
+        resetButtons();
+
         return true;
     }
 
@@ -285,9 +291,18 @@ public class TriviaActivity extends AppCompatActivity {
             Button tempButton = findViewById(view.getId());
             if(tempButton.getText().equals(triviaQuestion.getCorrectAnswer())){
                 Log.d("Test", "Correct response chosen");
+                tempButton.setBackgroundColor(Color.GREEN);
             }
             else {
                 Log.d("Test", "Incorrect response chosen");
+                tempButton.setBackgroundColor(Color.RED);
+                //Code that shows the correct answer
+                /*
+                String mButtonName = triviaQuestion.getCorrectAnswer();
+                int resID = getResources().getIdentifier(mButtonName , "id", getPackageName());
+                Button correctButton = findViewById(resID);
+                correctButton.setBackgroundColor(Color.GREEN); */
+
                 if(attemptsMade == trials){
                     //call kill
 
@@ -295,16 +310,31 @@ public class TriviaActivity extends AppCompatActivity {
                     Log.d("Test", "You are out of attempts");
                     TriviaActivity.super.onBackPressed();
                 }else{
-                    displayQuestions(triviaQuestions);
+                    //Works on displaing the next set of questions
                     attemptsMade += 1;
-                    String trialsStr = "Trials remaining: ";
                     int displayTrials = trials - attemptsMade;
-                    trialsStr.concat(Integer.toString(displayTrials));
+                    String trialsStr = "Trials remaining: " + Integer.toString(displayTrials) ;
+                    //changes how many trials there are left
                     trialsView.setText(trialsStr);
+                    displayQuestions(triviaQuestions);
                 }
             }
         }
     };
+
+
+
+    /**
+     * Resets the buttons colors back to default after they have been changed
+     */
+    public void resetButtons(){
+        questionResponse1.setBackgroundResource(android.R.drawable.btn_default);
+        questionResponse2.setBackgroundResource(android.R.drawable.btn_default);
+        questionResponse3.setBackgroundResource(android.R.drawable.btn_default);
+        questionResponse4.setBackgroundResource(android.R.drawable.btn_default);
+
+    }
+
 
 
 }
