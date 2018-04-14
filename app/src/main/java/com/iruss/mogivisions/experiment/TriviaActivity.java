@@ -245,7 +245,8 @@ public class TriviaActivity extends AppCompatActivity {
         int randomposition = randomizer.nextInt(responses.size() + 1);
         responses.add(randomposition, triviaQuestion.getCorrectAnswer());
 
-
+        //resetbuttons text and color
+        resetButtons();
 
         //always sets the responses for the first 2 buttons
         questionResponse1.setText(responses.get(0));
@@ -273,8 +274,7 @@ public class TriviaActivity extends AppCompatActivity {
         questionResponse3.setOnClickListener(myClickListener);
         questionResponse4.setOnClickListener(myClickListener);
 
-        //resetbuttons text and color
-        resetButtons();
+
 
         return true;
     }
@@ -303,6 +303,8 @@ public class TriviaActivity extends AppCompatActivity {
                 Button correctButton = findViewById(resID);
                 correctButton.setBackgroundColor(Color.GREEN); */
 
+
+
                 if(attemptsMade == trials){
                     //call kill
 
@@ -310,17 +312,28 @@ public class TriviaActivity extends AppCompatActivity {
                     Log.d("Test", "You are out of attempts");
                     TriviaActivity.super.onBackPressed();
                 }else{
-                    //Works on displaing the next set of questions
-                    attemptsMade += 1;
-                    int displayTrials = trials - attemptsMade;
-                    String trialsStr = "Trials remaining: " + Integer.toString(displayTrials) ;
-                    //changes how many trials there are left
-                    trialsView.setText(trialsStr);
-                    displayQuestions(triviaQuestions);
+                    //continues the trivia but with a delay
+                    continueTrivia();
                 }
             }
         }
     };
+
+    public void continueTrivia(){
+        Handler myhandler = new Handler();
+        myhandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //Works on displaing the next set of questions
+                attemptsMade += 1;
+                int displayTrials = trials - attemptsMade;
+                String trialsStr = "Trials remaining: " + Integer.toString(displayTrials) ;
+                //changes how many trials there are left
+                trialsView.setText(trialsStr);
+                displayQuestions(triviaQuestions);
+            }
+        }, 1000);
+    }
 
 
 

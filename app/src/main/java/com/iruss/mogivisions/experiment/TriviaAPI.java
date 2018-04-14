@@ -15,6 +15,9 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
@@ -221,7 +224,21 @@ public class TriviaAPI {
             //Gets the JSON data from topenTDB
             HttpHandler sh = new HttpHandler();
             String openTDBURL = "https://opentdb.com/api.php?amount=10";
+
+
+            /*Sometimes works for requesting the needed session token
+            try{
+                String openTDBToken = "https://opentdb.com/api_token.php?command=request";
+                String requestedToken = sh.makeServiceCall(openTDBToken);
+                JSONObject token = new JSONObject(requestedToken);
+                String triviaToken = token.getString("token");
+                openTDBURL = openTDBURL + triviaToken;
+            }catch (JSONException e) {
+                e.printStackTrace();
+            }*/
+
             String requestedDB = sh.makeServiceCall(openTDBURL);
+
 
             //Parses the JSON data into a list of questions
             Log.e(TAG, "Response from url: " + requestedDB);
