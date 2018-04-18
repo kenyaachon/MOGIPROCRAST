@@ -305,6 +305,14 @@ public class TriviaActivity extends AppCompatActivity {
             if(tempButton.getText().equals(triviaQuestion.getCorrectAnswer())){
                 Log.d("Test", "Correct response chosen");
                 tempButton.setBackgroundColor(Color.GREEN);
+                TriviaActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(TriviaActivity.this.getApplicationContext(),
+                                "Trivia challenge solved successfully, phone will be unlocked",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
             }
             else {
                 Log.d("Test", "Incorrect response chosen");
