@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -50,6 +51,8 @@ public class TriviaActivity extends AppCompatActivity {
     private Button questionResponse3;
     private Button questionResponse4;
 
+    //Button list for finding the button with the correct answer
+    private ArrayList<Button> buttons = new ArrayList<>();
 
     //Number of trials possible
     private static final int trials = 3;
@@ -148,6 +151,14 @@ public class TriviaActivity extends AppCompatActivity {
         questionResponse3 = findViewById(R.id.questionResponse3);
         questionResponse4 = findViewById(R.id.questionResponse4);
 
+        //add the buttons to the button list for finding the correct answer
+        buttons.add(questionResponse1);
+        buttons.add(questionResponse2);
+        buttons.add(questionResponse3);
+        buttons.add(questionResponse4);
+
+
+
         //make the buttons not visible until the buttons are ready
         questionView.setVisibility(View.GONE);
         questionResponse1.setVisibility(View.GONE);
@@ -157,6 +168,8 @@ public class TriviaActivity extends AppCompatActivity {
 
         //Gets the text that shows how many trials you have
         trialsView = findViewById(R.id.trialsRemaining);
+        String trialsStr = "Trials remaining: " + Integer.toString(trials) ;
+        trialsView.setText(trialsStr);
 
         //call the trivia Api
         //TriviaAPI triviaAPI = new TriviaAPI(this);
@@ -297,19 +310,27 @@ public class TriviaActivity extends AppCompatActivity {
                 Log.d("Test", "Incorrect response chosen");
                 tempButton.setBackgroundColor(Color.RED);
                 //Code that shows the correct answer
-                /*
-                String mButtonName = triviaQuestion.getCorrectAnswer();
-                int resID = getResources().getIdentifier(mButtonName , "id", getPackageName());
-                Button correctButton = findViewById(resID);
-                correctButton.setBackgroundColor(Color.GREEN); */
 
-
+                for(Button button: buttons){
+                    if(button.getText().equals(triviaQuestion.getCorrectAnswer())){
+                        Log.d("Test", "Correct response chosen");
+                        button.setBackgroundColor(Color.GREEN);
+                    }
+                }
 
                 if(attemptsMade == trials){
                     //call kill
 
                     //display a message to user that they are out of attempts and go back to KioskActivity
                     Log.d("Test", "You are out of attempts");
+                    TriviaActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(TriviaActivity.this.getApplicationContext(),
+                                    "You failed to solve the trivia challenge, phone will not be unlocked",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
                     TriviaActivity.super.onBackPressed();
                 }else{
                     //continues the trivia but with a delay
