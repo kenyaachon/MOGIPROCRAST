@@ -7,22 +7,22 @@
     format="10"
     ir-eligibility="COMPATIBLE"
     plugin-version="3.0.1"
-    timestamp="1524520112668"
+    timestamp="1524520459171"
     token="-4361854412625600830"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="256" />
+        duration="307" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="10" />
+        duration="9" />
     <task
         name="verifier"
-        duration="2" />
+        duration="4" />
 
     <artifact
         location="/Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
@@ -75,7 +75,7 @@
     <build
         build-mode="COLD"
         ir-eligibility="COMPATIBLE"
-        timestamp="1524519608090"
+        timestamp="1524520112668"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="/Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/build/outputs/apk/debug/app-debug.apk"
@@ -84,7 +84,7 @@
     <build
         build-mode="COLD"
         ir-eligibility="COMPATIBLE"
-        timestamp="1524520112668"
+        timestamp="1524520459171"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="/Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/build/intermediates/split-apk/debug/slices/slice_7.apk"
