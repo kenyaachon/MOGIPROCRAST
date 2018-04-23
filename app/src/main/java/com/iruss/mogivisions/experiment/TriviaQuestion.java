@@ -5,6 +5,7 @@ import android.util.Log;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
 
 import java.util.ArrayList;
 
@@ -44,16 +45,17 @@ public class TriviaQuestion {
             for (int i = 0; i < results.length(); i++) {
                 JSONObject result = results.getJSONObject(i);
 
-                // Create a new trivia question
+                // Create a new trivia question, converting everything from HTML
                 TriviaQuestion triviaQuestion = new TriviaQuestion();
-                triviaQuestion.question = result.getString("question");
-                triviaQuestion.correctAnswer = result.getString("correct_answer");
+                triviaQuestion.question =  Jsoup.parse(result.getString("question")).text();
+                triviaQuestion.correctAnswer = Jsoup.parse(result.getString("correct_answer")).text();
 
                 // Loop through all incorrect answers
                 JSONArray incorrectAnswers = result.getJSONArray("incorrect_answers");
                 for (int j=0; j < incorrectAnswers.length(); j++) {
                     String incorrectAnswer = incorrectAnswers.getString(j);
-                    triviaQuestion.incorrectAnswers.add(incorrectAnswer);
+                    String decodedIncorrectAnswer = Jsoup.parse(incorrectAnswer).text();
+                    triviaQuestion.incorrectAnswers.add(decodedIncorrectAnswer);
                 }
 
                 // Add it to your array

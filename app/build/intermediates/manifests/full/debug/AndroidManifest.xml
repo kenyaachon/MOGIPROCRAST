@@ -8,8 +8,7 @@
         android:minSdkVersion="19"
         android:targetSdkVersion="26" />
 
-    <uses-permission android:name="android.permission.CAMERA" >
-    </uses-permission>
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -22,14 +21,10 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/AppTheme" >
-        <activity android:name="com.iruss.mogivisions.experiment.KioskActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-
-                <action android:name="android.intent.action.VIEW" />
-            </intent-filter>
+        <activity
+            android:name="com.iruss.mogivisions.experiment.KioskActivity"
+            android:label=".KioskActivity"
+            android:parentActivityName="com.iruss.mogivisions.experiment.HomeActivity" >
         </activity>
         <activity
             android:name="com.iruss.mogivisions.experiment.TriviaActivity"
@@ -44,6 +39,13 @@
             android:name="com.iruss.mogivisions.experiment.SettingsActivity"
             android:label="SettingsActivity"
             android:parentActivityName="com.iruss.mogivisions.experiment.TriviaActivity" />
+        <activity android:name="com.iruss.mogivisions.experiment.HomeActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <meta-data
             android:name="android.support.VERSION"

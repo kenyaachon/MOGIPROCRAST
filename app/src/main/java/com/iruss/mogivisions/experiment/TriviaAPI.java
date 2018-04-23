@@ -15,6 +15,8 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import org.jsoup.Jsoup;
+
 import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
@@ -182,9 +184,12 @@ public class TriviaAPI {
       *method to get the offline trivia file
      */
     private ArrayList<TriviaQuestion> getOfflineDB(){
+        // Replace unusual strings
+        String offlineTriviaJson = Jsoup.parse(TriviaAPI.OFFLINE_TRIVIA_JSON).text();
+
         // Get trivia questions (currently just offline)
         ArrayList<TriviaQuestion> triviaQuestions =
-                TriviaQuestion.createQuestionsFromJSON(TriviaAPI.OFFLINE_TRIVIA_JSON);
+                TriviaQuestion.createQuestionsFromJSON(offlineTriviaJson);
         testQuestions(triviaQuestions);
 
         //returns the triviaQuestion for the online database
@@ -227,6 +232,7 @@ public class TriviaAPI {
             Log.e(TAG, "Response from url: " + requestedDB);
             if (requestedDB != null) {
                 triviaQuestion = new TriviaQuestion();
+
                 //parse the json data from the online triviaDB
                 triviaQuestionArrayList = triviaQuestion.createQuestionsFromJSON(requestedDB);
 
