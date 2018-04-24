@@ -8,7 +8,7 @@
     tools:context="com.iruss.mogivisions.experiment.KioskActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/timeView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/time_left" />
@@ -36,4 +36,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/settings" />
+
+    <Button
+        android:id="@+id/exitButton"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/exitButton" />
+
 </LinearLayout>
