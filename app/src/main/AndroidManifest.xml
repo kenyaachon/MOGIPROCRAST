@@ -5,6 +5,9 @@
     <uses-permission android:name="android.permission.CAMERA"></uses-permission>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.GET_TASKS"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -16,8 +19,12 @@
         <activity
             android:name=".KioskActivity"
             android:label=".KioskActivity"
-            android:parentActivityName=".HomeActivity">
-
+            android:parentActivityName=".HomeActivity"
+            android:launchMode="singleInstance">
+            <intent-filter>
+                <category android:name="android.intent.category.HOME"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".TriviaActivity"
@@ -28,6 +35,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.iruss.mogivisions.experiment.KioskActivity" />
         </activity>
+
+
         <activity
             android:name=".SettingsActivity"
             android:label="SettingsActivity"
@@ -39,6 +48,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name="com.iruss.mogivisions.kiosk.BootReceiver">
+            <intent-filter >
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+        <service android:name="com.iruss.mogivisions.kiosk.KioskService" android:exported="false"/>
     </application>
 
 </manifest>
