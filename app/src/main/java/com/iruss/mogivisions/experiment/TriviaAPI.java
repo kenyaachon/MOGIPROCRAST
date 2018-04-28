@@ -43,14 +43,14 @@ public class TriviaAPI {
     private int questionDifficulty;
 
     //TriviaActivity
-    private TriviaActivity triviaActivity = null;
+    private TriviaFragment triviaFragment;
 
     // Constant with JSON to be used offline
     static final String OFFLINE_TRIVIA_JSON = "{\"response_code\":0,\"results\":[{\"category\":\"Science: Computers\",\"type\":\"boolean\",\"difficulty\":\"medium\",\"question\":\"The HTML5 standard was published in 2014.\",\"correct_answer\":\"True\",\"incorrect_answers\":[\"False\"]},{\"category\":\"Entertainment: Music\",\"type\":\"multiple\",\"difficulty\":\"medium\",\"question\":\"Who wrote the musical composition, &quot;Rhapsody In Blue&quot;?\",\"correct_answer\":\"George Gershwin\",\"incorrect_answers\":[\"Irving Berlin\",\"Duke Ellington\",\"Johnny Mandel\"]},{\"category\":\"Animals\",\"type\":\"multiple\",\"difficulty\":\"medium\",\"question\":\"What is the scientific name for the &quot;Polar Bear&quot;?\",\"correct_answer\":\"Ursus Maritimus\",\"incorrect_answers\":[\"Polar Bear\",\"Ursus Spelaeus\",\"Ursus Arctos\"]},{\"category\":\"Animals\",\"type\":\"multiple\",\"difficulty\":\"hard\",\"question\":\"What scientific family does the Aardwolf belong to?\",\"correct_answer\":\"Hyaenidae\",\"incorrect_answers\":[\"Canidae\",\"Felidae\",\"Eupleridae\"]},{\"category\":\"Science: Computers\",\"type\":\"multiple\",\"difficulty\":\"medium\",\"question\":\"In the server hosting industry IaaS stands for...\",\"correct_answer\":\"Infrastructure as a Service\",\"incorrect_answers\":[\"Internet as a Service\",\"Internet and a Server\",\"Infrastructure as a Server\"]},{\"category\":\"Entertainment: Video Games\",\"type\":\"multiple\",\"difficulty\":\"medium\",\"question\":\"In the Portal series of games, who was the founder of Aperture Science?\",\"correct_answer\":\"Cave Johnson\",\"incorrect_answers\":[\"GLaDOs\",\"Wallace Breen\",\"Gordon Freeman\"]},{\"category\":\"Entertainment: Video Games\",\"type\":\"multiple\",\"difficulty\":\"easy\",\"question\":\"When was Left 4 Dead 2 released?\",\"correct_answer\":\"November 17, 2009\",\"incorrect_answers\":[\"May 3, 2008\",\"November 30, 2009\",\"June 30, 2010\"]},{\"category\":\"Entertainment: Television\",\"type\":\"boolean\",\"difficulty\":\"medium\",\"question\":\"Klingons respect their disabled comrades, and those who are old, injuried, and helpless.\",\"correct_answer\":\"False\",\"incorrect_answers\":[\"True\"]},{\"category\":\"Entertainment: Film\",\"type\":\"multiple\",\"difficulty\":\"medium\",\"question\":\"Leonardo Di Caprio won his first Best Actor Oscar for his performance in which film?\",\"correct_answer\":\"The Revenant\",\"incorrect_answers\":[\"The Wolf Of Wall Street\",\"Shutter Island\",\"Inception\"]},{\"category\":\"Entertainment: Television\",\"type\":\"multiple\",\"difficulty\":\"hard\",\"question\":\"Which of the following actors portrayed the Ninth Doctor in the British television show &quot;Doctor Who&quot;?\",\"correct_answer\":\"Christopher Eccleston\",\"incorrect_answers\":[\"David Tennant\",\"Matt Smith\",\"Tom Baker\"]}]}";
 
-    public TriviaAPI(TriviaActivity triviaActivity){
+    public TriviaAPI(TriviaFragment triviaFragment){
         //gets the trivia activity object wanting to use the TriviaAPI class
-        this.triviaActivity = triviaActivity;
+        this.triviaFragment = triviaFragment;
 
         networkCheck();
 
@@ -93,7 +93,7 @@ public class TriviaAPI {
 
         }
         Log.d("Internet Test", "Going to use ");
-        triviaActivity.displayQuestions(getOfflineDB());
+        triviaFragment.displayQuestions(getOfflineDB());
         return false;
     }
 
@@ -108,14 +108,14 @@ public class TriviaAPI {
         Log.d("attempt", "network attempt");
 
         //if (ContextCompat.checkSelfPermission(this,
-        if (ContextCompat.checkSelfPermission(triviaActivity,
+        if (ContextCompat.checkSelfPermission(triviaFragment.getContext(),
                 Manifest.permission.ACCESS_NETWORK_STATE)
                 != PackageManager.PERMISSION_GRANTED) {
 
             // Permission is not granted
             // Should we show an explanation?
             //if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-            if (ActivityCompat.shouldShowRequestPermissionRationale(triviaActivity,
+            if (ActivityCompat.shouldShowRequestPermissionRationale(triviaFragment.getActivity(),
                     Manifest.permission.ACCESS_NETWORK_STATE)) {
 
                 // Show an explanation to the user *asynchronously* -- don't block
@@ -139,11 +139,11 @@ public class TriviaAPI {
 
                 // No explanation needed; request the permission
                 //ActivityCompat.requestPermissions(this,
-                ActivityCompat.requestPermissions(triviaActivity,
+                ActivityCompat.requestPermissions(triviaFragment.getActivity(),
                         new String[]{Manifest.permission.ACCESS_NETWORK_STATE},
                         MY_PERMISSIONS_REQUEST_READ_CONTACTS);
                 //findouts network status
-                decision(triviaActivity);
+                decision(triviaFragment.getContext());
 
 
                 // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
@@ -153,7 +153,7 @@ public class TriviaAPI {
             }
         } else {
             // Permission has already been granted
-            decision(triviaActivity);
+            decision(triviaFragment.getContext());
             return true;
         }
         //false if network check fails
@@ -211,7 +211,7 @@ public class TriviaAPI {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Toast.makeText(triviaActivity,"Json Data is downloading"
+            Toast.makeText(triviaFragment.getContext(),"Json Data is downloading"
                     ,Toast.LENGTH_LONG).show();
 
         }
@@ -233,10 +233,10 @@ public class TriviaAPI {
 
             } else {
                 Log.e(TAG, "Couldn't get json from server.");
-                triviaActivity.runOnUiThread(new Runnable() {
+                triviaFragment.getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(triviaActivity.getApplicationContext(),
+                        Toast.makeText(triviaFragment.getActivity().getApplicationContext(),
                                 "Couldn't get json from server. Check LogCat for possible errors!",
                                 Toast.LENGTH_LONG).show();
                     }
@@ -252,8 +252,7 @@ public class TriviaAPI {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            triviaActivity.displayQuestions(triviaQuestionArrayList);
-
+            triviaFragment.displayQuestions(triviaQuestionArrayList);
         }
 
     }

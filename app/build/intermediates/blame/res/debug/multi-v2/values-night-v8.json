@@ -4,7 +4,7 @@
             "outputFile": "/Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-night-v8/values-night-v8.xml",
             "map": [
                 {
-                    "source": "/Users/Peter/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/7fb7cf555c8a09db89733549179d87a4/res/values-night-v8/values-night-v8.xml",
+                    "source": "/Users/Peter/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/dffe6de643b890831e3ef43f78deb2a9/res/values-night-v8/values-night-v8.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8",
                         "startColumns": "4,4,4,4,4,4,4",

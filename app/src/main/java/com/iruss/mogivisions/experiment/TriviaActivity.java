@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -159,7 +158,7 @@ public class TriviaActivity extends AppCompatActivity {
 
         //call the trivia Api
         //TriviaAPI triviaAPI = new TriviaAPI(this);
-        new TriviaAPI(this);
+        //new TriviaAPI(this);
 
 
     }
