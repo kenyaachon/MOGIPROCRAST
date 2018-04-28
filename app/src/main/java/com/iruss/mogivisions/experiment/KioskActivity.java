@@ -6,58 +6,24 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import com.iruss.mogivisions.kiosk.*;
 
 
 /**
  * Page where you choose whether or not to activate the challenge activity
  */
 public class KioskActivity extends AppCompatActivity {
-    private final List blockedKeys = new ArrayList(Arrays.asList(KeyEvent.KEYCODE_VOLUME_DOWN, KeyEvent.KEYCODE_VOLUME_UP));
-    private Button hiddenExitButton;
-    private TextView timeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
         setContentView(R.layout.activity_kiosk);
-
-
-
-        // every time someone enters the kiosk mode, set the flag true
-        PrefUtils.setKioskModeActive(true, getApplicationContext());
-
-        hiddenExitButton = (Button) findViewById(R.id.exitButton);
-        hiddenExitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Break out!
-                PrefUtils.setKioskModeActive(true, getApplicationContext());
-                Toast.makeText(getApplicationContext(),"You can leave the app now!", Toast.LENGTH_SHORT).show();
-                PackageManager pm = getPackageManager();
-                pm.clearPackagePreferredActivities ("de.example.android.kiosk");
-            }
-        });
-
-
-        timeView = findViewById(R.id.timeView);
-        unlockPhone(2);
 
         response();
         call();
@@ -65,59 +31,16 @@ public class KioskActivity extends AppCompatActivity {
         settings();
     }
 
-    public void unlockPhone(int hours){
-        int time = hours * 3600000;
-
-        //Delays the reveal of the exit button
-        new CountDownTimer(20000, 1000) {
-
-            public void onTick(long millisUntilFinished) {
-                timeView.setText("Time remaining: " + millisUntilFinished / 1000);
-            }
-
-            public void onFinish() {
-                hiddenExitButton.setVisibility(View.VISIBLE);
-            }
-        }.start();
-    }
-
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if(!hasFocus) {
-            // Close every kind of system dialog
-            Intent closeDialog = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
-            sendBroadcast(closeDialog);
-        }
-    }
-
-
-    @Override
-    public void onBackPressed() {
-        // nothing to do here
-        // … really
-    }
-
-    @Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        if (blockedKeys.contains(event.getKeyCode())) {
-            return true;
-        } else {
-            return super.dispatchKeyEvent(event);
-        }
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
 
         // Update text about lockout time
-        timeView = findViewById(R.id.timeView);
+        TextView textView = findViewById(R.id.timeView);
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         int hours = Integer.parseInt(sharedPref.getString("lockout_time", "12"));
-        timeView.setText("Unlock time: " + hours + " hours");
+        textView.setText("Unlock time: " + hours + " hours");
     }
 
     /**
@@ -131,7 +54,7 @@ public class KioskActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
 
-                //Intent intent = new Intent(this, TriviaActivity.class);
+                //Intent intent = new Intent(KioskActivity.this, TriviaActivity.class);
                 //EditText editText = (EditText) findViewById(R.id.editText);
                 //String message = editText.getText().toString();
                 //intent.putExtra(EXTRA_MESSAGE, message);
@@ -187,10 +110,10 @@ public class KioskActivity extends AppCompatActivity {
         cameraApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 if ( cameraCheck()) {
-                     Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                     startActivity(cameraIntent);
-                 }
+                if ( cameraCheck()) {
+                    Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivity(cameraIntent);
+                }
             }
         });
     }
@@ -246,6 +169,5 @@ public class KioskActivity extends AppCompatActivity {
         }
         return false;
     }
-
 
 }

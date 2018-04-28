@@ -12,4 +12,6 @@
     <string name="kiosk">Unlock Phone</string>
     <string name="lockout_time">Lockout time</string>
     <string name="lockout_time_default">12</string>
+    <string name="exitButton">Exit Button</string>
+    <!--<string name="kiosk_mode">Kiossk Mode Activity</string>-->
 </resources>

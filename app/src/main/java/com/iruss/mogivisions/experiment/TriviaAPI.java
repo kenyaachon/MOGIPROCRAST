@@ -15,8 +15,6 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -225,39 +223,28 @@ public class TriviaAPI {
             HttpHandler sh = new HttpHandler();
             String openTDBURL = "https://opentdb.com/api.php?amount=10";
 
-
-            /*Sometimes works for requesting the needed session token
-            try{
-                String openTDBToken = "https://opentdb.com/api_token.php?command=request";
-                String requestedToken = sh.makeServiceCall(openTDBToken);
-                JSONObject token = new JSONObject(requestedToken);
-                String triviaToken = token.getString("token");
-                openTDBURL = openTDBURL + triviaToken;
-            }catch (JSONException e) {
-                e.printStackTrace();
-            }*/
-
-            String requestedDB = sh.makeServiceCall(openTDBURL);
+                String requestedDB = sh.makeServiceCall(openTDBURL);
 
 
-            //Parses the JSON data into a list of questions
-            Log.e(TAG, "Response from url: " + requestedDB);
-            if (requestedDB != null) {
-                triviaQuestion = new TriviaQuestion();
-                //parse the json data from the online triviaDB
-                triviaQuestionArrayList = triviaQuestion.createQuestionsFromJSON(requestedDB);
+                //Parses the JSON data into a list of questions
+                Log.e(TAG, "Response from url: " + requestedDB);
+                if (requestedDB != null) {
+                    triviaQuestion = new TriviaQuestion();
+                    //parse the json data from the online triviaDB
+                    triviaQuestionArrayList = triviaQuestion.createQuestionsFromJSON(requestedDB);
 
-            } else {
-                Log.e(TAG, "Couldn't get json from server.");
-                triviaActivity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(triviaActivity.getApplicationContext(),
-                                "Couldn't get json from server. Check LogCat for possible errors!",
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
+                } else {
+                    Log.e(TAG, "Couldn't get json from server.");
+                    triviaActivity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(triviaActivity.getApplicationContext(),
+                                    "Couldn't get json from server. Check LogCat for possible errors!",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+
             return null;
         }
 
