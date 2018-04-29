@@ -8,6 +8,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +23,7 @@ import android.widget.Toast;
 import com.iruss.mogivisions.experiment.R;
 import com.iruss.mogivisions.experiment.SettingsActivity;
 import com.iruss.mogivisions.experiment.TriviaActivity;
+import com.iruss.mogivisions.experiment.TriviaFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,7 +33,9 @@ import java.util.List;
 /**
  * Page where you choose whether or not to activate the challenge activity
  */
-public class KioskActivity extends AppCompatActivity {
+public class KioskActivity extends AppCompatActivity
+        implements KioskFragment.OnFragmentInteractionListener,
+        TriviaFragment.OnFragmentInteractionListener{
 
     private final List blockedKeys = new ArrayList(Arrays.asList(KeyEvent.KEYCODE_VOLUME_DOWN, KeyEvent.KEYCODE_VOLUME_UP));
     private Button hiddenExitButton;
@@ -42,10 +47,18 @@ public class KioskActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
         setContentView(R.layout.activity_kiosk);
 
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        KioskFragment fragment = new KioskFragment();
+        fragmentTransaction.add(R.id.kioskFrame, fragment);
+        fragmentTransaction.commit();
+
 
         // every time someone enters the kiosk mode, set the flag true
         PrefUtils.setKioskModeActive(true, getApplicationContext());
 
+        //How to unlock the app
+        /*
         hiddenExitButton = findViewById(R.id.exitButton);
         hiddenExitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,13 +73,9 @@ public class KioskActivity extends AppCompatActivity {
 
 
         timeView = findViewById(R.id.timeView);
-        unlockPhone(2);
+        unlockPhone(2);*/
 
-        
-        response();
-        call();
-        camera();
-        settings();
+
     }
 
     public void unlockPhone(int hours){
@@ -100,6 +109,11 @@ public class KioskActivity extends AppCompatActivity {
     public void onBackPressed() {
         // nothing to do here
         // … really
+        if (getFragmentManager().getBackStackEntryCount() == 0) {
+            this.finish();
+        } else {
+            getFragmentManager().popBackStack();
+        }
     }
 
     @Override
@@ -112,7 +126,7 @@ public class KioskActivity extends AppCompatActivity {
     }
 
 
-
+    /*
     @Override
     protected void onResume() {
         super.onResume();
@@ -123,115 +137,30 @@ public class KioskActivity extends AppCompatActivity {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         int hours = Integer.parseInt(sharedPref.getString("lockout_time", "12"));
         textView.setText("Unlock time: " + hours + " hours");
-    }
+    }*/
 
-    /**
-     * Need a button for going to the Challenge_Activity
-     * Reponse activated when user presses unlock phone button
-     */
-    public void response(){
-        Button unlock = findViewById(R.id.unlockPhone);
-
-        unlock.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Code here executes on main thread after user presses button
-
-                //Intent intent = new Intent(KioskActivity.this, TriviaActivity.class);
-                //EditText editText = (EditText) findViewById(R.id.editText);
-                //String message = editText.getText().toString();
-                //intent.putExtra(EXTRA_MESSAGE, message);
-                //startActivity(intent);
-                trivia();
-            }
-        });
-
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
     }
-    //Calls the Trivia Activity
-    public void trivia(){
-        startActivity(new Intent(this, TriviaActivity.class));
+
+    // Load the trivia fragment
+    public void loadTrivia() {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        TriviaFragment fragment = new TriviaFragment();
+        fragmentTransaction.replace(R.id.kioskFrame, fragment);
+        fragmentTransaction.commit();
     }
 
-    /**.
-     *When the phone button is pressed the user will able to do emergency calls
-     */
-    public void call(){
-        Button callApp = findViewById(R.id.phone);
-        callApp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Uri number = Uri.parse("tel:5551234");
-                startActivity(new Intent(Intent.ACTION_DIAL, number));
-            }
-        });
+    // Load the kiosk fragment
+    public void loadKiosk() {
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        KioskFragment fragment = new KioskFragment();
+        fragmentTransaction.replace(R.id.kioskFrame, fragment);
+        fragmentTransaction.commit();
     }
 
-    /**
-     * camera() calls  the camera App when the User press the camera button
-     */
-    public void camera(){
-        Button cameraApp = findViewById(R.id.camera);
-        cameraApp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if ( cameraCheck()) {
-                    Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivity(cameraIntent);
-                }
-            }
-        });
-    }
-
-    /**
-     * camera() calls  the camera App when the User press the camera button
-     */
-    public void settings(){
-        Button settingsButton = findViewById(R.id.settings);
-
-        settingsButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(KioskActivity.this, SettingsActivity.class);
-                startActivity(intent);
-            }
-        });
-    }
-
-    /**
-     * Checks if app has user permission to device camera
-     * returns true if Permission to use Camera is allowed
-     */
-    int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 1;
-    public boolean cameraCheck(){
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            // Permission is not granted
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.CAMERA)) {
-
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-
-            } else {
-
-                // No explanation needed; request the permission
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.CAMERA},
-                        MY_PERMISSIONS_REQUEST_READ_CONTACTS);
-
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
-                return true;
-            }
-        } else {
-            // Permission has already been granted
-            return true;
-        }
-        return false;
-    }
 
 }

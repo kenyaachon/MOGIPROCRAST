@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MOGIAPP.iml" filepath="$PROJECT_DIR$/MOGIAPP.iml" />
+      <module fileurl="file://C:\Users\Moses\Documents\MOGIAPP4\MOGIPROCRAST\MOGIAPP.iml" filepath="C:\Users\Moses\Documents\MOGIAPP4\MOGIPROCRAST\MOGIAPP.iml" />
       <module fileurl="file://$PROJECT_DIR$/MOGIPROCRAST.iml" filepath="$PROJECT_DIR$/MOGIPROCRAST.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

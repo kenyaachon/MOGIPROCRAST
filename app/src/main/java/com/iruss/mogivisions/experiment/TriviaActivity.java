@@ -173,7 +173,7 @@ public class TriviaActivity extends AppCompatActivity {
 
         //call the trivia Api
         //TriviaAPI triviaAPI = new TriviaAPI(this);
-        new TriviaAPI(this);
+        //new TriviaAPI(this);
 
 
     }
