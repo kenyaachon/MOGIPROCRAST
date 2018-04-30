@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ActivityCompat;
@@ -38,8 +39,6 @@ public class KioskActivity extends AppCompatActivity
         TriviaFragment.OnFragmentInteractionListener{
 
     private final List blockedKeys = new ArrayList(Arrays.asList(KeyEvent.KEYCODE_VOLUME_DOWN, KeyEvent.KEYCODE_VOLUME_UP));
-    private Button hiddenExitButton;
-    private TextView timeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,42 +56,9 @@ public class KioskActivity extends AppCompatActivity
         // every time someone enters the kiosk mode, set the flag true
         PrefUtils.setKioskModeActive(true, getApplicationContext());
 
-        //How to unlock the app
-        /*
-        hiddenExitButton = findViewById(R.id.exitButton);
-        hiddenExitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Break out!
-                PrefUtils.setKioskModeActive(false, getApplicationContext());
-                Toast.makeText(getApplicationContext(),"You can leave the app now!", Toast.LENGTH_SHORT).show();
-                PackageManager pm = getPackageManager();
-                pm.clearPackagePreferredActivities ("com.iruss.mogivisions.kiosk");
-            }
-        });
-
-
-        timeView = findViewById(R.id.timeView);
-        unlockPhone(2);*/
-
-
     }
 
-    public void unlockPhone(int hours){
-        int time = hours * 3600000;
 
-        //Delays the reveal of the exit button
-        new CountDownTimer(20000, 1000) {
-
-            public void onTick(long millisUntilFinished) {
-                timeView.setText("Time remaining: " + millisUntilFinished / 1000);
-            }
-
-            public void onFinish() {
-                hiddenExitButton.setVisibility(View.VISIBLE);
-            }
-        }.start();
-    }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -109,11 +75,7 @@ public class KioskActivity extends AppCompatActivity
     public void onBackPressed() {
         // nothing to do here
         // … really
-        if (getFragmentManager().getBackStackEntryCount() == 0) {
-            this.finish();
-        } else {
-            getFragmentManager().popBackStack();
-        }
+
     }
 
     @Override
@@ -160,6 +122,7 @@ public class KioskActivity extends AppCompatActivity
         KioskFragment fragment = new KioskFragment();
         fragmentTransaction.replace(R.id.kioskFrame, fragment);
         fragmentTransaction.commit();
+
     }
 
 

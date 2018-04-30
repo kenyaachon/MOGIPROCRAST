@@ -51,7 +51,7 @@ public class TriviaFragment extends Fragment {
     private ArrayList<Button> buttons = new ArrayList<>();
 
     //Number of trials possible
-    private static final int trials = 3;
+    private static final int trials = 2;
 
     private TextView trialsView;
 
@@ -261,7 +261,7 @@ public class TriviaFragment extends Fragment {
                                     Toast.LENGTH_LONG).show();
                         }
                     });
-                    kioskActivity.onBackPressed();
+                    kioskActivity.loadKiosk();
                 }else{
                     //continues the trivia but with a delay
                     continueTrivia();

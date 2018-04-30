@@ -7,9 +7,12 @@ package com.iruss.mogivisions.kiosk;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -17,6 +20,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.iruss.mogivisions.experiment.R;
 import com.iruss.mogivisions.experiment.SettingsActivity;
@@ -33,6 +38,8 @@ import com.iruss.mogivisions.experiment.SettingsActivity;
 public class KioskFragment extends Fragment {
     // The fragment's view
     private View fragmentView;
+    private TextView timeView;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -63,6 +70,7 @@ public class KioskFragment extends Fragment {
         // Inflate the layout for this fragment
         fragmentView = inflater.inflate(R.layout.fragment_kiosk, container, false);
 
+        unlockPhone();
         response();
         call();
         camera();
@@ -230,5 +238,51 @@ public class KioskFragment extends Fragment {
             return true;
         }
         return false;
+    }
+
+    /**
+     *
+     */
+    public void unlockPhone(){
+        timeView = fragmentView.findViewById(R.id.timeView);
+
+        //Reads from the settings
+        /*
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
+        int hours = preferences.getInt("lockout_time", 0);
+
+        int time = hours * 3600000;*/
+
+        //Delays the reveal of the exit button
+        new CountDownTimer(20000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                timeView.setText("Time remaining: " + millisUntilFinished / 1000);
+            }
+
+            public void onFinish() {
+                timeView.setText("No more time remaing");
+                unLock();
+
+            }
+        }.start();
+    }
+
+    /**
+     *
+     */
+    public void unLock(){
+        Button hiddenExit = fragmentView.findViewById(R.id.exitButton);
+        hiddenExit.setVisibility(View.VISIBLE);
+        hiddenExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Break out!
+                PrefUtils.setKioskModeActive(false, getActivity().getApplicationContext());
+                Toast.makeText(getActivity().getApplicationContext(),"You can leave the app now!", Toast.LENGTH_SHORT).show();
+                PackageManager pm = getActivity().getPackageManager();
+                pm.clearPackagePreferredActivities ("com.iruss.mogivisions.kiosk");
+            }
+        });
     }
 }

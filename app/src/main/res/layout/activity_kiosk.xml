@@ -8,5 +8,4 @@ android:id="@+id/kioskFrame"
 tools:context="com.iruss.mogivisions.kiosk.KioskActivity">
 
 
-
 </FrameLayout>
