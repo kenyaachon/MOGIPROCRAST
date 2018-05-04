@@ -5,6 +5,8 @@ package com.iruss.mogivisions.experiment;
  */
 
 
+import com.iruss.mogivisions.kiosk.KioskActivity;
+
 import org.junit.Test;
 import static org.junit.Assert.*;
 
