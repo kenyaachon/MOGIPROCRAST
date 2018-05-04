@@ -16,6 +16,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,8 @@ import android.widget.Toast;
 
 import com.iruss.mogivisions.experiment.R;
 import com.iruss.mogivisions.experiment.SettingsActivity;
+
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -229,18 +232,18 @@ public class KioskFragment extends Fragment {
     public void unlockPhone(){
         timeView = fragmentView.findViewById(R.id.timeView);
 
-        //Reads from the settings
-        /*
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        int hours = preferences.getInt("lockout_time", 0);
-
-        int time = hours * 3600000;*/
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String syncConnPref = sharedPref.getString("lockout_time", "12");
+        Log.d("Settings", syncConnPref );
+        int time = Integer.parseInt(syncConnPref) * 3600000;
 
         //Delays the reveal of the exit button
-        new CountDownTimer(20000, 1000) {
+        new CountDownTimer(time, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                timeView.setText("Time remaining: " + millisUntilFinished / 1000);
+                String hms = String.format("Time remaining: %02dH:%02dM:%02dS", TimeUnit.MILLISECONDS.toHours(millisUntilFinished), TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished)), TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
+
+                timeView.setText(hms);
             }
 
             public void onFinish() {

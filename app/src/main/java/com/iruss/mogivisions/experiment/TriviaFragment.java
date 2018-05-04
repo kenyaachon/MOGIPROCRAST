@@ -226,6 +226,7 @@ public class TriviaFragment extends Fragment {
             Button tempButton = fragmentView.findViewById(view.getId());
             final KioskActivity kioskActivity = (KioskActivity) getActivity();
 
+            //Checks to see if the answer the user is the correct one
             if(tempButton.getText().equals(triviaQuestion.getCorrectAnswer())){
                 Log.d("Test", "Correct response chosen");
                 tempButton.setBackgroundColor(Color.GREEN);
@@ -281,7 +282,7 @@ public class TriviaFragment extends Fragment {
         }
     };
 
-    public void continueTrivia(){
+    private void continueTrivia(){
         Handler myhandler = new Handler();
         myhandler.postDelayed(new Runnable() {
             @Override
@@ -302,7 +303,7 @@ public class TriviaFragment extends Fragment {
     /**
      * Resets the buttons colors back to default after they have been changed
      */
-    public void resetButtons(){
+    private void resetButtons(){
         questionResponse1.setBackgroundResource(android.R.drawable.btn_default);
         questionResponse2.setBackgroundResource(android.R.drawable.btn_default);
         questionResponse3.setBackgroundResource(android.R.drawable.btn_default);
