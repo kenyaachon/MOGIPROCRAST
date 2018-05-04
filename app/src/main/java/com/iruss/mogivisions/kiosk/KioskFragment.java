@@ -74,8 +74,6 @@ public class KioskFragment extends Fragment {
         response();
         call();
         camera();
-        settings();
-
         return fragmentView;
     }
 
@@ -186,21 +184,6 @@ public class KioskFragment extends Fragment {
         }
     }
 
-    /**
-     * camera() calls  the camera App when the User press the camera button
-     */
-    public void settings(){
-        if (fragmentView != null) {
-            Button settingsButton = fragmentView.findViewById(R.id.settings);
-
-            settingsButton.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SettingsActivity.class);
-                startActivity(intent);
-                }
-            });
-        }
-    }
 
     /**
      * Checks if app has user permission to device camera
@@ -279,9 +262,10 @@ public class KioskFragment extends Fragment {
             public void onClick(View v) {
                 // Break out!
                 PrefUtils.setKioskModeActive(false, getActivity().getApplicationContext());
-                Toast.makeText(getActivity().getApplicationContext(),"You can leave the app now!", Toast.LENGTH_SHORT).show();
-                PackageManager pm = getActivity().getPackageManager();
-                pm.clearPackagePreferredActivities ("com.iruss.mogivisions.kiosk");
+                Toast.makeText(getActivity().getApplicationContext(),"You can leave the app now!", Toast.LENGTH_LONG).show();
+                //Makes the home package no longer
+                //PackageManager pm = getActivity().getPackageManager();
+                //pm.clearPackagePreferredActivities ("com.iruss.mogivisions.kiosk");
             }
         });
     }

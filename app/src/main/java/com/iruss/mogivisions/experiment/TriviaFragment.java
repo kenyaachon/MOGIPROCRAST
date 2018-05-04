@@ -5,6 +5,7 @@ package com.iruss.mogivisions.experiment;
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.iruss.mogivisions.kiosk.KioskActivity;
+import com.iruss.mogivisions.kiosk.PrefUtils;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -159,6 +161,7 @@ public class TriviaFragment extends Fragment {
      * A method to create the challenge
      * display the question and possible resonses in the TriviaActivity
      */
+
     // TODO: Make a test for this method
     public boolean displayQuestions(ArrayList<TriviaQuestion> triviaQuestions){
         this.triviaQuestions = triviaQuestions;
@@ -175,7 +178,9 @@ public class TriviaFragment extends Fragment {
 
         //randomly adding the correct answer into the list of possible answers
         int randomposition = randomizer.nextInt(responses.size() + 1);
+        Log.d("Test", "Correct response chosen" + randomposition);
         responses.add(randomposition, triviaQuestion.getCorrectAnswer());
+
 
         //resetbuttons text and color
         resetButtons();
@@ -225,27 +230,33 @@ public class TriviaFragment extends Fragment {
                 Log.d("Test", "Correct response chosen");
                 tempButton.setBackgroundColor(Color.GREEN);
 
-                //TriviaActivity.this.runOnUiThread(new Runnable() {
                 kioskActivity.runOnUiThread(new Runnable() {
                 @Override
                     public void run() {
                         Toast.makeText(kioskActivity.getApplicationContext(),
-                                "Trivia challenge solved successfully, phone will be unlocked",
+                                "Trivia challenge solved successfully, phone is unlocked",
                                 Toast.LENGTH_LONG).show();
                     }
                 });
+
+                //Unlocks the phone
+                PrefUtils.setKioskModeActive(false, kioskActivity.getApplicationContext());
+                startActivity(new Intent(kioskActivity, HomeActivity.class));
+                //restores KioskActivity to normal state
+                kioskActivity.finish();
             }
             else {
                 Log.d("Test", "Incorrect response chosen");
                 tempButton.setBackgroundColor(Color.RED);
                 //Code that shows the correct answer
-
                 for(Button button: buttons){
                     if(button.getText().equals(triviaQuestion.getCorrectAnswer())){
-                        Log.d("Test", "Correct response chosen");
+                        Log.d("Test", "This is the correct response ");
                         button.setBackgroundColor(Color.GREEN);
+                        break;
                     }
                 }
+
 
                 if(attemptsMade == trials){
                     //call kill
