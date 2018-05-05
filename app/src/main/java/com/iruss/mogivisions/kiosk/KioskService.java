@@ -10,11 +10,10 @@ import android.os.IBinder;
 import android.util.Log;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class KioskService extends Service {
 
-    private static final long INTERVAL = TimeUnit.SECONDS.toMillis(2); // periodic interval to check in seconds -> 2 seconds
+    private static final long INTERVAL = 200; //TimeUnit.SECONDS.toMillis(2); // periodic interval to check in seconds -> 2 seconds
     private static final String TAG = KioskService.class.getSimpleName();
 
     private Thread t = null;
@@ -58,8 +57,10 @@ public class KioskService extends Service {
         // is Kiosk Mode active?
         if(PrefUtils.isKioskModeActive(ctx)) {
             // is App in background?
-            if(isInBackground()) {
+            if(isInBackground() && !KioskActivity.isBeingRestored) {
                 restoreApp(); // restore!
+                KioskActivity.isBeingRestored = true;
+                Log.i(TAG, "Restore");
             }
         }
     }

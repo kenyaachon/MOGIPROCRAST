@@ -1,29 +1,15 @@
 package com.iruss.mogivisions.kiosk;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.preference.PreferenceManager;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.iruss.mogivisions.experiment.R;
-import com.iruss.mogivisions.experiment.SettingsActivity;
-import com.iruss.mogivisions.experiment.TriviaActivity;
 import com.iruss.mogivisions.experiment.TriviaFragment;
 
 import java.util.ArrayList;
@@ -40,6 +26,8 @@ public class KioskActivity extends AppCompatActivity
 
     private final List blockedKeys = new ArrayList(Arrays.asList(KeyEvent.KEYCODE_VOLUME_DOWN, KeyEvent.KEYCODE_VOLUME_UP));
 
+    public static Boolean isBeingRestored = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +39,6 @@ public class KioskActivity extends AppCompatActivity
         KioskFragment fragment = new KioskFragment();
         fragmentTransaction.add(R.id.kioskFrame, fragment);
         fragmentTransaction.commit();
-
 
         // every time someone enters the kiosk mode, set the flag true
         PrefUtils.setKioskModeActive(true, getApplicationContext());
@@ -67,6 +54,8 @@ public class KioskActivity extends AppCompatActivity
             // Close every kind of system dialog
             Intent closeDialog = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
             sendBroadcast(closeDialog);
+        } else if (isBeingRestored) {
+            isBeingRestored = false;
         }
     }
 
