@@ -73,6 +73,7 @@ public class KioskFragment extends Fragment {
         // Inflate the layout for this fragment
         fragmentView = inflater.inflate(R.layout.fragment_kiosk, container, false);
 
+        timeView = fragmentView.findViewById(R.id.timeView);
         unlockPhone();
         response();
         call();
@@ -229,9 +230,8 @@ public class KioskFragment extends Fragment {
     /**
      *
      */
-    public void unlockPhone(){
-        timeView = fragmentView.findViewById(R.id.timeView);
 
+    public void unlockPhone(){
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String syncConnPref = sharedPref.getString("lockout_time", "12");
         Log.d("Settings", syncConnPref );

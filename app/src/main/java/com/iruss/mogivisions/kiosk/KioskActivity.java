@@ -1,11 +1,18 @@
 package com.iruss.mogivisions.kiosk;
 
+import android.app.admin.DevicePolicyManager;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 
@@ -15,6 +22,7 @@ import com.iruss.mogivisions.experiment.TriviaFragment;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -77,18 +85,11 @@ public class KioskActivity extends AppCompatActivity
     }
 
 
-    /*
+
     @Override
     protected void onResume() {
         super.onResume();
-
-        // Update text about lockout time
-        TextView textView = findViewById(R.id.timeView);
-
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        int hours = Integer.parseInt(sharedPref.getString("lockout_time", "12"));
-        textView.setText("Unlock time: " + hours + " hours");
-    }*/
+    }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
@@ -111,8 +112,5 @@ public class KioskActivity extends AppCompatActivity
         KioskFragment fragment = new KioskFragment();
         fragmentTransaction.replace(R.id.kioskFrame, fragment);
         fragmentTransaction.commit();
-
     }
-
-
 }
