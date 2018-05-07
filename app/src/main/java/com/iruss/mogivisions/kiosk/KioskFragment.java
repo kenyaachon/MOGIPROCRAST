@@ -231,6 +231,11 @@ public class KioskFragment extends Fragment {
      *
      */
 
+    /**
+     * Carries the timer for how long the phone is locked
+     * Reads settings and changes how long the phone will be locked for
+     *
+     */
     public void unlockPhone(){
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String syncConnPref = sharedPref.getString("lockout_time", "12");
@@ -256,6 +261,8 @@ public class KioskFragment extends Fragment {
 
     /**
      *
+     * Exit way for when timer runs out
+     * Butt on is revealed for unlocking Kiosk Mode
      */
     public void unLock(){
         Button hiddenExit = fragmentView.findViewById(R.id.exitButton);

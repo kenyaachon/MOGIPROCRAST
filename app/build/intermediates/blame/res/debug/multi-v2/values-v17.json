@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/Peter/Documents/tmp/moses/MOGIPROCRAST/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v17/values-v17.xml",
+            "outputFile": "C:\\Users\\Moses\\Documents\\MOGIAPP4\\MOGIPROCRAST\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v17\\values-v17.xml",
             "map": [
                 {
-                    "source": "/Users/Peter/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.1.0.aar/7fb7cf555c8a09db89733549179d87a4/res/values-v17/values-v17.xml",
+                    "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\95dcd3221f36fe7fe8889bcee1c0a4ff\\res\\values-v17\\values-v17.xml",
                     "from": {
                         "startLines": "2,5,9,12,15,18,22,26,29,32,35,39,42,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
