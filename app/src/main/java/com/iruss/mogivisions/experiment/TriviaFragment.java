@@ -282,6 +282,9 @@ public class TriviaFragment extends Fragment {
         }
     };
 
+    /**
+     * Calls for another trivia question
+     */
     private void continueTrivia(){
         Handler myhandler = new Handler();
         myhandler.postDelayed(new Runnable() {

@@ -248,6 +248,7 @@ public class KioskFragment extends Fragment {
             public void onTick(long millisUntilFinished) {
                 String hms = String.format("Time remaining: %02dH:%02dM:%02dS", TimeUnit.MILLISECONDS.toHours(millisUntilFinished), TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished)), TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
 
+                //Changes the time remaing text
                 timeView.setText(hms);
             }
 
