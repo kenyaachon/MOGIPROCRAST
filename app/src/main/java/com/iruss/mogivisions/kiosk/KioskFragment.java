@@ -38,7 +38,7 @@ import java.util.concurrent.TimeUnit;
  * Use the {@link KioskFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class KioskFragment extends Fragment {
+public class KioskFragment extends Fragment implements MyTimer.TimerRuning {
     // The fragment's view
     private View fragmentView;
     private TextView timeView;
@@ -74,6 +74,8 @@ public class KioskFragment extends Fragment {
         fragmentView = inflater.inflate(R.layout.fragment_kiosk, container, false);
 
         timeView = fragmentView.findViewById(R.id.timeView);
+        MyTimer.getInstance().setTimerRuningListener(this);
+
         unlockPhone();
         response();
         call();
@@ -236,28 +238,13 @@ public class KioskFragment extends Fragment {
      * Reads settings and changes how long the phone will be locked for
      *
      */
-    public void unlockPhone(){
+    private void unlockPhone(){
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String syncConnPref = sharedPref.getString("lockout_time", "12");
         Log.d("Settings", syncConnPref );
-        int time = Integer.parseInt(syncConnPref) * 3600000;
-
-        //Delays the reveal of the exit button
-        new CountDownTimer(time, 1000) {
-
-            public void onTick(long millisUntilFinished) {
-                String hms = String.format("Time remaining: %02dH:%02dM:%02dS", TimeUnit.MILLISECONDS.toHours(millisUntilFinished), TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished)), TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
-
-                //Changes the time remaing text
-                timeView.setText(hms);
-            }
-
-            public void onFinish() {
-                timeView.setText("No more time remaing");
-                unLock();
-
-            }
-        }.start();
+        //converts an hours into seconds
+        int time = Integer.parseInt(syncConnPref) * 3600;
+        MyTimer.getInstance().startTimer(time);
     }
 
     /**
@@ -280,4 +267,25 @@ public class KioskFragment extends Fragment {
             }
         });
     }
+
+    /**
+     * Updates the Time Remaining Text
+     * @param remainSec
+     */
+    public void onTimerChange(String remainSec){
+        timeView.setText(remainSec);
+    }
+
+    /**
+     * Stops updating the time remaining text, and allows the user to unlock their phone
+     */
+    public void onTimerStopped(){
+        timeView.setText("No more time remaing");
+        unLock();
+    }
+
+
+
+
+
 }
