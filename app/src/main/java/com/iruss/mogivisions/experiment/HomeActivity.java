@@ -1,7 +1,11 @@
 package com.iruss.mogivisions.experiment;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,10 +21,12 @@ public class HomeActivity extends AppCompatActivity  {
     TriviaFragment triviaFragment;
     FragmentManager fragmentManager = getSupportFragmentManager();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
 
         initializeKiosk();
         initializeSettings();
@@ -48,4 +54,7 @@ public class HomeActivity extends AppCompatActivity  {
             }
         });
     }
+
+
+
 }

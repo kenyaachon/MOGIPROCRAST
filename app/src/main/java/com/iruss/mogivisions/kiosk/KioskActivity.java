@@ -1,5 +1,6 @@
 package com.iruss.mogivisions.kiosk;
 
+import android.app.Activity;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -36,20 +37,18 @@ public class KioskActivity extends AppCompatActivity
 
     public static Boolean isBeingRestored = false;
 
+    private Activity mActivity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
         setContentView(R.layout.activity_kiosk);
 
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-        KioskFragment fragment = new KioskFragment();
-        fragmentTransaction.add(R.id.kioskFrame, fragment);
-        fragmentTransaction.commit();
+        loadKiosk();
 
         // every time someone enters the kiosk mode, set the flag true
-        PrefUtils.setKioskModeActive(true, getApplicationContext());
+        //PrefUtils.setKioskModeActive(true, getApplicationContext());
 
     }
 
