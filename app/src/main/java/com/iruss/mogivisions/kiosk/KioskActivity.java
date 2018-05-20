@@ -37,8 +37,6 @@ public class KioskActivity extends AppCompatActivity
 
     public static Boolean isBeingRestored = false;
 
-    private Activity mActivity;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +46,7 @@ public class KioskActivity extends AppCompatActivity
         loadKiosk();
 
         // every time someone enters the kiosk mode, set the flag true
-        //PrefUtils.setKioskModeActive(true, getApplicationContext());
+        PrefUtils.setKioskModeActive(true, getApplicationContext());
 
     }
 

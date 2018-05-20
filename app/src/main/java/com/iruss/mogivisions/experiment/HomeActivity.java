@@ -32,7 +32,7 @@ public class HomeActivity extends AppCompatActivity  {
         initializeSettings();
     }
 
-    public void initializeSettings(){
+    private void initializeSettings(){
         Button settingsButton = findViewById(R.id.settings);
 
         settingsButton.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +44,7 @@ public class HomeActivity extends AppCompatActivity  {
 
     }
 
-    public void initializeKiosk(){
+    private void initializeKiosk(){
         Button kioskButton = findViewById(R.id.kiosk);
 
         kioskButton.setOnClickListener(new View.OnClickListener() {

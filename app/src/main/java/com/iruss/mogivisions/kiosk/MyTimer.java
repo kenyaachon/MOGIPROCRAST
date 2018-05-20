@@ -114,7 +114,7 @@ public class MyTimer {
     /**
      * Stops the timer when the timer runs out
      */
-    public void stopTimer() {
+    private void stopTimer() {
         if (timer != null) {
             timerRuningListener.onTimerStopped();
             isRunning = false;
