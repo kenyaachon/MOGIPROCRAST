@@ -113,7 +113,7 @@ public class TriviaFragment extends Fragment {
 
         //call the trivia Api
         //TriviaAPI triviaAPI = new TriviaAPI(this);
-        new TriviaAPI(this);
+//        new TriviaAPI(this);
         return fragmentView;
     }
 

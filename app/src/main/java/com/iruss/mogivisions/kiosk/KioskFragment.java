@@ -11,7 +11,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -25,9 +24,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.iruss.mogivisions.experiment.R;
-import com.iruss.mogivisions.experiment.SettingsActivity;
-
-import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -38,7 +34,7 @@ import java.util.concurrent.TimeUnit;
  * Use the {@link KioskFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class KioskFragment extends Fragment implements MyTimer.TimerRuning {
+public class KioskFragment extends Fragment implements MyTimer.TimerRunning {
     // The fragment's view
     private View fragmentView;
     private TextView timeView;

@@ -16,6 +16,6 @@
         android:id="@+id/kiosk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/kiosk" />
+        android:text="@string/lock_phone" />
 
 </LinearLayout>

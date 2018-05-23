@@ -6,7 +6,6 @@ import android.util.Log;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Moses on 5/8/2018.
@@ -15,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 public class MyTimer {
 
     private Timer timer;
-    private MyTimer.TimerRuning timerRuningListener;
+    private TimerRunning timerRuningListener;
     private int remainingSec, startSec;
     public boolean isRunning;
 
@@ -97,15 +96,15 @@ public class MyTimer {
         return String.format("Time remaing: %02dH:%02dM:%02dS", (seconds % 3600) / 3600, (seconds % 3600) / 60, seconds % 60 );
     }
 
-    public void setTimerRuningListener(MyTimer.TimerRuning timerRuningListener) {
+    public void setTimerRuningListener(TimerRunning timerRuningListener) {
         this.timerRuningListener = timerRuningListener;
     }
 
 
     /**
-     * Requires the KioskFragment to implement these methods so the Timer can update the time in the KioskFragment
+     * Requires the KioskService to implement these methods so the Timer can update the time in the KioskFragment
      */
-    public interface TimerRuning {
+    public interface TimerRunning {
         void onTimerChange(String remainSec);
 
         void onTimerStopped();
