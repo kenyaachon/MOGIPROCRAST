@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0099cc"
+    android:paddingTop="30dp"
     tools:context="com.iruss.mogivisions.experiment.HomeActivity">
 
     <LinearLayout
@@ -14,12 +15,14 @@
             android:id="@+id/trialsRemaining"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/textColorDark"
             android:text="Trials Remaing: 1" />
 
         <TextView
             android:id="@+id/questionText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/textColorDark"
             android:text="TextView" />
 
         <Button
@@ -27,6 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="True"
+            android:textColor="@color/textColorDark"
             android:visibility="visible"
             />
 
@@ -35,6 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="FALSE"
+            android:textColor="@color/textColorDark"
             android:visibility="visible"
             />
 
@@ -43,6 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Button"
+            android:textColor="@color/textColorDark"
             android:visibility="visible"
             />
 
@@ -51,6 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Button"
+            android:textColor="@color/textColorDark"
             android:visibility="visible"
             />
 

@@ -2,6 +2,7 @@ package com.iruss.mogivisions.kiosk;
 
 
 import android.Manifest;
+import android.app.ActionBar;
 import android.app.ActivityManager;
 import android.app.Service;
 import android.content.ComponentName;
@@ -79,6 +80,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     @Override
     public void onCreate() {
         super.onCreate();
+
     }
 
     @Override
@@ -86,9 +88,20 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
 
         loadKiosk();
-
         return super.onStartCommand(intent, flags, startId);
     }
+
+
+    /**
+     * Sets the layout of the app to fullscreen
+     */
+    public void hideStatusBar(){
+    // Hide the status bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        mView.setSystemUiVisibility(uiOptions);
+
+    }
+
 
     @Override
     public void onDestroy() {
@@ -99,6 +112,9 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         super.onDestroy();
     }
 
+    /**
+     * Makes sure the app is on top of other apps
+     */
     private void displayView() {
         DisplayMetrics metrics = getResources().getDisplayMetrics();
         int width = (int) (metrics.widthPixels * 0.7f);
@@ -171,7 +187,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         response();
         call();
         camera();
-
+        hideStatusBar();
         // Now that it's loaded, display it
         displayView();
     }
@@ -359,6 +375,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
 
         // Now that it's loaded, display it
         displayView();
+        hideStatusBar();
     }
 
 
@@ -480,7 +497,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
 
                 if(attemptsMade == trials){
                     //call kill
-
+                    attemptsMade = 0;
                     //display a message to user that they are out of attempts and go back to KioskActivity
                     Log.d("Test", "You are out of attempts");
                     homeActivity.runOnUiThread(new Runnable() {
