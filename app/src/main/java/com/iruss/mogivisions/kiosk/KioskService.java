@@ -29,6 +29,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.iruss.mogivisions.experiment.HomeActivity;
 import com.iruss.mogivisions.experiment.R;
 import com.iruss.mogivisions.experiment.TriviaAPI;
@@ -39,6 +42,8 @@ import java.util.List;
 import java.util.Random;
 
 public class KioskService extends Service implements MyTimer.TimerRunning {
+
+    private AdView mAdView;
 
     private WindowManager mWindowManager;
     WindowManager.LayoutParams mWindowsParams;
@@ -95,7 +100,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     /**
      * Sets the layout of the app to fullscreen
      */
-    public void hideStatusBar(){
+    private void hideStatusBar(){
     // Hide the status bar.
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
         mView.setSystemUiVisibility(uiOptions);
@@ -187,9 +192,21 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         response();
         call();
         camera();
+        loadAds();
         hideStatusBar();
         // Now that it's loaded, display it
         displayView();
+    }
+
+    /**
+     * Loads the ads at the bottom of the page
+     */
+    private void loadAds(){
+        MobileAds.initialize(homeActivity, "ca-app-pub-3940256099942544~3347511713");
+
+        mAdView = mView.findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
     /**
@@ -211,7 +228,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
      * Exit way for when timer runs out
      * Button is revealed for unlocking Kiosk Mode
      */
-    public void unLock(){
+    private void unLock(){
         Button hiddenExit = mView.findViewById(R.id.exitButton);
         hiddenExit.setVisibility(View.VISIBLE);
         hiddenExit.setOnClickListener(new View.OnClickListener() {
@@ -254,7 +271,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     /**.
      *When the phone button is pressed the user will able to do emergency calls
      */
-    public void call(){
+    private void call(){
         Button callApp = mView.findViewById(R.id.phone);
         callApp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -275,7 +292,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     /**
      * camera() calls  the camera App when the User press the camera button
      */
-    public void camera(){
+    private void camera(){
         Button cameraApp = mView.findViewById(R.id.camera);
         cameraApp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -299,7 +316,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
      * returns true if Permission to use Camera is allowed
      */
     int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 1;
-    public boolean cameraCheck(){
+    private boolean cameraCheck(){
         // TODO: Figure this out
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.CAMERA)

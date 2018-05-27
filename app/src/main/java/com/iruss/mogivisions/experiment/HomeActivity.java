@@ -9,9 +9,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.iruss.mogivisions.kiosk.KioskService;
 
 public class HomeActivity extends AppCompatActivity  {
+    //Ads
+    private AdView mAdView;
 
     private boolean shouldBeInKioskMode = false;
     public final static int Overlay_REQUEST_CODE = 251;
@@ -33,6 +38,13 @@ public class HomeActivity extends AppCompatActivity  {
 
         initializeKiosk();
         initializeSettings();
+        //sample AddMob Id
+        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
     }
 
 
