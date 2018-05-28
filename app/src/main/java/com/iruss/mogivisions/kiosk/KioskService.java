@@ -62,6 +62,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     private Button questionResponse3;
     private Button questionResponse4;
 
+
     //Button list for finding the button with the correct answer
     private ArrayList<Button> buttons = new ArrayList<>();
 
@@ -500,17 +501,18 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                 homeActivity.setShouldBeInKioskMode(false);
             }
             else {
-                Log.d("Test", "Incorrect response chosen");
-                tempButton.setBackgroundColor(Color.RED);
+
                 //Code that shows the correct answer
+
                 for(Button button: buttons){
                     if(button.getText().equals(triviaQuestion.getCorrectAnswer())){
                         Log.d("Test", "This is the correct response ");
                         button.setBackgroundColor(Color.GREEN);
+                        Log.d("Test", "Incorrect response chosen");
+                        tempButton.setBackgroundColor(Color.RED);
                         break;
                     }
                 }
-
 
                 if(attemptsMade == trials){
                     //call kill
