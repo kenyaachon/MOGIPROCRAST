@@ -517,7 +517,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                 if(attemptsMade == trials){
                     //call kill
                     attemptsMade = 0;
-                    //display a message to user that they are out of attempts and go back to KioskActivity
+                    //display a message to user that they are out of attempts and
                     Log.d("Test", "You are out of attempts");
                     homeActivity.runOnUiThread(new Runnable() {
                         @Override
