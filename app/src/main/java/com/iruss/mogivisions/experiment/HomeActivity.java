@@ -1,9 +1,11 @@
 package com.iruss.mogivisions.experiment;
 
+import android.app.AppOpsManager;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,7 +25,7 @@ import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-public class HomeActivity extends AppCompatActivity  {
+public class HomeActivity extends AppCompatActivity {
     //Ads
     private AdView mAdView;
 
@@ -59,8 +61,7 @@ public class HomeActivity extends AppCompatActivity  {
     }
 
 
-
-    public void initializeSettings(){
+    public void initializeSettings() {
         Button settingsButton = findViewById(R.id.settings);
 
         settingsButton.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +73,7 @@ public class HomeActivity extends AppCompatActivity  {
 
     }
 
-    public void initializeKiosk(){
+    public void initializeKiosk() {
         Button kioskButton = findViewById(R.id.kiosk);
 
         kioskButton.setOnClickListener(new View.OnClickListener() {
@@ -131,53 +132,92 @@ public class HomeActivity extends AppCompatActivity  {
         }
     }
 
+
+
     /**
      * Tells how much the user has been using their phone
      */
     public void userStats() {
         //Checkks user phone statistics
         //Look to make sure we check if the app has access if it does then we just run the usage statistics
-        Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
-        startActivity(intent);
 
-        long TimeInforground = 500;
-
-        int minutes = 500, seconds = 500, hours = 500;
-        UsageStatsManager mUsageStatsManager = (UsageStatsManager) getSystemService(Context.USAGE_STATS_SERVICE);
-
-        long time = System.currentTimeMillis();
-
-        long totalPhoneTime = 0;
-
-        List<UsageStats> stats = mUsageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, time - 1000 * 10, time);
-
-        if (stats != null) {
-            for (UsageStats usageStats : stats) {
-
-                TimeInforground = usageStats.getTotalTimeInForeground();
-                totalPhoneTime += TimeInforground;
-
-                //conversion of phone usage statisticts from milli to seoncds, minutes, and hours
-                minutes = (int) ((TimeInforground / (1000 * 60)) % 60);
-                seconds = (int) (TimeInforground / 1000) % 60;
-                hours = (int) ((TimeInforground / (1000 * 60 * 60)) % 24);
-
-                Log.i("BAC", "PackageName is" + usageStats.getPackageName() + "Time is: " + hours + "h" + ":" + minutes + "m" + seconds + "s");
-            }
+        if (checkUsagePermissionGranted() == false) {
+            Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+            startActivity(intent);
         }
 
+        //Checks which build version the app is and then checks usage statistics accordingly
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            // Do something for lollipop and above versions
+            long TimeInforground = 500;
+
+            int minutes = 500, seconds = 500, hours = 500;
+            UsageStatsManager mUsageStatsManager = (UsageStatsManager) getSystemService(Context.USAGE_STATS_SERVICE);
+
+            long time = System.currentTimeMillis();
+            long totalPhoneTime = 0;
+
+            List<UsageStats> stats = mUsageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, time - 1000 * 10, time);
+
+            if (stats != null) {
+                for (UsageStats usageStats : stats) {
+                    //Get usage of a certain app
+                    TimeInforground = usageStats.getTotalTimeInForeground();
+                    totalPhoneTime += TimeInforground;
+
+                    //conversion of phone usage statisticts from milli to seoncds, minutes, and hours
+                    minutes = (int) ((TimeInforground / (1000 * 60)) % 60);
+                    seconds = (int) (TimeInforground / 1000) % 60;
+                    hours = (int) ((TimeInforground / (1000 * 60 * 60)) % 24);
+
+                    Log.i("BAC", "PackageName is" + usageStats.getPackageName() + "Time is: " + hours + "h" + ":" + minutes + "m" + seconds + "s");
+                }
+            }
+            setTriviaDifficulty(totalPhoneTime);
+
+            Log.e("End", "The Loop has ended");
+        } else {
+            // do something for phones running an SDK before lollipop
+        }
+
+    }
+
+
+
+    /**
+     * Changes the triviaDifficult of the app
+     * @param totalPhoneTime
+     */
+    public void setTriviaDifficulty(long totalPhoneTime){
         Log.i("Total phone use time", Long.toString(totalPhoneTime));
         //Set the trivia difficulty
-        if(totalPhoneTime <= 9600){
+        if (totalPhoneTime <= 9600) {
             TriviaAPI.questionDifficulty = "easy";
-        }
-        else if(totalPhoneTime >= 9601 && totalPhoneTime <= 18000 ){
+        } else if (totalPhoneTime >= 9601 && totalPhoneTime <= 18000) {
             TriviaAPI.questionDifficulty = "medium";
-        }
-        else {
+        } else {
             TriviaAPI.questionDifficulty = "hard";
         }
+    }
 
-        Log.e("End", "The Loop has ended");
+
+    /**
+     * Check if the Usage statistics permission is granted
+     * @return
+     */
+    public boolean checkUsagePermissionGranted(){
+        boolean granted = false;
+        Context context = getApplicationContext();
+        AppOpsManager appOps = (AppOpsManager) context
+                .getSystemService(Context.APP_OPS_SERVICE);
+        int mode = appOps.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS,
+                android.os.Process.myUid(), context.getPackageName());
+
+        if (mode == AppOpsManager.MODE_DEFAULT) {
+            granted = (context.checkCallingOrSelfPermission(android.Manifest.permission.PACKAGE_USAGE_STATS) == PackageManager.PERMISSION_GRANTED);
+        } else {
+            granted = (mode == AppOpsManager.MODE_ALLOWED);
+        }
+        return granted;
     }
 }
