@@ -38,7 +38,8 @@ public class TriviaAPI {
     private int questionType;
 
     //Level of difficulty for the questions
-    private int questionDifficulty;
+    protected static String questionDifficulty;
+
 
     // Reference to service
     private KioskService kioskService;
@@ -199,6 +200,8 @@ public class TriviaAPI {
     }
 
 
+
+
     /**
      * Calls the online TriviaDB
      */
@@ -215,9 +218,11 @@ public class TriviaAPI {
 
         @Override
         protected Void doInBackground(Void... arg0) {
+            Log.i("Question diffculty", questionDifficulty);
+
             //Gets the JSON data from topenTDB
             HttpHandler sh = new HttpHandler();
-            String openTDBURL = "https://opentdb.com/api.php?amount=10";
+            String openTDBURL = "https://opentdb.com/api.php?amount=10"+"&difficulty="+questionDifficulty;
             String requestedDB = sh.makeServiceCall(openTDBURL);
 
             //Parses the JSON data into a list of questions

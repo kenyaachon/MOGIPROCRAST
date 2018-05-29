@@ -1,11 +1,15 @@
 package com.iruss.mogivisions.experiment;
 
+import android.app.usage.UsageStats;
+import android.app.usage.UsageStatsManager;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -13,6 +17,11 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.iruss.mogivisions.kiosk.KioskService;
+
+import java.util.Calendar;
+import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 public class HomeActivity extends AppCompatActivity  {
     //Ads
@@ -44,6 +53,8 @@ public class HomeActivity extends AppCompatActivity  {
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+        userStats();
 
     }
 
@@ -118,5 +129,55 @@ public class HomeActivity extends AppCompatActivity  {
                 break;
             }
         }
+    }
+
+    /**
+     * Tells how much the user has been using their phone
+     */
+    public void userStats() {
+        //Checkks user phone statistics
+        //Look to make sure we check if the app has access if it does then we just run the usage statistics
+        Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+        startActivity(intent);
+
+        long TimeInforground = 500;
+
+        int minutes = 500, seconds = 500, hours = 500;
+        UsageStatsManager mUsageStatsManager = (UsageStatsManager) getSystemService(Context.USAGE_STATS_SERVICE);
+
+        long time = System.currentTimeMillis();
+
+        long totalPhoneTime = 0;
+
+        List<UsageStats> stats = mUsageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, time - 1000 * 10, time);
+
+        if (stats != null) {
+            for (UsageStats usageStats : stats) {
+
+                TimeInforground = usageStats.getTotalTimeInForeground();
+                totalPhoneTime += TimeInforground;
+
+                //conversion of phone usage statisticts from milli to seoncds, minutes, and hours
+                minutes = (int) ((TimeInforground / (1000 * 60)) % 60);
+                seconds = (int) (TimeInforground / 1000) % 60;
+                hours = (int) ((TimeInforground / (1000 * 60 * 60)) % 24);
+
+                Log.i("BAC", "PackageName is" + usageStats.getPackageName() + "Time is: " + hours + "h" + ":" + minutes + "m" + seconds + "s");
+            }
+        }
+
+        Log.i("Total phone use time", Long.toString(totalPhoneTime));
+        //Set the trivia difficulty
+        if(totalPhoneTime <= 9600){
+            TriviaAPI.questionDifficulty = "easy";
+        }
+        else if(totalPhoneTime >= 9601 && totalPhoneTime <= 18000 ){
+            TriviaAPI.questionDifficulty = "medium";
+        }
+        else {
+            TriviaAPI.questionDifficulty = "hard";
+        }
+
+        Log.e("End", "The Loop has ended");
     }
 }

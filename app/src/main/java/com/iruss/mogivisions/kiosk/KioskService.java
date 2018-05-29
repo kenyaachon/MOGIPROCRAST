@@ -43,6 +43,7 @@ import java.util.Random;
 
 public class KioskService extends Service implements MyTimer.TimerRunning {
 
+    //contains the ads
     private AdView mAdView;
 
     private WindowManager mWindowManager;
