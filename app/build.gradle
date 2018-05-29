@@ -29,4 +29,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     // jsoup HTML parser library @ https://jsoup.org/
     compile 'org.jsoup:jsoup:1.11.3'
+
+    //add google adsense
+    implementation 'com.google.android.gms:play-services-ads:15.0.0'
+
+
 }
