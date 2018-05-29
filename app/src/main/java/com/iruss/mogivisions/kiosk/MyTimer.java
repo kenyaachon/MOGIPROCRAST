@@ -28,6 +28,7 @@ public class MyTimer {
         return ourInstance;
     }
 
+
     private final Handler mHandler = new Handler() {
 
         @Override
@@ -59,6 +60,8 @@ public class MyTimer {
     public void startTimer(final int seconds) {
 
         startSec = 0;
+        //Log.i("Hours", Integer.toString((seconds % 3600) / 3600));
+
 
         remainingSec = seconds;
         timer = new Timer();
@@ -82,6 +85,7 @@ public class MyTimer {
 
             }
         }, 100, 1000);
+
     }
 
 
@@ -93,7 +97,8 @@ public class MyTimer {
      */
     public String createDateFormat(int seconds) {
         //return String.format("Time remaining: %02dH:%02dM:%02dS", TimeUnit.MILLISECONDS.toHours(millisUntilFinished), TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished)), TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
-        return String.format("Time remaing: %02dH:%02dM:%02dS", (seconds % 3600) / 3600, (seconds % 3600) / 60, seconds % 60 );
+        
+        return String.format("Time remaing: %02dH:%02dM:%02dS", (seconds / 3600) , (seconds % 3600) / 60, seconds % 60 );
     }
 
     public void setTimerRuningListener(TimerRunning timerRuningListener) {
