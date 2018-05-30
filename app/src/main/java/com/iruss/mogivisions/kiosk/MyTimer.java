@@ -97,7 +97,7 @@ public class MyTimer {
      */
     public String createDateFormat(int seconds) {
         //return String.format("Time remaining: %02dH:%02dM:%02dS", TimeUnit.MILLISECONDS.toHours(millisUntilFinished), TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished)), TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
-        
+
         return String.format("Time remaing: %02dH:%02dM:%02dS", (seconds / 3600) , (seconds % 3600) / 60, seconds % 60 );
     }
 

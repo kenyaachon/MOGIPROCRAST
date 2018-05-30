@@ -152,6 +152,7 @@ public class HomeActivity extends AppCompatActivity {
             long TimeInforground = 500;
 
             int minutes = 500, seconds = 500, hours = 500;
+            //UsageStatsManager mUsageStatsManager = (UsageStatsManager) getSystemService("usagestats);
             UsageStatsManager mUsageStatsManager = (UsageStatsManager) getSystemService(Context.USAGE_STATS_SERVICE);
 
             long time = System.currentTimeMillis();
@@ -161,7 +162,7 @@ public class HomeActivity extends AppCompatActivity {
 
             if (stats != null) {
                 for (UsageStats usageStats : stats) {
-                    //Get usage of a certain app
+
                     TimeInforground = usageStats.getTotalTimeInForeground();
                     totalPhoneTime += TimeInforground;
 
