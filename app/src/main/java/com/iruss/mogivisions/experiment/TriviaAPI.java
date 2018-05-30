@@ -13,6 +13,9 @@ import android.widget.Toast;
 
 import com.iruss.mogivisions.kiosk.KioskService;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
@@ -40,6 +43,8 @@ public class TriviaAPI {
     //Level of difficulty for the questions
     protected static String questionDifficulty;
 
+    //Get the token
+    private String token = "";
 
     // Reference to service
     private KioskService kioskService;
@@ -218,12 +223,38 @@ public class TriviaAPI {
 
         @Override
         protected Void doInBackground(Void... arg0) {
+
+            HttpHandler sh = new HttpHandler();
+
             Log.i("Question diffculty", questionDifficulty);
 
-            //Gets the JSON data from topenTDB
-            HttpHandler sh = new HttpHandler();
-            String openTDBURL = "https://opentdb.com/api.php?amount=10"+"&difficulty="+questionDifficulty;
-            String requestedDB = sh.makeServiceCall(openTDBURL);
+            String requestedDB = "";
+            String openTDBURL = "https://opentdb.com/api.php?amount=10";
+
+            //Helps make sure the questions are as unique as possible
+            if(token.equals("")) {
+                token = "https://opentdb.com/api_token.php?command=request";
+                String requestedToken = sh.makeServiceCall(token);
+
+
+                String tokenString = "";
+                Log.d("Test token", requestedToken);
+                try {
+                    //Parse the JSON Object
+                    JSONObject tokenObject = new JSONObject(requestedToken);
+                    tokenString = tokenObject.getString("token");
+                    // Loop through all results
+                    Log.d("Token that I want ", tokenString);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                //Makes the unique request for the token and gets a certain difficult for the question
+                String uniqueQuestions = openTDBURL + "&token=" + tokenString + "&difficulty=" + questionDifficulty;
+                requestedDB = sh.makeServiceCall(uniqueQuestions);
+            }
+            else{
+                requestedDB = sh.makeServiceCall(openTDBURL);
+            }
 
             //Parses the JSON data into a list of questions
             Log.e(TAG, "Response from url: " + requestedDB);
@@ -234,15 +265,9 @@ public class TriviaAPI {
                 triviaQuestionArrayList = triviaQuestion.createQuestionsFromJSON(requestedDB);
 
             } else {
+                //Gives an error message to say we can't download the triviaquestions
                 Log.e(TAG, "Couldn't get json from server.");
-//                triviaFragment.getActivity().runOnUiThread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        Toast.makeText(triviaFragment.getActivity().getApplicationContext(),
-//                                "Couldn't get json from server. Check LogCat for possible errors!",
-//                                Toast.LENGTH_LONG).show();
-//                    }
-//                });
+                Toast.makeText(kioskService, "Couldn't get json from server.", Toast.LENGTH_SHORT).show();
             }
             return null;
         }
