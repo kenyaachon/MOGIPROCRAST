@@ -5,10 +5,12 @@ import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -56,9 +58,11 @@ public class HomeActivity extends AppCompatActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
+        //setTextSize();
         userStats();
 
     }
+
 
 
     public void initializeSettings() {
@@ -71,6 +75,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        setButtonTextSize(settingsButton);
     }
 
     public void initializeKiosk() {
@@ -92,7 +97,25 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         });
+
+        setButtonTextSize(kioskButton);
     }
+
+
+    /**
+     * changes the text size of a button
+     * Reads the text size from the settings page
+     * @param button
+     */
+    public void setButtonTextSize(Button button){
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String syncConnPref = sharedPref.getString("text_size", "11");
+
+        //Convert string to a float value
+        float textSize = Float.parseFloat(syncConnPref);
+        button.setTextSize(textSize);
+    }
+
 
     // Starts the kiosk service to overlay on top
     private void startKiosk() {

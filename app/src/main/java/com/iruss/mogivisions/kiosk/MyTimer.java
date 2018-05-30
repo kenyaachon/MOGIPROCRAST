@@ -15,11 +15,14 @@ public class MyTimer {
 
     private Timer timer;
     private TimerRunning timerRuningListener;
-    private int remainingSec, startSec;
+    //private int remainingSec, startSec;
+    private double remainingSec, startSec;
     public boolean isRunning;
 
 
     private static final String TAG = "MyTimer";
+    private static final double TIMER_DELAY = 0.3; // Seconds
+
 
 
     private static final MyTimer ourInstance = new MyTimer();
@@ -73,18 +76,24 @@ public class MyTimer {
                 isRunning = true;
                 Message message = Message.obtain();
                 int[] counters = new int[2];
-                counters[0] = remainingSec;
-                counters[1] = startSec;
+                //counters[0] = remainingSec;
+                //counters[1] = startSec;
+                counters[0] = (int)remainingSec;
+                counters[1] = (int)startSec;
                 message.obj = counters;
                 message.setTarget(mHandler);
                 //checks whether or not the timer should be stopped
                 mHandler.sendMessage(message);
-                remainingSec--;
-                startSec++;
+                //remainingSec--;
+                //startSec++;
+                remainingSec -= TIMER_DELAY;
+                startSec += TIMER_DELAY;
+
 
 
             }
-        }, 100, 1000);
+        //}, 100, 1000);
+        }, 100, (int)(TIMER_DELAY * 1000));
 
     }
 
