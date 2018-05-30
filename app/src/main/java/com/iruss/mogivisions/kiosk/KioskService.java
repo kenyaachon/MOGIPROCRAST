@@ -16,6 +16,7 @@ import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.net.Uri;
+import android.nfc.cardemulation.HostNfcFService;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
@@ -83,6 +84,11 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     // This is terrible architecture, but since it is mostly used to ask for permission,
     // anything else was way more complicated. PG
     public static HomeActivity homeActivity;
+
+
+
+    //Correctbutton
+    private Button correctButton;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -440,8 +446,10 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
 
         //randomly adding the correct answer into the list of possible answers
         int randomposition = randomizer.nextInt(responses.size() + 1);
+        Log.i("Array Size", Integer.toString(responses.size()));
         Log.d("Test", "Correct response chosen" + randomposition);
         responses.add(randomposition, triviaQuestion.getCorrectAnswer());
+        Log.i("Array Size", Integer.toString(responses.size()));
 
 
         //resetbuttons text and color
@@ -459,14 +467,20 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
             questionResponse2.setVisibility(View.VISIBLE);
         }else if (responses.size() == 3){
             questionResponse3.setText(responses.get(2));
-            questionResponse3.setVisibility(View.GONE);
+            questionResponse3.setVisibility(View.VISIBLE);
         }else if (responses.size() == 4) {
             questionResponse3.setText(responses.get(2));
             questionResponse4.setText(responses.get(3));
+            questionResponse1.setVisibility(View.VISIBLE);
+            questionResponse2.setVisibility(View.VISIBLE);
             questionResponse3.setVisibility(View.VISIBLE);
             questionResponse4.setVisibility(View.VISIBLE);
 
         }
+
+        //Sets the correct solution
+        setCorrectButton(randomposition);
+
         //sets the Clicklistener for all the buttons
         questionResponse1.setOnClickListener(myClickListener);
         questionResponse2.setOnClickListener(myClickListener);
@@ -477,6 +491,35 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
 
         return true;
     }
+
+    /**
+     * Sets the correct button
+     * @param randomposition
+     */
+    public void setCorrectButton(int randomposition){
+        //Sets what will the correct answer
+        switch(randomposition){
+            case 0:
+                correctButton = questionResponse1;
+                break;
+            case 1:
+                correctButton = questionResponse2;
+                break;
+            case 2:
+                correctButton = questionResponse3;
+                break;
+            case 3:
+                correctButton = questionResponse4;
+                break;
+            default:
+                correctButton = new Button(homeActivity.getApplicationContext());
+                Log.e("Error", "Not an available buttton");
+                break;
+        }
+    }
+
+
+
     /*
      * A method to create the challenge
      * display the question and possible resonses in the TriviaActivity
@@ -509,19 +552,14 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
             else {
 
                 //Code that shows the correct answer
-
-                for(Button button: buttons){
-                    if(button.getText().equals(triviaQuestion.getCorrectAnswer())){
-                        Log.d("Test", "This is the correct response ");
-                        button.setBackgroundColor(Color.GREEN);
-                        Log.d("Test", "Incorrect response chosen");
-                        tempButton.setBackgroundColor(Color.RED);
-                        break;
-                    }
-                }
+                Log.d("Test", "This is the correct response ");
+                correctButton.setBackgroundColor(Color.GREEN);
+                Log.d("Test", "Incorrect response chosen");
+                tempButton.setBackgroundColor(Color.RED);
 
                 if(attemptsMade == trials){
                     //call kill
+                    Handler myHandler = new Handler();
                     attemptsMade = 0;
                     //display a message to user that they are out of attempts and go back to KioskActivity
                     Log.d("Test", "You are out of attempts");
