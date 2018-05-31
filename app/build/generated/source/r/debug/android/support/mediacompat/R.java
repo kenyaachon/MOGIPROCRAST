@@ -133,8 +133,8 @@ public final class R {
         public static final int TextAppearance_Compat_Notification_Time_Media = 0x7f0d0103;
         public static final int TextAppearance_Compat_Notification_Title = 0x7f0d0104;
         public static final int TextAppearance_Compat_Notification_Title_Media = 0x7f0d0105;
-        public static final int Widget_Compat_NotificationActionContainer = 0x7f0d016e;
-        public static final int Widget_Compat_NotificationActionText = 0x7f0d016f;
+        public static final int Widget_Compat_NotificationActionContainer = 0x7f0d016f;
+        public static final int Widget_Compat_NotificationActionText = 0x7f0d0170;
     }
     public static final class styleable {
         public static final int[] FontFamily = { 0x7f030075, 0x7f030076, 0x7f030077, 0x7f030078, 0x7f030079, 0x7f03007a };

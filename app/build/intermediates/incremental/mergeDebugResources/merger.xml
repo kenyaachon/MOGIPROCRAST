@@ -1756,10 +1756,40 @@
         <item>4</item>
         <item>8</item>
         <item>12</item>
+    </string-array><string-array name="text_size_entries">
+        <item>9</item>
+        <item>11</item>
+        <item>13</item>
+        <item>15</item>
+        <item>17</item>
+        <item>19</item>
+        <item>21</item>
+        <item>23</item>
+        <item>25</item>
+        <item>27</item>
+        <item>29</item>
+        <item>31</item>
+        <item>33</item>
+        <item>35</item>
+    </string-array><string-array name="text_size_values">
+        <item>9</item>
+        <item>11</item>
+        <item>13</item>
+        <item>15</item>
+        <item>17</item>
+        <item>19</item>
+        <item>21</item>
+        <item>23</item>
+        <item>25</item>
+        <item>27</item>
+        <item>29</item>
+        <item>31</item>
+        <item>33</item>
+        <item>35</item>
     </string-array></file><file path="C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\res\values\attrs.xml" qualifiers=""><declare-styleable name="ButtonBarContainerTheme">
         <attr format="reference" name="metaButtonBarStyle"/>
         <attr format="reference" name="metaButtonBarButtonStyle"/>
-    </declare-styleable></file><file path="C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\res\values\colors.xml" qualifiers=""><color name="colorPrimary">#3F51B5</color><color name="colorPrimaryDark">#303F9F</color><color name="colorAccent">#FF4081</color><color name="lightbuttonBackground">#dad6d6</color><color name="textColorDark">#000000</color><color name="black_overlay">#66000000</color></file><file path="C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\res\values\strings.xml" qualifiers=""><string name="app_name">Experiment</string><string name="title_activity_trivia">TriviaActivity</string><string name="dummy_button">Dummy Button</string><string name="dummy_content">DUMMY\nCONTENT</string><string name="time_left">Time Left until phone unlocks: 5:00mins</string><string name="lock_phone">Lock Phone</string><string name="unlock_phone">Unlock Phone</string><string name="phone">Phone</string><string name="camera">Camera</string><string name="settings">Settings</string><string name="kiosk">Unlock Phone</string><string name="lockout_time">Lockout time</string><string name="lockout_time_default">12</string><string name="exitButton">Exit Button</string><string name="hello_blank_fragment">Hello blank fragment</string></file><file path="C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\res\values\styles.xml" qualifiers=""><style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    </declare-styleable></file><file path="C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\res\values\colors.xml" qualifiers=""><color name="colorPrimary">#3F51B5</color><color name="colorPrimaryDark">#303F9F</color><color name="colorAccent">#FF4081</color><color name="lightbuttonBackground">#dad6d6</color><color name="textColorDark">#000000</color><color name="black_overlay">#66000000</color></file><file path="C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\res\values\strings.xml" qualifiers=""><string name="app_name">Experiment</string><string name="title_activity_trivia">TriviaActivity</string><string name="dummy_button">Dummy Button</string><string name="dummy_content">DUMMY\nCONTENT</string><string name="time_left">Time Left until phone unlocks: 5:00mins</string><string name="lock_phone">Lock Phone</string><string name="unlock_phone">Unlock Phone</string><string name="phone">Phone</string><string name="camera">Camera</string><string name="settings">Settings</string><string name="kiosk">Unlock Phone</string><string name="lockout_time">Lockout time</string><string name="lockout_time_default">12</string><string name="exitButton">Exit Button</string><string name="text_size">Text Size</string><string name="hello_blank_fragment">Hello blank fragment</string></file><file path="C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\res\values\styles.xml" qualifiers=""><style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -1772,6 +1802,8 @@
         <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
     </style><style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/black_overlay</item>
+    </style><style name="UniversalTextSize">
+        <item name="android:textSize">11sp</item>
     </style></file><file name="preferences" path="C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\res\xml\preferences.xml" qualifiers="" type="xml"/></source><source path="C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\build\generated\res\rs\debug"/><source path="C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\build\generated\res\resValues\debug"/></dataSet><dataSet config="debug$Generated" generated="true"><source path="C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\debug\res"/></dataSet><dataSet config="debug" generated-set="debug$Generated"><source path="C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\debug\res"/></dataSet><mergedItems><configuration qualifiers=""><declare-styleable name="AlertDialog"><attr name="android:layout"/><attr format="reference" name="buttonPanelSideLayout"/><attr format="reference" name="listLayout"/><attr format="reference" name="multiChoiceItemLayout"/><attr format="reference" name="singleChoiceItemLayout"/><attr format="reference" name="listItemLayout"/><attr format="boolean" name="showTitle"/></declare-styleable><declare-styleable name="AppCompatSeekBar"><attr name="android:thumb"/><attr format="reference" name="tickMark"/><attr format="color" name="tickMarkTint"/><attr name="tickMarkTintMode">
             
             <enum name="src_over" value="3"/>

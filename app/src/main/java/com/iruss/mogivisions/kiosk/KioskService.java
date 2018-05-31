@@ -199,6 +199,9 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         timeView = mView.findViewById(R.id.timeView);
         MyTimer.getInstance().setTimerRuningListener(this);
 
+        setKioskTextSize();
+
+
         unlockPhone();
         response();
         call();
@@ -207,6 +210,34 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         hideStatusBar();
         // Now that it's loaded, display it
         displayView();
+    }
+
+    /**
+     * changes the text size of a button
+     * Reads the text size from the settings page
+     */
+    public void setKioskTextSize(){
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String syncConnPref = sharedPref.getString("text_size", "11");
+
+        //Convert string to a float value
+        float textSize = Float.parseFloat(syncConnPref);
+        timeView.setTextSize(textSize);
+    }
+
+
+    /**
+     * changes the text size of a button
+     * Reads the text size from the settings page
+     * @param button
+     */
+    public void setKioskButtonTextSize(Button button){
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String syncConnPref = sharedPref.getString("text_size", "11");
+
+        //Convert string to a float value
+        float textSize = Float.parseFloat(syncConnPref);
+        button.setTextSize(textSize);
     }
 
     /**
@@ -252,6 +283,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                 homeActivity.setShouldBeInKioskMode(false);
             }
         });
+        setKioskButtonTextSize(hiddenExit);
     }
 
     /**
@@ -268,6 +300,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                     loadTrivia();
                 }
             });
+            setKioskButtonTextSize(unlock);
         }
 
     }
@@ -298,6 +331,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                 startActivity(callIntent);
             }
         });
+        setKioskButtonTextSize(callApp);
     }
 
     /**
@@ -320,6 +354,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                 }
             }
         });
+        setKioskButtonTextSize(cameraApp);
     }
 
     /**
@@ -379,6 +414,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         questionResponse3 = mView.findViewById(R.id.questionResponse3);
         questionResponse4 = mView.findViewById(R.id.questionResponse4);
 
+
         //add the buttons to the button list for finding the correct answer
         buttons.add(questionResponse1);
         buttons.add(questionResponse2);
@@ -397,6 +433,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         String trialsStr = "Trials remaining: " + Integer.toString(trials) ;
         trialsView.setText(trialsStr);
 
+        setTriviaTextSize();
         //call the trivia Api
         //TriviaAPI triviaAPI = new TriviaAPI(this);
         new TriviaAPI(this);
@@ -406,6 +443,20 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         hideStatusBar();
     }
 
+    public void setTriviaTextSize(){
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String syncConnPref = sharedPref.getString("text_size", "11");
+
+        float textSize = Float.parseFloat(syncConnPref);
+        trialsView.setTextSize(textSize);
+        questionView.setTextSize(textSize);
+        questionResponse1.setTextSize(textSize);
+        questionResponse2.setTextSize(textSize);
+        questionResponse3.setTextSize(textSize);
+        questionResponse4.setTextSize(textSize);
+
+
+    }
 
     @Override
     public void onTimerChange(String remainSec) {
@@ -541,11 +592,8 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                                 Toast.LENGTH_LONG).show();
                     }
                 });
+                temporaryUnlock();
 
-                //Unlocks the phone
-                stopSelf(-1);
-                // Take out of KioskMode
-                homeActivity.setShouldBeInKioskMode(false);
             }
             else {
 
@@ -577,6 +625,36 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
             }
         }
     };
+
+    /**
+     * Creates a temporary break for the user to use their phone after they have solved a challenge
+     */
+    private void temporaryUnlock(){
+        stopSelf(-1);
+        // Take out of KioskMode
+        homeActivity.setShouldBeInKioskMode(false);
+        Handler myhandler = new Handler();
+
+        int lockbreak = 300000;
+        myhandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                homeActivity.setShouldBeInKioskMode(true);
+                //resumes the KioskService
+                Intent intent = new Intent(homeActivity, KioskService.class);
+                stopService(intent);
+                startService(intent);
+
+                //Tells the user that their phone break is over
+                Toast.makeText(homeActivity.getApplicationContext(),
+                        "Your break is over, phone lock will continue",
+                        Toast.LENGTH_LONG).show();
+
+            }
+        }, lockbreak);
+    }
+
 
     /**
      * Calls for another trivia question
