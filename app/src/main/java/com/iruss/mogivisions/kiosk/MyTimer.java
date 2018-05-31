@@ -2,7 +2,6 @@ package com.iruss.mogivisions.kiosk;
 
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -20,7 +19,7 @@ public class MyTimer {
 
 
     private static final String TAG = "MyTimer";
-    private static final double TIMER_DELAY = 0.3; // Seconds
+    private static final double TIMER_DELAY = 0.25; // Seconds
 
 
     private static final MyTimer ourInstance = new MyTimer();
@@ -70,12 +69,12 @@ public class MyTimer {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                Log.i(TAG, "Timer running......");
                 isRunning = true;
                 Message message = Message.obtain();
                 int[] counters = new int[2];
                 counters[0] = (int)remainingSec;
                 counters[1] = (int)startSec;
+                //Log.i(TAG, "Timer running: " + remainingSec + ", " + startSec);
                 message.obj = counters;
                 message.setTarget(mHandler);
                 //checks whether or not the timer should be stopped

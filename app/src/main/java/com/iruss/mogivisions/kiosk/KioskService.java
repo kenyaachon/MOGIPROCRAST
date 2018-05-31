@@ -2,22 +2,17 @@ package com.iruss.mogivisions.kiosk;
 
 
 import android.Manifest;
-import android.app.ActionBar;
 import android.app.ActivityManager;
 import android.app.Service;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.net.Uri;
-import android.nfc.cardemulation.HostNfcFService;
-import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
@@ -43,9 +38,10 @@ import com.iruss.mogivisions.experiment.TriviaAPI;
 import com.iruss.mogivisions.experiment.TriviaQuestion;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 public class KioskService extends Service implements MyTimer.TimerRunning {
 
@@ -85,10 +81,12 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     // anything else was way more complicated. PG
     public static HomeActivity homeActivity;
 
-
-
-    //Correctbutton
+    //Correct button
     private Button correctButton;
+
+    // Constants
+    private final String CAMERA_PACKAGE = "com.android.camera";
+    private final String DIALER_PACKAGE = "com.android.dialer";
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -623,16 +621,39 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
             return;
         }
 
-        // Get the top activity
-        ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningTaskInfo> taskInfo = am.getRunningTasks(1);
-        ComponentName componentInfo = taskInfo.get(0).topActivity;
-        String topActivityPackageName = componentInfo.getPackageName();
-        Log.d("KioskService", "Top Activity: " + topActivityPackageName);
-//        Log.d("KioskService", "Camera: " + isCameraUsebyApp());
-        if (!topActivityPackageName.equals(getApplicationContext().getPackageName())) {
+        // If top activity is not this, phone, or dialer, then make visible
+        String foregroundPackage = getForegroundTask();
+        if (!(foregroundPackage.equals(getApplicationContext().getPackageName()) ||
+                foregroundPackage.equals(DIALER_PACKAGE) ||
+                foregroundPackage.equals(CAMERA_PACKAGE))) {
             mView.setVisibility(View.VISIBLE);
         }
+    }
+
+    // Gets the foreground task. From https://stackoverflow.com/questions/30619349/android-5-1-1-and-above-getrunningappprocesses-returns-my-application-packag
+    private String getForegroundTask() {
+        String currentApp = "NULL";
+        if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            UsageStatsManager usm = (UsageStatsManager)this.getSystemService(Context.USAGE_STATS_SERVICE);
+            long time = System.currentTimeMillis();
+            List<UsageStats> appList = usm.queryUsageStats(UsageStatsManager.INTERVAL_DAILY,  time - 1000*1000, time);
+            if (appList != null && appList.size() > 0) {
+                SortedMap<Long, UsageStats> mySortedMap = new TreeMap<Long, UsageStats>();
+                for (UsageStats usageStats : appList) {
+                    mySortedMap.put(usageStats.getLastTimeUsed(), usageStats);
+                }
+                if (mySortedMap != null && !mySortedMap.isEmpty()) {
+                    currentApp = mySortedMap.get(mySortedMap.lastKey()).getPackageName();
+                }
+            }
+        } else {
+            ActivityManager am = (ActivityManager)this.getSystemService(Context.ACTIVITY_SERVICE);
+            List<ActivityManager.RunningAppProcessInfo> tasks = am.getRunningAppProcesses();
+            currentApp = tasks.get(0).processName;
+        }
+
+//        Log.d("KioskService", "Current App in foreground is: " + currentApp);
+        return currentApp;
     }
 
 }

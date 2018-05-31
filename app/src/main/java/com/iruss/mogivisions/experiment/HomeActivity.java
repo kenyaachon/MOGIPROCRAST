@@ -20,10 +20,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.iruss.mogivisions.kiosk.KioskService;
 
-import java.util.Calendar;
 import java.util.List;
-import java.util.SortedMap;
-import java.util.TreeMap;
 
 public class HomeActivity extends AppCompatActivity {
     //Ads
