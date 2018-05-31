@@ -594,11 +594,8 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                                 Toast.LENGTH_LONG).show();
                     }
                 });
+                temporaryUnlock();
 
-                //Unlocks the phone
-                stopSelf(-1);
-                // Take out of KioskMode
-                homeActivity.setShouldBeInKioskMode(false);
             }
             else {
 
@@ -630,6 +627,36 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
             }
         }
     };
+
+    /**
+     * Creates a temporary break for the user to use their phone after they have solved a challenge
+     */
+    private void temporaryUnlock(){
+        stopSelf(-1);
+        // Take out of KioskMode
+        homeActivity.setShouldBeInKioskMode(false);
+        Handler myhandler = new Handler();
+
+        int lockbreak = 300000;
+        myhandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                homeActivity.setShouldBeInKioskMode(true);
+                //resumes the KioskService
+                Intent intent = new Intent(homeActivity, KioskService.class);
+                stopService(intent);
+                startService(intent);
+
+                //Tells the user that their phone break is over
+                Toast.makeText(homeActivity.getApplicationContext(),
+                        "Your break is over, phone lock will continue",
+                        Toast.LENGTH_LONG).show();
+
+            }
+        }, lockbreak);
+    }
+
 
     /**
      * Calls for another trivia question
