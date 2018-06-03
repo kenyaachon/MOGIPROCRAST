@@ -2,6 +2,7 @@ package com.iruss.mogivisions.kiosk;
 
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Service;
 import android.app.usage.UsageStats;
@@ -12,6 +13,8 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.IBinder;
@@ -240,15 +243,35 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         button.setTextSize(textSize);
     }
 
+
+
     /**
      * Loads the ads at the bottom of the page
+     * Checks if there is internet if not then ads are not loaded
      */
     private void loadAds(){
-        MobileAds.initialize(homeActivity, "ca-app-pub-3940256099942544~3347511713");
+        ConnectivityManager conMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        mAdView = mView.findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        //Checks if there is internet
+        try {
+            NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
+            boolean isConnected = activeNetwork != null &&
+                    activeNetwork.isConnectedOrConnecting();
+            if(isConnected){
+                Log.d("Network", "Network connection available");
+                //Loading unique ad id
+                MobileAds.initialize(homeActivity, "ca-app-pub-3940256099942544~3347511713");
+
+                //displaying the ads
+                mAdView = mView.findViewById(R.id.adView);
+                AdRequest adRequest = new AdRequest.Builder().build();
+                mAdView.loadAd(adRequest);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
@@ -732,6 +755,11 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
 
 //        Log.d("KioskService", "Current App in foreground is: " + currentApp);
         return currentApp;
+    }
+
+
+    public Activity getActivity(){
+        return homeActivity;
     }
 
 }
