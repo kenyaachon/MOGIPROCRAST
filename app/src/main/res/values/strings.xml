@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Experiment</string>
 
+    <string name="dialog_title"></string>
+    <string name="dialog_message">Can you grant permission to check network status?</string>
     <string name="title_activity_trivia">TriviaActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>

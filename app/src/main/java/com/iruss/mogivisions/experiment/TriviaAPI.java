@@ -4,10 +4,15 @@ package com.iruss.mogivisions.experiment;
  * Created by Moses on 3/18/2018.
  */
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -41,7 +46,7 @@ public class TriviaAPI {
     private int questionType;
 
     //Level of difficulty for the questions
-    protected static String questionDifficulty;
+    protected static String questionDifficulty = "easy";
 
     //Get the token
     private String token = "";
@@ -56,7 +61,7 @@ public class TriviaAPI {
         //gets the trivia activity object wanting to use the TriviaAPI class
         this.kioskService = kioskService;
 
-        networkCheck();
+        decision(kioskService);
 
     }
 
@@ -69,27 +74,18 @@ public class TriviaAPI {
 
     //public ArrayList<TriviaQuestion> decision(Context context){
     private boolean decision(Context context){
-        ConnectivityManager cm =
-                (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        //Get Permission to read network status
-
-        //Gets network state
-
         try {
-            NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-            boolean isConnected = activeNetwork != null &&
-                    activeNetwork.isConnectedOrConnecting();
-            //checks if there is internet
             Log.d("attempt", "Attept is working");
 
             //returns the database questions from online
-            if(isConnected){
+            if(networkCheck()){
                 Log.d("Test", "Internet Connection is Available");
-                //Sends the retrivied from the online TriviaDB to the TriviaActivity
-                //triviaActivity.displayQuestions(callDB());
                 callDB();
                 return true;
+            }
+            else{
+                Log.d("Test", "Getting offline database");
+                getOfflineDB();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -102,65 +98,49 @@ public class TriviaAPI {
     }
 
     /*
-     * Checks if app has user permission to check network connection
-     * returns true if Permission to check network are allowed
+     *Checks if there is an internet connection if there is it returns true
      * and false otherwise
      */
-    private int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 1;
     private boolean networkCheck(){
-        //public boolean networkCheck(){
         Log.d("attempt", "network attempt");
 
-        // TODO: Fix this
-//        //if (ContextCompat.checkSelfPermission(this,
-//        if (ContextCompat.checkSelfPermission(kioskService,
-//                Manifest.permission.ACCESS_NETWORK_STATE)
-//                != PackageManager.PERMISSION_GRANTED) {
 
-            // Permission is not granted
-            // Should we show an explanation?
-            //if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-//            if (ActivityCompat.shouldShowRequestPermissionRationale(kioskService.getActivity(),
-//                    Manifest.permission.ACCESS_NETWORK_STATE)) {
-//
-//                // Show an explanation to the user *asynchronously* -- don't block
-//                // this thread waiting for the user's response! After the user
-//                // sees the explanation, try again to request the permission.
-//
-//
-//                /*
-//                // 1. Instantiate an AlertDialog.Builder with its constructor
-//                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//                // 2. Chain together various setter methods to set the dialog characteristics
-//                builder.setMessage(R.string.dialog_message)
-//                        .setTitle(R.string.dialog_title);
-//                // 3. Get the AlertDialog from create()
-//                AlertDialog dialog = builder.create();
-//                */
-//
-//            } else {
-//
-//                // No explanation needed; request the permission
-//                //ActivityCompat.requestPermissions(this,
-////                ActivityCompat.requestPermissions(triviaFragment.getActivity(),
-////                        new String[]{Manifest.permission.ACCESS_NETWORK_STATE},
-////                        MY_PERMISSIONS_REQUEST_READ_CONTACTS);
-//                //findouts network status
-//                decision(kioskService);
-//
-//
-//                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-//                // app-defined int constant. The callback method gets the
-//                // result of the request.
-//                return true;
-//            }
-//        } else {
-            // Permission has already been granted
-            decision(kioskService);
-            return true;
-//        }
-//        //false if network check fails
-//        return false;
+        ConnectivityManager conMgr = (ConnectivityManager)kioskService.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            if (conMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED
+                    || conMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+
+                // notify user you are online
+                Log.d("Network", "Network state connected");
+                return true;
+            } else {
+
+                //false if network check fails
+                Log.d("Network", "No Network");
+                return false;
+            }
+        }
+        else{
+            //Returns network state for older API's
+            try {
+                NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
+                boolean isConnected = activeNetwork != null &&
+                        activeNetwork.isConnectedOrConnecting();
+                if(isConnected){
+                    Log.d("Network", "Network connection available");
+                }
+                return isConnected;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        //false if network check fails
+        Log.d("Network", "No Network");
+        return false;
+
     }
 
 
@@ -173,10 +153,7 @@ public class TriviaAPI {
      * returns true if able to successfully call the Database
      */
     private void callDB(){
-        /*
-        GetTriviaDB getTriviaDB = new GetTriviaDB();
-        getTriviaDB.execute();
-        return getTriviaDB.getTriviaQuestions();*/
+
         new GetTriviaDB().execute();
     }
 
@@ -216,7 +193,7 @@ public class TriviaAPI {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Toast.makeText(kioskService,"Json Data is downloading"
+            Toast.makeText(kioskService,"Obtaining trivia questions"
                     ,Toast.LENGTH_LONG).show();
 
         }

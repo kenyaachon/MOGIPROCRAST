@@ -161,13 +161,13 @@ public class HomeActivity extends AppCompatActivity {
         //Checkks user phone statistics
         //Look to make sure we check if the app has access if it does then we just run the usage statistics
 
-        if (checkUsagePermissionGranted() == false) {
-            Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
-            startActivity(intent);
-        }
-
         //Checks which build version the app is and then checks usage statistics accordingly
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            if (checkUsagePermissionGranted() == false) {
+                Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+                startActivity(intent);
+            }
+
             // Do something for lollipop and above versions
             long TimeInforground = 500;
 
@@ -199,6 +199,7 @@ public class HomeActivity extends AppCompatActivity {
             Log.e("End", "The Loop has ended");
         } else {
             // do something for phones running an SDK before lollipop
+            Log.e("Statistics Error", "Not able to check attain usage statistics");
         }
 
     }
@@ -231,11 +232,13 @@ public class HomeActivity extends AppCompatActivity {
         Context context = getApplicationContext();
         AppOpsManager appOps = (AppOpsManager) context
                 .getSystemService(Context.APP_OPS_SERVICE);
-        int mode = appOps.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS,
+                //int mode = appOps.checkOpNoThrow("android:get_usage_stats",
+                int mode = appOps.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS,
                 android.os.Process.myUid(), context.getPackageName());
 
         if (mode == AppOpsManager.MODE_DEFAULT) {
-            granted = (context.checkCallingOrSelfPermission(android.Manifest.permission.PACKAGE_USAGE_STATS) == PackageManager.PERMISSION_GRANTED);
+            granted = (context.checkCallingOrSelfPermission( "android.permission.PACKAGE_USAGE_STATS") == PackageManager.PERMISSION_GRANTED);
+            //granted = (context.checkCallingOrSelfPermission(android.Manifest.permission.PACKAGE_USAGE_STATS) == PackageManager.PERMISSION_GRANTED);
         } else {
             granted = (mode == AppOpsManager.MODE_ALLOWED);
         }
