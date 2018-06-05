@@ -384,7 +384,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
      * Checks if app has user permission to device camera
      * returns true if Permission to use Camera is allowed
      */
-    int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 1;
+    private final int MY_PERMISSIONS_REQUEST_CAMERA = 1;
     private boolean cameraCheck(){
         // TODO: Figure this out
         if (ContextCompat.checkSelfPermission(this,
@@ -399,25 +399,36 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                 // Show an explanation to the user *asynchronously* -- don't block
                 // this thread waiting for the user's response! After the user
                 // sees the explanation, try again to request the permission.
+                Log.d("Permission", "Showing rationale for permission request");
+                Toast.makeText(this, "Showing rationale for permission request", Toast.LENGTH_SHORT).show();
 
             } else {
 
                 // No explanation needed; request the permission
                 ActivityCompat.requestPermissions(homeActivity,
                         new String[]{Manifest.permission.CAMERA},
-                        MY_PERMISSIONS_REQUEST_READ_CONTACTS);
+                        MY_PERMISSIONS_REQUEST_CAMERA);
 
                 // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
                 // app-defined int constant. The callback method gets the
                 // result of the request.
+                Log.d("Permission", "Permission has been granted");
+                Toast.makeText(this, "Permission has been granted", Toast.LENGTH_SHORT).show();
+
                 return true;
             }
         } else {
             // Permission has already been granted
+            Log.d("Permission", "Permission has already been granted");
+            Toast.makeText(this, "Permission has already been granted", Toast.LENGTH_SHORT).show();
+
             return true;
         }
         return false;
     }
+
+
+
 
     // Load the trivia fragment
     public void loadTrivia() {

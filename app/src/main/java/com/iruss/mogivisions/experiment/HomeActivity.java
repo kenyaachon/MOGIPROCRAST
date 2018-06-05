@@ -1,9 +1,11 @@
 package com.iruss.mogivisions.experiment;
 
+import android.Manifest;
 import android.app.AppOpsManager;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -12,10 +14,14 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -153,6 +159,41 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Asks the user permission to access their usage statistics
+     */
+    public void askForPermission(){
+
+        //create the builder that creates the alert Dialog to the user
+        final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle(R.string.UsageStatisticsTitle);
+        alertDialogBuilder.setMessage(R.string.UsageStatisticsPermissionRequest);
+        //If the user accepts request for permission to view usage statistics
+        alertDialogBuilder.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+                startActivity(intent);
+            }
+        });
+
+
+        //If the user denies permission, keep on asking
+        alertDialogBuilder.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                askForPermission();
+            }
+        });
+        //display the alert dialog at the beginning of the app
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+    }
+
+
 
     /**
      * Tells how much the user has been using their phone
@@ -164,10 +205,10 @@ public class HomeActivity extends AppCompatActivity {
         //Checks which build version the app is and then checks usage statistics accordingly
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             if (checkUsagePermissionGranted() == false) {
-                Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
-                startActivity(intent);
-            }
 
+                askForPermission();
+
+            }
             // Do something for lollipop and above versions
             long TimeInforground = 500;
 
@@ -204,6 +245,31 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+
+
+    final int MY_PERMISSIONS_REQUEST_CAMERA = 1;
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_CAMERA: {
+                // If request is cancelled, the result arrays are empty.
+
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+                    Log.d("Permission", "Permission granted to access your camera");
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                    Toast.makeText(this, "Permission denied to access your camera", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+
+        }
+    }
 
 
     /**
