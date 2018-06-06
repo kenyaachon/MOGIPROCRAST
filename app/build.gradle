@@ -31,7 +31,7 @@ dependencies {
     compile 'org.jsoup:jsoup:1.11.3'
 
     //add google adsense
-    implementation 'com.google.android.gms:play-services-ads:15.0.0'
+    implementation 'com.google.android.gms:play-services-ads:15.0.1'
 
 
 }

@@ -357,6 +357,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         setKioskButtonTextSize(callApp);
     }
 
+
     /**
      * camera() calls  the camera App when the User press the camera button
      */
@@ -365,7 +366,10 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         cameraApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (cameraCheck()) {
+                //if (cameraCheck()) {
+                if (homeActivity.cameraCheck()) {
+
+
                     // Make view invisible
                     if (mView != null) {
                         mView.setVisibility(View.GONE);
