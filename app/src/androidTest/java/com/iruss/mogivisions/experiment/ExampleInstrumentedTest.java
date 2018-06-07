@@ -3,7 +3,10 @@ package com.iruss.mogivisions.experiment;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+import android.support.test.rule.ActivityTestRule;
 
+import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -22,5 +25,40 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("com.iruss.mogivisions.experiment", appContext.getPackageName());
+    }
+
+    // settings button under home
+    @Test
+    public void displaySettings() {
+        onView(withId(R.id.settings))            // withId(R.id.settings) is a ViewMatcher
+                .perform(click())               // click() is a ViewAction
+                .check(matches(isDisplayed())); // matches(isDisplayed()) is a ViewAssertion
+        // not sure how isDisplayed works or if that is a thing I can just call like that
+    }
+
+
+
+    // questions are displayed, in TriviaActivity.java but also in TriviaFragment.java, theyre the same
+    @Test
+    public void displayQuestions() {
+
+    }
+
+    // not sure what to do for this one
+    @Test
+    public void myClickListener() {
+
+    }
+
+    // checks that camera opens
+    @Test
+    public void cameraOpens(){
+
+    }
+
+    // checks that dialer opens
+    @Test
+    public void dialerOpens() {
+
     }
 }
