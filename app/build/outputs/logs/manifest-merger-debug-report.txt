@@ -5,7 +5,6 @@ INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\And
 INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-38:12
 INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-38:12
 MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\95dcd3221f36fe7fe8889bcee1c0a4ff\AndroidManifest.xml:17:1-31:12
-MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\d7aed552ed5af01b3ab07ae1840c48bb\AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.gms:play-services-ads:15.0.1] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\play-services-ads-15.0.1.aar\6dc8576fd31b0b2818c35d055a0400ea\AndroidManifest.xml:17:1-25:12
 MERGED from [com.google.android.gms:play-services-ads-identifier:15.0.1] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\play-services-ads-identifier-15.0.1.aar\32854b529b35237770a81a3ed1ba7d93\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-ads-lite:15.0.1] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\play-services-ads-lite-15.0.1.aar\9d575c976efd763dbcd9fcef6ca0b87b\AndroidManifest.xml:17:1-36:12
@@ -20,6 +19,7 @@ MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\Moses\.grad
 MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\1c6c7853a3f9856899b3018601717e84\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:customtabs:26.1.0] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\customtabs-26.1.0.aar\3b5fd1fb63b4db9c3670bee468fc2bb1\AndroidManifest.xml:17:1-28:12
 MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\7e3600e542cb8a48ea12874ab4c9351c\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\d7aed552ed5af01b3ab07ae1840c48bb\AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.gms:play-services-ads-base:15.0.1] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\play-services-ads-base-15.0.1.aar\0cda069927a9ca6f014a7de4296dd7b4\AndroidManifest.xml:17:1-24:12
 MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\c254d8182ad90262708b958760f116b6\AndroidManifest.xml:17:1-30:12
 INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-38:12
@@ -62,7 +62,7 @@ ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\Androi
 	android:name
 		ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:9:22-75
 uses-permission#android.permission.PACKAGE_USAGE_STATS
-ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:10:5-114
+ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:10:5-130
 	tools:ignore
 		ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:10:76-111
 	android:name
@@ -71,8 +71,6 @@ application
 ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:13:5-34:19
 MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\95dcd3221f36fe7fe8889bcee1c0a4ff\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\95dcd3221f36fe7fe8889bcee1c0a4ff\AndroidManifest.xml:25:5-29:19
-MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\d7aed552ed5af01b3ab07ae1840c48bb\AndroidManifest.xml:9:5-20
-MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\d7aed552ed5af01b3ab07ae1840c48bb\AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.gms:play-services-ads-identifier:15.0.1] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\play-services-ads-identifier-15.0.1.aar\32854b529b35237770a81a3ed1ba7d93\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-ads-identifier:15.0.1] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\play-services-ads-identifier-15.0.1.aar\32854b529b35237770a81a3ed1ba7d93\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-ads-lite:15.0.1] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\play-services-ads-lite-15.0.1.aar\9d575c976efd763dbcd9fcef6ca0b87b\AndroidManifest.xml:26:5-34:19
@@ -99,6 +97,8 @@ MERGED from [com.android.support:customtabs:26.1.0] C:\Users\Moses\.gradle\cache
 MERGED from [com.android.support:customtabs:26.1.0] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\customtabs-26.1.0.aar\3b5fd1fb63b4db9c3670bee468fc2bb1\AndroidManifest.xml:22:5-26:19
 MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\7e3600e542cb8a48ea12874ab4c9351c\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\7e3600e542cb8a48ea12874ab4c9351c\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\d7aed552ed5af01b3ab07ae1840c48bb\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\d7aed552ed5af01b3ab07ae1840c48bb\AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.gms:play-services-ads-base:15.0.1] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\play-services-ads-base-15.0.1.aar\0cda069927a9ca6f014a7de4296dd7b4\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-ads-base:15.0.1] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\play-services-ads-base-15.0.1.aar\0cda069927a9ca6f014a7de4296dd7b4\AndroidManifest.xml:22:5-20
 MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\c254d8182ad90262708b958760f116b6\AndroidManifest.xml:24:5-28:19
@@ -159,8 +159,6 @@ INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\And
 INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml
 MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\95dcd3221f36fe7fe8889bcee1c0a4ff\AndroidManifest.xml:21:5-23:78
 MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\95dcd3221f36fe7fe8889bcee1c0a4ff\AndroidManifest.xml:21:5-23:78
-MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\d7aed552ed5af01b3ab07ae1840c48bb\AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\d7aed552ed5af01b3ab07ae1840c48bb\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.android.gms:play-services-ads:15.0.1] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\play-services-ads-15.0.1.aar\6dc8576fd31b0b2818c35d055a0400ea\AndroidManifest.xml:21:5-23:62
 MERGED from [com.google.android.gms:play-services-ads:15.0.1] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\play-services-ads-15.0.1.aar\6dc8576fd31b0b2818c35d055a0400ea\AndroidManifest.xml:21:5-23:62
 MERGED from [com.google.android.gms:play-services-ads-identifier:15.0.1] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\play-services-ads-identifier-15.0.1.aar\32854b529b35237770a81a3ed1ba7d93\AndroidManifest.xml:20:5-44
@@ -189,6 +187,8 @@ MERGED from [com.android.support:customtabs:26.1.0] C:\Users\Moses\.gradle\cache
 MERGED from [com.android.support:customtabs:26.1.0] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\customtabs-26.1.0.aar\3b5fd1fb63b4db9c3670bee468fc2bb1\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\7e3600e542cb8a48ea12874ab4c9351c\AndroidManifest.xml:21:5-23:58
 MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\7e3600e542cb8a48ea12874ab4c9351c\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\d7aed552ed5af01b3ab07ae1840c48bb\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\d7aed552ed5af01b3ab07ae1840c48bb\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.android.gms:play-services-ads-base:15.0.1] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\play-services-ads-base-15.0.1.aar\0cda069927a9ca6f014a7de4296dd7b4\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-ads-base:15.0.1] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\play-services-ads-base-15.0.1.aar\0cda069927a9ca6f014a7de4296dd7b4\AndroidManifest.xml:20:5-44
 MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\c254d8182ad90262708b958760f116b6\AndroidManifest.xml:20:5-22:41

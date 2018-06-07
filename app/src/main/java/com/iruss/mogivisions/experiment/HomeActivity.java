@@ -162,14 +162,14 @@ public class HomeActivity extends AppCompatActivity {
     /**
      * Asks the user permission to access their usage statistics
      */
-    public void askForPermission(){
+    public void requestPermissionStats(){
 
         //create the builder that creates the alert Dialog to the user
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle(R.string.UsageStatisticsTitle);
         alertDialogBuilder.setMessage(R.string.UsageStatisticsPermissionRequest);
         //If the user accepts request for permission to view usage statistics
-        alertDialogBuilder.setPositiveButton("Yes",
+        alertDialogBuilder.setPositiveButton("Ok",
                 new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
@@ -178,19 +178,49 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-
-        //If the user denies permission, keep on asking
-        alertDialogBuilder.setNegativeButton("No",
-                new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                askForPermission();
-            }
-        });
-        //display the alert dialog at the beginning of the app
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
 
+    }
+
+    final int MY_PERMISSIONS_REQUEST_READ_USAGE_STATISTICS = 2;
+    private void askUsagePermission(){
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.PACKAGE_USAGE_STATS)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Permission is not granted
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    "android.permission.PACKAGE_USAGE_STATS")) {
+                // Show an explanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+                Log.d("Permission", "Showing rationale to access your usage statistics");
+                Log.d("Permission", "Showing rationale for permission request");
+                showExplanation(this.getString(R.string.UsageStatisticsTitle), this.getString(R.string.UsageStatisticsPermissionRational),
+                        "android.permission.PACKAGE_USAGE_STATS",
+                        MY_PERMISSIONS_REQUEST_READ_USAGE_STATISTICS);
+
+            } else {
+                // No explanation needed; request the permission
+                /*
+                ActivityCompat.requestPermissions(this,
+                        new String[]{"android.permission.PACKAGE_USAGE_STATS"},
+                        MY_PERMISSIONS_REQUEST_READ_USAGE_STATISTICS);*/
+                requestPermissionStats();
+
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+        } else {
+            // Permission has already been granted
+            Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+            startActivity(intent);
+            Log.d("Permission", "Permission already granted to access your usage statistics");
+
+        }
     }
 
 
@@ -206,7 +236,8 @@ public class HomeActivity extends AppCompatActivity {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             if (checkUsagePermissionGranted() == false) {
 
-                askForPermission();
+                //askForPermission();
+                askUsagePermission();
 
             }
             // Do something for lollipop and above versions
@@ -245,6 +276,23 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    private void showExplanation(String title,
+                                 String message,
+                                 final String permission,
+                                 final int permissionRequestCode) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(title)
+                .setMessage(message)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        switch (permissionRequestCode){
+                            case MY_PERMISSIONS_REQUEST_READ_USAGE_STATISTICS:
+                                requestPermissionStats();
+                        }
+                    }
+                });
+        builder.create().show();
+    }
 
     /**
      * Checks if app has user permission to device camera
@@ -268,7 +316,9 @@ public class HomeActivity extends AppCompatActivity {
                 // this thread waiting for the user's response! After the user
                 // sees the explanation, try again to request the permission.
                 Log.d("Permission", "Showing rationale for permission request");
-
+                showExplanation(this.getString(R.string.CameraPermissionTitle), this.getString(R.string.CameraPermissionRequestRationale),
+                        Manifest.permission.CAMERA,
+                        MY_PERMISSIONS_REQUEST_CAMERA);
             } else {
 
                 // No explanation needed; request the permission
@@ -294,6 +344,10 @@ public class HomeActivity extends AppCompatActivity {
         return false;
     }
 
+    private void requestPermission(String permissionName, int permissionRequestCode) {
+        ActivityCompat.requestPermissions(this,
+                new String[]{permissionName}, permissionRequestCode);
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
@@ -311,6 +365,22 @@ public class HomeActivity extends AppCompatActivity {
                     // permission denied, boo! Disable the
                     // functionality that depends on this permission.
                     Toast.makeText(this, "Permission denied to access your camera", Toast.LENGTH_SHORT).show();
+                }
+                return;
+            }
+            case MY_PERMISSIONS_REQUEST_READ_USAGE_STATISTICS:{
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+                    Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+                    startActivity(intent);
+                    Log.d("Permission", "Permission granted to access your usage statistics");
+
+                } else {
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                    Log.d("Permission", "Permission denied to access your usage statistics");
                 }
                 return;
             }

@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.net.ConnectivityManager;
@@ -41,6 +42,7 @@ import com.iruss.mogivisions.experiment.TriviaAPI;
 import com.iruss.mogivisions.experiment.TriviaQuestion;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.SortedMap;
@@ -351,6 +353,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                 Uri number = Uri.parse("tel:5551234");
                 Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
                 callIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                callIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
                 startActivity(callIntent);
             }
         });
@@ -739,14 +742,21 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
 
         // If top activity is not this, phone, or dialer, then make visible
         String foregroundPackage = getForegroundTask();
-        if (!(foregroundPackage.equals(getApplicationContext().getPackageName()) ||
-                foregroundPackage.equals(DIALER_PACKAGE) ||
-                foregroundPackage.equals(CAMERA_PACKAGE))) {
+        Log.i("Packages on top", foregroundPackage);
+        if(!(foregroundPackage.toLowerCase().contains("dialer")
+                || foregroundPackage.toLowerCase().contains("camera")
+                || foregroundPackage.toLowerCase().contains("contacts")
+                || foregroundPackage.toLowerCase().contains("incallui"))){
             mView.setVisibility(View.VISIBLE);
         }
+
+
+
     }
 
+
     // Gets the foreground task. From https://stackoverflow.com/questions/30619349/android-5-1-1-and-above-getrunningappprocesses-returns-my-application-packag
+
     private String getForegroundTask() {
         String currentApp = "NULL";
         if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
@@ -771,6 +781,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
 //        Log.d("KioskService", "Current App in foreground is: " + currentApp);
         return currentApp;
     }
+
 
 
     public Activity getActivity(){

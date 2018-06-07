@@ -17,6 +17,10 @@
     <string name="lockout_time_default">12</string>
     <string name="exitButton">Exit Button</string>
 
+
+    <string name="CameraPermissionTitle">Camera Permission Request</string>
+    <string name="CameraPermissionRequest">Can you grant permission to access your Camera</string>
+    <string name="CameraPermissionRequestRationale">If you want to access the camera app you need to grant permission to access your camera</string>
     <string name="UsageStatisticsTitle">Permission Request</string>
     <string name="UsageStatisticsPermissionRequest">"Permission to view phone usage statistics critical for best user experience"</string>
     <string name="UsageStatisticsPermissionRational">"Can you approve App permission to view phone usage?"</string>
