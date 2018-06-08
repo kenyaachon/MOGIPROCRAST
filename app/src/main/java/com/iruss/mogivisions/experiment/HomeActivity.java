@@ -66,6 +66,18 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    public void getPhonePermission(){
+        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
+
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, REQUEST_READ_PHONE_STATE);
+        } else {
+            //TODO
+            Log.i("Phone Test", "Permission for phone already granted");
+
+        }
+    }
+
 
 
     public void initializeSettings() {
@@ -349,6 +361,8 @@ public class HomeActivity extends AppCompatActivity {
                 new String[]{permissionName}, permissionRequestCode);
     }
 
+    final int REQUEST_READ_PHONE_STATE = 3;
+
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
@@ -384,7 +398,15 @@ public class HomeActivity extends AppCompatActivity {
                 }
                 return;
             }
-
+            case REQUEST_READ_PHONE_STATE:
+                if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    //TODO
+                    Log.i("Phone Test", "Permission for phone granted");
+                }
+                else{
+                    Log.i("Phone Test", "Permission for phone granted");
+                }
+                break;
         }
     }
 

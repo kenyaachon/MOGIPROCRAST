@@ -7,6 +7,7 @@ import android.app.ActivityManager;
 import android.app.Service;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -111,6 +112,9 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         loadKiosk();
         return super.onStartCommand(intent, flags, startId);
     }
+
+
+
 
 
     /**
@@ -352,8 +356,8 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
 
                 Uri number = Uri.parse("tel:5551234");
                 Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
-                callIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                callIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                //makes sure the phone is at the top of the activity stack
+                callIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(callIntent);
             }
         });
@@ -379,7 +383,9 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                     }
 
                     Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                    cameraIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    //makes sure the camera is at the top of the activity stack
+                    cameraIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
                     startActivity(cameraIntent);
                 }
             }
@@ -750,9 +756,18 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
             mView.setVisibility(View.VISIBLE);
         }
 
-
+        //Tests whether I can detect incoming phone calls
+        //Log.i("Phone call", Boolean.toString(incomingCall()));
 
     }
+
+    /*
+    public boolean incomingCall(){
+        Intent intent = new Intent(this, PhoneCallReceiver.class);
+        sendBroadcast(intent);
+        return PhoneCallReceiver.isIncoming;
+    }*/
+
 
 
     // Gets the foreground task. From https://stackoverflow.com/questions/30619349/android-5-1-1-and-above-getrunningappprocesses-returns-my-application-packag

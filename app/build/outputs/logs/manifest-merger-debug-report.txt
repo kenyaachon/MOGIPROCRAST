@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-38:12
+ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-48:12
+INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-48:12
+INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-48:12
+INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-48:12
 MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\95dcd3221f36fe7fe8889bcee1c0a4ff\AndroidManifest.xml:17:1-31:12
 MERGED from [com.google.android.gms:play-services-ads:15.0.1] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\play-services-ads-15.0.1.aar\6dc8576fd31b0b2818c35d055a0400ea\AndroidManifest.xml:17:1-25:12
 MERGED from [com.google.android.gms:play-services-ads-identifier:15.0.1] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\play-services-ads-identifier-15.0.1.aar\32854b529b35237770a81a3ed1ba7d93\AndroidManifest.xml:17:1-24:12
@@ -22,22 +22,22 @@ MERGED from [com.android.support:support-compat:26.1.0] C:\Users\Moses\.gradle\c
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\d7aed552ed5af01b3ab07ae1840c48bb\AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.gms:play-services-ads-base:15.0.1] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\play-services-ads-base-15.0.1.aar\0cda069927a9ca6f014a7de4296dd7b4\AndroidManifest.xml:17:1-24:12
 MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\c254d8182ad90262708b958760f116b6\AndroidManifest.xml:17:1-30:12
-INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-38:12
+INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-48:12
+INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-48:12
+INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-48:12
 	package
 		ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:4:5-47
 		INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-38:12
+		ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-48:12
 		INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml
 	xmlns:tools
 		ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-38:12
+		ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-48:12
 		INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:11-69
@@ -68,7 +68,7 @@ ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\Androi
 	android:name
 		ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:10:22-75
 application
-ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:13:5-34:19
+ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:13:5-42:19
 MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\95dcd3221f36fe7fe8889bcee1c0a4ff\AndroidManifest.xml:25:5-29:19
 MERGED from [com.android.support:appcompat-v7:26.1.0] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\appcompat-v7-26.1.0.aar\95dcd3221f36fe7fe8889bcee1c0a4ff\AndroidManifest.xml:25:5-29:19
 MERGED from [com.google.android.gms:play-services-ads-identifier:15.0.1] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\play-services-ads-identifier-15.0.1.aar\32854b529b35237770a81a3ed1ba7d93\AndroidManifest.xml:22:5-20
@@ -141,18 +141,38 @@ service#com.iruss.mogivisions.kiosk.KioskService
 ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:33:9-75
 	android:name
 		ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:33:18-73
+receiver#com.iruss.mogivisions.kiosk.PhoneCallReceiver
+ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:34:9-41:20
+	android:name
+		ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:34:19-79
+intent-filter#action:name:android.intent.action.PHONE_STATE
+ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:35:13-37:29
+action#android.intent.action.PHONE_STATE
+ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:36:17-76
+	android:name
+		ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:36:25-73
+intent-filter#action:name:android.intent.action.NEW_OUTGOING_CALL
+ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:38:13-40:29
+action#android.intent.action.NEW_OUTGOING_CALL
+ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:39:17-82
+	android:name
+		ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:39:25-79
 uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
-ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:35:5-81
+ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:43:5-81
 	android:name
-		ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:35:22-78
-uses-permission#android.permission.GET_TASKS
-ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:36:5-67
-	android:name
-		ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:36:22-65
+		ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:43:22-78
 uses-permission#android.permission.WAKE_LOCK
-ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:37:5-68
+ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:44:5-68
 	android:name
-		ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:37:22-65
+		ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:44:22-65
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:46:5-75
+	android:name
+		ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:46:22-72
+uses-permission#android.permission.PROCESS_OUTGOING_CALLS
+ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:47:5-80
+	android:name
+		ADDED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml:47:22-78
 uses-sdk
 INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Moses\Documents\OverlayMogi\MOGIPROCRAST\app\src\main\AndroidManifest.xml
