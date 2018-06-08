@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Moses\\Documents\\OverlayMogi\\MOGIPROCRAST\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-land\\values-land.xml",
+            "outputFile": "C:\\Users\\nick\\AndroidStudioProjects\\MOGIPROCRAST\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-land\\values-land.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\95dcd3221f36fe7fe8889bcee1c0a4ff\\res\\values-land\\values-land.xml",
+                    "source": "C:\\Users\\nick\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\17561f2d9904f01f45415d6088ff3571\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

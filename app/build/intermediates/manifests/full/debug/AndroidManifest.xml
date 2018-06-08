@@ -40,7 +40,7 @@
         </activity>
 
         <service android:name="com.iruss.mogivisions.kiosk.KioskService" />
-
+        <!--
         <receiver android:name="com.iruss.mogivisions.kiosk.PhoneCallReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE" />
@@ -49,7 +49,7 @@
                 <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
             </intent-filter>
         </receiver>
-
+        -->
         <meta-data
             android:name="android.support.VERSION"
             android:value="26.1.0" /> <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->

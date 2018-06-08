@@ -1,10 +1,27 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\Moses\\Documents\\OverlayMogi\\MOGIPROCRAST\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-iw\\values-iw.xml",
+            "outputFile": "C:\\Users\\nick\\AndroidStudioProjects\\MOGIPROCRAST\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-iw\\values-iw.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-15.0.1.aar\\95cb02b2a5380b47e3c0a8b16cbc894d\\res\\values-iw\\values.xml",
+                    "source": "C:\\Users\\nick\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-ads-15.0.1.aar\\2f54dc9ef2546b413e51a672e567dcc7\\res\\values-iw\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10",
+                        "startColumns": "0,0,0,0,0,0,0",
+                        "startOffsets": "197,268,371,432,493,566,659",
+                        "endColumns": "70,102,60,60,72,92,68",
+                        "endOffsets": "267,370,431,492,565,658,727"
+                    },
+                    "to": {
+                        "startLines": "22,23,24,25,26,27,28",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "2180,2255,2362,2427,2492,2569,2666",
+                        "endColumns": "74,106,64,64,76,96,72",
+                        "endOffsets": "2250,2357,2422,2487,2564,2661,2734"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\nick\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-15.0.1.aar\\37d8c250b8a49985b322f8d386bd6eab\\res\\values-iw\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -21,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\95dcd3221f36fe7fe8889bcee1c0a4ff\\res\\values-iw\\values-iw.xml",
+                    "source": "C:\\Users\\nick\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\17561f2d9904f01f45415d6088ff3571\\res\\values-iw\\values-iw.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -35,23 +52,6 @@
                         "startOffsets": "105,209,319,445,544,652,736,836,950,1028,1106,1185,1287,1391,1487,1590,1691,1791,1907,2739,2818",
                         "endColumns": "103,109,125,98,107,83,99,113,77,77,78,101,103,95,102,100,99,115,95,78,102",
                         "endOffsets": "204,314,440,539,647,731,831,945,1023,1101,1180,1282,1386,1482,1585,1686,1786,1902,1998,2813,2916"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-ads-15.0.1.aar\\6dc8576fd31b0b2818c35d055a0400ea\\res\\values-iw\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10",
-                        "startColumns": "0,0,0,0,0,0,0",
-                        "startOffsets": "197,268,371,432,493,566,659",
-                        "endColumns": "70,102,60,60,72,92,68",
-                        "endOffsets": "267,370,431,492,565,658,727"
-                    },
-                    "to": {
-                        "startLines": "22,23,24,25,26,27,28",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "2180,2255,2362,2427,2492,2569,2666",
-                        "endColumns": "74,106,64,64,76,96,72",
-                        "endOffsets": "2250,2357,2422,2487,2564,2661,2734"
                     }
                 }
             ]
