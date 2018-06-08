@@ -21,7 +21,6 @@ import org.junit.runner.RunWith;
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
@@ -33,41 +32,23 @@ import static org.hamcrest.Matchers.is;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class SettingsActivityTest {
+public class TestTextSize {
 
     @Rule
     public ActivityTestRule<HomeActivity> mActivityTestRule = new ActivityTestRule<>(HomeActivity.class);
 
     @Test
-    public void settingsActivityTest() {
+    public void testTextSize() {
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
         try {
-            Thread.sleep(70000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
         ViewInteraction appCompatButton = onView(
-                allOf(withId(android.R.id.button1), withText("Ok"),
-                        childAtPosition(
-                                childAtPosition(
-                                        withId(R.id.buttonPanel),
-                                        0),
-                                3)));
-        appCompatButton.perform(scrollTo(), click());
-
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        ViewInteraction appCompatButton2 = onView(
                 allOf(withId(R.id.settings), withText("Settings"),
                         childAtPosition(
                                 childAtPosition(
@@ -75,7 +56,7 @@ public class SettingsActivityTest {
                                         0),
                                 0),
                         isDisplayed()));
-        appCompatButton2.perform(click());
+        appCompatButton.perform(click());
 
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
@@ -99,54 +80,79 @@ public class SettingsActivityTest {
                         childAtPosition(
                                 withClassName(is("android.widget.FrameLayout")),
                                 0)))
-                .atPosition(8);
+                .atPosition(0);
         appCompatCheckedTextView.perform(click());
 
         ViewInteraction textView = onView(
-                allOf(withId(android.R.id.summary), withText("25"),
+                allOf(withId(android.R.id.summary), withText("9"),
                         childAtPosition(
                                 childAtPosition(
                                         IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
                                         0),
                                 1),
                         isDisplayed()));
-        textView.check(matches(withText("25")));
+        textView.check(matches(withText("9")));
 
-        ViewInteraction relativeLayout = onView(
-                allOf(childAtPosition(
+        DataInteraction linearLayout2 = onData(anything())
+                .inAdapterView(allOf(withId(android.R.id.list),
                         childAtPosition(
-                                withId(android.R.id.list),
+                                withId(android.R.id.list_container),
+                                0)))
+                .atPosition(1);
+        linearLayout2.perform(click());
+
+        DataInteraction appCompatCheckedTextView2 = onData(anything())
+                .inAdapterView(allOf(withClassName(is("com.android.internal.app.AlertController$RecycleListView")),
+                        childAtPosition(
+                                withClassName(is("android.widget.FrameLayout")),
+                                0)))
+                .atPosition(6);
+        appCompatCheckedTextView2.perform(click());
+
+        ViewInteraction textView2 = onView(
+                allOf(withId(android.R.id.summary), withText("21"),
+                        childAtPosition(
+                                childAtPosition(
+                                        IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
+                                        0),
                                 1),
-                        0),
                         isDisplayed()));
-        relativeLayout.check(matches(isDisplayed()));
+        textView2.check(matches(withText("21")));
 
-        ViewInteraction relativeLayout2 = onView(
-                allOf(childAtPosition(
+        DataInteraction linearLayout3 = onData(anything())
+                .inAdapterView(allOf(withId(android.R.id.list),
                         childAtPosition(
-                                withId(android.R.id.list),
-                                0),
-                        0),
-                        isDisplayed()));
-        relativeLayout2.check(matches(isDisplayed()));
+                                withId(android.R.id.list_container),
+                                0)))
+                .atPosition(1);
+        linearLayout3.perform(click());
 
-        ViewInteraction relativeLayout3 = onView(
-                allOf(childAtPosition(
+        DataInteraction appCompatCheckedTextView3 = onData(anything())
+                .inAdapterView(allOf(withClassName(is("com.android.internal.app.AlertController$RecycleListView")),
                         childAtPosition(
-                                withId(android.R.id.list),
+                                withClassName(is("android.widget.FrameLayout")),
+                                0)))
+                .atPosition(13);
+        appCompatCheckedTextView3.perform(click());
+
+        // Added a sleep statement to match the app's execution delay.
+        // The recommended way to handle such scenarios is to use Espresso idling resources:
+        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        ViewInteraction textView3 = onView(
+                allOf(withId(android.R.id.summary), withText("35"),
+                        childAtPosition(
+                                childAtPosition(
+                                        IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
+                                        0),
                                 1),
-                        0),
                         isDisplayed()));
-        relativeLayout3.check(matches(isDisplayed()));
-
-        ViewInteraction relativeLayout4 = onView(
-                allOf(childAtPosition(
-                        childAtPosition(
-                                withId(android.R.id.list),
-                                1),
-                        0),
-                        isDisplayed()));
-        relativeLayout4.check(matches(isDisplayed()));
+        textView3.check(matches(withText("35")));
 
     }
 

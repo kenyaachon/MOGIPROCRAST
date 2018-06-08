@@ -34,23 +34,6 @@ public class ExampleInstrumentedTest {
 
 
 
-    // settings button under home
-    @Test
-    public void displaySettings() {
-        onView(withId(R.id.settings))            // withId(R.id.settings) is a ViewMatcher
-                .perform(click())               // click() is a ViewAction
-                .check(matches(isDisplayed())); // matches(isDisplayed()) is a ViewAssertion
-        // not sure how isDisplayed works or if that is a thing I can just call like that
-    }
-
-
-
-    // questions are displayed, in TriviaActivity.java but also in TriviaFragment.java, theyre the same
-    @Test
-    public void displayQuestions() {
-
-    }
-
     // not sure what to do for this one
     @Test
     public void myClickListener() {
