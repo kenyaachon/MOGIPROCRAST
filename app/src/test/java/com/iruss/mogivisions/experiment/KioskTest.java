@@ -10,6 +10,12 @@ package com.iruss.mogivisions.experiment;
 import com.iruss.mogivisions.kiosk.KioskActivity;
 
 import org.junit.Test;
+
+import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static org.junit.Assert.*;
 
 
@@ -29,6 +35,14 @@ public class KioskTest extends KioskActivity {
         // do something here to give permission to make cameraCheck return true
         // Assert.assertEquals(cameraCheck(), true);
 
+    }
+
+    // kiosk button under home
+    @Test
+    public void displaySettings() throws Exception {
+        onView(withId(R.id.kiosk))
+                .perform(click())
+                .check(matches(isDisplayed()));
     }
 
 
