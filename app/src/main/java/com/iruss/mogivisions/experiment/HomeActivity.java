@@ -14,8 +14,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -30,12 +30,20 @@ import com.iruss.mogivisions.kiosk.KioskService;
 
 import java.util.List;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity
+        implements ActivityCompat.OnRequestPermissionsResultCallback {
     //Ads
     private AdView mAdView;
 
     private boolean shouldBeInKioskMode = false;
     public final static int Overlay_REQUEST_CODE = 251;
+
+    private final int MY_PERMISSIONS_REQUEST_CAMERA = 1;
+
+    private final int MY_PERMISSIONS_REQUEST_READ_USAGE_STATISTICS = 2;
+
+    private final int MY_PERMISSIONS_REQUEST_READ_PHONE_STATE = 3;
+
 
     public boolean isShouldBeInKioskMode() {
         return shouldBeInKioskMode;
@@ -61,25 +69,15 @@ public class HomeActivity extends AppCompatActivity {
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
-        //setTextSize();
         userStats();
 
+
     }
 
-    public void getPhonePermission(){
-        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE);
-
-        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE}, REQUEST_READ_PHONE_STATE);
-        } else {
-            //TODO
-            Log.i("Phone Test", "Permission for phone already granted");
-
-        }
-    }
-
-
-
+    /**
+     * Handles when the settings button is pressed
+     * Calls the SettingsActivity
+     */
     public void initializeSettings() {
         Button settingsButton = findViewById(R.id.settings);
 
@@ -93,23 +91,17 @@ public class HomeActivity extends AppCompatActivity {
         setButtonTextSize(settingsButton);
     }
 
+    /**
+     * Handles when the kiosk buttons is pressed
+     * calls the KioskService
+     */
     public void initializeKiosk() {
         Button kioskButton = findViewById(R.id.kiosk);
 
         kioskButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // If version >= 23, then need to ask for overlay permission
-                if (Build.VERSION.SDK_INT >= 23) {
-                    // Check if you have permission already. If not, then ask
-                    if (!Settings.canDrawOverlays(HomeActivity.this)) {
-                        Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName()));
-                        startActivityForResult(intent, Overlay_REQUEST_CODE);
-                    } else {
-                        startKiosk();
-                    }
-                } else {
-                    startKiosk();
-                }
+                showExplanation(HomeActivity.this.getString(R.string.OverlayTitle), HomeActivity.this.getString(R.string.OverlayRequestRationale), Overlay_REQUEST_CODE);
             }
         });
 
@@ -159,6 +151,7 @@ public class HomeActivity extends AppCompatActivity {
         switch (requestCode) {
             case Overlay_REQUEST_CODE: {
                 if (Build.VERSION.SDK_INT >= 23) {
+                    //If app has permission to be on top, start the Kiosk stop
                     if (Settings.canDrawOverlays(this)) {
                         startKiosk();
                     }
@@ -167,8 +160,28 @@ public class HomeActivity extends AppCompatActivity {
                 }
                 break;
             }
+
         }
     }
+
+    /**
+     * Asks the user if this app can be on top
+     */
+    public void requestPermissionOverlay(){
+        if (Build.VERSION.SDK_INT >= 23) {
+            // Check if you have permission already. If not, then ask
+            if (!Settings.canDrawOverlays(HomeActivity.this)) {
+                //Goes to the settings page to request the overlay permission
+                Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName()));
+                startActivityForResult(intent, Overlay_REQUEST_CODE);
+            } else {
+                startKiosk();
+            }
+        } else {
+            startKiosk();
+        }
+    }
+
 
 
     /**
@@ -190,49 +203,35 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        //display and build the alert dialog
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
 
     }
 
-    final int MY_PERMISSIONS_REQUEST_READ_USAGE_STATISTICS = 2;
+    /**
+     * Requset the permission to view phone usage statistics
+     */
     private void askUsagePermission(){
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.PACKAGE_USAGE_STATS)
-                != PackageManager.PERMISSION_GRANTED) {
 
-            // Permission is not granted
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    "android.permission.PACKAGE_USAGE_STATS")) {
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-                Log.d("Permission", "Showing rationale to access your usage statistics");
-                Log.d("Permission", "Showing rationale for permission request");
-                showExplanation(this.getString(R.string.UsageStatisticsTitle), this.getString(R.string.UsageStatisticsPermissionRational),
-                        "android.permission.PACKAGE_USAGE_STATS",
-                        MY_PERMISSIONS_REQUEST_READ_USAGE_STATISTICS);
 
-            } else {
-                // No explanation needed; request the permission
+        //if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+
+            if (ActivityCompat.checkSelfPermission(this,
+                    Manifest.permission.PACKAGE_USAGE_STATS)
+                    != PackageManager.PERMISSION_GRANTED) {
                 /*
-                ActivityCompat.requestPermissions(this,
-                        new String[]{"android.permission.PACKAGE_USAGE_STATS"},
-                        MY_PERMISSIONS_REQUEST_READ_USAGE_STATISTICS);*/
-                requestPermissionStats();
+                // Permission is not granted
+                // Should we show an explanation?
+                    // Show an explanation to the user *asynchronously* -- don't block
+                    // this thread waiting for the user's response! After the user
+                */
+                    Log.d("Permission", "Showing rationale to access your usage statistics");
+                    Log.d("Permission", "Showing rationale for permission request");
+                    showExplanation(this.getString(R.string.UsageStatisticsTitle), this.getString(R.string.UsageStatisticsPermissionRational),
+                            MY_PERMISSIONS_REQUEST_READ_USAGE_STATISTICS);
+                }
 
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
-            }
-        } else {
-            // Permission has already been granted
-            Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
-            startActivity(intent);
-            Log.d("Permission", "Permission already granted to access your usage statistics");
-
-        }
     }
 
 
@@ -240,17 +239,18 @@ public class HomeActivity extends AppCompatActivity {
     /**
      * Tells how much the user has been using their phone
      */
-    public void userStats() {
+    public void userStats(){
         //Checkks user phone statistics
         //Look to make sure we check if the app has access if it does then we just run the usage statistics
+
 
         //Checks which build version the app is and then checks usage statistics accordingly
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             if (checkUsagePermissionGranted() == false) {
 
-                //askForPermission();
                 askUsagePermission();
-
+                cameraCheck();
+                askPhonePermission();
             }
             // Do something for lollipop and above versions
             long TimeInforground = 500;
@@ -288,9 +288,14 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Explains why a permission is requested
+      * @param title
+     * @param message
+     * @param permissionRequestCode
+     */
     private void showExplanation(String title,
                                  String message,
-                                 final String permission,
                                  final int permissionRequestCode) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(title)
@@ -300,22 +305,40 @@ public class HomeActivity extends AppCompatActivity {
                         switch (permissionRequestCode){
                             case MY_PERMISSIONS_REQUEST_READ_USAGE_STATISTICS:
                                 requestPermissionStats();
+                                break;
+                            case Overlay_REQUEST_CODE:
+                                requestPermissionOverlay();
+                                break;
+                            case MY_PERMISSIONS_REQUEST_CAMERA:
+                                ActivityCompat.requestPermissions(HomeActivity.this,
+                                        new String[]{Manifest.permission.CAMERA},
+                                        MY_PERMISSIONS_REQUEST_CAMERA);
+                                break;
+                            case MY_PERMISSIONS_REQUEST_READ_PHONE_STATE:
+                                ActivityCompat.requestPermissions(HomeActivity.this,
+                                        new String[]{Manifest.permission.READ_PHONE_STATE},
+                                        MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
+                                break;
                         }
                     }
                 });
         builder.create().show();
     }
 
+
+
+
     /**
      * Checks if app has user permission to device camera
      * returns true if Permission to use Camera is allowed
      */
-    private final int MY_PERMISSIONS_REQUEST_CAMERA = 1;
     public boolean cameraCheck(){
         // TODO: Figure this out
 
 
-        if (ContextCompat.checkSelfPermission(this,
+        //if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+
+        if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {
 
@@ -323,56 +346,46 @@ public class HomeActivity extends AppCompatActivity {
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                     Manifest.permission.CAMERA)) {
-
+                //"android.permission.PACKAGE_USAGE_STATS")) {
                 // Show an explanation to the user *asynchronously* -- don't block
                 // this thread waiting for the user's response! After the user
                 // sees the explanation, try again to request the permission.
-                Log.d("Permission", "Showing rationale for permission request");
+                Log.d("Permission", "Showing rationale to access your camera");
                 showExplanation(this.getString(R.string.CameraPermissionTitle), this.getString(R.string.CameraPermissionRequestRationale),
-                        Manifest.permission.CAMERA,
                         MY_PERMISSIONS_REQUEST_CAMERA);
-            } else {
 
+            } else {
                 // No explanation needed; request the permission
 
-                ActivityCompat.requestPermissions(this,
+                ActivityCompat.requestPermissions(HomeActivity.this,
                         new String[]{Manifest.permission.CAMERA},
                         MY_PERMISSIONS_REQUEST_CAMERA);
 
                 // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
                 // app-defined int constant. The callback method gets the
                 // result of the request.
-                Log.d("Permission", "Permission has been granted");
-
                 return true;
-
             }
+            //}
         } else {
-            // Permission has already been granted
-            Log.d("Permission", "Permission has already been granted");
 
             return true;
         }
         return false;
+
     }
 
-    private void requestPermission(String permissionName, int permissionRequestCode) {
-        ActivityCompat.requestPermissions(this,
-                new String[]{permissionName}, permissionRequestCode);
-    }
-
-    final int REQUEST_READ_PHONE_STATE = 3;
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_CAMERA: {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+
+
+        if (requestCode == MY_PERMISSIONS_REQUEST_CAMERA) {
                 // If request is cancelled, the result arrays are empty.
 
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // permission was granted, yay! Do the
+                if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // permission was granted, yay! Do the
                     // contacts-related task you need to do.
                     Log.d("Permission", "Permission granted to access your camera");
                 } else {
@@ -382,34 +395,24 @@ public class HomeActivity extends AppCompatActivity {
                 }
                 return;
             }
-            case MY_PERMISSIONS_REQUEST_READ_USAGE_STATISTICS:{
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
-                    Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
-                    startActivity(intent);
-                    Log.d("Permission", "Permission granted to access your usage statistics");
 
-                } else {
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-                    Log.d("Permission", "Permission denied to access your usage statistics");
-                }
-                return;
+
+        if (requestCode == MY_PERMISSIONS_REQUEST_READ_PHONE_STATE) {
+            // If request is cancelled, the result arrays are empty.
+
+            if (grantResults.length == 1 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // permission was granted, yay! Do the
+                // contacts-related task you need to do.
+                Log.d("Permission", "Permission granted to read phone state");
+            } else {
+                // permission denied, boo! Disable the
+                // functionality that depends on this permission.
+                Log.d("Permission", "Permission denied to read phone state");
             }
-            case REQUEST_READ_PHONE_STATE:
-                if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    //TODO
-                    Log.i("Phone Test", "Permission for phone granted");
-                }
-                else{
-                    Log.i("Phone Test", "Permission for phone granted");
-                }
-                break;
+            return;
         }
-    }
 
+    }
 
     /**
      * Changes the triviaDifficult of the app
@@ -429,8 +432,49 @@ public class HomeActivity extends AppCompatActivity {
 
 
     /**
+     * Asks permission to read_Phone_state such as incoming and outgoing calls
+     */
+    public void askPhonePermission(){
+
+        //if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.READ_PHONE_STATE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            // Permission is not granted
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.READ_PHONE_STATE)) {
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
+                Log.d("Permission", "Showing rationale to make app at the top");
+                showExplanation(this.getString(R.string.UsageStatisticsTitle), this.getString(R.string.UsageStatisticsPermissionRational),
+                        MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
+
+            } else {
+                // No explanation needed; request the permission
+
+                ActivityCompat.requestPermissions(HomeActivity.this,
+                        new String[]{Manifest.permission.READ_PHONE_STATE},
+                        MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
+
+                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+            }
+            //}
+        } else {
+            // Permission has already been granted
+
+            Log.d("Permission", "Permission already granted to read phone state");
+        }
+    }
+
+
+    /**
      * Check if the Usage statistics permission is granted
-     * @return
+     * @return granted or not
      */
     public boolean checkUsagePermissionGranted(){
         boolean granted = false;
@@ -442,11 +486,13 @@ public class HomeActivity extends AppCompatActivity {
                 android.os.Process.myUid(), context.getPackageName());
 
         if (mode == AppOpsManager.MODE_DEFAULT) {
-            granted = (context.checkCallingOrSelfPermission( "android.permission.PACKAGE_USAGE_STATS") == PackageManager.PERMISSION_GRANTED);
-            //granted = (context.checkCallingOrSelfPermission(android.Manifest.permission.PACKAGE_USAGE_STATS) == PackageManager.PERMISSION_GRANTED);
+            //granted = (context.checkCallingOrSelfPermission( "android.permission.PACKAGE_USAGE_STATS") == PackageManager.PERMISSION_GRANTED);
+            granted = (context.checkCallingOrSelfPermission(android.Manifest.permission.PACKAGE_USAGE_STATS) == PackageManager.PERMISSION_GRANTED);
         } else {
             granted = (mode == AppOpsManager.MODE_ALLOWED);
         }
         return granted;
     }
+
+
 }
