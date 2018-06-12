@@ -4,15 +4,10 @@ package com.iruss.mogivisions.experiment;
  * Created by Moses on 3/18/2018.
  */
 
-import android.Manifest;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -24,8 +19,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import static android.content.ContentValues.TAG;
-//import android.support.v4.app.ActivityCompat;
-//import android.support.v4.content.ContextCompat;
 
 /**
  * Trivia API object created
@@ -89,8 +82,6 @@ public class TriviaAPI {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-
         }
         Log.d("Internet Test", "Going to use ");
         kioskService.displayQuestions(getOfflineDB());
@@ -108,17 +99,22 @@ public class TriviaAPI {
         ConnectivityManager conMgr = (ConnectivityManager)kioskService.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            if (conMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED
-                    || conMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
 
-                // notify user you are online
-                Log.d("Network", "Network state connected");
-                return true;
-            } else {
+            try {
+                if (conMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED
+                        || conMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
 
-                //false if network check fails
-                Log.d("Network", "No Network");
-                return false;
+                    // notify user you are online
+                    Log.d("Network", "Network state connected");
+                    return true;
+                } else {
+
+                    //false if network check fails
+                    Log.d("Network", "No Network");
+                    return false;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
         else{
@@ -251,7 +247,7 @@ public class TriviaAPI {
 
         /**
          * Once JSON data is retrieved from the database, send it to the TriviaActivity
-         * @param result
+         * @param result parameter to tell what happens after the bacground action is finished
          */
         @Override
         protected void onPostExecute(Void result) {

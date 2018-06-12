@@ -101,7 +101,17 @@ public class HomeActivity extends AppCompatActivity
         kioskButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // If version >= 23, then need to ask for overlay permission
-                showExplanation(HomeActivity.this.getString(R.string.OverlayTitle), HomeActivity.this.getString(R.string.OverlayRequestRationale), Overlay_REQUEST_CODE);
+
+                if (Build.VERSION.SDK_INT >= 23) {
+                    // Check if you have permission already. If not, then ask
+                    if (!Settings.canDrawOverlays(HomeActivity.this)) {
+                        showExplanation(HomeActivity.this.getString(R.string.OverlayTitle), HomeActivity.this.getString(R.string.OverlayRequestRationale), Overlay_REQUEST_CODE);
+                    } else {
+                        startKiosk();
+                    }
+                } else {
+                    startKiosk();
+                }
             }
         });
 
@@ -112,7 +122,7 @@ public class HomeActivity extends AppCompatActivity
     /**
      * changes the text size of a button
      * Reads the text size from the settings page
-     * @param button
+     * @param button that is going to be changed
      */
     public void setButtonTextSize(Button button){
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -214,9 +224,6 @@ public class HomeActivity extends AppCompatActivity
      */
     private void askUsagePermission(){
 
-
-        //if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-
             if (ActivityCompat.checkSelfPermission(this,
                     Manifest.permission.PACKAGE_USAGE_STATS)
                     != PackageManager.PERMISSION_GRANTED) {
@@ -246,7 +253,7 @@ public class HomeActivity extends AppCompatActivity
 
         //Checks which build version the app is and then checks usage statistics accordingly
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            if (checkUsagePermissionGranted() == false) {
+            if (!checkUsagePermissionGranted()) {
 
                 askUsagePermission();
                 cameraCheck();
@@ -290,9 +297,9 @@ public class HomeActivity extends AppCompatActivity
 
     /**
      * Explains why a permission is requested
-      * @param title
-     * @param message
-     * @param permissionRequestCode
+      * @param title, title of the alert dialgo
+     * @param message, message for the alert dialog
+     * @param permissionRequestCode, permission being requested
      */
     private void showExplanation(String title,
                                  String message,
@@ -334,9 +341,6 @@ public class HomeActivity extends AppCompatActivity
      */
     public boolean cameraCheck(){
         // TODO: Figure this out
-
-
-        //if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
 
         if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.CAMERA)
@@ -393,7 +397,6 @@ public class HomeActivity extends AppCompatActivity
                     // functionality that depends on this permission.
                     Toast.makeText(this, "Permission denied to access your camera", Toast.LENGTH_SHORT).show();
                 }
-                return;
             }
 
 
@@ -409,7 +412,6 @@ public class HomeActivity extends AppCompatActivity
                 // functionality that depends on this permission.
                 Log.d("Permission", "Permission denied to read phone state");
             }
-            return;
         }
 
     }
@@ -449,7 +451,7 @@ public class HomeActivity extends AppCompatActivity
                 // this thread waiting for the user's response! After the user
                 // sees the explanation, try again to request the permission.
                 Log.d("Permission", "Showing rationale to make app at the top");
-                showExplanation(this.getString(R.string.UsageStatisticsTitle), this.getString(R.string.UsageStatisticsPermissionRational),
+                showExplanation(this.getString(R.string.PhoneTitle), this.getString(R.string.PhonePermissionRational),
                         MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
 
             } else {

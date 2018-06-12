@@ -18,15 +18,18 @@
     <string name="exitButton">Exit Button</string>
 
 
-    <string name="CameraPermissionTitle">Camera Permission Request</string>
-    <string name="CameraPermissionRequest">Can you grant permission to access your Camera</string>
-    <string name="CameraPermissionRequestRationale">If you want to access the camera app you need to grant permission to access your camera</string>
+    <string name="CameraPermissionTitle">Permission Request</string>
+    <string name="CameraPermissionRequest">Permission to access your camera</string>
+    <string name="CameraPermissionRequestRationale">Camera access needed if you want to access your phone while your phone is locked</string>
     <string name="UsageStatisticsTitle">Permission Request</string>
-    <string name="UsageStatisticsPermissionRequest">"Permission to view phone usage statistics critical for best user experience"</string>
-    <string name="UsageStatisticsPermissionRational">"Can you approve App permission to view phone usage?"</string>
+    <string name="UsageStatisticsPermissionRequest">Permission to view phone usage statistics critical for best user experience</string>
+    <string name="UsageStatisticsPermissionRational">Can you approve App permission to view phone usage?</string>
+    <string name="PhoneTitle">Permission Request</string>
+    <string name="PhonePermissionRequest">"Permission to access phone calling functionality"</string>
+    <string name="PhonePermissionRational">"Phone access needed if you want to make calls while your phone is locked"</string>
 
-    <string name="OverlayTitle"> APP OVERLAY PERMISSION REQUEST</string>
-    <string name="OverlayRequestRationale"> In order to lock phone, overlay permission which allows app to be on top must be granted</string>
+    <string name="OverlayTitle"> Permission Request</string>
+    <string name="OverlayRequestRationale"> In order to lock phone, overlay permission to allow app to be on top of everything must be granted</string>
     <string name="text_size">Text Size</string>
     <!--<string name="kiosk_mode">Kiossk Mode Activity</string>-->
     <string name="hello_blank_fragment">Hello blank fragment</string>

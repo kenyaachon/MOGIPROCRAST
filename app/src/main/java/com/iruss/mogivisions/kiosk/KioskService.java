@@ -7,12 +7,10 @@ import android.app.ActivityManager;
 import android.app.Service;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.net.ConnectivityManager;
@@ -43,7 +41,6 @@ import com.iruss.mogivisions.experiment.TriviaAPI;
 import com.iruss.mogivisions.experiment.TriviaQuestion;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.SortedMap;
@@ -72,9 +69,6 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     private Button questionResponse4;
 
 
-    //Button list for finding the button with the correct answer
-    private ArrayList<Button> buttons = new ArrayList<>();
-
     //Number of trials possible
     private static final int trials = 2;
 
@@ -93,6 +87,8 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     // Constants
     private final String CAMERA_PACKAGE = "com.android.camera";
     private final String DIALER_PACKAGE = "com.android.dialer";
+
+    private final int MY_PERMISSIONS_REQUEST_CAMERA = 1;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -217,6 +213,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
             mWindowManager.removeViewImmediate(mView);
         }
 
+
         LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mView = layoutInflater.inflate(R.layout.fragment_kiosk, null);
 
@@ -253,7 +250,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     /**
      * changes the text size of a button
      * Reads the text size from the settings page
-     * @param button
+     * @param button, button to change the text size off
      */
     public void setKioskButtonTextSize(Button button){
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
@@ -289,7 +286,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                 mAdView.loadAd(adRequest);
             }
 
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
 
@@ -389,7 +386,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
             @Override
             public void onClick(View view) {
                 //if (cameraCheck()) {
-                if (homeActivity.cameraCheck()) {
+                //if (homeActivity.cameraCheck()) {
 
 
                     // Make view invisible
@@ -402,7 +399,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                     cameraIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                     startActivity(cameraIntent);
-                }
+                //}
             }
         });
         setKioskButtonTextSize(cameraApp);
@@ -412,7 +409,6 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
      * Checks if app has user permission to device camera
      * returns true if Permission to use Camera is allowed
      */
-    private final int MY_PERMISSIONS_REQUEST_CAMERA = 1;
     private boolean cameraCheck(){
         // TODO: Figure this out
         if (ContextCompat.checkSelfPermission(this,
@@ -476,12 +472,6 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         questionResponse3 = mView.findViewById(R.id.questionResponse3);
         questionResponse4 = mView.findViewById(R.id.questionResponse4);
 
-
-        //add the buttons to the button list for finding the correct answer
-        buttons.add(questionResponse1);
-        buttons.add(questionResponse2);
-        buttons.add(questionResponse3);
-        buttons.add(questionResponse4);
 
         //make the buttons not visible until the buttons are ready
         questionView.setVisibility(View.GONE);
@@ -605,7 +595,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
 
     /**
      * Sets the correct button
-     * @param randomposition
+     * @param randomposition, randomposition is the position of the correct answer for a question
      */
     public void setCorrectButton(int randomposition){
         //Sets what will the correct answer
@@ -771,41 +761,35 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
             mView.setVisibility(View.VISIBLE);
         }
 
-        //Tests whether I can detect incoming phone calls
-        //Log.i("Phone call", Boolean.toString(incomingCall()));
-
     }
-
-    /*
-    public boolean incomingCall(){
-        Intent intent = new Intent(this, PhoneCallReceiver.class);
-        sendBroadcast(intent);
-        return PhoneCallReceiver.isIncoming;
-    }*/
-
 
 
     // Gets the foreground task. From https://stackoverflow.com/questions/30619349/android-5-1-1-and-above-getrunningappprocesses-returns-my-application-packag
 
     private String getForegroundTask() {
         String currentApp = "NULL";
-        if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            UsageStatsManager usm = (UsageStatsManager)this.getSystemService(Context.USAGE_STATS_SERVICE);
-            long time = System.currentTimeMillis();
-            List<UsageStats> appList = usm.queryUsageStats(UsageStatsManager.INTERVAL_DAILY,  time - 1000*1000, time);
-            if (appList != null && appList.size() > 0) {
-                SortedMap<Long, UsageStats> mySortedMap = new TreeMap<Long, UsageStats>();
-                for (UsageStats usageStats : appList) {
-                    mySortedMap.put(usageStats.getLastTimeUsed(), usageStats);
+
+        try {
+            if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                UsageStatsManager usm = (UsageStatsManager)this.getSystemService(Context.USAGE_STATS_SERVICE);
+                long time = System.currentTimeMillis();
+                List<UsageStats> appList = usm.queryUsageStats(UsageStatsManager.INTERVAL_DAILY,  time - 1000*1000, time);
+                if (appList != null && appList.size() > 0) {
+                    SortedMap<Long, UsageStats> mySortedMap = new TreeMap<Long, UsageStats>();
+                    for (UsageStats usageStats : appList) {
+                        mySortedMap.put(usageStats.getLastTimeUsed(), usageStats);
+                    }
+                    if (mySortedMap != null && !mySortedMap.isEmpty()) {
+                        currentApp = mySortedMap.get(mySortedMap.lastKey()).getPackageName();
+                    }
                 }
-                if (mySortedMap != null && !mySortedMap.isEmpty()) {
-                    currentApp = mySortedMap.get(mySortedMap.lastKey()).getPackageName();
-                }
+            } else {
+                ActivityManager am = (ActivityManager)this.getSystemService(Context.ACTIVITY_SERVICE);
+                List<ActivityManager.RunningAppProcessInfo> tasks = am.getRunningAppProcesses();
+                currentApp = tasks.get(0).processName;
             }
-        } else {
-            ActivityManager am = (ActivityManager)this.getSystemService(Context.ACTIVITY_SERVICE);
-            List<ActivityManager.RunningAppProcessInfo> tasks = am.getRunningAppProcesses();
-            currentApp = tasks.get(0).processName;
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
 
 //        Log.d("KioskService", "Current App in foreground is: " + currentApp);
