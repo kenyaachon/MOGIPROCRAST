@@ -103,15 +103,24 @@ public class HomeActivity extends AppCompatActivity
                 // If version >= 23, then need to ask for overlay permission
 
                 if (Build.VERSION.SDK_INT >= 23) {
-                    // Check if you have permission already. If not, then ask
+                    boolean okToStartKiosk = true;
+                    // Check if you have permission to draw overlays already. If not, then ask
                     if (!Settings.canDrawOverlays(HomeActivity.this)) {
                         showExplanation(HomeActivity.this.getString(R.string.OverlayTitle), HomeActivity.this.getString(R.string.OverlayRequestRationale), Overlay_REQUEST_CODE);
-                    } else {
+                        okToStartKiosk = false;
+                    }
+                    if (checkSelfPermission(android.Manifest.permission.READ_PHONE_STATE)
+                                == PackageManager.PERMISSION_GRANTED) {
+                        showExplanation(HomeActivity.this.getString(R.string.PhonePermissionRequest), HomeActivity.this.getString(R.string.PhonePermissionRational), MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
+                        okToStartKiosk = false;
+                    }
+                    if (okToStartKiosk){
                         startKiosk();
                     }
                 } else {
                     startKiosk();
                 }
+
             }
         });
 

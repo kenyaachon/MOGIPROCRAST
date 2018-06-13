@@ -21,6 +21,8 @@ import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -84,6 +86,9 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     //Correct button
     private Button correctButton;
 
+    // For phone calls
+    private SimplePhoneStateListener phoneStateListener = new SimplePhoneStateListener();
+
     // Constants
     private final String CAMERA_PACKAGE = "com.android.camera";
     private final String DIALER_PACKAGE = "com.android.dialer";
@@ -106,6 +111,11 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
 
         loadKiosk();
+
+        // Start listening for phone calls
+        TelephonyManager telephonyManager = (TelephonyManager) homeActivity.getSystemService(Context.TELEPHONY_SERVICE);
+        telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
+
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -130,6 +140,11 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         if (mView != null) {
             mWindowManager.removeView(mView);
         }
+
+        // Stop listening for phone calls
+        TelephonyManager telephonyManager = (TelephonyManager) homeActivity.getSystemService(Context.TELEPHONY_SERVICE);
+        telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
+
         super.onDestroy();
     }
 
@@ -758,6 +773,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                 || foregroundPackage.toLowerCase().contains("camera")
                 || foregroundPackage.toLowerCase().contains("contacts")
                 || foregroundPackage.toLowerCase().contains("incallui"))){
+
             mView.setVisibility(View.VISIBLE);
         }
 
@@ -797,9 +813,35 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     }
 
 
-
+    // Returns the home activity
     public Activity getActivity(){
         return homeActivity;
     }
 
+    // Class that listens to the phone state
+    class SimplePhoneStateListener extends PhoneStateListener {
+        @Override
+        public void onCallStateChanged(int state, String incomingNumber) {
+            super.onCallStateChanged(state, incomingNumber);
+            switch (state) {
+                case TelephonyManager.CALL_STATE_IDLE:
+                    Log.i("KioskService", "onCallStateChanged: CALL_STATE_IDLE");
+                    mView.setVisibility(View.VISIBLE);
+                    break;
+                case TelephonyManager.CALL_STATE_RINGING:
+                    Log.i("KioskService", "onCallStateChanged: CALL_STATE_RINGING");
+                    // Hide window
+                    mView.setVisibility(View.GONE);
+                    break;
+                case TelephonyManager.CALL_STATE_OFFHOOK:
+                    Log.i("KioskService", "onCallStateChanged: CALL_STATE_OFFHOOK");
+                    // Hide window
+                    mView.setVisibility(View.GONE);
+                    break;
+                default:
+                    Log.i("KioskService", "UNKNOWN_STATE: " + state);
+                    break;
+            }
+        }
+    }
 }
