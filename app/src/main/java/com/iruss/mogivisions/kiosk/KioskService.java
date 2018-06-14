@@ -16,11 +16,13 @@ import android.graphics.PixelFormat;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.telecom.TelecomManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
@@ -142,7 +144,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         }
 
         // Stop listening for phone calls
-        TelephonyManager telephonyManager = (TelephonyManager) homeActivity.getSystemService(Context.TELEPHONY_SERVICE);
+        TelephonyManager telephonyManager = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
         telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
 
         super.onDestroy();
@@ -772,7 +774,8 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         if(!(foregroundPackage.toLowerCase().contains("dialer")
                 || foregroundPackage.toLowerCase().contains("camera")
                 || foregroundPackage.toLowerCase().contains("contacts")
-                || foregroundPackage.toLowerCase().contains("incallui"))){
+                || foregroundPackage.toLowerCase().contains("incallui"))
+                || foregroundPackage.toLowerCase().contains("experiment")){
 
             mView.setVisibility(View.VISIBLE);
         }
@@ -813,6 +816,20 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     }
 
 
+    //Pulls up the in callui when there is an coming call
+    public void callui(){
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (ActivityCompat.checkSelfPermission(this,
+                    Manifest.permission.READ_PHONE_STATE)
+                    == PackageManager.PERMISSION_GRANTED){
+                Log.i("KioskService", "TelecomManger: showing InCall screen");
+                TelecomManager tm = (TelecomManager) getSystemService(Context.TELECOM_SERVICE);
+                tm.showInCallScreen(false);
+            }
+        }
+    }
+
+
     // Returns the home activity
     public Activity getActivity(){
         return homeActivity;
@@ -832,6 +849,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                     Log.i("KioskService", "onCallStateChanged: CALL_STATE_RINGING");
                     // Hide window
                     mView.setVisibility(View.GONE);
+                    callui();
                     break;
                 case TelephonyManager.CALL_STATE_OFFHOOK:
                     Log.i("KioskService", "onCallStateChanged: CALL_STATE_OFFHOOK");
