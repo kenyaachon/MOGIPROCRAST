@@ -18,6 +18,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.telecom.TelecomManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -73,7 +74,6 @@ public class HomeActivity extends AppCompatActivity
 
 
     }
-
     /**
      * Handles when the settings button is pressed
      * Calls the SettingsActivity
@@ -83,6 +83,7 @@ public class HomeActivity extends AppCompatActivity
 
         settingsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
                 Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
                 startActivity(intent);
             }
@@ -103,15 +104,29 @@ public class HomeActivity extends AppCompatActivity
                 // If version >= 23, then need to ask for overlay permission
 
                 if (Build.VERSION.SDK_INT >= 23) {
-                    // Check if you have permission already. If not, then ask
+                    boolean okToStartKiosk = true;
+                    // Check if you have permission to draw overlays already. If not, then ask
+                    if (checkSelfPermission(android.Manifest.permission.READ_PHONE_STATE)
+                            != PackageManager.PERMISSION_GRANTED) {
+                        showExplanation(HomeActivity.this.getString(R.string.PhonePermissionRequest), HomeActivity.this.getString(R.string.PhonePermissionRational), MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
+                        okToStartKiosk = false;
+                    }
+                    if (checkSelfPermission(Manifest.permission.CAMERA)
+                            != PackageManager.PERMISSION_GRANTED) {
+                        showExplanation(HomeActivity.this.getString(R.string.CameraPermissionRequest), HomeActivity.this.getString(R.string.CameraPermissionRequestRationale), MY_PERMISSIONS_REQUEST_CAMERA);
+                        okToStartKiosk = false;
+                    }
                     if (!Settings.canDrawOverlays(HomeActivity.this)) {
                         showExplanation(HomeActivity.this.getString(R.string.OverlayTitle), HomeActivity.this.getString(R.string.OverlayRequestRationale), Overlay_REQUEST_CODE);
-                    } else {
+                        okToStartKiosk = false;
+                    }
+                    if (okToStartKiosk){
                         startKiosk();
                     }
                 } else {
                     startKiosk();
                 }
+
             }
         });
 
@@ -254,10 +269,7 @@ public class HomeActivity extends AppCompatActivity
         //Checks which build version the app is and then checks usage statistics accordingly
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
             if (!checkUsagePermissionGranted()) {
-
                 askUsagePermission();
-                cameraCheck();
-                askPhonePermission();
             }
             // Do something for lollipop and above versions
             long TimeInforground = 500;

@@ -19,7 +19,7 @@ public class MyTimer {
 
 
     private static final String TAG = "MyTimer";
-    private static final double TIMER_DELAY = 0.25; // Seconds
+    private static final double TIMER_DELAY = 0.5; // Seconds
 
 
     private static final MyTimer ourInstance = new MyTimer();
