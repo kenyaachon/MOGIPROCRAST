@@ -84,10 +84,13 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     //Correct button
     private Button correctButton;
 
-    // Constants
-    private final String CAMERA_PACKAGE = "com.android.camera";
-    private final String DIALER_PACKAGE = "com.android.dialer";
+    // Whether waiting for launcher to launch phone or camera
+    private boolean waitingForLauncher = false;
 
+    // Constants
+    private final String[] ACCEPTABLE_PACKAGES = {"dialer", "camera", "contacts", "incallui"};
+    private final String LAUNCHER = "launcher";
+    private final int LAUNCHER_DELAY = 3000; // msec
     private final int MY_PERMISSIONS_REQUEST_CAMERA = 1;
 
     @Override
@@ -275,7 +278,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
             NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
             boolean isConnected = activeNetwork != null &&
                     activeNetwork.isConnectedOrConnecting();
-            if(isConnected){
+            if(isConnected && homeActivity != null){
                 Log.d("Network", "Network connection available");
                 //Loading unique ad id
                 MobileAds.initialize(homeActivity, "ca-app-pub-3940256099942544~3347511713");
@@ -751,21 +754,62 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
             return;
         }
 
-        // If top activity is not this, phone, or dialer, then make visible
+        // Same for if you are just waiting for the launcher timer
+        if (waitingForLauncher) {
+            return;
+        }
+        // Get foreground package
         String foregroundPackage = getForegroundTask();
-        Log.i("Packages on top", foregroundPackage);
-        if(!(foregroundPackage.toLowerCase().contains("dialer")
-                || foregroundPackage.toLowerCase().contains("camera")
-                || foregroundPackage.toLowerCase().contains("contacts")
-                || foregroundPackage.toLowerCase().contains("incallui"))){
+
+
+        // Handle special case for launcher, where it takes about 3 seconds for the phone or camera to appear
+        if (foregroundPackage.toLowerCase().contains(LAUNCHER)) {
+            waitingForLauncher = true;
+            new java.util.Timer().schedule(
+                    new java.util.TimerTask() {
+                        @Override
+                        public void run() {
+                            waitingForLauncher = false;
+                            Log.i("KioskService", "Timer fired");
+                            String foregroundPackage = getForegroundTask();
+                            if(!isForegroundPackageAcceptable(foregroundPackage)){
+                                // Change visibility in the UI thread
+                                mView.getHandler().post(new Runnable() {
+                                    public void run() {
+                                        mView.setVisibility(View.VISIBLE);
+                                    }
+                                });
+                            }
+                        }
+                    },
+                    LAUNCHER_DELAY
+            );
+            return;
+        }
+
+        // If top activity is not this, phone, or dialer, then make visible
+        if(!isForegroundPackageAcceptable(foregroundPackage)){
             mView.setVisibility(View.VISIBLE);
         }
 
     }
 
+    // Returns whether the foreground package is valid or not
+    private boolean isForegroundPackageAcceptable(String foregroundPackage) {
+        Log.i("Package on top", foregroundPackage);
+        // Acceptable if it's this app
+        if (foregroundPackage.equals(getApplicationContext().getPackageName())) {
+            return true;
+        }
+        for (String acceptablePackage : ACCEPTABLE_PACKAGES) {
+            if (foregroundPackage.toLowerCase().contains(acceptablePackage)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     // Gets the foreground task. From https://stackoverflow.com/questions/30619349/android-5-1-1-and-above-getrunningappprocesses-returns-my-application-packag
-
     private String getForegroundTask() {
         String currentApp = "NULL";
 
