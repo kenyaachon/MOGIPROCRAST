@@ -773,7 +773,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                 || foregroundPackage.toLowerCase().contains("camera")
                 || foregroundPackage.toLowerCase().contains("contacts")
                 || foregroundPackage.toLowerCase().contains("incallui"))){
-
+            
             mView.setVisibility(View.VISIBLE);
         }
 
