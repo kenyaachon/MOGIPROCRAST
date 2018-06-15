@@ -88,17 +88,15 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     //Correct button
     private Button correctButton;
 
-<<<<<<< HEAD
+
     // Whether waiting for launcher to launch phone or camera
     private boolean waitingForLauncher = false;
-=======
     // For phone calls
     private SimplePhoneStateListener phoneStateListener = new SimplePhoneStateListener();
 
     // Constants
     private final String CAMERA_PACKAGE = "com.android.camera";
     private final String DIALER_PACKAGE = "com.android.dialer";
->>>>>>> phonecall
 
     // Constants
     private final String[] ACCEPTABLE_PACKAGES = {"dialer", "camera", "contacts", "incallui"};
@@ -783,8 +781,6 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         }
         // Get foreground package
         String foregroundPackage = getForegroundTask();
-<<<<<<< HEAD
-
 
         // Handle special case for launcher, where it takes about 3 seconds for the phone or camera to appear
         if (foregroundPackage.toLowerCase().contains(LAUNCHER)) {
@@ -813,15 +809,6 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
 
         // If top activity is not this, phone, or dialer, then make visible
         if(!isForegroundPackageAcceptable(foregroundPackage)){
-=======
-        Log.i("Packages on top", foregroundPackage);
-        if(!(foregroundPackage.toLowerCase().contains("dialer")
-                || foregroundPackage.toLowerCase().contains("camera")
-                || foregroundPackage.toLowerCase().contains("contacts")
-                || foregroundPackage.toLowerCase().contains("incallui"))
-                || foregroundPackage.toLowerCase().contains("experiment")){
-
->>>>>>> phonecall
             mView.setVisibility(View.VISIBLE);
         }
 
