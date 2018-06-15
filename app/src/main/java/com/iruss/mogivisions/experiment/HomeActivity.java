@@ -214,6 +214,7 @@ public class HomeActivity extends AppCompatActivity
      */
     public void requestPermissionStats(){
 
+        /*
         //create the builder that creates the alert Dialog to the user
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle(R.string.UsageStatisticsTitle);
@@ -230,8 +231,10 @@ public class HomeActivity extends AppCompatActivity
 
         //display and build the alert dialog
         AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
+        alertDialog.show();*/
 
+        Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+        startActivity(intent);
     }
 
     /**

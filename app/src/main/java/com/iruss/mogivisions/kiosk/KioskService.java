@@ -2,7 +2,6 @@ package com.iruss.mogivisions.kiosk;
 
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Service;
 import android.app.usage.UsageStats;
@@ -94,15 +93,11 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     // For phone calls
     private SimplePhoneStateListener phoneStateListener = new SimplePhoneStateListener();
 
-    // Constants
-    private final String CAMERA_PACKAGE = "com.android.camera";
-    private final String DIALER_PACKAGE = "com.android.dialer";
 
     // Constants
     private final String[] ACCEPTABLE_PACKAGES = {"dialer", "camera", "contacts", "incallui"};
     private final String LAUNCHER = "launcher";
     private final int LAUNCHER_DELAY = 3000; // msec
-    private final int MY_PERMISSIONS_REQUEST_CAMERA = 1;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -429,56 +424,11 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         setKioskButtonTextSize(cameraApp);
     }
 
+
+
     /**
-     * Checks if app has user permission to device camera
-     * returns true if Permission to use Camera is allowed
+     * Loads the trivia fragment
      */
-    private boolean cameraCheck(){
-        // TODO: Figure this out
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED) {
-
-            // Permission is not granted
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(homeActivity,
-                    Manifest.permission.CAMERA)) {
-
-                // Show an explanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-                Log.d("Permission", "Showing rationale for permission request");
-                Toast.makeText(this, "Showing rationale for permission request", Toast.LENGTH_SHORT).show();
-
-            } else {
-
-                // No explanation needed; request the permission
-                ActivityCompat.requestPermissions(homeActivity,
-                        new String[]{Manifest.permission.CAMERA},
-                        MY_PERMISSIONS_REQUEST_CAMERA);
-
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
-                Log.d("Permission", "Permission has been granted");
-                Toast.makeText(this, "Permission has been granted", Toast.LENGTH_SHORT).show();
-
-                return true;
-            }
-        } else {
-            // Permission has already been granted
-            Log.d("Permission", "Permission has already been granted");
-            Toast.makeText(this, "Permission has already been granted", Toast.LENGTH_SHORT).show();
-
-            return true;
-        }
-        return false;
-    }
-
-
-
-
-    // Load the trivia fragment
     public void loadTrivia() {
         // Remove existing
         if (mView != null) {
@@ -519,6 +469,10 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         hideStatusBar();
     }
 
+
+    /**
+     * Sets the text size of the trivia page when text size is changed in settings
+     */
     public void setTriviaTextSize(){
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String syncConnPref = sharedPref.getString("text_size", "11");
@@ -530,7 +484,6 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         questionResponse2.setTextSize(textSize);
         questionResponse3.setTextSize(textSize);
         questionResponse4.setTextSize(textSize);
-
 
     }
 
@@ -545,10 +498,6 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         timeView.setText("No more time remaining");
         unLock();
     }
-
-    /***********************
-     * Trivia
-     */
 
     /*
      * A method to create the challenge
@@ -681,7 +630,6 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
 
                 if(attemptsMade == trials){
                     //call kill
-                    Handler myHandler = new Handler();
                     attemptsMade = 0;
                     //display a message to user that they are out of attempts and go back to KioskActivity
                     Log.d("Test", "You are out of attempts");
@@ -874,11 +822,6 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         }
     }
 
-
-    // Returns the home activity
-    public Activity getActivity(){
-        return homeActivity;
-    }
 
     // Class that listens to the phone state
     class SimplePhoneStateListener extends PhoneStateListener {
