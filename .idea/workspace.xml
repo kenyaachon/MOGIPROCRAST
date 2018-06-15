@@ -11,19 +11,10 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="da6e0beb-d37d-49ae-a62e-eac2f8227c72" name="Default" comment="BUG FIX: if statements going in reverse order">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/fileHashes/fileHashes.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/classAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/javaCompile.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/javaCompile.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/javaCompile/taskHistory.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.4/taskHistory/taskHistory.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" />
+    <list default="true" id="da6e0beb-d37d-49ae-a62e-eac2f8227c72" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/iruss/mogivisions/experiment/HomeActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/iruss/mogivisions/experiment/HomeActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/iruss/mogivisions/kiosk/KioskService.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/iruss/mogivisions/kiosk/KioskService.java" />
     </list>
     <ignored path="$PROJECT_DIR$/app/build/intermediates/assets/" />
     <ignored path="$PROJECT_DIR$/app/build/intermediates/blame/" />
@@ -176,29 +167,29 @@
       <file leaf-file-name="HomeActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/iruss/mogivisions/experiment/HomeActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="110" column="106" lean-forward="false" selection-start-line="110" selection-start-column="106" selection-end-line="110" selection-end-column="106" />
+            <state relative-caret-position="349">
+              <caret line="511" column="14" lean-forward="false" selection-start-line="511" selection-start-column="14" selection-end-line="511" selection-end-column="14" />
               <folding>
                 <element signature="e#1572#1573#0" expanded="true" />
                 <element signature="e#1614#1615#0" expanded="true" />
                 <element signature="e#2532#2753#0" expanded="true" />
                 <element signature="e#2752#2753#0" expanded="true" />
-                <element signature="e#3033#5110#0" expanded="true" />
-                <element signature="e#3675#3725#0" expanded="true" />
-                <element signature="e#3727#3788#0" expanded="true" />
-                <element signature="e#4163#4223#0" expanded="true" />
-                <element signature="e#4225#4286#0" expanded="true" />
-                <element signature="e#4671#4732#0" expanded="true" />
-                <element signature="e#4734#4804#0" expanded="true" />
-                <element signature="e#5109#5110#0" expanded="true" />
-                <element signature="e#9476#9521#0" expanded="true" />
-                <element signature="e#9523#9581#0" expanded="true" />
-                <element signature="e#12427#13706#0" expanded="true" />
-                <element signature="e#13705#13706#0" expanded="true" />
-                <element signature="e#14734#14780#0" expanded="true" />
-                <element signature="e#14782#14839#0" expanded="true" />
-                <element signature="e#18533#18568#0" expanded="true" />
-                <element signature="e#18570#18618#0" expanded="true" />
+                <element signature="e#3033#5109#0" expanded="true" />
+                <element signature="e#3674#3724#0" expanded="true" />
+                <element signature="e#3726#3787#0" expanded="true" />
+                <element signature="e#4162#4222#0" expanded="true" />
+                <element signature="e#4224#4285#0" expanded="true" />
+                <element signature="e#4670#4731#0" expanded="true" />
+                <element signature="e#4733#4803#0" expanded="true" />
+                <element signature="e#5108#5109#0" expanded="true" />
+                <element signature="e#9475#9520#0" expanded="true" />
+                <element signature="e#9522#9580#0" expanded="true" />
+                <element signature="e#12426#13705#0" expanded="true" />
+                <element signature="e#13704#13705#0" expanded="true" />
+                <element signature="e#14733#14779#0" expanded="true" />
+                <element signature="e#14781#14838#0" expanded="true" />
+                <element signature="e#18532#18567#0" expanded="true" />
+                <element signature="e#18569#18617#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2655,7 +2646,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1529097100581" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1529097148702" />
       </method>
     </configuration>
     <configuration default="false" name="SettingsTest" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
@@ -2703,7 +2694,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1529097100581" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1529097148702" />
       </method>
     </configuration>
     <configuration default="false" name="TriviaQuestionsDispl..." type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
@@ -2751,7 +2742,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1529097100581" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1529097148702" />
       </method>
     </configuration>
     <configuration default="false" name="HomeActivity" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false" temporary="true">
@@ -2800,7 +2791,7 @@
       <option name="ACTIVITY_CLASS" value="com.iruss.mogivisions.experiment.HomeActivity" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1529097100581" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1529097148702" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -2873,7 +2864,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1529097100582" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1529097148702" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -2921,7 +2912,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1529097100582" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1529097148702" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -3104,7 +3095,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1529097100585" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1529097148703" />
       </method>
     </configuration>
     <list size="5">
@@ -3365,7 +3356,14 @@
       <option name="project" value="LOCAL" />
       <updated>1529095031572</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="BUG FIX: if statements going in reverse order">
+      <created>1529097113826</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1529097113826</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -3503,7 +3501,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Hide Status bar and make trivia text more readable" />
     <MESSAGE value="Adjusting Kiosk UI" />
     <MESSAGE value="Placed temporary ads at the bottom of the home and kiosk page" />
     <MESSAGE value="Reset" />
@@ -3528,7 +3525,8 @@
     <MESSAGE value="Request Permission Dialogs" />
     <MESSAGE value="Call InCallUI for incoming call" />
     <MESSAGE value="Remove unnecessary files, and cleanup usage statistic permission" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove unnecessary files, and cleanup usage statistic permission" />
+    <MESSAGE value="BUG FIX: if statements going in reverse order" />
+    <option name="LAST_COMMIT_MESSAGE" value="BUG FIX: if statements going in reverse order" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3862,29 +3860,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/iruss/mogivisions/experiment/HomeActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="110" column="106" lean-forward="false" selection-start-line="110" selection-start-column="106" selection-end-line="110" selection-end-column="106" />
+        <state relative-caret-position="349">
+          <caret line="511" column="14" lean-forward="false" selection-start-line="511" selection-start-column="14" selection-end-line="511" selection-end-column="14" />
           <folding>
             <element signature="e#1572#1573#0" expanded="true" />
             <element signature="e#1614#1615#0" expanded="true" />
             <element signature="e#2532#2753#0" expanded="true" />
             <element signature="e#2752#2753#0" expanded="true" />
-            <element signature="e#3033#5110#0" expanded="true" />
-            <element signature="e#3675#3725#0" expanded="true" />
-            <element signature="e#3727#3788#0" expanded="true" />
-            <element signature="e#4163#4223#0" expanded="true" />
-            <element signature="e#4225#4286#0" expanded="true" />
-            <element signature="e#4671#4732#0" expanded="true" />
-            <element signature="e#4734#4804#0" expanded="true" />
-            <element signature="e#5109#5110#0" expanded="true" />
-            <element signature="e#9476#9521#0" expanded="true" />
-            <element signature="e#9523#9581#0" expanded="true" />
-            <element signature="e#12427#13706#0" expanded="true" />
-            <element signature="e#13705#13706#0" expanded="true" />
-            <element signature="e#14734#14780#0" expanded="true" />
-            <element signature="e#14782#14839#0" expanded="true" />
-            <element signature="e#18533#18568#0" expanded="true" />
-            <element signature="e#18570#18618#0" expanded="true" />
+            <element signature="e#3033#5109#0" expanded="true" />
+            <element signature="e#3674#3724#0" expanded="true" />
+            <element signature="e#3726#3787#0" expanded="true" />
+            <element signature="e#4162#4222#0" expanded="true" />
+            <element signature="e#4224#4285#0" expanded="true" />
+            <element signature="e#4670#4731#0" expanded="true" />
+            <element signature="e#4733#4803#0" expanded="true" />
+            <element signature="e#5108#5109#0" expanded="true" />
+            <element signature="e#9475#9520#0" expanded="true" />
+            <element signature="e#9522#9580#0" expanded="true" />
+            <element signature="e#12426#13705#0" expanded="true" />
+            <element signature="e#13704#13705#0" expanded="true" />
+            <element signature="e#14733#14779#0" expanded="true" />
+            <element signature="e#14781#14838#0" expanded="true" />
+            <element signature="e#18532#18567#0" expanded="true" />
+            <element signature="e#18569#18617#0" expanded="true" />
           </folding>
         </state>
       </provider>

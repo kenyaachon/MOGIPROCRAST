@@ -108,7 +108,7 @@ public class HomeActivity extends AppCompatActivity
                     // Check if you have permission to draw overlays already. If not, then ask
 
                     //Weird error, if statements are going in reverse order
-                    //Fixed by putting if statements for Phone and Camera permission after OverlayRequest 
+                    //Fixed by putting if statements for Phone and Camera permission after OverlayRequest
                     if (!Settings.canDrawOverlays(HomeActivity.this)) {
                         showExplanation(HomeActivity.this.getString(R.string.OverlayTitle), HomeActivity.this.getString(R.string.OverlayRequestRationale), Overlay_REQUEST_CODE);
                         okToStartKiosk = false;
@@ -508,8 +508,8 @@ public class HomeActivity extends AppCompatActivity
                 android.os.Process.myUid(), context.getPackageName());
 
         if (mode == AppOpsManager.MODE_DEFAULT) {
-            //granted = (context.checkCallingOrSelfPermission( "android.permission.PACKAGE_USAGE_STATS") == PackageManager.PERMISSION_GRANTED);
-            granted = (context.checkCallingOrSelfPermission(android.Manifest.permission.PACKAGE_USAGE_STATS) == PackageManager.PERMISSION_GRANTED);
+            granted = (context.checkCallingOrSelfPermission( "android.permission.PACKAGE_USAGE_STATS") == PackageManager.PERMISSION_GRANTED);
+            //granted = (context.checkCallingOrSelfPermission(android.Manifest.permission.PACKAGE_USAGE_STATS) == PackageManager.PERMISSION_GRANTED);
         } else {
             granted = (mode == AppOpsManager.MODE_ALLOWED);
         }
