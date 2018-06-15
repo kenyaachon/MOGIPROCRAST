@@ -106,18 +106,23 @@ public class HomeActivity extends AppCompatActivity
                 if (Build.VERSION.SDK_INT >= 23) {
                     boolean okToStartKiosk = true;
                     // Check if you have permission to draw overlays already. If not, then ask
-                    if (checkSelfPermission(android.Manifest.permission.READ_PHONE_STATE)
+
+                    //Weird error, if statements are going in reverse order
+                    //Fixed by putting if statements for Phone and Camera permission after OverlayRequest 
+                    if (!Settings.canDrawOverlays(HomeActivity.this)) {
+                        showExplanation(HomeActivity.this.getString(R.string.OverlayTitle), HomeActivity.this.getString(R.string.OverlayRequestRationale), Overlay_REQUEST_CODE);
+                        okToStartKiosk = false;
+                    }
+                    if (ActivityCompat.checkSelfPermission(HomeActivity.this, Manifest.permission.READ_PHONE_STATE)
                             != PackageManager.PERMISSION_GRANTED) {
+                        Log.i("HomeActivity", "Phone");
                         showExplanation(HomeActivity.this.getString(R.string.PhonePermissionRequest), HomeActivity.this.getString(R.string.PhonePermissionRational), MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
                         okToStartKiosk = false;
                     }
-                    if (checkSelfPermission(Manifest.permission.CAMERA)
+                    if (ActivityCompat.checkSelfPermission(HomeActivity.this, Manifest.permission.CAMERA)
                             != PackageManager.PERMISSION_GRANTED) {
+                        Log.i("HomeActivity", "Camera");
                         showExplanation(HomeActivity.this.getString(R.string.CameraPermissionRequest), HomeActivity.this.getString(R.string.CameraPermissionRequestRationale), MY_PERMISSIONS_REQUEST_CAMERA);
-                        okToStartKiosk = false;
-                    }
-                    if (!Settings.canDrawOverlays(HomeActivity.this)) {
-                        showExplanation(HomeActivity.this.getString(R.string.OverlayTitle), HomeActivity.this.getString(R.string.OverlayRequestRationale), Overlay_REQUEST_CODE);
                         okToStartKiosk = false;
                     }
                     if (okToStartKiosk){

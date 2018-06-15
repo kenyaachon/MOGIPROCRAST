@@ -426,6 +426,8 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
 
 
 
+    // Load the trivia fragment
+
     /**
      * Loads the trivia fragment
      */
