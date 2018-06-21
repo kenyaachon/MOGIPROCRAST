@@ -64,6 +64,14 @@
         "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
     },
     {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable_settingsbackground.xml.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\src\\main\\res\\drawable\\settingsbackground.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_phone_black_24dp.xml.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_phone_black_24dp.xml"
+    },
+    {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_textfield_search_activated_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-mdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png"
     },
@@ -98,6 +106,10 @@
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_item_background_holo_dark.xml.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable\\abc_item_background_holo_dark.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_phone_black_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_phone_black_24dp.png"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_menu_share_mtrl_alpha.png.flat",
@@ -144,8 +156,16 @@
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-hdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_photo_camera_black_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_photo_camera_black_24dp.png"
+    },
+    {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_longpressed_holo.9.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-mdpi-v4\\abc_list_longpressed_holo.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable_lockedbackground.xml.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\src\\main\\res\\drawable\\lockedbackground.xml"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_ic_menu_selectall_mtrl_alpha.png.flat",
@@ -154,6 +174,10 @@
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_list_pressed_holo_dark.9.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-mdpi-v4\\abc_list_pressed_holo_dark.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_photo_camera_black_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_photo_camera_black_24dp.png"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xxhdpi-v17_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
@@ -280,6 +304,10 @@
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-hdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png"
     },
     {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable_triviaborder.xml.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\src\\main\\res\\drawable\\triviaborder.xml"
+    },
+    {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_textfield_activated_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-xxhdpi-v4\\abc_textfield_activated_mtrl_alpha.9.png"
     },
@@ -290,6 +318,10 @@
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_textfield_activated_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-hdpi-v4\\abc_textfield_activated_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_settings_white_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_settings_white_24dp.png"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_btn_switch_to_on_mtrl_00012.9.png.flat",
@@ -324,6 +356,10 @@
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\customtabs-27.1.1.aar\\99d983b2dd852c8845ace7bf7140d469\\res\\layout\\browser_actions_context_menu_page.xml"
     },
     {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_lock_open_black_24dp.xml.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_lock_open_black_24dp.xml"
+    },
+    {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
         "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher_round.png"
     },
@@ -338,6 +374,10 @@
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_ic_menu_overflow_material.xml.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable\\abc_ic_menu_overflow_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_phone_black_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_phone_black_24dp.png"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_spinner_textfield_background_material.xml.flat",
@@ -370,6 +410,10 @@
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\layout-v21_notification_template_icon_group.xml.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\cbad24564bdda69699504bc854698cc3\\res\\layout-v21\\notification_template_icon_group.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_lock_outline_black_24dp.xml.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_lock_outline_black_24dp.xml"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_textfield_default_mtrl_alpha.9.png.flat",
@@ -440,8 +484,20 @@
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable\\abc_ic_ab_back_material.xml"
     },
     {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_phone_black_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_phone_black_24dp.png"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_lock_open_black_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_lock_open_black_24dp.png"
+    },
+    {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_text_select_handle_right_mtrl_dark.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-hdpi-v4\\abc_text_select_handle_right_mtrl_dark.png"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable_rounded_button.xml.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\src\\main\\res\\drawable\\rounded_button.xml"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_btn_switch_to_on_mtrl_00001.9.png.flat",
@@ -474,6 +530,10 @@
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_edit_text_material.xml.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable\\abc_edit_text_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_phone_black_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_phone_black_24dp.png"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_text_select_handle_left_mtrl_light.png.flat",
@@ -532,6 +592,10 @@
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\cbad24564bdda69699504bc854698cc3\\res\\drawable\\notification_bg_low.xml"
     },
     {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_lock_open_black_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_lock_open_black_24dp.png"
+    },
+    {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_slide_in_top.xml.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\anim\\abc_slide_in_top.xml"
     },
@@ -558,6 +622,10 @@
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ic_star_black_16dp.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-mdpi-v4\\abc_ic_star_black_16dp.png"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_phone_black_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_phone_black_24dp.png"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xhdpi-v17_abc_ic_menu_cut_mtrl_alpha.png.flat",
@@ -588,6 +656,10 @@
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-xxhdpi-v4\\abc_ic_star_black_16dp.png"
     },
     {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_photo_camera_black_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_photo_camera_black_24dp.png"
+    },
+    {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_list_pressed_holo_light.9.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-xxhdpi-v4\\abc_list_pressed_holo_light.9.png"
     },
@@ -600,6 +672,10 @@
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable\\abc_textfield_search_material.xml"
     },
     {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_lock_outline_black_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_lock_outline_black_24dp.png"
+    },
+    {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_list_longpressed_holo.9.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-xhdpi-v4\\abc_list_longpressed_holo.9.png"
     },
@@ -608,8 +684,16 @@
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\layout\\abc_list_menu_item_checkbox.xml"
     },
     {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_settings_white_24dp.xml.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_settings_white_24dp.xml"
+    },
+    {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_text_select_handle_middle_mtrl_light.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-xhdpi-v4\\abc_text_select_handle_middle_mtrl_light.png"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable_triviabackground.xml.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\src\\main\\res\\drawable\\triviabackground.xml"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_activity_chooser_view.xml.flat",
@@ -748,6 +832,10 @@
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\cbad24564bdda69699504bc854698cc3\\res\\drawable\\notification_bg.xml"
     },
     {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_lock_open_black_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_lock_open_black_24dp.png"
+    },
+    {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_btn_check_to_on_mtrl_015.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-xxxhdpi-v4\\abc_btn_check_to_on_mtrl_015.png"
     },
@@ -782,6 +870,10 @@
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_star_half_black_48dp.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-xhdpi-v4\\abc_ic_star_half_black_48dp.png"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_photo_camera_black_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_photo_camera_black_24dp.png"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_media_cancel_action.xml.flat",
@@ -842,6 +934,10 @@
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_notification_bg_normal.9.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\cbad24564bdda69699504bc854698cc3\\res\\drawable-xhdpi-v4\\notification_bg_normal.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-anydpi-v21_ic_photo_camera_black_24dp.xml.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-anydpi-v21\\ic_photo_camera_black_24dp.xml"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_slide_out_top.xml.flat",
@@ -1036,6 +1132,10 @@
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-mdpi-v4\\abc_text_select_handle_right_mtrl_light.png"
     },
     {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_lock_outline_black_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_lock_outline_black_24dp.png"
+    },
+    {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_spinner_mtrl_am_alpha.9.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-mdpi-v4\\abc_spinner_mtrl_am_alpha.9.png"
     },
@@ -1048,12 +1148,16 @@
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-xhdpi-v4\\abc_switch_track_mtrl_alpha.9.png"
     },
     {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_action_mode_bar.xml.flat",
+        "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\layout\\abc_action_mode_bar.xml"
+    },
+    {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_menu_paste_mtrl_am_alpha.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-xxhdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
-        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_action_mode_bar.xml.flat",
-        "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\layout\\abc_action_mode_bar.xml"
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_settings_white_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_settings_white_24dp.png"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_star_black_16dp.png.flat",
@@ -1070,6 +1174,10 @@
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_list_longpressed_holo.9.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-xxhdpi-v4\\abc_list_longpressed_holo.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_photo_camera_black_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_photo_camera_black_24dp.png"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xxhdpi-v17_abc_spinner_mtrl_am_alpha.9.png.flat",
@@ -1128,6 +1236,10 @@
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-xxhdpi-v4\\abc_btn_switch_to_on_mtrl_00001.9.png"
     },
     {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_lock_open_black_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_lock_open_black_24dp.png"
+    },
+    {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_star_black_48dp.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-hdpi-v4\\abc_ic_star_black_48dp.png"
     },
@@ -1154,6 +1266,10 @@
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_scrubber_track_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-mdpi-v4\\abc_scrubber_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_lock_open_black_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_lock_open_black_24dp.png"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ic_star_black_48dp.png.flat",
@@ -1192,6 +1308,10 @@
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-mdpi-v4\\abc_list_selector_disabled_holo_dark.9.png"
     },
     {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_lock_outline_black_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_lock_outline_black_24dp.png"
+    },
+    {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_popup_menu_item_layout.xml.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\layout\\abc_popup_menu_item_layout.xml"
     },
@@ -1226,6 +1346,14 @@
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_scrubber_primary_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-xxhdpi-v4\\abc_scrubber_primary_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_lock_outline_black_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_lock_outline_black_24dp.png"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_lock_open_black_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_lock_open_black_24dp.png"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_list_focused_holo.9.png.flat",
@@ -1324,6 +1452,14 @@
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.1.aar\\cbad24564bdda69699504bc854698cc3\\res\\layout-v16\\notification_template_custom_big.xml"
     },
     {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_lock_outline_black_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_lock_outline_black_24dp.png"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable_homebackground.xml.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\src\\main\\res\\drawable\\homebackground.xml"
+    },
+    {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_abc_edit_text_material.xml.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-v21\\abc_edit_text_material.xml"
     },
@@ -1364,6 +1500,10 @@
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-xhdpi-v4\\abc_textfield_default_mtrl_alpha.9.png"
     },
     {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_settings_white_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_settings_white_24dp.png"
+    },
+    {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\layout-watch-v20_abc_alert_dialog_title_material.xml.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\layout-watch-v20\\abc_alert_dialog_title_material.xml"
     },
@@ -1378,6 +1518,10 @@
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xhdpi-v17_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-ldrtl-xhdpi-v17\\abc_ic_menu_copy_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\layout_mytitle.xml.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\src\\main\\res\\layout\\mytitle.xml"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_textfield_default_mtrl_alpha.9.png.flat",
@@ -1396,12 +1540,20 @@
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-hdpi-v4\\abc_ic_commit_search_api_mtrl_alpha.png"
     },
     {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_phone_black_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_phone_black_24dp.png"
+    },
+    {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_textfield_search_default_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-xxhdpi-v4\\abc_textfield_search_default_mtrl_alpha.9.png"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_switch_track_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-xxhdpi-v4\\abc_switch_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_lock_outline_black_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_lock_outline_black_24dp.png"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_scrubber_control_to_pressed_mtrl_005.png.flat",
@@ -1422,6 +1574,10 @@
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_home.xml.flat",
         "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\src\\main\\res\\layout\\activity_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_settings_white_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxhdpi\\ic_settings_white_24dp.png"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_btn_check_to_on_mtrl_000.png.flat",
@@ -1480,8 +1636,16 @@
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-hdpi-v4\\abc_btn_switch_to_on_mtrl_00012.9.png"
     },
     {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_settings_white_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_settings_white_24dp.png"
+    },
+    {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_star_half_black_16dp.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\drawable-hdpi-v4\\abc_ic_star_half_black_16dp.png"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_photo_camera_black_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-mdpi\\ic_photo_camera_black_24dp.png"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-mdpi_ic_launcher_round.png.flat",
@@ -1534,6 +1698,10 @@
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_btn_colored_text_material.xml.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\56b1e4a00dfb09643420d73b8a18a539\\res\\color\\abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_settings_white_24dp.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_settings_white_24dp.png"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_text_select_handle_left_mtrl_dark.png.flat",

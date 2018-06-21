@@ -1,5 +1,5 @@
 // Copyright 2017 SDK Bridge
-package com.iruss.mogivisions.experiment;
+package com.iruss.mogivisions.procrastimate;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -7,6 +7,9 @@ import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceGroup;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 
 /**

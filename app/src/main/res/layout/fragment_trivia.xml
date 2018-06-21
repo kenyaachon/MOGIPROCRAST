@@ -2,27 +2,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0099cc"
+    android:background="@drawable/triviabackground"
     android:paddingTop="30dp"
-    tools:context="com.iruss.mogivisions.experiment.HomeActivity">
+
+    tools:context="com.iruss.mogivisions.procrastimate.HomeActivity">
+    <TextView
+        android:id="@+id/triviaTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_alignParentTop = "true"
+        android:layout_marginBottom="15dp"
+        android:text="CHALLENGE"
+        android:textColor="@color/titletextcolor" />
+
+    <TextView
+        android:id="@+id/trialsRemaining"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_below = "@id/triviaTitle"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textColorDark"
+        android:text="Trials Remaing: 1" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/triviaborder"
+        android:layout_marginTop="100dp"
+        android:paddingTop="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/trialsRemaining"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/textColorDark"
-            android:text="Trials Remaing: 1" />
 
         <TextView
             android:id="@+id/questionText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
             android:textColor="@color/textColorDark"
+            android:gravity="center"
             android:text="TextView" />
 
         <Button
@@ -30,6 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="True"
+            android:background="@drawable/rounded_button"
             android:textColor="@color/textColorDark"
             android:visibility="visible"
             />
@@ -39,6 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="FALSE"
+            android:background="@drawable/rounded_button"
             android:textColor="@color/textColorDark"
             android:visibility="visible"
             />
@@ -48,6 +77,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Button"
+            android:background="@drawable/rounded_button"
             android:textColor="@color/textColorDark"
             android:visibility="visible"
             />
@@ -57,8 +87,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Button"
+            android:background="@drawable/rounded_button"
             android:textColor="@color/textColorDark"
             android:visibility="visible"
+            android:layout_marginBottom="15dp"
             />
 
     </LinearLayout>

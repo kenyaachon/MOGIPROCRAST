@@ -1,4 +1,4 @@
-package com.iruss.mogivisions.experiment;
+package com.iruss.mogivisions.procrastimate;
 
 
 import android.support.test.espresso.ViewInteraction;

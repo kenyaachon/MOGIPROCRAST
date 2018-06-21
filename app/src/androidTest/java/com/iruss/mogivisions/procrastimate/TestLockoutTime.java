@@ -1,4 +1,4 @@
-package com.iruss.mogivisions.experiment;
+package com.iruss.mogivisions.procrastimate;
 
 
 import android.support.test.espresso.DataInteraction;
@@ -28,15 +28,15 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.anything;
 import static org.hamcrest.Matchers.is;
 /*
-    Tests to make sure changing the text size does something
+    Tests to make sure that changing the lockout time does something
  */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class TestTextSize {
+public class TestLockoutTime {
 
 
     @Test
-    public void testTextSize() {
+    public void testLockoutTime() {
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
@@ -70,7 +70,7 @@ public class TestTextSize {
                         childAtPosition(
                                 withId(android.R.id.list_container),
                                 0)))
-                .atPosition(1);
+                .atPosition(0);
         linearLayout.perform(click());
 
         DataInteraction appCompatCheckedTextView = onData(anything())
@@ -82,21 +82,21 @@ public class TestTextSize {
         appCompatCheckedTextView.perform(click());
 
         ViewInteraction textView = onView(
-                allOf(withId(android.R.id.summary), withText("9"),
+                allOf(withId(android.R.id.summary), withText("1 hours"),
                         childAtPosition(
                                 childAtPosition(
                                         IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
                                         0),
                                 1),
                         isDisplayed()));
-        textView.check(matches(withText("9")));
+        textView.check(matches(withText("1 hours")));
 
         DataInteraction linearLayout2 = onData(anything())
                 .inAdapterView(allOf(withId(android.R.id.list),
                         childAtPosition(
                                 withId(android.R.id.list_container),
                                 0)))
-                .atPosition(1);
+                .atPosition(0);
         linearLayout2.perform(click());
 
         DataInteraction appCompatCheckedTextView2 = onData(anything())
@@ -104,34 +104,26 @@ public class TestTextSize {
                         childAtPosition(
                                 withClassName(is("android.widget.FrameLayout")),
                                 0)))
-                .atPosition(6);
+                .atPosition(4);
         appCompatCheckedTextView2.perform(click());
 
         ViewInteraction textView2 = onView(
-                allOf(withId(android.R.id.summary), withText("21"),
+                allOf(withId(android.R.id.summary), withText("12 hours"),
                         childAtPosition(
                                 childAtPosition(
                                         IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
                                         0),
                                 1),
                         isDisplayed()));
-        textView2.check(matches(withText("21")));
+        textView2.check(matches(withText("12 hours")));
 
         DataInteraction linearLayout3 = onData(anything())
                 .inAdapterView(allOf(withId(android.R.id.list),
                         childAtPosition(
                                 withId(android.R.id.list_container),
                                 0)))
-                .atPosition(1);
+                .atPosition(0);
         linearLayout3.perform(click());
-
-        DataInteraction appCompatCheckedTextView3 = onData(anything())
-                .inAdapterView(allOf(withClassName(is("com.android.internal.app.AlertController$RecycleListView")),
-                        childAtPosition(
-                                withClassName(is("android.widget.FrameLayout")),
-                                0)))
-                .atPosition(13);
-        appCompatCheckedTextView3.perform(click());
 
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
@@ -142,15 +134,23 @@ public class TestTextSize {
             e.printStackTrace();
         }
 
+        DataInteraction appCompatCheckedTextView3 = onData(anything())
+                .inAdapterView(allOf(withClassName(is("com.android.internal.app.AlertController$RecycleListView")),
+                        childAtPosition(
+                                withClassName(is("android.widget.FrameLayout")),
+                                0)))
+                .atPosition(2);
+        appCompatCheckedTextView3.perform(click());
+
         ViewInteraction textView3 = onView(
-                allOf(withId(android.R.id.summary), withText("35"),
+                allOf(withId(android.R.id.summary), withText("4 hours"),
                         childAtPosition(
                                 childAtPosition(
                                         IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
                                         0),
                                 1),
                         isDisplayed()));
-        textView3.check(matches(withText("35")));
+        textView3.check(matches(withText("4 hours")));
 
     }
 

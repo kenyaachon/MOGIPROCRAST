@@ -1,4 +1,4 @@
-package com.iruss.mogivisions.experiment;
+package com.iruss.mogivisions.procrastimate;
 
 import android.Manifest;
 import android.app.AppOpsManager;
@@ -18,10 +18,12 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.telecom.TelecomManager;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
@@ -57,7 +59,12 @@ public class HomeActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(R.layout.activity_home);
+        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.mytitle);
+
+
 
         shouldBeInKioskMode = false;
 
@@ -79,7 +86,7 @@ public class HomeActivity extends AppCompatActivity
      * Calls the SettingsActivity
      */
     public void initializeSettings() {
-        Button settingsButton = findViewById(R.id.settings);
+        ImageButton settingsButton = findViewById(R.id.settings);
 
         settingsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -89,7 +96,7 @@ public class HomeActivity extends AppCompatActivity
             }
         });
 
-        setButtonTextSize(settingsButton);
+        //setButtonTextSize(settingsButton);
     }
 
     /**

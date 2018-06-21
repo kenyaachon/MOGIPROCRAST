@@ -1,4 +1,4 @@
-package com.iruss.mogivisions.experiment;
+package com.iruss.mogivisions.procrastimate;
 
 /*
  * Created by Moses on 3/18/2018.

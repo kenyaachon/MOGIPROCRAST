@@ -20,7 +20,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.telecom.TelecomManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -32,16 +31,17 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.iruss.mogivisions.experiment.HomeActivity;
-import com.iruss.mogivisions.experiment.R;
-import com.iruss.mogivisions.experiment.TriviaAPI;
-import com.iruss.mogivisions.experiment.TriviaQuestion;
+import com.iruss.mogivisions.procrastimate.HomeActivity;
+import com.iruss.mogivisions.procrastimate.R;
+import com.iruss.mogivisions.procrastimate.TriviaAPI;
+import com.iruss.mogivisions.procrastimate.TriviaQuestion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -128,7 +128,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
 
 
     /**
-     * Sets the layout of the app to fullscreen
+     * Sets the hometitle of the app to fullscreen
      */
     private void hideStatusBar(){
     // Hide the status bar.
@@ -239,7 +239,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         timeView = mView.findViewById(R.id.timeView);
         MyTimer.getInstance().setTimerRuningListener(this);
 
-        setKioskTextSize();
+        //setKioskTextSize();
 
 
         unlockPhone();
@@ -376,7 +376,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
      *When the phone button is pressed the user will able to do emergency calls
      */
     private void call(){
-        Button callApp = mView.findViewById(R.id.phone);
+        ImageButton callApp = mView.findViewById(R.id.phone);
         callApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -392,7 +392,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                 startActivity(callIntent);
             }
         });
-        setKioskButtonTextSize(callApp);
+        //setKioskButtonTextSize(callApp);
     }
 
 
@@ -400,7 +400,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
      * camera() calls  the camera App when the User press the camera button
      */
     private void camera(){
-        Button cameraApp = mView.findViewById(R.id.camera);
+        ImageButton cameraApp = mView.findViewById(R.id.camera);
         cameraApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -421,7 +421,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                 //}
             }
         });
-        setKioskButtonTextSize(cameraApp);
+        //setKioskButtonTextSize(cameraApp);
     }
 
 

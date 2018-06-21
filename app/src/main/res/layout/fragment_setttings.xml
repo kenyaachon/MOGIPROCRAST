@@ -2,13 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.iruss.mogivisions.experiment.SettingsFragment">
+    android:background="@drawable/settingsbackground"
+    tools:context="com.iruss.mogivisions.procrastimate.SettingsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!-- TODO: Update blank fragmmyTitleyout -->
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="Settings" />
-
 
 </FrameLayout>

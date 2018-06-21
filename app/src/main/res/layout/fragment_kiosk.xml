@@ -1,30 +1,81 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/lockedbackground"
     android:paddingTop="30dp"
-    tools:context="com.iruss.mogivisions.experiment.HomeActivity">
+    tools:context="com.iruss.mogivisions.procrastimate.HomeActivity">
+
+
+    <TextView
+        android:id="@+id/kioskView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:textSize="50dp"
+        android:textColor="@color/titletextcolor"
+        android:layout_below="@id/kioskLockView"
+        android:text="@string/kioskphonelock" />
+
+    <ImageView
+        android:id="@+id/kioskLockView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent = "true"
+        android:src="@drawable/ic_lock_outline_black_24dp" />
+
+    <TextView
+        android:id="@+id/kioskTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_marginBottom="15dp"
+        android:text="@string/app_name"
+        android:textColor="@color/titletextcolor" />
 
     <TextView
         android:id="@+id/timeView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/textColorDark"
-        android:layout_marginBottom="5dp"
-        android:text="@string/time_left" />
+        android:layout_above= "@id/kioskLockView"
+        android:textSize="30dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="@string/time_left"
+        android:textColor="@color/titletextcolor" />
 
 
     <Button
         android:id="@+id/unlockPhone"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_below= "@id/kioskTitle"
+        android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
-        android:background="@color/lightbuttonBackground"
+        android:background="@drawable/rounded_button"
         android:textColor="@color/textColorDark"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="15dip"
         android:text="@string/unlock_phone" />
 
+
+    <ImageButton
+        android:id="@+id/phone"
+        android:background="@null"
+        android:layout_above="@id/adView"
+        android:layout_below= "@id/exitButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft = "true"
+        android:paddingLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="300dp"
+        android:src="@drawable/ic_phone_black_24dp" />
+
+    <!--
     <Button
         android:id="@+id/phone"
         android:layout_width="match_parent"
@@ -32,8 +83,22 @@
         android:background="@color/lightbuttonBackground"
         android:textColor="@color/textColorDark"
         android:layout_marginBottom="5dp"
-        android:text="@string/phone" />
+        android:text="@string/phone" />-->
 
+    <ImageButton
+        android:id="@+id/camera"
+        android:background="@null"
+        android:layout_alignParentRight = "true"
+        android:layout_alignParentBottom="true"
+        android:layout_below= "@id/exitButton"
+        android:paddingRight="20dp"
+        android:paddingTop="300dp"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_photo_camera_black_24dp" />
+
+    <!--
     <Button
         android:id="@+id/camera"
         android:layout_width="match_parent"
@@ -41,24 +106,20 @@
         android:background="@color/lightbuttonBackground"
         android:textColor="@color/textColorDark"
         android:layout_marginBottom="5dp"
-        android:text="@string/camera" />
+        android:text="@string/camera" />-->
 
     <Button
         android:id="@+id/exitButton"
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/lightbuttonBackground"
-        android:textColor="@color/textColorDark"
+        android:layout_below= "@id/unlockPhone"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/titletextcolor"
         android:layout_marginBottom="5dp"
         android:text="@string/exitButton" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center|bottom"
-        >
+
         <com.google.android.gms.ads.AdView
             xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adView"
@@ -71,5 +132,4 @@
             ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
         </com.google.android.gms.ads.AdView>
 
-    </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

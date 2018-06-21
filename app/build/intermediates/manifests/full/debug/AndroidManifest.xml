@@ -27,10 +27,12 @@
         android:testOnly="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.iruss.mogivisions.experiment.SettingsActivity"
-            android:label="SettingsActivity"
-            android:parentActivityName="com.iruss.mogivisions.experiment.HomeActivity" />
-        <activity android:name="com.iruss.mogivisions.experiment.HomeActivity" >
+            android:name="com.iruss.mogivisions.procrastimate.SettingsActivity"
+            android:label="Settings"
+            android:parentActivityName="com.iruss.mogivisions.procrastimate.HomeActivity" />
+        <activity
+            android:name="com.iruss.mogivisions.procrastimate.HomeActivity"
+            android:theme="@style/customTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

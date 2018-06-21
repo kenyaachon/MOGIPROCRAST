@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.iruss.mogivisions.experiment">
+    package="com.iruss.mogivisions.procrastimate">
 
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -21,12 +21,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        
+
         <activity
-            android:name=".SettingsActivity"
-            android:label="SettingsActivity"
-            android:parentActivityName=".HomeActivity" />
-        <activity android:name=".HomeActivity">
+            android:name="com.iruss.mogivisions.procrastimate.SettingsActivity"
+            android:label="Settings"
+            android:parentActivityName="com.iruss.mogivisions.procrastimate.HomeActivity" />
+        <activity
+            android:name="com.iruss.mogivisions.procrastimate.HomeActivity"
+            android:theme="@style/customTheme"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

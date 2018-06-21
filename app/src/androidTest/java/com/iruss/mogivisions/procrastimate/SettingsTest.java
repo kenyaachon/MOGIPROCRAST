@@ -1,7 +1,6 @@
-package com.iruss.mogivisions.experiment;
+package com.iruss.mogivisions.procrastimate;
 
 
-import android.support.test.espresso.DataInteraction;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
@@ -16,27 +15,23 @@ import org.hamcrest.core.IsInstanceOf;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.anything;
-import static org.hamcrest.Matchers.is;
 /*
-    Tests to make sure that changing the lockout time does something
+    Tests to make sure that pressing the "settings" button works and that it brings you to the new
+    page. And then checks to make sure the lockout time and text size options are there.
  */
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class TestLockoutTime {
-
+public class SettingsTest {
 
     @Test
-    public void testLockoutTime() {
+    public void settingsTest() {
         // Added a sleep statement to match the app's execution delay.
         // The recommended way to handle such scenarios is to use Espresso idling resources:
         // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
@@ -65,47 +60,24 @@ public class TestLockoutTime {
             e.printStackTrace();
         }
 
-        DataInteraction linearLayout = onData(anything())
-                .inAdapterView(allOf(withId(android.R.id.list),
+        ViewInteraction relativeLayout = onView(
+                allOf(childAtPosition(
                         childAtPosition(
-                                withId(android.R.id.list_container),
-                                0)))
-                .atPosition(0);
-        linearLayout.perform(click());
-
-        DataInteraction appCompatCheckedTextView = onData(anything())
-                .inAdapterView(allOf(withClassName(is("com.android.internal.app.AlertController$RecycleListView")),
-                        childAtPosition(
-                                withClassName(is("android.widget.FrameLayout")),
-                                0)))
-                .atPosition(0);
-        appCompatCheckedTextView.perform(click());
+                                withId(android.R.id.list),
+                                0),
+                        0),
+                        isDisplayed()));
+        relativeLayout.check(matches(isDisplayed()));
 
         ViewInteraction textView = onView(
-                allOf(withId(android.R.id.summary), withText("1 hours"),
+                allOf(withId(android.R.id.title), withText("Lockout time"),
                         childAtPosition(
                                 childAtPosition(
                                         IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
                                         0),
-                                1),
+                                0),
                         isDisplayed()));
-        textView.check(matches(withText("1 hours")));
-
-        DataInteraction linearLayout2 = onData(anything())
-                .inAdapterView(allOf(withId(android.R.id.list),
-                        childAtPosition(
-                                withId(android.R.id.list_container),
-                                0)))
-                .atPosition(0);
-        linearLayout2.perform(click());
-
-        DataInteraction appCompatCheckedTextView2 = onData(anything())
-                .inAdapterView(allOf(withClassName(is("com.android.internal.app.AlertController$RecycleListView")),
-                        childAtPosition(
-                                withClassName(is("android.widget.FrameLayout")),
-                                0)))
-                .atPosition(4);
-        appCompatCheckedTextView2.perform(click());
+        textView.check(matches(isDisplayed()));
 
         ViewInteraction textView2 = onView(
                 allOf(withId(android.R.id.summary), withText("12 hours"),
@@ -115,42 +87,36 @@ public class TestLockoutTime {
                                         0),
                                 1),
                         isDisplayed()));
-        textView2.check(matches(withText("12 hours")));
+        textView2.check(matches(isDisplayed()));
 
-        DataInteraction linearLayout3 = onData(anything())
-                .inAdapterView(allOf(withId(android.R.id.list),
+        ViewInteraction relativeLayout2 = onView(
+                allOf(childAtPosition(
                         childAtPosition(
-                                withId(android.R.id.list_container),
-                                0)))
-                .atPosition(0);
-        linearLayout3.perform(click());
-
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        DataInteraction appCompatCheckedTextView3 = onData(anything())
-                .inAdapterView(allOf(withClassName(is("com.android.internal.app.AlertController$RecycleListView")),
-                        childAtPosition(
-                                withClassName(is("android.widget.FrameLayout")),
-                                0)))
-                .atPosition(2);
-        appCompatCheckedTextView3.perform(click());
+                                withId(android.R.id.list),
+                                1),
+                        0),
+                        isDisplayed()));
+        relativeLayout2.check(matches(isDisplayed()));
 
         ViewInteraction textView3 = onView(
-                allOf(withId(android.R.id.summary), withText("4 hours"),
+                allOf(withId(android.R.id.title), withText("Text Size"),
+                        childAtPosition(
+                                childAtPosition(
+                                        IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
+                                        0),
+                                0),
+                        isDisplayed()));
+        textView3.check(matches(isDisplayed()));
+
+        ViewInteraction textView4 = onView(
+                allOf(withId(android.R.id.summary), withText("11"),
                         childAtPosition(
                                 childAtPosition(
                                         IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
                                         0),
                                 1),
                         isDisplayed()));
-        textView3.check(matches(withText("4 hours")));
+        textView4.check(matches(isDisplayed()));
 
     }
 

@@ -1,14 +1,14 @@
 <resources>
-    <string name="app_name">Experiment</string>
+    <string name="app_name">Procrasti Mate</string>
+
+    <string name="home_unlock">PHONE IS UNLOCKED</string>
 
     <string name="dialog_title"></string>
     <string name="dialog_message">Can you grant permission to check network status?</string>
-    <string name="title_activity_trivia">TriviaActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="kioskphonelock">PHONE IS LOCKED</string>
     <string name="time_left">Time Left until phone unlocks: 5:00mins</string>
-    <string name="lock_phone">Lock Phone</string>
-    <string name="unlock_phone">Unlock Phone</string>
+    <string name="lock_phone">LOCK</string>
+    <string name="unlock_phone">UNLOCK</string>
     <string name="phone">Phone</string>
     <string name="camera">Camera</string>
     <string name="settings">Settings</string>
