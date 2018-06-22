@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    >
     <ListPreference
         android:key="lockout_time"
         android:title="@string/lockout_time"
         android:dialogTitle="@string/lockout_time"
+
         android:entries="@array/lockout_time_entries"
         android:entryValues="@array/lockout_time_values"
         android:defaultValue="@string/lockout_time_default" />

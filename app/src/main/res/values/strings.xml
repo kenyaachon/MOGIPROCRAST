@@ -6,7 +6,7 @@
     <string name="dialog_title"></string>
     <string name="dialog_message">Can you grant permission to check network status?</string>
     <string name="kioskphonelock">PHONE IS LOCKED</string>
-    <string name="time_left">Time Left until phone unlocks: 5:00mins</string>
+    <string name="time_left">02H:02M:02S</string>
     <string name="lock_phone">LOCK</string>
     <string name="unlock_phone">UNLOCK</string>
     <string name="phone">Phone</string>

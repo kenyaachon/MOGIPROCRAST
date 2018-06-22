@@ -31,7 +31,7 @@
 
     <style name="settingTitleBackground">
         <item name="android:background">@color/settingTitleBackgroundcolor</item>
-
+        <item name="android:gravity">center_horizontal</item>
     </style>
 
 

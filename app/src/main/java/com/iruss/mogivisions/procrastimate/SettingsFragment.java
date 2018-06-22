@@ -25,6 +25,13 @@ public class SettingsFragment extends PreferenceFragment
     }
 
     @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = super.onCreateView(inflater, container, savedInstanceState);
+        view.setBackground(getResources().getDrawable(R.drawable.settingsbackground));
+        return view;
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); ++i) {

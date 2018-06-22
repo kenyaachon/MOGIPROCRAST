@@ -1,14 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <style name="customTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">false</item>
         <item name="android:windowTitleBackgroundStyle">@style/WindowTitleBackground</item>
     </style>
 
-    <style name="settingTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="settingTheme" parent="Theme.AppCompat.Light">
         <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:alertDialogTheme">@style/DialogTheme</item>
         <item name="android:windowTitleBackgroundStyle">@style/settingTitleBackground</item>
+        <item name="android:actionBarStyle"   tools:ignore="NewApi">@style/MyActionBar</item>
+        <item name="actionBarStyle">@style/MyActionBar</item>
+        <item name="titleTextStyle">@style/MyActionBarTitleText</item>
     </style>
+
+
+    <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background"  tools:ignore="NewApi">@color/settingTitleBackgroundcolor</item>
+        <item name="background">@color/settingTitleBackgroundcolor</item>
+        <item name="titleTextStyle">@style/MyActionBarTitleText</item>
+    </style>
+
+    <style name="MyActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/titletextcolor</item>
+    </style>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+
+        <item name="android:textColor">#FF000000</item>
+        <item name="android:textColorPrimary">#FF000000</item>
+        <item name="android:textColorSecondary">#FF000000</item>
+        <item name="android:textColorHighlight">#FF000000</item>
+        <item name="android:textColorTertiary">#FF000000</item>
+        <item name="android:editTextColor">#FF000000</item>
+        <item name="color">#FF000000</item>
+    </style>
+
+
 </resources>

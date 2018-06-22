@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/lockedbackground"
-    android:paddingTop="30dp"
+    android:paddingTop="12dp"
     tools:context="com.iruss.mogivisions.procrastimate.HomeActivity">
 
 
@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:layout_centerHorizontal="true"
-        android:textSize="50dp"
+        android:textSize="30sp"
         android:textColor="@color/titletextcolor"
         android:layout_below="@id/kioskLockView"
         android:text="@string/kioskphonelock" />
@@ -31,9 +31,9 @@
         android:id="@+id/kioskTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:gravity="center"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="5dp"
         android:text="@string/app_name"
         android:textColor="@color/titletextcolor" />
 
@@ -41,8 +41,8 @@
         android:id="@+id/timeView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above= "@id/kioskLockView"
-        android:textSize="30dp"
+        android:layout_above="@id/kioskLockView"
+        android:textSize="30sp"
         android:layout_marginBottom="10dp"
         android:gravity="center"
         android:text="@string/time_left"
@@ -59,6 +59,8 @@
         android:textColor="@color/textColorDark"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="15dip"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
         android:text="@string/unlock_phone" />
 
 
@@ -66,60 +68,36 @@
         android:id="@+id/phone"
         android:background="@null"
         android:layout_above="@id/adView"
-        android:layout_below= "@id/exitButton"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft = "true"
         android:paddingLeft="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="300dp"
         android:src="@drawable/ic_phone_black_24dp" />
-
-    <!--
-    <Button
-        android:id="@+id/phone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/lightbuttonBackground"
-        android:textColor="@color/textColorDark"
-        android:layout_marginBottom="5dp"
-        android:text="@string/phone" />-->
 
     <ImageButton
         android:id="@+id/camera"
         android:background="@null"
         android:layout_alignParentRight = "true"
-        android:layout_alignParentBottom="true"
-        android:layout_below= "@id/exitButton"
+        android:layout_above="@id/adView"
         android:paddingRight="20dp"
-        android:paddingTop="300dp"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_photo_camera_black_24dp" />
 
-    <!--
-    <Button
-        android:id="@+id/camera"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/lightbuttonBackground"
-        android:textColor="@color/textColorDark"
-        android:layout_marginBottom="5dp"
-        android:text="@string/camera" />-->
 
     <Button
         android:id="@+id/exitButton"
         android:visibility="gone"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below= "@id/unlockPhone"
+        android:layout_centerHorizontal="true"
         android:background="@drawable/rounded_button"
         android:textColor="@color/titletextcolor"
         android:layout_marginBottom="5dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
         android:text="@string/exitButton" />
-
-
         <com.google.android.gms.ads.AdView
             xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adView"

@@ -24,7 +24,8 @@
 
         <activity
             android:name="com.iruss.mogivisions.procrastimate.SettingsActivity"
-            android:label="Settings"
+            android:label="SETTINGS"
+            android:theme="@style/settingTheme"
             android:parentActivityName="com.iruss.mogivisions.procrastimate.HomeActivity" />
         <activity
             android:name="com.iruss.mogivisions.procrastimate.HomeActivity"
