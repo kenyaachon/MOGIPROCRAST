@@ -24,7 +24,7 @@
 
         <activity
             android:name="com.iruss.mogivisions.procrastimate.SettingsActivity"
-            android:label="SETTINGS"
+            android:label="Settings"
             android:theme="@style/settingTheme"
             android:parentActivityName="com.iruss.mogivisions.procrastimate.HomeActivity" />
         <activity
@@ -39,6 +39,7 @@
         </activity>
 
         <service android:name="com.iruss.mogivisions.kiosk.KioskService"/>
+
     </application>
 
 </manifest>

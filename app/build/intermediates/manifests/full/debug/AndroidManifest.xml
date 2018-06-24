@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.iruss.mogivisions.experiment"
+    package="com.iruss.mogivisions.procrastimate"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -28,7 +28,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.iruss.mogivisions.procrastimate.SettingsActivity"
-            android:label="SETTINGS"
+            android:label="Settings"
             android:parentActivityName="com.iruss.mogivisions.procrastimate.HomeActivity"
             android:theme="@style/settingTheme" />
         <activity
@@ -42,6 +42,11 @@
         </activity>
 
         <service android:name="com.iruss.mogivisions.kiosk.KioskService" />
+        <service
+            android:name="com.iruss.mogivisions.kiosk.KioskJobService"
+            android:label="Word service"
+            android:permission="android.permission.BIND_JOB_SERVICE" >
+        </service>
         <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
         <activity
             android:name="com.google.android.gms.ads.AdActivity"

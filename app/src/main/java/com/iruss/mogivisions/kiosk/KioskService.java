@@ -3,9 +3,13 @@ package com.iruss.mogivisions.kiosk;
 
 import android.Manifest;
 import android.app.ActivityManager;
+import android.app.Notification;
 import android.app.Service;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,6 +24,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.telecom.TelecomManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -54,6 +59,8 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     //contains the ads
     private AdView mAdView;
 
+    public final String ANDROID_CHANNEL_ID = "KioskService";
+
     private WindowManager mWindowManager;
     WindowManager.LayoutParams mWindowsParams;
     private View mView;
@@ -63,6 +70,8 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     private ArrayList<TriviaQuestion> triviaQuestions;
 
     private TriviaQuestion triviaQuestion;
+
+    private Button unlock;
 
     private TextView questionView;
     //Response buttons with questions
@@ -108,10 +117,26 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     public void onCreate() {
         super.onCreate();
 
+
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            Notification.Builder builder = new Notification.Builder(this, ANDROID_CHANNEL_ID)
+                    .setContentTitle(getString(R.string.app_name))
+                    .setContentText("KioskMode restarted")
+                    .setAutoCancel(true);
+
+            Notification notification = builder.build();
+            startForeground(1, notification);
+
+        }
+
+
+
+
         mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
 
         loadKiosk();
@@ -298,6 +323,8 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                 Log.d("Network", "Network connection available");
                 //Loading unique ad id
                 MobileAds.initialize(homeActivity, "ca-app-pub-3940256099942544~3347511713");
+                //MobileAds.initialize(homeActivity, "ca-app-pub-5475955576463045~8715927181");
+
 
                 //displaying the ads
                 mAdView = mView.findViewById(R.id.adView);
@@ -333,6 +360,8 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     private void unLock(){
         Button hiddenExit = mView.findViewById(R.id.exitButton);
         hiddenExit.setVisibility(View.VISIBLE);
+        unlock.setVisibility(View.GONE);
+
         hiddenExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -352,7 +381,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
      */
     public void response(){
         if (mView != null) {
-            Button unlock = mView.findViewById(R.id.unlockPhone);
+            unlock = mView.findViewById(R.id.unlockPhone);
 
             unlock.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -657,20 +686,32 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
      */
     private void temporaryUnlock(){
         stopSelf(-1);
+        int lockbreak = 300000;
         // Take out of KioskMode
         homeActivity.setShouldBeInKioskMode(false);
+
         Handler myhandler = new Handler();
 
-        int lockbreak = 300000;
+        //5 minute break
+        //int lockbreak = 30000;
         myhandler.postDelayed(new Runnable() {
             @Override
             public void run() {
 
                 homeActivity.setShouldBeInKioskMode(true);
                 //resumes the KioskService
-                Intent intent = new Intent(homeActivity, KioskService.class);
-                stopService(intent);
-                startService(intent);
+
+                Intent service = new Intent(homeActivity, KioskService.class);
+
+
+                if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                    //ComponentName service = new ComponentName(getApplicationContext(), KioskService.class);
+                    //ContextCompat.startForegroundService(homeActivity, service);
+                    homeActivity.startForegroundService(service);
+                } else{
+                    stopService(service);
+                    startService(service);
+                }
 
                 //Tells the user that their phone break is over
                 Toast.makeText(homeActivity.getApplicationContext(),

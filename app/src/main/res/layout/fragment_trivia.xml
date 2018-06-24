@@ -13,7 +13,7 @@
         android:textSize="20sp"
         android:gravity="center"
         android:layout_marginBottom="15dp"
-        android:text="CHALLENGE"
+        android:text="Challenge"
         android:textColor="@color/titletextcolor" />
 
     <TextView

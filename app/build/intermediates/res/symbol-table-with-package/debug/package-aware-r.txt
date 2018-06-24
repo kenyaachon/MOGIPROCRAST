@@ -1,4 +1,4 @@
-com.iruss.mogivisions.experiment
+com.iruss.mogivisions.procrastimate
 int anim abc_fade_in 0x7f010000
 int anim abc_fade_out 0x7f010001
 int anim abc_grow_fade_in_from_bottom 0x7f010002
@@ -834,7 +834,8 @@ int layout select_dialog_singlechoice_material 0x7f0a0033
 int layout settingtitle 0x7f0a0034
 int layout support_simple_spinner_dropdown_item 0x7f0a0035
 int mipmap ic_launcher 0x7f0b0000
-int mipmap ic_launcher_round 0x7f0b0001
+int mipmap ic_launcher_foreground 0x7f0b0001
+int mipmap ic_launcher_round 0x7f0b0002
 int string CameraPermissionRequest 0x7f0c0000
 int string CameraPermissionRequestRationale 0x7f0c0001
 int string CameraPermissionTitle 0x7f0c0002

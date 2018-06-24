@@ -23,7 +23,7 @@
     <string name="CameraPermissionRequestRationale">Camera access needed if you want to access your phone while your phone is locked</string>
     <string name="UsageStatisticsTitle">Permission Request</string>
     <string name="UsageStatisticsPermissionRequest">Permission to view phone usage statistics critical for best user experience</string>
-    <string name="UsageStatisticsPermissionRational">Can you approve App permission to view phone usage? Permission to view phone usage statistics critical for best user experience</string>
+    <string name="UsageStatisticsPermissionRational">We need to view your phone usage stastics to provide you with the best user experience</string>
     <string name="PhoneTitle">Permission Request</string>
     <string name="PhonePermissionRequest">"Permission to access phone calling functionality"</string>
     <string name="PhonePermissionRational">"Phone access needed if you want to make calls while your phone is locked"</string>

@@ -71,6 +71,7 @@ public class HomeActivity extends AppCompatActivity
         initializeKiosk();
         initializeSettings();
         //sample AddMob Id
+        //MobileAds.initialize(this, "ca-app-pub-5475955576463045~8715927181");
         MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
 
         mAdView = findViewById(R.id.adView);
@@ -126,6 +127,7 @@ public class HomeActivity extends AppCompatActivity
                         showExplanation(HomeActivity.this.getString(R.string.PhonePermissionRequest), HomeActivity.this.getString(R.string.PhonePermissionRational), MY_PERMISSIONS_REQUEST_READ_PHONE_STATE);
                         okToStartKiosk = false;
                     }
+
                     if (ActivityCompat.checkSelfPermission(HomeActivity.this, Manifest.permission.CAMERA)
                             != PackageManager.PERMISSION_GRANTED) {
                         Log.i("HomeActivity", "Camera");
@@ -162,7 +164,7 @@ public class HomeActivity extends AppCompatActivity
 
 
     // Starts the kiosk service to overlay on top
-    private void startKiosk() {
+    public void startKiosk() {
         // Terrible workaround -- not good practice at all to use a static member for this
         KioskService.homeActivity = this;
 

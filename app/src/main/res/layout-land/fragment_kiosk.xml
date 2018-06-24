@@ -1,0 +1,115 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/lockedbackground"
+    android:paddingTop="10dp"
+    tools:context="com.iruss.mogivisions.procrastimate.HomeActivity">
+
+
+    <TextView
+        android:id="@+id/kioskView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
+        android:textSize="25sp"
+        android:textColor="@color/titletextcolor"
+        android:layout_above="@id/adView"
+        android:text="@string/kioskphonelock" />
+
+    <ImageView
+        android:id="@+id/kioskLockView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/kioskView"
+        android:src="@drawable/ic_lock_outline_black_24dp" />
+
+    <TextView
+        android:id="@+id/kioskTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/titletextcolor" />
+
+    <TextView
+        android:id="@+id/timeView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/kioskLockView"
+        android:textSize="25sp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="@string/time_left"
+        android:textColor="@color/titletextcolor" />
+
+
+    <Button
+        android:id="@+id/unlockPhone"
+        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_above="@id/timeView"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:textColor="@color/titletextcolor"
+        android:background="@drawable/rounded_button"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dip"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text="@string/unlock_phone" />
+
+
+    <ImageButton
+        android:id="@+id/phone"
+        android:background="@null"
+        android:layout_above="@id/adView"
+        android:layout_alignParentLeft = "true"
+        android:paddingLeft="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_phone_black_24dp" />
+
+    <ImageButton
+        android:id="@+id/camera"
+        android:background="@null"
+        android:layout_alignParentRight = "true"
+        android:layout_above="@id/adView"
+        android:paddingRight="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_photo_camera_black_24dp" />
+
+
+    <Button
+        android:id="@+id/exitButton"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below= "@id/unlockPhone"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/titletextcolor"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dip"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:text="@string/exitButton" />
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+    </com.google.android.gms.ads.AdView>
+
+</RelativeLayout>

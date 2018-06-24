@@ -6,7 +6,7 @@
     <color name="lightbuttonBackground">#dad6d6</color>
     <color name="textColorDark">#000000</color>
     <color name="black_overlay">#66000000</color>
-    <color name="titlebackgroundcolor">#09d6d6</color>
-    <color name="settingTitleBackgroundcolor">#1280fd</color>
+    <color name="titlebackgroundcolor">#1c9d97</color>
+    <color name="settingTitleBackgroundcolor">#055a9d</color>
     <color name="titletextcolor">#ffffff</color>
 </resources>

@@ -23,9 +23,10 @@
         android:layout_below = "@id/settings"
         android:background="@drawable/rounded_button"
         android:layout_centerHorizontal="true"
+        android:textColor="@color/titletextcolor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
         android:text="@string/lock_phone" />
@@ -47,7 +48,6 @@
         android:layout_marginBottom="15dp"
         android:text="@string/home_unlock"
         android:textColor="@color/titletextcolor" />
-
 
 
     <LinearLayout
