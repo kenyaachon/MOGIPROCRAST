@@ -3,15 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.iruss.mogivisions.procrastimate">
 
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" tools:ignore="ProtectedPermissions"/>
-
+    <uses-permission
+        android:name="android.permission.PACKAGE_USAGE_STATS"
+        tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
@@ -21,16 +21,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
-            android:name="com.iruss.mogivisions.procrastimate.SettingsActivity"
+            android:name=".SettingsActivity"
             android:label="Settings"
-            android:theme="@style/settingTheme"
-            android:parentActivityName="com.iruss.mogivisions.procrastimate.HomeActivity" />
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/settingTheme" />
         <activity
-            android:name="com.iruss.mogivisions.procrastimate.HomeActivity"
-            android:theme="@style/customTheme"
-            >
+            android:name=".HomeActivity"
+            android:theme="@style/customTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,8 +36,13 @@
             </intent-filter>
         </activity>
 
-        <service android:name="com.iruss.mogivisions.kiosk.KioskService"/>
+        <service android:name="com.iruss.mogivisions.kiosk.KioskService" />
 
+        <activity android:name="com.iruss.mogivisions.statistics.StatisticsActivity"
+            android:label="Statistics"
+            android:theme="@style/statisticsTheme"
+            android:parentActivityName=".HomeActivity"
+            />
     </application>
 
 </manifest>

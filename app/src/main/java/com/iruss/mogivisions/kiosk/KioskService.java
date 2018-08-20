@@ -37,6 +37,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -82,9 +83,11 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
 
 
     //Number of trials possible
-    private static final int trials = 2;
+    private static final int trials = 4 ;
 
     private TextView trialsView;
+
+    private TextView successView;
 
     //Number of trials remaining
     private int attemptsMade = 0;
@@ -96,6 +99,15 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     //Correct button
     private Button correctButton;
 
+
+    //Number of successes
+    private int success = 0;
+
+
+    //Display of success
+    private RatingBar successBar;
+    //Display of trials
+    private RatingBar trialBar;
 
     // Whether waiting for launcher to launch phone or camera
     private boolean waitingForLauncher = false;
@@ -487,8 +499,14 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
 
         //Gets the text that shows how many trials you have
         trialsView = mView.findViewById(R.id.trialsRemaining);
-        String trialsStr = "Trials remaining: " + Integer.toString(trials) ;
-        trialsView.setText(trialsStr);
+        //String trialsStr = "Trials remaining: " + Integer.toString(trials) ;
+        //trialsView.setText(trialsStr);
+
+        //Gets the Successful Attempts text
+        successView = mView.findViewById(R.id.successes);
+
+        trialBar = (RatingBar) mView.findViewById(R.id.trialBar);
+        trialBar.setRating(trials);
 
         setTriviaTextSize();
         //call the trivia Api
@@ -510,6 +528,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
 
         float textSize = Float.parseFloat(syncConnPref);
         trialsView.setTextSize(textSize);
+        successView.setTextSize(textSize);
         questionView.setTextSize(textSize);
         questionResponse1.setTextSize(textSize);
         questionResponse2.setTextSize(textSize);
@@ -537,6 +556,8 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
 
     // TODO: Make a test for this method
     public boolean displayQuestions(ArrayList<TriviaQuestion> triviaQuestions){
+
+
         this.triviaQuestions = triviaQuestions;
         //Randomly select question
         Random randomizer = new Random();
@@ -631,24 +652,35 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
      */
     // TODO: Make a test for this method
     private final View.OnClickListener myClickListener = new View.OnClickListener(){
+
         @Override
         public void onClick(View view) {
+            successBar = (RatingBar) mView.findViewById(R.id.successBar);
+            //trialBar = (RatingBar) mView.findViewById(R.id.trialBar);
+            //trialBar.setRating(trials);
+
             Button tempButton = mView.findViewById(view.getId());
 
             //Checks to see if the answer the user is the correct one
             if(tempButton.getText().equals(triviaQuestion.getCorrectAnswer())){
                 Log.d("Test", "Correct response chosen");
                 tempButton.setBackgroundColor(Color.GREEN);
+                success += 1;
+                successBar.setRating(success);
 
-                homeActivity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(homeActivity.getApplicationContext(),
-                                "Trivia challenge solved successfully, phone is unlocked",
-                                Toast.LENGTH_LONG).show();
-                    }
-                });
-                temporaryUnlock();
+                if(success == 3) {
+                    homeActivity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(homeActivity.getApplicationContext(),
+                                    "Trivia challenge solved successfully, phone is unlocked",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
+                    temporaryUnlock();
+                }else{
+                    continueTrivia();
+                }
 
             }
             else {
@@ -661,6 +693,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
 
                 if(attemptsMade == trials){
                     //call kill
+                    success = 0;
                     attemptsMade = 0;
                     //display a message to user that they are out of attempts and go back to KioskActivity
                     Log.d("Test", "You are out of attempts");
@@ -734,9 +767,10 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                 //Works on displaing the next set of questions
                 attemptsMade += 1;
                 int displayTrials = trials - attemptsMade;
-                String trialsStr = "Trials remaining: " + Integer.toString(displayTrials) ;
+                trialBar.setRating(displayTrials);
+                //String trialsStr = "Trials remaining: " + Integer.toString(displayTrials) + "    Successes (need 3 to unlock): " + Integer.toString(success);
                 //changes how many trials there are left
-                trialsView.setText(trialsStr);
+                //trialsView.setText(trialsStr);
                 displayQuestions(triviaQuestions);
             }
         }, 1000);

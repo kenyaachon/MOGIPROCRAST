@@ -18,19 +18,25 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.view.menu.MenuBuilder;
+import android.support.v7.view.menu.MenuPopupHelper;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.iruss.mogivisions.kiosk.KioskService;
+import com.iruss.mogivisions.statistics.StatisticsActivity;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity
@@ -79,21 +85,57 @@ public class HomeActivity extends AppCompatActivity
         mAdView.loadAd(adRequest);
 
         userStats();
-
-
     }
+
+
+
+
+
     /**
      * Handles when the settings button is pressed
      * Calls the SettingsActivity
      */
     public void initializeSettings() {
-        ImageButton settingsButton = findViewById(R.id.settings);
+        final ImageButton settingsButton = findViewById(R.id.settings);
 
         settingsButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+            public void onClick(View view) {
 
-                Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
-                startActivity(intent);
+                //Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
+                //startActivity(intent);
+
+                PopupMenu popup = new PopupMenu(HomeActivity.this, settingsButton);
+
+
+
+                //Inflating the Popup using xml file
+                popup.getMenuInflater()
+                        .inflate(R.menu.popup_menu, popup.getMenu());
+
+                //registering popup with OnMenuItemClickListener
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    public boolean onMenuItemClick(MenuItem item) {
+                        Toast.makeText(
+                                HomeActivity.this,
+                                "You Clicked : " + item.getTitle(),
+                                Toast.LENGTH_SHORT
+                        ).show();
+                        switch (item.getTitle().toString()) {
+                            case "Settings":
+                                Intent intent = new Intent(HomeActivity.this, SettingsActivity.class);
+                                startActivity(intent);
+                                break;
+                            case "Statistics":
+                                Intent intent1 = new Intent(HomeActivity.this, StatisticsActivity.class);
+                                startActivity(intent1);
+                                break;
+                        }
+
+                        return true;
+                    }
+                });
+                popup.show();
+
             }
         });
 

@@ -18,12 +18,31 @@
         <item name="titleTextStyle">@style/MyActionBarTitleText</item>
     </style>
 
+    <style name="statisticsTheme" parent="Theme.AppCompat.Light">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:windowTitleBackgroundStyle">@style/statisticsTitleBackground</item>
+        <item name="android:actionBarStyle"   tools:ignore="NewApi">@style/MyActionBarStats</item>
+        <item name="actionBarStyle">@style/MyActionBarStats</item>
+        <item name="titleTextStyle">@style/MyActionBarTitleText</item>
+    </style>
+
+
 
     <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="android:background"  tools:ignore="NewApi">@color/settingTitleBackgroundcolor</item>
         <item name="background">@color/settingTitleBackgroundcolor</item>
         <item name="titleTextStyle">@style/MyActionBarTitleText</item>
     </style>
+
+    <style name="MyActionBarStats" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background"  tools:ignore="NewApi">@color/statisticsTitleBackgroundcolor</item>
+        <item name="background">@color/statisticsTitleBackgroundcolor</item>
+        <item name="titleTextStyle">@style/MyActionBarTitleText</item>
+    </style>
+
 
     <style name="MyActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/titletextcolor</item>

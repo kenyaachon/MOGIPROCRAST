@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "903048831630",
+    "firebase_url": "https://procrasti-mate-a614d.firebaseio.com",
+    "project_id": "procrasti-mate-a614d",
+    "storage_bucket": "procrasti-mate-a614d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:903048831630:android:5f9989d72ef83cc1",
+        "android_client_info": {
+          "package_name": "com.iruss.mogivisions.procrastimate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "903048831630-o7dir1ijee5ppnclk1rt9b7pk0pqbc67.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.iruss.mogivisions.procrastimate",
+            "certificate_hash": "57ba67d6fa4d9bfcc4247cb880477639600f61e5"
+          }
+        },
+        {
+          "client_id": "903048831630-aju2dk02dk8fc42sq45v9kc895giam7j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAC2EOv-SNP1eK_Gs2sEwkj48tKnKqTJbY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "903048831630-aju2dk02dk8fc42sq45v9kc895giam7j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

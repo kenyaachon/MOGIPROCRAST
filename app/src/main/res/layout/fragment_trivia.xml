@@ -15,7 +15,7 @@
         android:layout_marginBottom="15dp"
         android:text="Challenge"
         android:textColor="@color/titletextcolor" />
-
+<!--
     <TextView
         android:id="@+id/trialsRemaining"
         android:layout_width="match_parent"
@@ -24,8 +24,69 @@
         android:layout_marginTop="30dp"
         android:layout_height="wrap_content"
         android:textColor="@color/textColorDark"
-        android:text="Trials Remaing: 1" />
+        android:text="Trials Remaing: 1" />-->
 
+
+
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center_horizontal"
+        >
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+            <TextView
+                android:id="@+id/trialsRemaining"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:layout_marginTop="30dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColorDark"
+                android:paddingRight="5dp"
+                android:text="Trials Remaining"
+                android:layout_column="1"/>
+            <TextView
+                android:id="@+id/successes"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:layout_marginTop="30dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:textColor="@color/textColorDark"
+                android:text="Success Achieved"
+                android:layout_column="2"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+            <RatingBar
+                android:id="@+id/trialBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numStars="4"
+                android:isIndicator="true"
+                android:stepSize="1.0"
+                android:paddingRight="5dp"
+                android:layout_centerInParent = "true"
+                android:layout_column="1"/>
+            <RatingBar
+                android:id="@+id/successBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numStars="3"
+                android:isIndicator="true"
+                android:stepSize="1.0"
+                android:paddingLeft="5dp"
+                android:layout_centerInParent = "true"
+                android:layout_column="2"/>
+        </TableRow>
+    </TableLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
