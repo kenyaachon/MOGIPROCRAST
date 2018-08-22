@@ -18,6 +18,9 @@ import com.iruss.mogivisions.procrastimate.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * StatisticsActivity display the usage statistics of the user
+ */
 public class StatisticsActivity extends AppCompatActivity {
 
     @Override
@@ -41,6 +44,7 @@ public class StatisticsActivity extends AppCompatActivity {
 
 
 
+        //Creates the TabLayout for the app
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new FragmentOne(), "STATISTICS");
@@ -55,8 +59,9 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
 
-
-    // Adapter for the viewpager using FragmentPagerAdapter
+    /**
+     * ViewPageAdapter that extends the FragmentPagerAdapter
+     */
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();

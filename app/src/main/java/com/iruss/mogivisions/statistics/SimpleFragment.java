@@ -29,6 +29,9 @@ import com.github.mikephil.charting.utils.FileUtils;
 
 import java.util.ArrayList;
 
+/**
+ * The Base Fragment for displaying a graph
+ */
 public abstract class SimpleFragment extends Fragment {
 
     private Typeface tf;

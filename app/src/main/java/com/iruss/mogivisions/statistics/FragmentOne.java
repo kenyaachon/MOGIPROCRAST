@@ -39,6 +39,7 @@ import java.util.TreeSet;
 
 /**
  * A simple {@link Fragment} subclass.
+ * Displays a BarChart graph
  */
 public class FragmentOne extends SimpleFragment implements OnChartGestureListener {
     private BarChart mChart;
@@ -92,10 +93,13 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
         return v;
     }
 
-    //Gets the usage data of the users device
+    /**
+     *Gets the usage data of the users device
+     */
     public BarData getUsageData() {
         ArrayList<IBarDataSet> sets = new ArrayList<>();
 
+        //Uses the UsageStatsManger to get the recent device usage statistics
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
 
             UsageStatsManager mUsageStatsManager = (UsageStatsManager) getActivity().getSystemService(Context.USAGE_STATS_SERVICE);
@@ -106,12 +110,15 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
             ArrayList<BarEntry> entries = new ArrayList<>();
             List<UsageStats> stats = mUsageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, time - 1000 * 10, time);
 
+            //Puts the data into a sorted map
             SortedMap<String,Long> mySortedMap = new TreeMap<>();
             if(stats != null) {
                 for (UsageStats usageStats : stats) {
                     mySortedMap.put(usageStats.getPackageName(),(usageStats.getTotalTimeInForeground() / 1000));
                 }
             }
+
+            //Going through the map to put it into a list to format the data for display in the bar chart
             SortedSet<Map.Entry<String,Long>> sortedMap = entriesSortedByValues(mySortedMap);
             Iterator it = sortedMap.iterator();
 
@@ -121,6 +128,7 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
             }
             Log.i("Usage Data", Integer.toString(entries.size()));
 
+            //Creating the BarChart
             BarDataSet ds = new BarDataSet(entries, getLabel(0));
             ds.setColors(ColorTemplate.VORDIPLOM_COLORS);
             sets.add(ds);
@@ -151,6 +159,11 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
     private String[] mLabels = new String[] { "Applications", "Company B", "Company C", "Company D", "Company E", "Company F" };
 //    private String[] mXVals = new String[] { "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec" };
 
+    /**
+     * Gets the desired Label for the bar chart graph
+     * @param i
+     * @return
+     */
     private String getLabel(int i) {
         return mLabels[i];
     }
