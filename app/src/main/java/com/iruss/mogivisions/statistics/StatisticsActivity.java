@@ -12,6 +12,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.iruss.mogivisions.procrastimate.HomeActivity;
 import com.iruss.mogivisions.procrastimate.R;
 
@@ -22,6 +25,7 @@ import java.util.List;
  * StatisticsActivity display the usage statistics of the user
  */
 public class StatisticsActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +57,6 @@ public class StatisticsActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
 
 
     }

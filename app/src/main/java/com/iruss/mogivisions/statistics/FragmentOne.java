@@ -1,8 +1,12 @@
 package com.iruss.mogivisions.statistics;
 
+import android.app.ActivityManager;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
+import android.content.ComponentName;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -22,6 +26,9 @@ import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.iruss.mogivisions.procrastimate.R;
 import com.iruss.mogivisions.statistics.MyMarkerView;
 import com.iruss.mogivisions.statistics.SimpleFragment;
@@ -37,12 +44,18 @@ import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import static android.content.Context.ACTIVITY_SERVICE;
+
 /**
  * A simple {@link Fragment} subclass.
  * Displays a BarChart graph
  */
 public class FragmentOne extends SimpleFragment implements OnChartGestureListener {
+    //Grapht that is going to be displayed
     private BarChart mChart;
+
+    private static final int MAX_RECENT_TASKS = 100;
+
 
     public FragmentOne() {
         // Required empty public constructor
@@ -83,12 +96,15 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
 
         YAxis leftAxis = mChart.getAxisLeft();
         //leftAxis.setTypeface(tf);
+        leftAxis.setValueFormatter(new MyYAxisValueFormatter());
         leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 
         mChart.getAxisRight().setEnabled(false);
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setEnabled(false);
+
+
 
         return v;
     }
@@ -111,18 +127,19 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
             List<UsageStats> stats = mUsageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, time - 1000 * 10, time);
 
             //Puts the data into a sorted map
-            SortedMap<String,Long> mySortedMap = new TreeMap<>();
-            if(stats != null) {
+            SortedMap<String, Long> mySortedMap = new TreeMap<>();
+            if (stats != null) {
                 for (UsageStats usageStats : stats) {
-                    mySortedMap.put(usageStats.getPackageName(),(usageStats.getTotalTimeInForeground() / 1000));
+                    mySortedMap.put(usageStats.getPackageName(), (usageStats.getTotalTimeInForeground() / 60000));
+                    //mySortedMap.put(usageStats.getPackageName(),(usageStats.getTotalTimeInForeground() / 1000));
                 }
             }
 
             //Going through the map to put it into a list to format the data for display in the bar chart
-            SortedSet<Map.Entry<String,Long>> sortedMap = entriesSortedByValues(mySortedMap);
+            SortedSet<Map.Entry<String, Long>> sortedMap = entriesSortedByValues(mySortedMap);
             Iterator it = sortedMap.iterator();
 
-                for (int i = 0; i < mySortedMap.size(); i++) {
+            for (int i = 0; i < mySortedMap.size(); i++) {
                 Map.Entry<Long, Long> pair = (Map.Entry<Long, Long>) it.next();
                 entries.add(new BarEntry(i, pair.getValue()));
             }
@@ -134,6 +151,19 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
             sets.add(ds);
 
         }
+        /*
+        else{
+            ActivityManager tasksManger = (ActivityManager) getActivity().getSystemService(ACTIVITY_SERVICE);
+            List<ActivityManager.RecentTaskInfo> usageStats = tasksManger.getRecentTasks(MAX_RECENT_TASKS, 0);
+
+            SortedMap<String,Long> mySortedMap = new TreeMap<>();
+            for(int i = 0; i < usageStats.size(); i++){
+                ComponentName app = usageStats.get(i).origActivity;
+                mySortedMap.put(app.getPackageName(), usageStats.get(i));
+
+            }
+
+    }*/
 
         BarData d = new BarData(sets);
         //d.setValueTypeface(tf);

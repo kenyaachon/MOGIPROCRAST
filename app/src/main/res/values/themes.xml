@@ -4,7 +4,13 @@
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">false</item>
         <item name="android:windowTitleBackgroundStyle">@style/WindowTitleBackground</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu</item>
     </style>
+
+    <style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground">#1c9d97</item>
+    </style>
+
 
     <style name="settingTheme" parent="Theme.AppCompat.Light">
         <item name="android:windowActionBar">false</item>
@@ -58,6 +64,7 @@
         <item name="android:editTextColor">#FF000000</item>
         <item name="color">#FF000000</item>
     </style>
+
 
 
 </resources>

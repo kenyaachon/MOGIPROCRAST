@@ -9,6 +9,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -77,19 +79,49 @@ public class HomeActivity extends AppCompatActivity
         initializeKiosk();
         initializeSettings();
         //sample AddMob Id
+        /*
         //MobileAds.initialize(this, "ca-app-pub-5475955576463045~8715927181");
         MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
 
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        mAdView.loadAd(adRequest);*/
+        loadAds();
 
         userStats();
     }
 
 
+    /**
+     * Loads the ads at the bottom of the page
+     * Checks if there is internet if not then ads are not loaded
+     */
+    private void loadAds(){
+        ConnectivityManager conMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        //Checks if there is internet
+        try {
+            NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
+            boolean isConnected = activeNetwork != null &&
+                    activeNetwork.isConnectedOrConnecting();
+            if(isConnected){
+                Log.d("Network", "Network connection available");
+                //Loading unique ad id
+                MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+                //MobileAds.initialize(homeActivity, "ca-app-pub-5475955576463045~8715927181");
 
 
+                //displaying the ads
+                mAdView = findViewById(R.id.adView);
+                AdRequest adRequest = new AdRequest.Builder().build();
+                mAdView.loadAd(adRequest);
+            }
+
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     /**
      * Handles when the settings button is pressed
@@ -106,6 +138,22 @@ public class HomeActivity extends AppCompatActivity
 
                 PopupMenu popup = new PopupMenu(HomeActivity.this, settingsButton);
 
+                //Forces the menu icons to be visible
+                try {
+                    Field[] fields = popup.getClass().getDeclaredFields();
+                    for (Field field : fields) {
+                        if ("mPopup".equals(field.getName())) {
+                            field.setAccessible(true);
+                            Object menuPopupHelper = field.get(popup);
+                            Class<?> classPopupHelper = Class.forName(menuPopupHelper.getClass().getName());
+                            Method setForceIcons = classPopupHelper.getMethod("setForceShowIcon", boolean.class);
+                            setForceIcons.invoke(menuPopupHelper, true);
+                            break;
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
 
                 //Inflating the Popup using xml file
@@ -134,6 +182,8 @@ public class HomeActivity extends AppCompatActivity
                         return true;
                     }
                 });
+
+
                 popup.show();
 
             }
