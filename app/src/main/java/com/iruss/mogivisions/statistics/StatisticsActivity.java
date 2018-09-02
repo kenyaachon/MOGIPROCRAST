@@ -1,6 +1,9 @@
 package com.iruss.mogivisions.statistics;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -26,6 +30,8 @@ import java.util.List;
  */
 public class StatisticsActivity extends AppCompatActivity {
 
+    //Ads
+    private AdView mAdView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +40,7 @@ public class StatisticsActivity extends AppCompatActivity {
 
         //Allows for a custome title to be used
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setCustomView(R.layout.settingtitle);
+        getSupportActionBar().setCustomView(R.layout.statisticstitle);
 
         //Goes back to home activity
         ImageButton settingsButton = findViewById(R.id.returnHome);
@@ -51,7 +57,8 @@ public class StatisticsActivity extends AppCompatActivity {
         //Creates the TabLayout for the app
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new FragmentOne(), "STATISTICS");
+        adapter.addFragment(new FragmentOne(), "GRAPH");
+        adapter.addFragment(new FragmentThree(), "APP USAGE");
         adapter.addFragment(new FragmentTwo(), "GUIDE");
         viewPager.setAdapter(adapter);
 
@@ -59,7 +66,43 @@ public class StatisticsActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
 
+        loadAds();
     }
+
+
+    /**
+     * Loads the ads at the bottom of the page
+     * Checks if there is internet if not then ads are not loaded
+     */
+    private void loadAds(){
+        ConnectivityManager conMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        //Checks if there is internet
+        try {
+            NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
+            boolean isConnected = activeNetwork != null &&
+                    activeNetwork.isConnectedOrConnecting();
+            if(isConnected){
+                Log.d("Network", "Network connection available");
+                //Loading unique ad id
+                MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+                //MobileAds.initialize(homeActivity, "ca-app-pub-5475955576463045~8715927181");
+
+
+                //displaying the ads
+                mAdView = findViewById(R.id.adView);
+                AdRequest adRequest = new AdRequest.Builder().build();
+                mAdView.loadAd(adRequest);
+            }
+
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
 
 
     /**

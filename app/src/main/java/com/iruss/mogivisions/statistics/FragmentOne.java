@@ -14,6 +14,10 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.Legend;
@@ -54,7 +58,8 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
     //Grapht that is going to be displayed
     private BarChart mChart;
 
-    private static final int MAX_RECENT_TASKS = 100;
+    Spinner mSpinner;
+
 
 
     public FragmentOne() {
@@ -72,6 +77,9 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
         //return inflater.inflate(R.layout.fragmenttab_two, container, false);
         View v = inflater.inflate(R.layout.fragmenttab_two, container, false);
 
+        getUsageInterval(v);
+
+        /*
         mChart = v.findViewById(R.id.barchart);
 
         mChart.getDescription().setEnabled(false);
@@ -87,15 +95,64 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
         //Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),"OpenSans-Light.ttf");
 
         //BarData data = generateBarData(1, 20000, 50);
+
+        //Getting the Usage data
         BarData data = getUsageData();
         mChart.setData(data);
         mChart.invalidate();
 
-        Legend l = mChart.getLegend();
+        //Legend l = mChart.getLegend();
         //l.setTypeface(tf);
 
+
+        //Defining the YAxis
         YAxis leftAxis = mChart.getAxisLeft();
         //leftAxis.setTypeface(tf);
+
+        //Formating the values on the YAXIS
+        leftAxis.setValueFormatter(new MyYAxisValueFormatter());
+        leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
+
+        mChart.getAxisRight().setEnabled(false);
+
+        XAxis xAxis = mChart.getXAxis();
+        xAxis.setEnabled(false);*/
+
+
+        return v;
+    }
+
+    public void displayChart(View v, BarData data){
+        mChart = v.findViewById(R.id.barchart);
+
+        mChart.getDescription().setEnabled(false);
+        mChart.setOnChartGestureListener(this);
+
+        MyMarkerView mv = new MyMarkerView(getActivity(), R.layout.custom_marker_view);
+        mv.setChartView(mChart); // For bounds control
+        mChart.setMarker(mv);
+
+        mChart.setDrawGridBackground(false);
+        mChart.setDrawBarShadow(false);
+
+        //Typeface tf = Typeface.createFromAsset(getActivity().getAssets(),"OpenSans-Light.ttf");
+
+        //BarData data = generateBarData(1, 20000, 50);
+
+        //Getting the Usage data
+        //BarData data = getUsageData();
+        mChart.setData(data);
+        mChart.invalidate();
+
+        //Legend l = mChart.getLegend();
+        //l.setTypeface(tf);
+
+
+        //Defining the YAxis
+        YAxis leftAxis = mChart.getAxisLeft();
+        //leftAxis.setTypeface(tf);
+
+        //Formating the values on the YAXIS
         leftAxis.setValueFormatter(new MyYAxisValueFormatter());
         leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 
@@ -103,16 +160,82 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setEnabled(false);
-
-
-
-        return v;
     }
+
+
+
+
+
+
+    public void getUsageInterval(View v){
+        final View v2 = v;
+        mSpinner = (Spinner) v.findViewById(R.id.spinner_time_span);
+        SpinnerAdapter spinnerAdapter = ArrayAdapter.createFromResource(getActivity(),
+                R.array.action_list, android.R.layout.simple_spinner_dropdown_item);
+        mSpinner.setAdapter(spinnerAdapter);
+
+        BarData data;
+        mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            String[] strings = getResources().getStringArray(R.array.action_list);
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                FragmentOne.StatsUsageInterval statsUsageInterval = FragmentOne.StatsUsageInterval
+                        .getValue(strings[position]);
+
+
+                if (statsUsageInterval != null) {
+                    //List<UsageStats> usageStatsList = getUsageData(statsUsageInterval.mInterval);
+                    //data = getUsageData();
+                    BarData data = getUsageData(statsUsageInterval.mInterval);
+                    displayChart(v2, data);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
+
+    /**
+     * Enum represents the intervals for {@link android.app.usage.UsageStatsManager} so that
+     * values for intervals can be found by a String representation.
+     *
+     */
+    //VisibleForTesting
+    static enum StatsUsageInterval {
+        DAILY("Daily", UsageStatsManager.INTERVAL_DAILY),
+        WEEKLY("Weekly", UsageStatsManager.INTERVAL_WEEKLY),
+        MONTHLY("Monthly", UsageStatsManager.INTERVAL_MONTHLY),
+        YEARLY("Yearly", UsageStatsManager.INTERVAL_YEARLY);
+
+        private int mInterval;
+        private String mStringRepresentation;
+
+        StatsUsageInterval(String stringRepresentation, int interval) {
+            mStringRepresentation = stringRepresentation;
+            mInterval = interval;
+        }
+
+
+        static FragmentOne.StatsUsageInterval getValue(String stringRepresentation) {
+            for (FragmentOne.StatsUsageInterval statsUsageInterval : values()) {
+                if (statsUsageInterval.mStringRepresentation.equals(stringRepresentation)) {
+                    return statsUsageInterval;
+                }
+            }
+            return null;
+        }
+    }
+
+
 
     /**
      *Gets the usage data of the users device
      */
-    public BarData getUsageData() {
+    public BarData getUsageData(int intervalType) {
         ArrayList<IBarDataSet> sets = new ArrayList<>();
 
         //Uses the UsageStatsManger to get the recent device usage statistics
@@ -124,7 +247,8 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
             long totalPhoneTime = 0;
 
             ArrayList<BarEntry> entries = new ArrayList<>();
-            List<UsageStats> stats = mUsageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, time - 1000 * 10, time);
+            List<UsageStats> stats = mUsageStatsManager.queryUsageStats(intervalType, time - 1000 * 10, time);
+            //List<UsageStats> stats = mUsageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, time - 1000 * 10, time);
 
             //Puts the data into a sorted map
             SortedMap<String, Long> mySortedMap = new TreeMap<>();
@@ -139,6 +263,7 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
             SortedSet<Map.Entry<String, Long>> sortedMap = entriesSortedByValues(mySortedMap);
             Iterator it = sortedMap.iterator();
 
+            //Formating the data as BarEntry's
             for (int i = 0; i < mySortedMap.size(); i++) {
                 Map.Entry<Long, Long> pair = (Map.Entry<Long, Long>) it.next();
                 entries.add(new BarEntry(i, pair.getValue()));
@@ -191,7 +316,7 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
 
     /**
      * Gets the desired Label for the bar chart graph
-     * @param i
+     * @param i, the id of the label in the labels list
      * @return
      */
     private String getLabel(int i) {
