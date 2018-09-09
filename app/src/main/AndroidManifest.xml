@@ -28,21 +28,30 @@
             android:theme="@style/settingTheme" />
         <activity
             android:name=".HomeActivity"
-            android:theme="@style/customTheme">
+            android:theme="@style/customTheme"/><!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>-->
+
+        <service android:name="com.iruss.mogivisions.kiosk.KioskService" />
+
+        <activity
+            android:name="com.iruss.mogivisions.statistics.StatisticsActivity"
+            android:label="Statistics"
+            android:parentActivityName=".HomeActivity"
+            android:theme="@style/statisticsTheme" />
+        <activity android:name=".SplashActivity"
+            android:theme="@style/SplashTheme">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <service android:name="com.iruss.mogivisions.kiosk.KioskService" />
-
-        <activity android:name="com.iruss.mogivisions.statistics.StatisticsActivity"
-            android:label="Statistics"
-            android:theme="@style/statisticsTheme"
-            android:parentActivityName=".HomeActivity"
-            />
     </application>
 
 </manifest>

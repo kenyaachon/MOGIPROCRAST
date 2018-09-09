@@ -1,18 +1,12 @@
 package com.iruss.mogivisions.statistics;
 
-import android.app.ActivityManager;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -22,14 +16,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -42,17 +36,14 @@ import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.MobileAds;
 import com.iruss.mogivisions.procrastimate.R;
-import com.iruss.mogivisions.statistics.MyMarkerView;
-import com.iruss.mogivisions.statistics.SimpleFragment;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -61,8 +52,6 @@ import java.util.SortedMap;
 import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
-
-import static android.content.Context.ACTIVITY_SERVICE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -94,13 +83,14 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         //return inflater.inflate(R.layout.fragmenttab_two, container, false);
-        v = inflater.inflate(R.layout.fragmenttab_two, container, false);
+        v = inflater.inflate(R.layout.fragmenttab_two, container, true);
         myDialog = new Dialog(getActivity());
 
 
         getUsageInterval(v);
 
 
+        setHelp(v);
 
         /*
         mChart = v.findViewById(R.id.barchart);
@@ -145,6 +135,11 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
         return v;
     }
 
+    /**
+     * Displays the Bar Chart
+     * @param v, the View where the BarChart will be created
+     * @param data, the formatted BarData needed to display the BarChart
+     */
     public void displayChart(View v, BarData data){
         mChart = v.findViewById(R.id.barchart);
 
@@ -189,14 +184,14 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
     }
 
 
-
-
-
-
-
+    /**
+     * Accesses the selected time interval on a spinner,
+     * afterwards calls getUsageData to get usage statistics and then calls displayChart to display a bar chart
+     * @param v, the View where the Spinner is located
+     */
     public void getUsageInterval(View v){
         //final View v2 = v;
-        mSpinner = (Spinner) v.findViewById(R.id.spinner_time_span);
+        mSpinner = (Spinner) v.findViewById(R.id.time_selector);
         SpinnerAdapter spinnerAdapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.action_list, android.R.layout.simple_spinner_dropdown_item);
         mSpinner.setAdapter(spinnerAdapter);
@@ -206,10 +201,11 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
                 .getValue(position);
 
         if (statsUsageInterval != null) {
-
             BarData data = getUsageData(statsUsageInterval.mInterval);
             displayChart(v, data);
         }
+
+
         mSpinner.setOnItemSelectedListener(this);
 
 
@@ -238,6 +234,83 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
         });*/
     }
 
+    private StringBuilder text = new StringBuilder();
+
+    /**
+     * Reads the content of a text file that contains a help guide about the BarChart,
+     * writes the contents of the text file onto a dialog
+     * @param dialog, the dialog that is going to be edited
+     */
+    public void getHelpText(Dialog dialog){
+        BufferedReader reader = null;
+
+        //Attempting to read the file in Assets
+        try {
+            reader = new BufferedReader(
+                    new InputStreamReader(getActivity().getAssets().open("guide.txt")));
+
+            // do reading, usually loop until end of file reading
+            String mLine;
+            while ((mLine = reader.readLine()) != null) {
+                text.append(mLine);
+                text.append('\n');
+            }
+        } catch (IOException e) {
+            Toast.makeText(getActivity().getApplicationContext(), "Error reading file!", Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+        } finally {
+            //if (reader != null) {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                //log the exception
+            }
+            //}
+
+            TextView output = dialog.findViewById(R.id.helpText);
+            output.setText(text);
+        }
+    }
+
+    //Help Dialog that is used for display help content about bar chart
+    private Dialog helpDialog;
+
+    /**
+     * Sets a help button to display a dialog showing a guide of how to use the barchart
+     * @param view, the layout to be searched for a help button
+     */
+    public void setHelp(View view){
+        helpDialog = new Dialog(view.getContext());
+        ImageButton help = view.findViewById(R.id.help);
+
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                helpDialog.setContentView(R.layout.helpdialog);
+
+                TextView txtclose = helpDialog.findViewById(R.id.txtclose);
+                txtclose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        helpDialog.dismiss();
+                    }
+                });
+
+                getHelpText(helpDialog);
+                helpDialog.setCancelable(true);
+                helpDialog.show();
+
+            }
+        });
+    }
+
+    /**
+     * OnItemSelected is called when an item in a Spinner is selected
+     * @param parent, the layout of where the spinner is
+     * @param arg1
+     * @param position
+     * @param id
+     */
     public void onItemSelected(AdapterView<?> parent, View arg1, int position,long id) {
         String[] strings = getResources().getStringArray(R.array.action_list);
 
@@ -254,10 +327,19 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
         }
     }
 
+    /**
+     * Called if no item on a Spinner is Selected
+     * @param parent
+     */
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
     }
 
+    /**
+     * OnValueSelected is called when a bar on the BarChart is touched,
+     * @param e, the specific entry in the BarChart that was touched
+     * @param h,
+     */
     @Override
     public void onValueSelected(Entry e, Highlight h) {
         //fire up event
@@ -275,8 +357,7 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
 
         TextView txtclose;
         myDialog.setContentView(R.layout.custompopup);
-        txtclose =(TextView) myDialog.findViewById(R.id.txtclose);
-        txtclose.setText("M");
+        txtclose =myDialog.findViewById(R.id.txtclose);
         txtclose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -312,11 +393,13 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
         myDialog.show();
 
     }
+
+    /**
+     * Called if no specific bar on a bar chart is selected
+     */
     @Override
     public void onNothingSelected() {
     }
-
-
 
 
 
@@ -326,7 +409,7 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
      *
      */
     //VisibleForTesting
-    static enum StatsUsageInterval {
+    enum StatsUsageInterval {
         DAILY("Daily", UsageStatsManager.INTERVAL_DAILY),
         WEEKLY("Weekly", UsageStatsManager.INTERVAL_WEEKLY),
         MONTHLY("Monthly", UsageStatsManager.INTERVAL_MONTHLY),

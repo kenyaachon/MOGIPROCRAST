@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-48:12
-INJECTED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-48:12
-INJECTED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-48:12
-INJECTED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-48:12
+ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-57:12
+INJECTED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-57:12
+INJECTED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-57:12
+INJECTED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-57:12
 MERGED from [com.android.support:design:27.1.1] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\design-27.1.1.aar\82efd2c15e26b941c3c2ca7ed7b9e47a\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\dc9fae68f49a4a3def7e7d1f83090dfb\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-v13:27.1.1] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\support-v13-27.1.1.aar\2d561062e0e241d58775b6a8a1f03a79\AndroidManifest.xml:17:1-22:12
@@ -47,22 +47,22 @@ MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\Moses\.gradle\cach
 MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\c7d87d1d58eab233f01194d66479fec0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.gms:play-services-measurement-base:16.0.0] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\play-services-measurement-base-16.0.0.aar\74c6d04359dd34eeae76052bf4db1392\AndroidManifest.xml:17:1-24:12
 MERGED from [android.arch.core:runtime:1.1.0] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\8e91d539c96a41a7199877860e2f7dd6\AndroidManifest.xml:17:1-22:12
-INJECTED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-48:12
-INJECTED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-48:12
-INJECTED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-48:12
+INJECTED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-57:12
+INJECTED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-57:12
+INJECTED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-57:12
 	package
 		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:4:5-50
 		INJECTED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-48:12
+		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-57:12
 		INJECTED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml
 	xmlns:tools
 		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-48:12
+		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:1-57:12
 		INJECTED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:2:11-69
@@ -139,7 +139,7 @@ ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\m
 	android:name
 		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:15:22-72
 application
-ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:17:5-46:19
+ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:17:5-55:19
 MERGED from [com.google.firebase:firebase-core:16.0.1] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\firebase-core-16.0.1.aar\0544acc40e1a4e578b3ee532b935447b\AndroidManifest.xml:7:5-20
 MERGED from [com.google.firebase:firebase-core:16.0.1] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\firebase-core-16.0.1.aar\0544acc40e1a4e578b3ee532b935447b\AndroidManifest.xml:7:5-20
 MERGED from [com.google.firebase:firebase-measurement-connector-impl:16.0.1] C:\Users\Moses\.gradle\caches\transforms-1\files-1.1\firebase-measurement-connector-impl-16.0.1.aar\fec75d1289b086e14878e21dabfa6e31\AndroidManifest.xml:26:5-32:19
@@ -209,35 +209,41 @@ ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\m
 	android:name
 		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:25:13-45
 activity#com.iruss.mogivisions.procrastimate.HomeActivity
-ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:29:9-37:20
+ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:29:9-31:49
 	android:theme
 		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:31:13-47
 	android:name
 		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:30:13-41
-intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:32:13-36:29
-action#android.intent.action.MAIN
-ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:33:17-69
-	android:name
-		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:33:25-66
-category#android.intent.category.LAUNCHER
-ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:35:17-77
-	android:name
-		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:35:27-74
 service#com.iruss.mogivisions.kiosk.KioskService
 ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:39:9-76
 	android:name
 		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:39:18-73
 activity#com.iruss.mogivisions.statistics.StatisticsActivity
-ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:41:9-45:15
+ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:41:9-45:54
 	android:parentActivityName
 		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:44:13-55
 	android:label
-		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:42:13-39
+		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:43:13-39
 	android:theme
-		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:43:13-51
+		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:45:13-51
 	android:name
-		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:41:19-85
+		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:42:13-79
+activity#com.iruss.mogivisions.procrastimate.SplashActivity
+ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:46:9-54:20
+	android:theme
+		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:47:13-47
+	android:name
+		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:46:19-49
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:49:13-53:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:50:17-69
+	android:name
+		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:50:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:52:17-77
+	android:name
+		ADDED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml:52:27-74
 uses-sdk
 INJECTED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Moses\Documents\businessmogi\MOGIAPP3\MOGIPROCRAST\app\src\main\AndroidManifest.xml

@@ -41,13 +41,15 @@
             android:theme="@style/settingTheme" />
         <activity
             android:name="com.iruss.mogivisions.procrastimate.HomeActivity"
-            android:theme="@style/customTheme" >
+            android:theme="@style/customTheme" />
+        <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        -->
 
         <service android:name="com.iruss.mogivisions.kiosk.KioskService" />
 
@@ -56,6 +58,15 @@
             android:label="Statistics"
             android:parentActivityName="com.iruss.mogivisions.procrastimate.HomeActivity"
             android:theme="@style/statisticsTheme" />
+        <activity
+            android:name="com.iruss.mogivisions.procrastimate.SplashActivity"
+            android:theme="@style/SplashTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <service android:name="com.google.firebase.components.ComponentDiscoveryService" >
             <meta-data

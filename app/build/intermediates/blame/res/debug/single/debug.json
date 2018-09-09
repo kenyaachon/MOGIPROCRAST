@@ -40,6 +40,10 @@
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\dc9fae68f49a4a3def7e7d1f83090dfb\\res\\drawable-hdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
+        "merged": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher.png.flat",
+        "source": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\src\\main\\res\\drawable\\ic_launcher.png"
+    },
+    {
         "merged": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_popup_background_mtrl_mult.9.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\dc9fae68f49a4a3def7e7d1f83090dfb\\res\\drawable-mdpi-v4\\abc_popup_background_mtrl_mult.9.png"
     },
@@ -322,6 +326,10 @@
     {
         "merged": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_primary_text_disable_only_material_dark.xml.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\dc9fae68f49a4a3def7e7d1f83090dfb\\res\\color\\abc_primary_text_disable_only_material_dark.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable_background_splash.xml.flat",
+        "source": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\src\\main\\res\\drawable\\background_splash.xml"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_popup_menu_header_item_layout.xml.flat",
@@ -1052,6 +1060,10 @@
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\dc9fae68f49a4a3def7e7d1f83090dfb\\res\\drawable-xxhdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png"
     },
     {
+        "merged": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_access_time_black_24dp.xml.flat",
+        "source": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\src\\main\\res\\drawable\\ic_access_time_black_24dp.xml"
+    },
+    {
         "merged": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-15.0.1.aar\\4b9c421919be402b923b928297f2a2f3\\res\\drawable-hdpi-v4\\common_google_signin_btn_text_dark_normal_background.9.png"
     },
@@ -1202,6 +1214,10 @@
     {
         "merged": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable_statisticsbackground.xml.flat",
         "source": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\src\\main\\res\\drawable\\statisticsbackground.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_help_outline_black_24dp.xml.flat",
+        "source": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\src\\main\\res\\drawable\\ic_help_outline_black_24dp.xml"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ic_menu_selectall_mtrl_alpha.png.flat",
@@ -1580,6 +1596,10 @@
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\dc9fae68f49a4a3def7e7d1f83090dfb\\res\\drawable-xhdpi-v4\\abc_ic_commit_search_api_mtrl_alpha.png"
     },
     {
+        "merged": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\layout_helpdialog.xml.flat",
+        "source": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\src\\main\\res\\layout\\helpdialog.xml"
+    },
+    {
         "merged": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_abc_action_bar_item_background_material.xml.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\dc9fae68f49a4a3def7e7d1f83090dfb\\res\\drawable-v21\\abc_action_bar_item_background_material.xml"
     },
@@ -1728,12 +1748,12 @@
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\dc9fae68f49a4a3def7e7d1f83090dfb\\res\\drawable-xxhdpi-v4\\abc_textfield_default_mtrl_alpha.9.png"
     },
     {
-        "merged": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xxhdpi-v17_abc_ic_menu_cut_mtrl_alpha.png.flat",
-        "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\dc9fae68f49a4a3def7e7d1f83090dfb\\res\\drawable-ldrtl-xxhdpi-v17\\abc_ic_menu_cut_mtrl_alpha.png"
-    },
-    {
         "merged": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\layout_custompopup.xml.flat",
         "source": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\src\\main\\res\\layout\\custompopup.xml"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xxhdpi-v17_abc_ic_menu_cut_mtrl_alpha.png.flat",
+        "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\dc9fae68f49a4a3def7e7d1f83090dfb\\res\\drawable-ldrtl-xxhdpi-v17\\abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_list_pressed_holo_light.9.png.flat",
@@ -1910,6 +1930,10 @@
     {
         "merged": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_switch_track_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\dc9fae68f49a4a3def7e7d1f83090dfb\\res\\drawable-xhdpi-v4\\abc_switch_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_panorama_fish_eye_black_24dp.xml.flat",
+        "source": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\src\\main\\res\\drawable\\ic_panorama_fish_eye_black_24dp.xml"
     },
     {
         "merged": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_menu_hardkey_panel_mtrl_mult.9.png.flat",

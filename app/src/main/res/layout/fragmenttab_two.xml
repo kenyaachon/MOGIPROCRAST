@@ -6,20 +6,34 @@
     android:padding="@dimen/margin_medium"
     android:orientation="vertical"
     >
-    <LinearLayout android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <TextView android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <LinearLayout android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/time_span"
-            />
+            android:orientation="horizontal"
+            android:layout_alignParentLeft="true"
+            >
+            <TextView android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/time_span"
+                />
 
-        <Spinner android:id="@+id/spinner_time_span"
-            android:popupBackground="#da1418"
+            <Spinner android:id="@+id/time_selector"
+                android:popupBackground="#da1418"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+        <ImageButton
+            android:id="@+id/help"
+            android:background="@null"
+            android:layout_marginTop="@dimen/margin_medium"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_help_outline_black_24dp" />
+    </RelativeLayout>
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barchart"

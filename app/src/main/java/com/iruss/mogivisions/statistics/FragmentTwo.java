@@ -1,8 +1,6 @@
 package com.iruss.mogivisions.statistics;
 
-import android.content.Context;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
@@ -12,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.iruss.mogivisions.procrastimate.HomeActivity;
 import com.iruss.mogivisions.procrastimate.R;
 
 import java.io.BufferedReader;
@@ -80,13 +77,13 @@ public class FragmentTwo extends Fragment {
             Toast.makeText(getActivity().getApplicationContext(), "Error reading file!", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         } finally {
-            if (reader != null) {
+            //if (reader != null) {
                 try {
                     reader.close();
                 } catch (IOException e) {
                     //log the exception
                 }
-            }
+            //}
 
             TextView output = view.findViewById(R.id.summtext);
             setTextSize(output);

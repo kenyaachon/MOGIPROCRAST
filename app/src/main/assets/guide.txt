@@ -1,4 +1,3 @@
-Settings Guide
 On the GRAPH page the bar chart lists how many minutes an application is used, the list goes in order of most used to least used. At the top of each bar there is a number that indicates the exact amount of time the app has been used. With this chart, you are able to see which apps are used the most.
 As many of the bars are quite small, you are able to zoom in to be able to view the exact amount of time the app has been used.
 

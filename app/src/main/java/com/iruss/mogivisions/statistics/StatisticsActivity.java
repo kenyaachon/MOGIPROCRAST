@@ -4,14 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.design.widget.TabLayout;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -54,20 +52,45 @@ public class StatisticsActivity extends AppCompatActivity {
 
 
 
+
+        // Display the fragment as the main content.
+        //getSupportFragmentManager().beginTransaction()
+        //        .replace(android.R.id.content, new com.iruss.mogivisions.statistics.FragmentOne())
+        //        .commit();
+
+
+
+
+        //Creates the TabLayout
+        //setTabLayout();
+
+
+
+        loadAds();
+    }
+
+
+
+
+
+    /**
+     *
+     */
+
+    /*
+    public void setTabLayout(){
         //Creates the TabLayout for the app
         ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new FragmentOne(), "GRAPH");
         adapter.addFragment(new FragmentThree(), "APP USAGE");
-        adapter.addFragment(new FragmentTwo(), "GUIDE");
+        //adapter.addFragment(new FragmentTwo(), "GUIDE");
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+    }*/
 
-
-        loadAds();
-    }
 
 
     /**
