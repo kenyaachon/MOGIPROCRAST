@@ -20,8 +20,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.menu.MenuBuilder;
-import android.support.v7.view.menu.MenuPopupHelper;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -174,8 +172,10 @@ public class HomeActivity extends AppCompatActivity
                                 startActivity(intent);
                                 break;
                             case "Statistics":
+                                /*
                                 Intent intent1 = new Intent(HomeActivity.this, StatisticsActivity.class);
-                                startActivity(intent1);
+                                startActivity(intent1);*/
+                                getPermissionForStatsPage();
                                 break;
                         }
 
@@ -191,6 +191,21 @@ public class HomeActivity extends AppCompatActivity
 
         //setButtonTextSize(settingsButton);
     }
+
+    /**
+     * Requires permission granted to usage statistics in order to access statistics page
+     */
+    public void getPermissionForStatsPage(){
+        if (!checkUsagePermissionGranted()) {
+            showExplanation(this.getString(R.string.UsageStatisticsTitle), this.getString(R.string.UsageStatisticsPermissionRationalStats),
+                    MY_PERMISSIONS_REQUEST_READ_USAGE_STATISTICS);
+        }else{
+            Intent intent1 = new Intent(HomeActivity.this, StatisticsActivity.class);
+            startActivity(intent1);
+        }
+    }
+
+
 
     /**
      * Handles when the kiosk buttons is pressed
