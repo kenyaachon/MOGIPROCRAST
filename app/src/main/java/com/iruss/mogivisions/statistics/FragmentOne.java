@@ -44,6 +44,7 @@ import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -62,6 +63,7 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
     private BarChart mChart;
 
     private View v;
+    //Spiiner with the time span
     private Spinner mSpinner;
 
     private Dialog myDialog;
@@ -141,6 +143,7 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
      * @param data, the formatted BarData needed to display the BarChart
      */
     public void displayChart(View v, BarData data){
+        //Getting the barchart
         mChart = v.findViewById(R.id.barchart);
 
         mChart.getDescription().setEnabled(false);
@@ -157,7 +160,7 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
 
         //BarData data = generateBarData(1, 20000, 50);
 
-        //Getting the Usage data
+        //Getting the Usage data and refreshing the bar chart
         //BarData data = getUsageData();
         mChart.setData(data);
         mChart.invalidate();
@@ -191,7 +194,8 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
      */
     public void getUsageInterval(View v){
         //final View v2 = v;
-        mSpinner = (Spinner) v.findViewById(R.id.time_selector);
+        //The spinner on the fragment for time span
+        mSpinner = v.findViewById(R.id.time_selector);
         SpinnerAdapter spinnerAdapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.action_list, android.R.layout.simple_spinner_dropdown_item);
         mSpinner.setAdapter(spinnerAdapter);
@@ -200,6 +204,7 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
         FragmentOne.StatsUsageInterval statsUsageInterval = FragmentOne.StatsUsageInterval
                 .getValue(position);
 
+        //Display data only if interval is selected
         if (statsUsageInterval != null) {
             BarData data = getUsageData(statsUsageInterval.mInterval);
             displayChart(v, data);
@@ -234,6 +239,7 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
         });*/
     }
 
+    //String Builder for creating the string of the text file
     private StringBuilder text = new StringBuilder();
 
     /**
@@ -255,18 +261,18 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
                 text.append(mLine);
                 text.append('\n');
             }
-        } catch (IOException e) {
+        } catch (IOException | NullPointerException e) {
             Toast.makeText(getActivity().getApplicationContext(), "Error reading file!", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         } finally {
             //if (reader != null) {
             try {
                 reader.close();
-            } catch (IOException e) {
+            } catch (IOException | NullPointerException e) {
                 //log the exception
             }
             //}
-
+            //Getting and setting the text object in the dialog
             TextView output = dialog.findViewById(R.id.helpText);
             output.setText(text);
         }
@@ -288,10 +294,12 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
             public void onClick(View view) {
                 helpDialog.setContentView(R.layout.helpdialog);
 
+                //Creating a close button
                 TextView txtclose = helpDialog.findViewById(R.id.txtclose);
                 txtclose.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        //closes Help Dialog
                         helpDialog.dismiss();
                     }
                 });
@@ -306,21 +314,23 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
 
     /**
      * OnItemSelected is called when an item in a Spinner is selected
-     * @param parent, the layout of where the spinner is
-     * @param arg1
-     * @param position
-     * @param id
+     * @param parent, The AdapterView where the selection happened
+     * @param arg1, The view within the AdapterView that was clicked
+     * @param position, The position of the view in the adapter
+     * @param id, The row id of the item that is selected
+
      */
     public void onItemSelected(AdapterView<?> parent, View arg1, int position,long id) {
         String[] strings = getResources().getStringArray(R.array.action_list);
 
+        //Get the UsageStatsManger value for a certain interval
         FragmentOne.StatsUsageInterval statsUsageInterval = FragmentOne.StatsUsageInterval
                 .getValue(strings[position]);
 
 
         if (statsUsageInterval != null) {
-            //List<UsageStats> usageStatsList = getUsageData(statsUsageInterval.mInterval);
-            //data = getUsageData();
+
+            //Display the refreshed bar chart
             Log.i("Stats Interval", Integer.toString(statsUsageInterval.mInterval));
             BarData data = getUsageData(statsUsageInterval.mInterval);
             displayChart(v, data);
@@ -329,7 +339,7 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
 
     /**
      * Called if no item on a Spinner is Selected
-     * @param parent
+     * @param parent, The AdapterView where no selection has happened
      */
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
@@ -337,6 +347,8 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
 
     /**
      * OnValueSelected is called when a bar on the BarChart is touched,
+     * Creates the popup dialog that gives a detailed view of information on
+     * app usage statistics
      * @param e, the specific entry in the BarChart that was touched
      * @param h,
      */
@@ -348,12 +360,6 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
         Log.i("Bar Selected", Float.toString(barNum));
         UsageStats stats = (UsageStats) b1.getData();
         Log.i("Bar Selected", stats.getPackageName());
-
-        /*
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-        alertDialogBuilder.setMessage(stats.getPackageName());
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();*/
 
         TextView txtclose;
         myDialog.setContentView(R.layout.custompopup);
@@ -380,15 +386,17 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
         try {
             appIcon.setImageDrawable(getActivity().getPackageManager()
                     .getApplicationIcon(stats.getPackageName()));
-        } catch (PackageManager.NameNotFoundException e1) {
+        } catch (PackageManager.NameNotFoundException | NullPointerException e1) {
             Log.w("App Icon", String.format("App Icon is not found for %s", stats.getPackageName()));
             //customUsageStats.appIcon = getActivity()
             //        .getDrawable(R.drawable.ic_default_app_launcher);
         }
 
+        //Making sure each app icon is the same size
         appIcon.getLayoutParams().height = 150;
         appIcon.getLayoutParams().width = 150;
 
+        //Setting the background of the everything that is not the app to less visible
         myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         myDialog.show();
 
@@ -435,7 +443,7 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
     }
 
     /**
-     *
+     *Gets a list of usage statistics and displays formats them into BarData
      * @param intervalType, gets the interval Type that is desired
      * @return BarData of the list of UsageStats
      */
@@ -451,16 +459,21 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
             long totalPhoneTime = 0;
 
             ArrayList<BarEntry> entries = new ArrayList<>();
-            List<UsageStats> stats = mUsageStatsManager.queryUsageStats(intervalType, time - 1000 * 10, time);
-            //List<UsageStats> stats = mUsageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, time - 1000 * 10, time);
+
+            // Get the app statistics since one year ago from the current time.
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.YEAR, -1);
+
+            List<UsageStats> stats = mUsageStatsManager.queryUsageStats(intervalType, cal.getTimeInMillis(), System.currentTimeMillis());
+
+
+            //List<UsageStats> stats = mUsageStatsManager.queryUsageStats(intervalType, time - 1000 * 10, time);
 
             //Puts the data into a sorted map
             SortedMap<String, UsageStats> mySortedMap = new TreeMap<>();
             if (stats != null) {
                 for (UsageStats usageStats : stats) {
                     mySortedMap.put(usageStats.getPackageName(), usageStats);
-                    //mySortedMap.put(usageStats.getPackageName(), (usageStats.getTotalTimeInForeground() / 60000));
-                    //mySortedMap.put(usageStats.getPackageName(),(usageStats.getTotalTimeInForeground() / 1000));
                 }
             }
 
