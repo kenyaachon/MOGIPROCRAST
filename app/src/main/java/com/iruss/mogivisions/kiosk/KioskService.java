@@ -4,12 +4,11 @@ package com.iruss.mogivisions.kiosk;
 import android.Manifest;
 import android.app.ActivityManager;
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.Service;
-import android.app.job.JobInfo;
-import android.app.job.JobScheduler;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,7 +23,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
+import android.support.v4.app.NotificationCompat;
 import android.telecom.TelecomManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -54,6 +53,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.SortedMap;
 import java.util.TreeMap;
+
+import static android.support.v4.app.NotificationCompat.PRIORITY_MIN;
 
 public class KioskService extends Service implements MyTimer.TimerRunning {
 
@@ -134,6 +135,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        /*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
 
             Notification.Builder builder = new Notification.Builder(this, ANDROID_CHANNEL_ID)
@@ -144,9 +146,10 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
             Notification notification = builder.build();
             startForeground(1, notification);
 
-        }
+        }*/
 
-
+        //initChannels(this);
+        startForeground(this);
 
 
         mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
@@ -161,12 +164,63 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     }
 
 
+    private void startForeground(Context context) {
+        String channelId = "";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            channelId = createNotificationChannel(context);
+
+        }
+
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, channelId);
+        Notification notification = notificationBuilder.setOngoing(true)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setPriority(PRIORITY_MIN)
+                .setCategory(Notification.CATEGORY_SERVICE)
+                .build();
+        startForeground(101, notification);
+    }
+
+
+    private String createNotificationChannel(Context context){
+        String channelId = "KioskService";
+        String channelName = "My Background Service";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel chan = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_NONE);
+            //chan.lightColor = Color.BLUE;
+            //chan.lockscreenVisibility = Notification.VISIBILITY_PRIVATE;
+            NotificationManager service = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            service.createNotificationChannel(chan);
+        }
+        return channelId;
+    }
 
 
 
-    /**
-     * Sets the hometitle of the app to fullscreen
-     */
+    public void initChannels(Context context) {
+    if (Build.VERSION.SDK_INT < 26) {
+        return;
+    }
+    NotificationManager notificationManager =
+            (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+    NotificationChannel channel = new NotificationChannel("default",
+                                                          "KioskMode",
+                                                          NotificationManager.IMPORTANCE_DEFAULT);
+    channel.setDescription("KioskService for KioskMode");
+    notificationManager.createNotificationChannel(channel);
+
+    NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, ANDROID_CHANNEL_ID)
+            .setContentTitle(getString(R.string.app_name))
+            .setContentText("KioskMode restarted")
+            .setAutoCancel(true);
+    Notification notification = notificationBuilder.setOngoing(true)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setPriority(PRIORITY_MIN)
+                .setCategory(Notification.CATEGORY_SERVICE)
+                .build();
+        startForeground(101, notification);
+   }
+
+
     private void hideStatusBar(){
     // Hide the status bar.
         int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
@@ -454,7 +508,9 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                         mView.setVisibility(View.GONE);
                     }
 
-                    Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                    Intent cameraIntent = new Intent(android.provider.MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
+
+                //Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                     //makes sure the camera is at the top of the activity stack
                     cameraIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
@@ -673,7 +729,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                         @Override
                         public void run() {
                             Toast.makeText(homeActivity.getApplicationContext(),
-                                    "Trivia challenge solved successfully, phone is unlocked",
+                                    "Trivia challenge solved successfully, phone is unlocked for 5 mins",
                                     Toast.LENGTH_LONG).show();
                         }
                     });
