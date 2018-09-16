@@ -129,16 +129,16 @@
             </intent-filter>
         </service>
 
+        <activity
+            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
         <provider
             android:name="com.google.firebase.provider.FirebaseInitProvider"
             android:authorities="com.iruss.mogivisions.procrastimate.firebaseinitprovider"
             android:exported="false"
             android:initOrder="100" />
-
-        <activity
-            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-            android:exported="false"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -148,7 +148,7 @@
             android:name="com.crashlytics.android.CrashlyticsInitProvider"
             android:authorities="com.iruss.mogivisions.procrastimate.crashlyticsinitprovider"
             android:exported="false"
-            android:initOrder="100" />
+            android:initOrder="90" />
     </application>
 
 </manifest>

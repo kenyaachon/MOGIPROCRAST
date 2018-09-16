@@ -461,9 +461,26 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
             ArrayList<BarEntry> entries = new ArrayList<>();
 
             // Get the app statistics since one year ago from the current time.
-            Calendar cal = Calendar.getInstance();
-            cal.add(Calendar.YEAR, -1);
 
+            //Select how many days to go back
+            Calendar cal = Calendar.getInstance();
+            switch (intervalType){
+                case 0:
+                    cal.add(Calendar.DAY_OF_MONTH, -1);
+                    break;
+                case 1:
+                    cal.add(Calendar.WEEK_OF_MONTH, -1);
+                    break;
+                case 2:
+                    cal.add(Calendar.MONTH, -1);
+                    break;
+                case 3:
+                    cal.add(Calendar.YEAR, -1);
+                    break;
+                default:
+                    cal.add(Calendar.DAY_OF_MONTH, -1);
+                    break;
+            }
             List<UsageStats> stats = mUsageStatsManager.queryUsageStats(intervalType, cal.getTimeInMillis(), System.currentTimeMillis());
 
 

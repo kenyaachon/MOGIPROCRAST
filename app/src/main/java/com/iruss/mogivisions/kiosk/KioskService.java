@@ -723,7 +723,8 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                 tempButton.setBackgroundColor(Color.GREEN);
                 success += 1;
                 successBar.setRating(success);
-
+                Log.i("Checkup", Integer.toString(success));
+                Log.i("Checkup", Integer.toString(attemptsMade));
                 if(success == 3) {
                     homeActivity.runOnUiThread(new Runnable() {
                         @Override
@@ -740,6 +741,8 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
 
             }
             else {
+                Log.i("Checkup", Integer.toString(success));
+                Log.i("Checkup", Integer.toString(attemptsMade));
 
                 //Code that shows the correct answer
                 Log.d("Test", "This is the correct response ");
@@ -747,7 +750,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                 Log.d("Test", "Incorrect response chosen");
                 tempButton.setBackgroundColor(Color.RED);
 
-                if(attemptsMade == trials){
+                if(attemptsMade >= trials){
                     //call kill
                     success = 0;
                     attemptsMade = 0;
