@@ -23,7 +23,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.iruss.mogivisions.procrastimate.R;
+import com.iruss.mogivisions.procrastimatev1.R;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

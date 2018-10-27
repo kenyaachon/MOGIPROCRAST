@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/settingsbackground"
-    tools:context="com.iruss.mogivisions.procrastimate.SettingsFragment">
+    tools:context="com.iruss.mogivisions.procrastimatev1.SettingsFragment">
 
     <!-- TODO: Update blank fragmmyTitleyout -->
 

@@ -17,8 +17,8 @@ import android.widget.ImageButton;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.iruss.mogivisions.procrastimate.HomeActivity;
-import com.iruss.mogivisions.procrastimate.R;
+import com.iruss.mogivisions.procrastimatev1.HomeActivity;
+import com.iruss.mogivisions.procrastimatev1.R;
 
 import java.util.ArrayList;
 import java.util.List;

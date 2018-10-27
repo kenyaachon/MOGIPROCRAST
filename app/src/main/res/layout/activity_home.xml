@@ -1,73 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@drawable/homebackground"
-    tools:context="com.iruss.mogivisions.procrastimate.HomeActivity">
+    android:layout_height="match_parent">
 
-
-    <ImageButton
-        android:id="@+id/settings"
-        android:background="@null"
-        android:paddingRight="20dp"
-        android:layout_alignParentTop = "true"
-        android:layout_alignParentRight = "true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_settings_white_24dp" />
-    <Button
-        android:id="@+id/kiosk"
-        android:layout_below = "@id/settings"
-        android:background="@drawable/rounded_button"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/titletextcolor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
-        android:text="@string/lock_phone" />
-
-
-    <ImageView
-        android:id="@+id/homeLockView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent = "true"
-        android:src="@drawable/ic_lock_open_black_24dp" />
-
-    <TextView
-        android:id="@+id/homeTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:layout_below = "@id/homeLockView"
-        android:gravity="center"
-        android:layout_marginBottom="15dp"
-        android:text="@string/home_unlock"
-        android:textColor="@color/titletextcolor" />
-
-
-    <LinearLayout
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center|bottom">
-        <com.google.android.gms.ads.AdView
-            xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/adView"
+        android:background="@drawable/homebackground"
+        tools:context="com.iruss.mogivisions.procrastimatev1.HomeActivity">
+
+
+        <ImageButton
+            android:id="@+id/settings"
+            android:background="@null"
+            android:paddingRight="20dp"
+            android:layout_alignParentTop = "true"
+            android:layout_alignParentRight = "true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_settings_white_24dp" />
+        <Button
+            android:id="@+id/kiosk"
+            android:layout_below = "@id/settings"
+            android:background="@drawable/rounded_button"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/titletextcolor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:text="@string/lock_phone" />
+
+
+        <ImageView
+            android:id="@+id/homeLockView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_centerInParent = "true"
+            android:src="@drawable/ic_lock_open_black_24dp" />
+
+        <TextView
+            android:id="@+id/homeTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:layout_below = "@id/homeLockView"
             android:gravity="center"
-            ads:adSize="SMART_BANNER"
-            ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
-        </com.google.android.gms.ads.AdView>
+            android:layout_marginBottom="15dp"
+            android:text="@string/home_unlock"
+            android:textColor="@color/titletextcolor" />
 
 
-    </LinearLayout>
-</RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center|bottom">
+            <com.google.android.gms.ads.AdView
+                xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/adView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                ads:adSize="SMART_BANNER"
+                ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+            </com.google.android.gms.ads.AdView>
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>
 

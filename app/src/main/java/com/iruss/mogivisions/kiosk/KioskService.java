@@ -9,8 +9,10 @@ import android.app.NotificationManager;
 import android.app.Service;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -43,10 +45,10 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.iruss.mogivisions.procrastimate.HomeActivity;
-import com.iruss.mogivisions.procrastimate.R;
-import com.iruss.mogivisions.procrastimate.TriviaAPI;
-import com.iruss.mogivisions.procrastimate.TriviaQuestion;
+import com.iruss.mogivisions.procrastimatev1.HomeActivity;
+import com.iruss.mogivisions.procrastimatev1.R;
+import com.iruss.mogivisions.procrastimatev1.TriviaAPI;
+import com.iruss.mogivisions.procrastimatev1.TriviaQuestion;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +69,9 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     WindowManager.LayoutParams mWindowsParams;
     private View mView;
     private TextView timeView;
+
+    public static final String BROADCAST_ACTION = "com.iruss.mogivisions.broadcastreceiver";
+
 
     // For trivia
     private ArrayList<TriviaQuestion> triviaQuestions;
@@ -343,6 +348,13 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         displayView();
     }
 
+    public void toastMessage(String message){
+        Toast.makeText(homeActivity.getApplicationContext(),
+                message,
+                Toast.LENGTH_LONG).show();
+    }
+
+
     /**
      * changes the text size of a button
      * Reads the text size from the settings page
@@ -388,7 +400,9 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
             if(isConnected && homeActivity != null){
                 Log.d("Network", "Network connection available");
                 //Loading unique ad id
+                //Test id
                 MobileAds.initialize(homeActivity, "ca-app-pub-3940256099942544~3347511713");
+                //Real id
                 //MobileAds.initialize(homeActivity, "ca-app-pub-5475955576463045~8715927181");
 
 
@@ -410,13 +424,87 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
      *
      */
     private void unlockPhone(){
+
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        String syncConnPref = sharedPref.getString("lockout_time", "12");
-        Log.d("Settings", syncConnPref );
+        //String syncConnPref = sharedPref.getString("lockout_time", "1");
+        //Log.d("Settings", syncConnPref );
         //converts an hours into seconds
-        int time = Integer.parseInt(syncConnPref) * 3600;
-        MyTimer.getInstance().startTimer(time);
+
+        String timePick = sharedPref.getString("time_picker", "00:30");
+        Log.d("Settings", timePick );
+        String[] timeSec = timePick.split(":");
+        int timeLock = (Integer.parseInt(timeSec[0]) * 3600) + (Integer.parseInt(timeSec[1]) * 60);
+        Log.d("Settings", Integer.toString(timeLock));
+
+
+
+        //int time = Integer.parseInt(syncConnPref) * 3600;
+        //MyTimer.getInstance().startTimer(time);
+
+
+        startService(new Intent(this, BroadcastService.class).putExtra("lockTime", timeLock));
+        registerReceiver(br, new IntentFilter(BroadcastService.COUNTDOWN_BR));
+
+        //Log.i("KioskStatus", "Started service");
+        //MyTimer.getInstance().startTimer(timeLock);
     }
+
+
+    /**
+     * Receiver for TimeService, updates time clock
+     */
+    private BroadcastReceiver br = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            updateGUI(intent); // or whatever method used to update your GUI fields
+        }
+    };
+
+
+    /*
+    @Override
+    public void onPause() {
+        super.onPause();
+        unregisterReceiver(br);
+        Log.i(TAG, "Unregistered broacast receiver");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        try {
+            unregisterReceiver(br);
+        } catch (Exception e) {
+            // Receiver was probably already stopped in onPause()
+        }
+        super.onStop();
+    }*/
+
+
+    /**
+     * Updates the clock, according to message from BroadcastService
+     * @param intent, the intent that was used to call KioskService
+     */
+    private void updateGUI(Intent intent) {
+        if (intent.getExtras() != null) {
+            String millisUntilFinished = intent.getStringExtra("countdown");
+            Log.i("KioskStatus", "Countdown seconds remaining: " +  millisUntilFinished);
+
+            if(!millisUntilFinished.trim().equalsIgnoreCase("No more time remaining".trim())){
+                timeView.setText(millisUntilFinished);
+                showViewIfNecessary();
+            }else{
+                timeView.setText(millisUntilFinished);
+                stopService(new Intent(this, BroadcastService.class));
+                Log.i("KioskStatus", "Stopped service");
+                unLock();
+            }
+
+
+        }
+    }
+
+
 
     /**
      *
@@ -428,6 +516,8 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         hiddenExit.setVisibility(View.VISIBLE);
         unlock.setVisibility(View.GONE);
 
+        TextView unlockText = mView.findViewById(R.id.kioskView);
+        unlockText.setText("PHONE IS UNLOCKED");
         hiddenExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -439,6 +529,8 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
             }
         });
         setKioskButtonTextSize(hiddenExit);
+        //Unregisters time broadcast receiver
+        unregisterReceiver(br);
     }
 
     /**
@@ -567,7 +659,22 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         setTriviaTextSize();
         //call the trivia Api
         //TriviaAPI triviaAPI = new TriviaAPI(this);
-        new TriviaAPI(this);
+        //try{
+            new TriviaAPI(this);
+
+            /**
+        }
+        catch (Exception e){
+            loadKiosk();
+            homeActivity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(homeActivity.getApplicationContext(),
+                            "Not able to load trivia because of poor internet connection, try again later",
+                            Toast.LENGTH_LONG).show();
+                }
+            });
+        }*/
 
         // Now that it's loaded, display it
         displayView();
@@ -641,16 +748,22 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         questionResponse1.setText(responses.get(0));
         questionResponse2.setText(responses.get(1));
 
+        int size = responses.size();
 
+        //Make sure only 2 response appear for True and False questions
+        if(triviaQuestion.getCorrectAnswer().equalsIgnoreCase("true")
+            || triviaQuestion.getCorrectAnswer().equalsIgnoreCase("false")){
+            size = 2;
+        }
         //Sets the texts of the button to the possible responses for the user to choose
         //Checks how many possible responses there are and then displays the same amount of response buttons
-        if(responses.size() == 2){
+        if(size == 2 ){
             questionResponse1.setVisibility(View.VISIBLE);
             questionResponse2.setVisibility(View.VISIBLE);
-        }else if (responses.size() == 3){
+        }else if (size == 3){
             questionResponse3.setText(responses.get(2));
             questionResponse3.setVisibility(View.VISIBLE);
-        }else if (responses.size() == 4) {
+        }else if (size == 4) {
             questionResponse3.setText(responses.get(2));
             questionResponse4.setText(responses.get(3));
             questionResponse1.setVisibility(View.VISIBLE);
@@ -725,7 +838,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                 successBar.setRating(success);
                 Log.i("Checkup", Integer.toString(success));
                 Log.i("Checkup", Integer.toString(attemptsMade));
-                if(success == 3) {
+                if(success == 1) {
                     homeActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -846,6 +959,11 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         questionResponse3.setBackgroundResource(android.R.drawable.btn_default);
         questionResponse4.setBackgroundResource(android.R.drawable.btn_default);
 
+        //Reset the text of the button to make sure True or False questions only have 2 responses
+        questionResponse1.setVisibility(View.GONE);
+        questionResponse2.setVisibility(View.GONE);
+        questionResponse3.setVisibility(View.GONE);
+        questionResponse4.setVisibility(View.GONE);
     }
 
     /*******************************

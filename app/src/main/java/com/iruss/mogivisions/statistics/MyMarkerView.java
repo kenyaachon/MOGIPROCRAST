@@ -9,7 +9,7 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.utils.MPPointF;
 import com.github.mikephil.charting.utils.Utils;
-import com.iruss.mogivisions.procrastimate.R;
+import com.iruss.mogivisions.procrastimatev1.R;
 
 /**
  * Custom implementation of the MarkerView.

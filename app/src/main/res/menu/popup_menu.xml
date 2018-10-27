@@ -7,6 +7,7 @@
         android:id="@+id/settingsMenuItem"
         android:title="Settings"
         android:icon="@drawable/ic_settings_black_24dp"
+
         />
 
     <item

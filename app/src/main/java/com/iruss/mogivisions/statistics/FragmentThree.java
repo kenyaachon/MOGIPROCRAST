@@ -2,35 +2,32 @@ package com.iruss.mogivisions.statistics;
 
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
-
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.SpinnerAdapter;
-import android.widget.Toast;
-import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
+import android.widget.Toast;
 
+import com.iruss.mogivisions.procrastimatev1.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import com.iruss.mogivisions.procrastimate.R;
 
 
 public class FragmentThree extends Fragment {

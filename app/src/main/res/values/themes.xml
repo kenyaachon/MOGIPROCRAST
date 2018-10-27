@@ -5,7 +5,13 @@
         <item name="android:windowNoTitle">false</item>
         <item name="android:windowTitleBackgroundStyle">@style/WindowTitleBackground</item>
         <item name="android:popupMenuStyle">@style/PopupMenu</item>
+
+        <!-- Assign dialog style here.
+        <item name="alertDialogTheme">@style/MyAlertDialogStyle</item>
+        <item name="alertDialogStyle">@style/MyAlertDialogStyle</item>-->
+
     </style>
+
 
     <style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
         <item name="android:popupBackground">#1c9d97</item>
@@ -33,8 +39,16 @@
         <item name="android:actionBarStyle"   tools:ignore="NewApi">@style/MyActionBarStats</item>
         <item name="actionBarStyle">@style/MyActionBarStats</item>
         <item name="titleTextStyle">@style/MyActionBarTitleText</item>
+        <item name="android:timePickerStyle">@style/TimePicker</item>
     </style>
 
+    <style name="TimePicker" parent="android:Widget.Material.Light.TimePicker">
+        <item name="android:headerBackground">#ff555555</item>
+        <item name="android:numbersSelectorColor">?android:attr/colorControlActivated</item>
+        <item name="android:numbersBackgroundColor">#ff555555</item>
+        <item name="android:amPmTextColor">?android:attr/textColorSecondary</item>
+        <item name="android:colorAccent">@color/settingTitleBackgroundcolor</item>
+    </style>
 
 
     <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
@@ -55,7 +69,19 @@
     </style>
 
     <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:colorBackground">#055a9d</item>
+        <item name="android:headerBackground">@color/settingTitleBackgroundcolor</item>
+        <item name="android:background">@color/settingTitleBackgroundcolor</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:textColorSecondary">#FFFFFF</item>
+        <item name="android:textColorHighlight">#FFFFFF</item>
+        <item name="android:textColorTertiary">#FFFFFF</item>
+        <item name="android:editTextColor">#FFFFFF</item>
+        <item name="color">#FFFFFF</item>
+    </style>
 
+    <!--
         <item name="android:textColor">#FF000000</item>
         <item name="android:textColorPrimary">#FF000000</item>
         <item name="android:textColorSecondary">#FF000000</item>
@@ -63,8 +89,7 @@
         <item name="android:textColorTertiary">#FF000000</item>
         <item name="android:editTextColor">#FF000000</item>
         <item name="color">#FF000000</item>
-    </style>
-
+    -->
 
 
 </resources>

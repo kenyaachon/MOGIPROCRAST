@@ -3,7 +3,7 @@
 
     <string name="home_unlock">PHONE IS UNLOCKED</string>
 
-    <string name="dialog_title"></string>
+    <string name="dialog_title">Popup Dialog</string>
     <string name="dialog_message">Can you grant permission to check network status?</string>
     <string name="kioskphonelock">PHONE IS LOCKED</string>
     <string name="time_left">02H:02M:02S</string>
@@ -13,10 +13,11 @@
     <string name="camera">Camera</string>
     <string name="settings">Settings</string>
     <string name="kiosk">Unlock Phone</string>
-    <string name="lockout_time">Lockout time</string>
-    <string name="lockout_time_default">12</string>
+    <string name="lockout_time">Lockout Time (HH:MM)</string>
+    <string name="lockout_time_default">1</string>
+    <string name="trivia_categories">Trivia Categories</string>
+    <string name="trivia_categories_default">Any</string>
     <string name="exitButton">Exit Button</string>
-
 
     <string name="CameraPermissionTitle">Permission Request</string>
     <string name="CameraPermissionRequest">Permission to access your camera</string>
