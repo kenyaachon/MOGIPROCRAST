@@ -121,10 +121,14 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     private SimplePhoneStateListener phoneStateListener = new SimplePhoneStateListener();
 
 
+    private boolean notStartedClock = true;
+
+
     // Constants
     private final String[] ACCEPTABLE_PACKAGES = {"dialer", "camera", "contacts", "incallui"};
     private final String LAUNCHER = "launcher";
     private final int LAUNCHER_DELAY = 3000; // msec
+
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -245,6 +249,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         TelephonyManager telephonyManager = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
         telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
 
+        unregisterReceiver(br);
         super.onDestroy();
     }
 
@@ -442,8 +447,13 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         //MyTimer.getInstance().startTimer(time);
 
 
+        //Starts new clock that updates automatically KioskPage is reloaded
+
+
+
         startService(new Intent(this, BroadcastService.class).putExtra("lockTime", timeLock));
         registerReceiver(br, new IntentFilter(BroadcastService.COUNTDOWN_BR));
+
 
         //Log.i("KioskStatus", "Started service");
         //MyTimer.getInstance().startTimer(timeLock);
@@ -451,7 +461,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
 
 
     /**
-     * Receiver for TimeService, updates time clock
+     * Receiver for TimeService, updates time clock when receives message from BroadcastService
      */
     private BroadcastReceiver br = new BroadcastReceiver() {
         @Override
@@ -460,25 +470,6 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         }
     };
 
-
-    /*
-    @Override
-    public void onPause() {
-        super.onPause();
-        unregisterReceiver(br);
-        Log.i(TAG, "Unregistered broacast receiver");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        try {
-            unregisterReceiver(br);
-        } catch (Exception e) {
-            // Receiver was probably already stopped in onPause()
-        }
-        super.onStop();
-    }*/
 
 
     /**
@@ -490,6 +481,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
             String millisUntilFinished = intent.getStringExtra("countdown");
             Log.i("KioskStatus", "Countdown seconds remaining: " +  millisUntilFinished);
 
+            //Checks to make sure remaining time is not zero before updating timeView
             if(!millisUntilFinished.trim().equalsIgnoreCase("No more time remaining".trim())){
                 timeView.setText(millisUntilFinished);
                 showViewIfNecessary();
@@ -531,6 +523,8 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         setKioskButtonTextSize(hiddenExit);
         //Unregisters time broadcast receiver
         unregisterReceiver(br);
+        stopService(new Intent(this, BroadcastService.class));
+
     }
 
     /**

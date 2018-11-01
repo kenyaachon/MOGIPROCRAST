@@ -1,5 +1,8 @@
 package com.iruss.mogivisions.procrastimatev1;
 
+//Copyright (c) 2017,2018   Mathijs Lagerberg, Pixplicity BV
+//Copyright (C) 2016-2018   Samuel Wall
+
 import android.Manifest;
 import android.app.AppOpsManager;
 import android.app.usage.UsageStats;
@@ -106,6 +109,7 @@ public class HomeActivity extends AppCompatActivity
         SharedPreferences.Editor editor = mprefs.edit();
         //make sure the firstTime preference is only created once
         if(mprefs.getBoolean("firstTime", true)) {
+            Log.i("Tutorial", "Creating first time setting" );
             editor.putBoolean("firstTime", true).apply();
         }
 
@@ -160,11 +164,13 @@ public class HomeActivity extends AppCompatActivity
 
         Log.i("Rate Me", Long.toString(rate.getRemainingCount()));
 
+        //Countsdown the timer
         rate.count();
 
         rate.showRequest();
         Log.i("Rate Me", Boolean.toString(rate.showRequest()));
 
+        //For testing purposes
         //rate.test();
 
     }

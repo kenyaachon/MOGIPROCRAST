@@ -104,6 +104,7 @@ public class TriviaAPI {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         Log.d("Internet Test", "Going to use ");
         kioskService.displayQuestions(getOfflineDB());
         return false;
@@ -237,9 +238,6 @@ public class TriviaAPI {
 
                 Log.e(TAG, "Connection test " + requestedToken);
 
-                response = requestedDB;
-
-
                 String tokenString = "";
                 Log.d("Test token", requestedToken);
                 try {
@@ -255,10 +253,11 @@ public class TriviaAPI {
                 String uniqueQuestions = "";
 
                 //Makes the unique request for the token and gets a certain difficult for the question
-                if(syncConnPref.equalsIgnoreCase("Any")){
+                if(syncConnPref.trim().equalsIgnoreCase("Any".trim())){
                     uniqueQuestions = openTDBURL + "&token=" + tokenString + "&difficulty=" + questionDifficulty;
+                } else{
+                    uniqueQuestions = openTDBURL + "&token=" + tokenString + "&category=" + syncConnPref + "&difficulty=" + questionDifficulty;
                 }
-                uniqueQuestions = openTDBURL + "&token=" + tokenString + "&category=" + syncConnPref + "&difficulty=" + questionDifficulty;
                 requestedDB = sh.makeServiceCall(uniqueQuestions);
             }
             else{
@@ -288,7 +287,7 @@ public class TriviaAPI {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            if(response.equalsIgnoreCase("IOException") | response.equalsIgnoreCase("Exception")){
+            if(response.trim().equalsIgnoreCase("SocketTimeoutException".trim())) {
                 kioskService.loadKiosk();
                 kioskService.toastMessage("Not able to load trivia because of poor internet connection, try again later");
             }else {

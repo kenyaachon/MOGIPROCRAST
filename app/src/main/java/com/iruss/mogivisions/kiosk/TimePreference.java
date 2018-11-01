@@ -23,11 +23,21 @@ public class TimePreference extends DialogPreference {
     private TimePicker picker = null;
     private final String DEFAULT_VALUE = "00:00";
 
+    /**
+     * Gets current saved Hour
+     * @param time, saved time listing string
+     * @return, returns numerical value of hour
+     */
     public static int getHour(String time) {
         String[] pieces = time.split(":");
         return Integer.parseInt(pieces[0]);
     }
 
+    /**
+     * Gets current saved Minute
+     * @param time, saved time listing string
+     * @return, returns numerical value of minute
+     */
     public static int getMinute(String time) {
         String[] pieces = time.split(":");
         return Integer.parseInt(pieces[1]);
@@ -47,6 +57,11 @@ public class TimePreference extends DialogPreference {
         setNegativeButtonText("Cancel");
     }
 
+    /**
+     * Changes values for hour and minute
+     * @param hour, value to set hour
+     * @param minute, value to set minute
+     */
     public void setTime(int hour, int minute) {
         mHour = hour;
         mMinute = minute;
@@ -59,11 +74,20 @@ public class TimePreference extends DialogPreference {
 
     }
 
+    /**
+     * Returns formatted version of giving hour and minute
+     * @param hour, value representing hour
+     * @param minute, value representing minute
+     * @return,
+     */
     public String toTime(int hour, int minute) {
 
         return Integer.valueOf(hour) + ":" + Integer.valueOf(minute);
     }
 
+    /**
+     * Updates time preference summary listing
+     */
     public void updateSummary() {
         String time = Integer.toString(mHour) + ":" + Integer.toString(mMinute);
 
@@ -86,6 +110,10 @@ public class TimePreference extends DialogPreference {
         picker.setCurrentMinute(mMinute);
     }
 
+    /**
+     * Changes TimePreference listing when time preference is closed
+     * @param positiveResult, indicates whether or not new value was saved
+     */
     @Override
     protected void onDialogClosed(boolean positiveResult) {
         super.onDialogClosed(positiveResult);
@@ -110,6 +138,11 @@ public class TimePreference extends DialogPreference {
         return a.getString(index);
     }
 
+    /**
+     * Sets the displayed value of the TimePreference listing
+     * @param restorePersistedValue
+     * @param defaultValue
+     */
     @Override
     protected void onSetInitialValue(boolean restorePersistedValue, Object defaultValue) {
         String time = null;
@@ -139,7 +172,11 @@ public class TimePreference extends DialogPreference {
     }
 
 
-
+    /**
+     * Formats time
+     * @param inTime
+     * @return
+     */
     public static String toDate(String inTime) {
         try {
             DateFormat inTimeFormat = new SimpleDateFormat("HH:mm", Locale.US);

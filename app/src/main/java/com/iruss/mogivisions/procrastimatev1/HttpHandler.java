@@ -15,6 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.SocketException;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 
 public class HttpHandler {
@@ -39,20 +40,10 @@ public class HttpHandler {
 
             response = convertStreamToString(in);
 
-            /*
-            reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-
-            StringBuilder sb = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-
-                sb.append(line + "\n");
-
-            }
-            response = sb.toString();
-            */
             Log.d("Test", "Online database retrieved successfully");
-
+        } catch (SocketTimeoutException e){
+            Log.e(TAG, "SocketTimeOutException: " + e.getMessage());
+            return "SocketTimeoutException";
         } catch (MalformedURLException e) {
             Log.e(TAG, "MalformedURLException: " + e.getMessage());
         } catch (ProtocolException e) {
