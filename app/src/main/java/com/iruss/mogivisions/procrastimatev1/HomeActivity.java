@@ -38,6 +38,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.iruss.mogivisions.kiosk.KioskService;
 import com.iruss.mogivisions.statistics.StatisticsActivity;
+import com.pixplicity.generate.OnFeedbackListener;
 import com.pixplicity.generate.Rate;
 
 import java.lang.reflect.Field;
@@ -145,15 +146,54 @@ public class HomeActivity extends AppCompatActivity
 
     /**
      * Creates a Snackbar that asks user to rate the app
+     * Only popups after a couple days of use
      */
     public void rateMe(){
+        final SharedPreferences.Editor editor = mprefs.edit();
+        //make sure the firstTime preference is only created once
+        if(mprefs.getBoolean("showDialog", true)) {
+            Log.i("Tutorial", "Creating first time setting" );
+            editor.putBoolean("showDialog", true).apply();
+        }
+
+        //Rating dialog
         Rate rate = new Rate.Builder(this)
                 // Trigger dialog after this many events (optional, defaults to 6)
                 .setMinimumInstallTime(0)
                 .setRepeatCount(10)
+                .setFeedbackAction(new OnFeedbackListener() {       // Optional
+                    @Override
+                    public void onFeedbackTapped() {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse("mailto:mogivisionsapp@gmail.com"));
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        HomeActivity.this.startActivity(intent);
+                        /*
+                        if (mRate.canOpenIntent(intent)) {
+                            mRate.mContext.startActivity(intent);
+                        }*/
+
+                        editor.putBoolean("showDialog", false).apply();
+
+                    }
+                    @Override
+                    public void onRateTapped() {
+                        final Uri uri = Uri.parse(("market://details?id=" + HomeActivity.this.getPackageName()));
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        HomeActivity.this.startActivity(intent);
+
+                        editor.putBoolean("showDialog", false).apply();
+                    }
+                    @Override
+                    public void onRequestDismissed(boolean dontAskAgain) {
+                        // User has dismissed the request
+                        if(dontAskAgain){
+                            editor.putBoolean("showDialog", false).apply();
+                        }
+                    }
+                })
                 .setSnackBarParent((ViewGroup) ((ViewGroup) this
                         .findViewById(android.R.id.content)).getChildAt(0))
-                .setFeedbackAction(Uri.parse("mailto:mogivisionsapp@gmail.com"))
                 .setPositiveButton("Sure!")                         // Optional
                 .setCancelButton("Maybe later")                     // Optional
                 .setNegativeButton("Give Feedback")                         // Optional
@@ -161,16 +201,18 @@ public class HomeActivity extends AppCompatActivity
                 // without a CoordinatorLayout as a parent.
                 .build();
 
-
+        // .setFeedbackAction(Uri.parse("mailto:mogivisionsapp@gmail.com"))
         Log.i("Rate Me", Long.toString(rate.getRemainingCount()));
 
         //Countsdown the timer
         rate.count();
 
         rate.showRequest();
-        Log.i("Rate Me", Boolean.toString(rate.showRequest()));
 
-        //For testing purposes
+        if(rate.getRemainingCount() == 0 && mprefs.getBoolean("showDialog", true)){
+            rate.reset();
+        }
+
         //rate.test();
 
     }

@@ -990,7 +990,16 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                             String foregroundPackage = getForegroundTask();
                             if(!isForegroundPackageAcceptable(foregroundPackage)){
                                 // Change visibility in the UI thread
+                                /*
                                 mView.getHandler().post(new Runnable() {
+                                    public void run() {
+
+                                        mView.setVisibility(View.VISIBLE);
+                                    }
+                                });*/
+
+                                mView.post(new Runnable() {
+                                    @Override
                                     public void run() {
                                         mView.setVisibility(View.VISIBLE);
                                     }
