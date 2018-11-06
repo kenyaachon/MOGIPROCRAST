@@ -250,6 +250,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
 
         unregisterReceiver(br);
+        Log.i("KioskStatus", "KioskService is destroyed");
         super.onDestroy();
     }
 
@@ -450,7 +451,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         //Starts new clock that updates automatically KioskPage is reloaded
 
 
-
+        //Start the background timer
         startService(new Intent(this, BroadcastService.class).putExtra("lockTime", timeLock));
         registerReceiver(br, new IntentFilter(BroadcastService.COUNTDOWN_BR));
 
@@ -487,7 +488,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                 showViewIfNecessary();
             }else{
                 timeView.setText(millisUntilFinished);
-                stopService(new Intent(this, BroadcastService.class));
+                //stopService(new Intent(this, BroadcastService.class));
                 Log.i("KioskStatus", "Stopped service");
                 unLock();
             }
@@ -997,7 +998,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                                         mView.setVisibility(View.VISIBLE);
                                     }
                                 });*/
-
+                                //updated for API 28+
                                 mView.post(new Runnable() {
                                     @Override
                                     public void run() {
