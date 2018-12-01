@@ -3,6 +3,8 @@ package com.iruss.mogivisions.procrastimatev1;
 //Copyright (c) 2017,2018   Mathijs Lagerberg, Pixplicity BV
 //Copyright (C) 2016-2018   Samuel Wall
 
+//
+
 import android.Manifest;
 import android.app.AppOpsManager;
 import android.app.usage.UsageStats;
