@@ -1,7 +1,9 @@
 package com.iruss.mogivisions.kiosk;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.CountDownTimer;
 import android.os.IBinder;
 import android.util.Log;
@@ -16,21 +18,43 @@ public class BroadcastService extends Service {
     Intent kiosk;
     private CountDownTimer cdt = null;
 
-    boolean timerNotStarted;
+    //Timer settings
+    SharedPreferences mprefs;
+    SharedPreferences.Editor editor;
+
+
+    //boolean timerTurnOff = false;
+    //boolean timerNotStarted;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        timerNotStarted = true;
+        mprefs = this.getSharedPreferences("Tutorial", Context.MODE_PRIVATE);
+        editor = mprefs.edit();
+
+        //Checks to see if timerNotStarted and timerNotTurnOff are already created
+        if(mprefs.getBoolean("timerNotTurnOff", true)) {
+            Log.i(TAG, "Creating clock setting");
+            editor.putBoolean("timerNotTurnOff", false).apply();
+        }
+
+        editor.putBoolean("timerNotStarted", true).apply();
+
+
     }
+
 
     @Override
     public void onDestroy() {
 
-        cdt.cancel();
-        Log.i(TAG, "Timer cancelled");
-        super.onDestroy();
+        //prevent system from destroying timer unless the timer is over
+        if(mprefs.getBoolean("timerNotTurnOff", true)){
+            cdt.cancel();
+            Log.i(TAG, "Timer cancelled");
+            super.onDestroy();
+        }
+
     }
 
     /**
@@ -50,11 +74,13 @@ public class BroadcastService extends Service {
 
         Log.i(TAG, "Starting timer...");
 
-        //Selected lock time from setting preferences
-        int time = kiosk.getIntExtra("lockTime", 600);
-
         //bi.setAction(KioskService.BROADCAST_ACTION);
 
+        int time = 0;
+        if(intent != null){
+            time = this.kiosk.getIntExtra("lockTime", 600);
+
+        }
 
 
         //bi = new Intent(getBaseContext(), KioskService.class);
@@ -62,8 +88,13 @@ public class BroadcastService extends Service {
         Log.i(TAG, Integer.toString(startId));
 
         //prevent Timer from being started multiple times
-        if(timerNotStarted){
+        Log.i("Timer Started", Boolean.toString(mprefs.getBoolean("timerNotStarted", true)));
+        if(mprefs.getBoolean("timerNotStarted", true)){
             //Time started in the background
+
+            //Selected lock time from setting preferences
+            //int time = this.kiosk.getIntExtra("lockTime", 600);
+
             cdt = new CountDownTimer(time * 1000, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
@@ -84,11 +115,14 @@ public class BroadcastService extends Service {
                 public void onFinish() {
                     bi.putExtra("countdown", "No more time remaining");
                     sendBroadcast(bi);
+                    editor.putBoolean("timerTurnOff", true).apply();
+
+                    onDestroy();
                 }
             };
 
-
-            timerNotStarted = false;
+            //Prevent timer from being started twice
+            editor.putBoolean("timerNotStarted", false).apply();
 
             cdt.start();
 

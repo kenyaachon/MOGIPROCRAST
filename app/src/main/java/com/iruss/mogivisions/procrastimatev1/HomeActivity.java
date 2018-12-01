@@ -114,6 +114,8 @@ public class HomeActivity extends AppCompatActivity
             editor.putBoolean("firstTime", true).apply();
         }
 
+        //Call Usage statistics
+        userStats();
         Log.i("Tutorial", Boolean.toString(mprefs.getBoolean("firstTime", true)));
 
         if(mprefs.getBoolean("firstTime", true)){
@@ -135,7 +137,7 @@ public class HomeActivity extends AppCompatActivity
                                 // User has pressed the prompt target
                                 Log.i("Tutorial", "User has pressed the prompt target");
                             }
-                            userStats();
+                            //userStats();
 
                         }
                     })
@@ -236,9 +238,9 @@ public class HomeActivity extends AppCompatActivity
                         "ion available");
                 //Loading unique ad id
                 //Test id
-                MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+                //MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
                 //Real id
-                //MobileAds.initialize(this, "ca-app-pub-5475955576463045~8715927181");
+                MobileAds.initialize(this, "ca-app-pub-5475955576463045~8715927181");
 
 
                 //displaying the ads
@@ -353,6 +355,8 @@ public class HomeActivity extends AppCompatActivity
                 if (Build.VERSION.SDK_INT >= 23) {
                     boolean okToStartKiosk = true;
                     // Check if you have permission to draw overlays already. If not, then ask
+
+
 
                     //Weird error, if statements are going in reverse order
                     //Fixed by putting if statements for Phone and Camera permission after OverlayRequest

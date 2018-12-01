@@ -58,7 +58,7 @@ import java.util.TreeMap;
 
 import static android.support.v4.app.NotificationCompat.PRIORITY_MIN;
 
-public class KioskService extends Service implements MyTimer.TimerRunning {
+public class KioskService extends Service  {
 
     //contains the ads
     private AdView mAdView;
@@ -72,6 +72,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
 
     public static final String BROADCAST_ACTION = "com.iruss.mogivisions.broadcastreceiver";
 
+    private boolean isBroadCastRegistered = false;
 
     // For trivia
     private ArrayList<TriviaQuestion> triviaQuestions;
@@ -121,8 +122,6 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     private SimplePhoneStateListener phoneStateListener = new SimplePhoneStateListener();
 
 
-    private boolean notStartedClock = true;
-
 
     // Constants
     private final String[] ACCEPTABLE_PACKAGES = {"dialer", "camera", "contacts", "incallui"};
@@ -159,6 +158,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
 
         //initChannels(this);
         startForeground(this);
+
 
 
         mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
@@ -249,7 +249,16 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         TelephonyManager telephonyManager = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
         telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_NONE);
 
-        unregisterReceiver(br);
+        //if(isBroadCastRegistered){
+
+        try{
+            unregisterReceiver(br);
+        }catch (IllegalArgumentException e){
+            Log.e("KioskStatus", e.toString());
+            Log.i("KioskStatus", "KioskService is destroyed");
+            super.onDestroy();
+        }
+        //}
         Log.i("KioskStatus", "KioskService is destroyed");
         super.onDestroy();
     }
@@ -339,7 +348,6 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         mView = layoutInflater.inflate(R.layout.fragment_kiosk, null);
 
         timeView = mView.findViewById(R.id.timeView);
-        MyTimer.getInstance().setTimerRuningListener(this);
 
         //setKioskTextSize();
 
@@ -407,9 +415,9 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                 Log.d("Network", "Network connection available");
                 //Loading unique ad id
                 //Test id
-                MobileAds.initialize(homeActivity, "ca-app-pub-3940256099942544~3347511713");
+                //MobileAds.initialize(homeActivity, "ca-app-pub-3940256099942544~3347511713");
                 //Real id
-                //MobileAds.initialize(homeActivity, "ca-app-pub-5475955576463045~8715927181");
+                MobileAds.initialize(homeActivity, "ca-app-pub-5475955576463045~8715927181");
 
 
                 //displaying the ads
@@ -443,11 +451,6 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         Log.d("Settings", Integer.toString(timeLock));
 
 
-
-        //int time = Integer.parseInt(syncConnPref) * 3600;
-        //MyTimer.getInstance().startTimer(time);
-
-
         //Starts new clock that updates automatically KioskPage is reloaded
 
 
@@ -455,9 +458,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         startService(new Intent(this, BroadcastService.class).putExtra("lockTime", timeLock));
         registerReceiver(br, new IntentFilter(BroadcastService.COUNTDOWN_BR));
 
-
-        //Log.i("KioskStatus", "Started service");
-        //MyTimer.getInstance().startTimer(timeLock);
+        isBroadCastRegistered = true;
     }
 
 
@@ -519,6 +520,8 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
 
                 // Take out of KioskMode
                 homeActivity.setShouldBeInKioskMode(false);
+                //Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                //startActivity(intent);
             }
         });
         setKioskButtonTextSize(hiddenExit);
@@ -648,7 +651,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         //Gets the Successful Attempts text
         successView = mView.findViewById(R.id.successes);
 
-        trialBar = (RatingBar) mView.findViewById(R.id.trialBar);
+        trialBar = mView.findViewById(R.id.trialBar);
         trialBar.setRating(trials);
 
         setTriviaTextSize();
@@ -657,7 +660,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         //try{
             new TriviaAPI(this);
 
-            /**
+            /*
         }
         catch (Exception e){
             loadKiosk();
@@ -693,18 +696,6 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         questionResponse3.setTextSize(textSize);
         questionResponse4.setTextSize(textSize);
 
-    }
-
-    @Override
-    public void onTimerChange(String remainSec) {
-        timeView.setText(remainSec);
-        showViewIfNecessary();
-    }
-
-    @Override
-    public void onTimerStopped() {
-        timeView.setText("No more time remaining");
-        unLock();
     }
 
     /*
@@ -833,7 +824,7 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
                 successBar.setRating(success);
                 Log.i("Checkup", Integer.toString(success));
                 Log.i("Checkup", Integer.toString(attemptsMade));
-                if(success == 1) {
+                if(success == 3) {
                     homeActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -1027,6 +1018,14 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
         if (foregroundPackage.equals(getApplicationContext().getPackageName())) {
             return true;
         }
+
+        if(foregroundPackage.equalsIgnoreCase("NULL")){
+            //Notify user why they can't use their phone or camera app
+            Toast.makeText(homeActivity.getApplicationContext(),
+                    "Can't access phone or camera app because usage statistics permission have not been granted," +
+                            "which are necessary for keeping phone locked",
+                    Toast.LENGTH_LONG).show();
+        }
         for (String acceptablePackage : ACCEPTABLE_PACKAGES) {
             if (foregroundPackage.toLowerCase().contains(acceptablePackage)) {
                 return true;
@@ -1036,9 +1035,12 @@ public class KioskService extends Service implements MyTimer.TimerRunning {
     }
 
     // Gets the foreground task. From https://stackoverflow.com/questions/30619349/android-5-1-1-and-above-getrunningappprocesses-returns-my-application-packag
+
+
     private String getForegroundTask() {
         String currentApp = "NULL";
 
+        //If permission for Usage statistictics is not granted, then getForegroundTask will return "NULL"
         try {
             if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
                 UsageStatsManager usm = (UsageStatsManager)this.getSystemService(Context.USAGE_STATS_SERVICE);
