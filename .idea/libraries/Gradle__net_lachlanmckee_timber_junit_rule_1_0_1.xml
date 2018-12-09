@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: net.lachlanmckee:timber-junit-rule-1.0.1">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/timber-junit-rule-1.0.1.aar/ff0062389d572fcd95e939204c2c931e/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/timber-junit-rule-1.0.1.aar/ff0062389d572fcd95e939204c2c931e/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/net.lachlanmckee/timber-junit-rule/1.0.1/94a39303c1810617934122b2d9a97a254ad5fe05/timber-junit-rule-1.0.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

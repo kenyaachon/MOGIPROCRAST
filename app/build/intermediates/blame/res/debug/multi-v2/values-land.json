@@ -4,7 +4,7 @@
             "outputFile": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-land\\values-land.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\fad0b01f67c4d0a3520ed0a6ebb6b99c\\res\\values-land\\values-land.xml",
+                    "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-1.0.2.aar\\6126d0ee2a687c1404c10574fec1cfeb\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0.aar\\bb11cc07e2e7d84b2d52ec2bd809c9ea\\res\\values-land\\values-land.xml",
+                    "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0.aar\\eb1128b52334a473d5cbcfc34f75000c\\res\\values-land\\values-land.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -24,12 +24,29 @@
                         "endOffsets": "222"
                     },
                     "to": {
-                        "startLines": "5",
+                        "startLines": "7",
                         "startColumns": "4",
-                        "startOffsets": "264",
-                        "endLines": "8",
+                        "startOffsets": "383",
+                        "endLines": "10",
                         "endColumns": "10",
-                        "endOffsets": "431"
+                        "endOffsets": "550"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\src\\main\\res\\values-land\\dimens.xml",
+                    "from": {
+                        "startLines": "3,6",
+                        "startColumns": "4,4",
+                        "startOffsets": "107,247",
+                        "endColumns": "61,56",
+                        "endOffsets": "164,299"
+                    },
+                    "to": {
+                        "startLines": "5,6",
+                        "startColumns": "4,4",
+                        "startOffsets": "264,326",
+                        "endColumns": "61,56",
+                        "endOffsets": "321,378"
                     }
                 }
             ]

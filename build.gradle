@@ -13,6 +13,8 @@ buildscript {
         classpath 'com.android.tools.build:gradle:3.2.1'
         classpath 'com.google.gms:google-services:4.0.2'
         classpath 'io.fabric.tools:gradle:1.25.4'
+        classpath 'com.github.triplet.gradle:play-publisher:1.1.5'
+        classpath "org.jacoco:org.jacoco.core:0.8.2"
 
 
 
@@ -36,4 +38,16 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    travisBuild = System.getenv("TRAVIS") == "true"
+    // allows for -Dpre-dex=false to be set
+    preDexEnabled = "true".equals(System.getProperty("pre-dex", "true"))
+
+    // Travis may report host CPU counts vs guest, everyone else gets 50% of cores
+    gradleTestMaxParallelForks = 1
+    if (!travisBuild) {
+        gradleTestMaxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
+    }
 }
