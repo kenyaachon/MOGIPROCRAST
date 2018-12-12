@@ -48,6 +48,8 @@
         statistics. You may need to enable access
         for this app through Settings > Security > Apps with usage access
     </string>
-
-
+    <string name="notification_title">You are over your limit.</string>
+    <string name="notification_content">ProcrastiMate wants to lock your phone because you have reached your usage limit.</string>
+    <string name="channel_name">Usage notification.</string>
+    <string name="channel_description">Notification for when you go over your usage limit.</string>
 </resources>

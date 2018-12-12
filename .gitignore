@@ -5,3 +5,6 @@ app/build.gradle
 app/build/
 
 local.properties
+
+build/
+.idea/
