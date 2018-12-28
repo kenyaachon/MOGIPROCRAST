@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.codemybrainsout.rating:ratingdialog-1.0.8">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ratingdialog-1.0.8.aar/98df42f90d69bd3e77b1f7a610142329/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ratingdialog-1.0.8.aar/98df42f90d69bd3e77b1f7a610142329/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ratingdialog-1.0.8.aar/a601766f29c428d82f4ea524fb703f79/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/ratingdialog-1.0.8.aar/a601766f29c428d82f4ea524fb703f79/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

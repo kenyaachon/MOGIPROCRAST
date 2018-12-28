@@ -4,6 +4,23 @@
             "outputFile": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw\\values-sw.xml",
             "map": [
                 {
+                    "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-ads-17.1.2.aar\\2e3c89be5accf565dabd16f8ccb48bc0\\res\\values-sw\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10",
+                        "startColumns": "0,0,0,0,0,0,0",
+                        "startOffsets": "197,267,393,457,520,599,708",
+                        "endColumns": "69,125,63,62,78,108,75",
+                        "endOffsets": "266,392,456,519,598,707,783"
+                    },
+                    "to": {
+                        "startLines": "47,48,49,50,51,52,53",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "5551,5625,5755,5823,5890,5973,6086",
+                        "endColumns": "73,129,67,66,82,112,79",
+                        "endOffsets": "5620,5750,5818,5885,5968,6081,6161"
+                    }
+                },
+                {
                     "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-basement-16.0.1.aar\\8b2b558bae9cf34ab6691a4175972f9c\\res\\values-sw\\values.xml",
                     "from": {
                         "startLines": "4",
@@ -35,23 +52,6 @@
                         "startOffsets": "6248",
                         "endColumns": "100",
                         "endOffsets": "6344"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-ads-17.0.0.aar\\526dba42db1c9ed3f521d7e115274c2f\\res\\values-sw\\values.xml",
-                    "from": {
-                        "startLines": "4,5,6,7,8,9,10",
-                        "startColumns": "0,0,0,0,0,0,0",
-                        "startOffsets": "197,267,393,457,520,599,708",
-                        "endColumns": "69,125,63,62,78,108,75",
-                        "endOffsets": "266,392,456,519,598,707,783"
-                    },
-                    "to": {
-                        "startLines": "47,48,49,50,51,52,53",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "5551,5625,5755,5823,5890,5973,6086",
-                        "endColumns": "73,129,67,66,82,112,79",
-                        "endOffsets": "5620,5750,5818,5885,5968,6081,6161"
                     }
                 },
                 {

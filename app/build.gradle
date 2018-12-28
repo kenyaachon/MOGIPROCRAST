@@ -10,8 +10,8 @@ android {
         applicationId "com.iruss.mogivisions.procrastimatev1"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 4
-        versionName "1.4"
+        versionCode 5
+        versionName "1.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -41,11 +41,12 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.11.3'
 
     //add google adsense
-    implementation 'com.google.android.gms:play-services-ads:17.0.0'
+    implementation 'com.google.android.gms:play-services-ads:17.1.2'
 
     //add google Firebase support
-    implementation 'com.google.firebase:firebase-core:16.0.4'
-    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.5'
+    implementation 'com.google.firebase:firebase-core:16.0.6'
+    implementation 'com.google.firebase:firebase-appindexing:17.1.0'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.7'
 
     //Chart API
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
