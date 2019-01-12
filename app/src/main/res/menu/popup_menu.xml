@@ -15,6 +15,11 @@
         android:title="Statistics"
         android:icon="@drawable/ic_insert_chart_black_24dp"
         />
+    <item
+        android:id="@+id/flashcardMenuItem"
+        android:title="Flashcards"
+        android:icon="@drawable/ic_note_black_24dp"
+        />
 
 
 </menu>

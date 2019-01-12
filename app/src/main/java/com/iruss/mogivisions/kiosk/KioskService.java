@@ -3,6 +3,7 @@ package com.iruss.mogivisions.kiosk;
 
 import android.Manifest;
 import android.app.ActivityManager;
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -11,6 +12,7 @@ import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -21,9 +23,11 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.telecom.TelecomManager;
@@ -37,6 +41,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -45,16 +50,27 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.iruss.mogivisions.procrastimatev1.HomeActivity;
 import com.iruss.mogivisions.procrastimatev1.R;
 import com.iruss.mogivisions.procrastimatev1.TriviaAPI;
 import com.iruss.mogivisions.procrastimatev1.TriviaQuestion;
 
+import org.apache.commons.io.FileUtils;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.SortedMap;
 import java.util.TreeMap;
+
+import model.Deck;
+import model.DeckCollection;
 
 import static android.support.v4.app.NotificationCompat.PRIORITY_MIN;
 
@@ -82,11 +98,21 @@ public class KioskService extends Service  {
     private Button unlock;
 
     private TextView questionView;
+    private TextView questionSubView;
     //Response buttons with questions
     private Button questionResponse1;
     private Button questionResponse2;
     private Button questionResponse3;
     private Button questionResponse4;
+
+    private TextView deckTitle;
+    private Button submit;
+    private Deck deck;
+    private TextToSpeech tts;
+    private TextView correctAnswer;
+    private EditText editText;
+    private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
 
 
     //Number of trials possible
@@ -121,6 +147,8 @@ public class KioskService extends Service  {
     // For phone calls
     private SimplePhoneStateListener phoneStateListener = new SimplePhoneStateListener();
 
+    //Trivia style chosen
+    private String trivaStyle = "";
 
 
     // Constants
@@ -169,8 +197,17 @@ public class KioskService extends Service  {
         TelephonyManager telephonyManager = (TelephonyManager) homeActivity.getSystemService(Context.TELEPHONY_SERVICE);
         telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
 
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        trivaStyle = sharedPref.getString("trivia_style", "Trivia");
+
+        Log.i("Trivia Style", trivaStyle);
+
+
         return super.onStartCommand(intent, flags, startId);
     }
+
+
+
 
 
     private void startForeground(Context context) {
@@ -415,9 +452,9 @@ public class KioskService extends Service  {
                 Log.d("Network", "Network connection available");
                 //Loading unique ad id
                 //Test id
-                //MobileAds.initialize(homeActivity, "ca-app-pub-3940256099942544~3347511713");
+                MobileAds.initialize(homeActivity, "ca-app-pub-3940256099942544~3347511713");
                 //Real id
-                MobileAds.initialize(homeActivity, "ca-app-pub-5475955576463045~8715927181");
+                //MobileAds.initialize(homeActivity, "ca-app-pub-5475955576463045~8715927181");
 
 
                 //displaying the ads
@@ -541,8 +578,15 @@ public class KioskService extends Service  {
 
             unlock.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    // Code here executes on main thread after user presses button
-                    loadTrivia();
+                    // Code here executes on main thread after user presses buttont
+                    if(trivaStyle.equalsIgnoreCase("Trivia".trim())){
+                        loadTrivia();
+                    }
+                    else {
+                        loadFlashCard();
+                    }
+
+
                 }
             });
             setKioskButtonTextSize(unlock);
@@ -612,8 +656,259 @@ public class KioskService extends Service  {
     }
 
 
+    /**
+     * Users have an option between Trivia and Flashcards
+     *
+     *
+     */
 
-    // Load the trivia fragment
+
+
+
+    //FlashCards Section
+    /**
+     * Loads the flashcard fragment
+     */
+    public void loadFlashCard(){
+        // Remove existing
+        if (mView != null) {
+            mWindowManager.removeViewImmediate(mView);
+        }
+
+        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mView = layoutInflater.inflate(R.layout.fragment_flashcard, null);
+
+        // Set up UI
+        questionView = mView.findViewById(R.id.questionText);
+        correctAnswer = mView.findViewById(R.id.correctAnswer);
+        questionSubView = mView.findViewById(R.id.questionSubText);
+
+
+        submit = mView.findViewById(R.id.submit);
+        editText = mView.findViewById(R.id.answerbox);
+        deckTitle = mView.findViewById(R.id.deckName);
+
+
+        //Gets the text that shows how many trials you have
+        trialsView = mView.findViewById(R.id.trialsRemaining);
+
+        //Gets the Successful Attempts text
+        successView = mView.findViewById(R.id.successes);
+
+        trialBar = mView.findViewById(R.id.trialBar);
+        trialBar.setRating(trials);
+
+        SharedPreferences mprefs = this.getSharedPreferences("Flashcard", Context.MODE_PRIVATE);
+
+        String name = mprefs.getString("DeckName", "Nothing");
+        Log.i("Deck", name);
+        reloadDeck(name);
+
+        try {
+            DeckCollection deckCollectionTemp = new DeckCollection();
+            deckCollectionTemp.reload(provideStackSRSDir());
+            Log.i("Deck collection", Integer.toString(deckCollectionTemp.getDeckInfos().size()));
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+        setFlashcardTextSize();
+
+        studyingIsOn();
+        // Now that it's loaded, display it
+        displayView();
+        hideStatusBar();
+    }
+
+    private File provideStackSRSDir(){
+        // if there is (possibly emulated) external storage available, we use it
+        if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+            return getApplicationContext().getExternalFilesDir(null);
+        } else { // otherwise we use an internal directory without access from the outside
+            return getApplicationContext().getDir("StackSRS", MODE_PRIVATE);
+        }
+    }
+
+    public void studyingIsOn(){
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkAnswer(editText.getText().toString());
+            }
+        });
+
+    }
+
+    public void checkAnswer(String response){
+        if(response.equalsIgnoreCase(correctAnswer.toString())){
+            Log.d("Test", "Correct response chosen");
+            success += 1;
+            successBar.setRating(success);
+
+            editText.setBackgroundColor(Color.GREEN);
+            Log.i("Checkup", Integer.toString(success));
+            Log.i("Checkup", Integer.toString(attemptsMade));
+            if(success == 3) {
+                homeActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(homeActivity.getApplicationContext(),
+                                "Trivia challenge solved successfully, phone is unlocked for 5 mins",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
+                deck.saveDeck();
+                temporaryUnlock();
+            }else{
+                continueStudying();
+            }
+
+        }
+            else {
+            Log.i("Checkup", Integer.toString(success));
+            Log.i("Checkup", Integer.toString(attemptsMade));
+
+            //Code that shows the correct answer
+            Log.d("Test", "Incorrect response chosen");
+            editText.setBackgroundResource(R.drawable.rounded_button_red);
+            correctAnswer.setVisibility(View.VISIBLE);
+            if(attemptsMade >= trials){
+                //call kill
+                success = 0;
+                attemptsMade = 0;
+                //display a message to user that they are out of attempts and go back to KioskActivity
+                Log.d("Test", "You are out of attempts");
+                homeActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(homeActivity.getApplicationContext(),
+                                "You failed to solve the trivia challenge, phone will not be unlocked",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });
+                deck.saveDeck();
+                loadKiosk();
+            }else{
+                //continues the trivia but with a delay
+                continueStudying();
+            }
+        }
+    }
+
+    public void continueStudying(){
+        Handler myhandler = new Handler();
+        myhandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //Works on displaing the next set of questions
+                attemptsMade += 1;
+                int displayTrials = trials - attemptsMade;
+                trialBar.setRating(displayTrials);
+                //String trialsStr = "Trials remaining: " + Integer.toString(displayTrials) + "    Successes (need 3 to unlock): " + Integer.toString(success);
+                //changes how many trials there are left
+                //trialsView.setText(trialsStr);
+                deck.putReviewedCardBack(true);
+
+                questionView.setText(deck.getNextCardToReview().getFront());
+                correctAnswer.setText(deck.getNextCardToReview().getBack());
+
+                 resetFlashcardsButton();
+
+            }
+        }, 1000);
+    }
+
+    public void resetFlashcardsButton(){
+        correctAnswer.setVisibility(View.INVISIBLE);
+        editText.setBackgroundResource(R.drawable.rounded_button_white);
+    }
+
+
+
+
+
+    private void reloadDeck(String deckName){
+        try {
+            DeckCollection deckCollectionTemp = new DeckCollection();
+            deckCollectionTemp.reload(provideStackSRSDir());
+            Log.i("Deck collection", Integer.toString(deckCollectionTemp.getDeckInfos().size()));
+
+            Random rand = new Random();
+            int position = rand.nextInt(2);
+            String name = deckCollectionTemp.getDeckInfos().get(position).getName();
+            File file = new File(provideStackSRSDir() + "/" + name + ".json");
+            deckTitle.setText("DECK: " + name);
+            deck = gson.fromJson(FileUtils.readFileToString(file, Charset.forName("UTF-8")), Deck.class);
+
+
+            //deck = Deck.loadDeck(deckName);
+            if(!deck.isUsingTTS() && !deck.getLanguage().equals("") && deck.isNew())
+                askForTTSActivation();
+            if(deck.isUsingTTS())
+                initTTS();
+            //showNextCard();
+            questionView.setText(deck.getNextCardToReview().getFront());
+            correctAnswer.setText(deck.getNextCardToReview().getBack());
+        } catch(IOException e){
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), getString(R.string.deck_could_not_be_loaded),
+                    Toast.LENGTH_LONG).show();
+        } catch (NullPointerException e){
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), getString(R.string.deck_could_not_be_loaded),
+                    Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void askForTTSActivation(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.activate_tts_new_deck));
+        builder.setMessage(getString(R.string.want_activate_tts));
+        builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                deck.activateTTS();
+                initTTS();
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    private void initTTS(){
+        final Locale locale = getLocaleForTTS();
+        if(locale != null){
+            tts = new TextToSpeech(this, new TextToSpeech.OnInitListener(){
+                @Override
+                public void onInit(int status) {
+                    if (status == TextToSpeech.SUCCESS) {
+                        tts.setLanguage(locale);
+                    }
+                }
+            });
+        }
+    }
+
+    private Locale getLocaleForTTS(){
+        String lang = deck.getLanguage();
+        if(lang == null || lang.equals(""))
+            return null;
+        String country = deck.getAccent();
+        if(country == null || country.equals(""))
+            return new Locale(lang);
+        return new Locale(lang, country);
+    }
+
+
+
+
+    // Trivia Section
 
     /**
      * Loads the trivia fragment
@@ -658,7 +953,7 @@ public class KioskService extends Service  {
         //call the trivia Api
         //TriviaAPI triviaAPI = new TriviaAPI(this);
         //try{
-            new TriviaAPI(this);
+        new TriviaAPI(this);
 
             /*
         }
@@ -679,6 +974,26 @@ public class KioskService extends Service  {
         hideStatusBar();
     }
 
+
+
+
+
+    /**
+     * Sets the text size of the trivia page when text size is changed in settings
+     */
+    public void setFlashcardTextSize(){
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String syncConnPref = sharedPref.getString("text_size", "11");
+
+        float textSize = Float.parseFloat(syncConnPref);
+        trialsView.setTextSize(textSize);
+        successView.setTextSize(textSize);
+        questionView.setTextSize(textSize);
+        questionSubView.setTextSize(textSize);
+        submit.setTextSize(textSize);
+        deckTitle.setTextSize(textSize);
+
+    }
 
     /**
      * Sets the text size of the trivia page when text size is changed in settings
@@ -819,7 +1134,7 @@ public class KioskService extends Service  {
             //Checks to see if the answer the user is the correct one
             if(tempButton.getText().equals(triviaQuestion.getCorrectAnswer())){
                 Log.d("Test", "Correct response chosen");
-                tempButton.setBackgroundColor(Color.GREEN);
+                tempButton.setBackgroundResource(R.drawable.rounded_button_green);
                 success += 1;
                 successBar.setRating(success);
                 Log.i("Checkup", Integer.toString(success));
@@ -845,9 +1160,9 @@ public class KioskService extends Service  {
 
                 //Code that shows the correct answer
                 Log.d("Test", "This is the correct response ");
-                correctButton.setBackgroundColor(Color.GREEN);
+                correctButton.setBackgroundResource(R.drawable.rounded_button_green);
                 Log.d("Test", "Incorrect response chosen");
-                tempButton.setBackgroundColor(Color.RED);
+                tempButton.setBackgroundResource(R.drawable.rounded_button_red);
 
                 if(attemptsMade >= trials){
                     //call kill
@@ -940,10 +1255,10 @@ public class KioskService extends Service  {
      * Resets the buttons colors back to default after they have been changed
      */
     private void resetButtons(){
-        questionResponse1.setBackgroundResource(android.R.drawable.btn_default);
-        questionResponse2.setBackgroundResource(android.R.drawable.btn_default);
-        questionResponse3.setBackgroundResource(android.R.drawable.btn_default);
-        questionResponse4.setBackgroundResource(android.R.drawable.btn_default);
+        questionResponse1.setBackgroundResource(R.drawable.rounded_button_white);
+        questionResponse2.setBackgroundResource(R.drawable.rounded_button_white);
+        questionResponse3.setBackgroundResource(R.drawable.rounded_button_white);
+        questionResponse4.setBackgroundResource(R.drawable.rounded_button_white);
 
         //Reset the text of the button to make sure True or False questions only have 2 responses
         questionResponse1.setVisibility(View.GONE);
@@ -951,6 +1266,8 @@ public class KioskService extends Service  {
         questionResponse3.setVisibility(View.GONE);
         questionResponse4.setVisibility(View.GONE);
     }
+
+
 
     /*******************************
      * Handle background apps

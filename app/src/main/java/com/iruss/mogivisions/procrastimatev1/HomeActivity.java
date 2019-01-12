@@ -48,6 +48,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
+import view.DeckListActivity;
 
 public class HomeActivity extends AppCompatActivity
         implements ActivityCompat.OnRequestPermissionsResultCallback {
@@ -240,9 +241,9 @@ public class HomeActivity extends AppCompatActivity
                         "ion available");
                 //Loading unique ad id
                 //Test id
-                //MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+                MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
                 //Real id
-                MobileAds.initialize(this, "ca-app-pub-5475955576463045~8715927181");
+                //MobileAds.initialize(this, "ca-app-pub-5475955576463045~8715927181");
 
 
                 //displaying the ads
@@ -313,6 +314,10 @@ public class HomeActivity extends AppCompatActivity
                                 startActivity(intent1);*/
                                 getPermissionForStatsPage();
                                 break;
+                            case "Flashcards":
+                                Intent intent1 = new Intent(HomeActivity.this, DeckListActivity.class);
+                                startActivity(intent1);
+                                break;
                         }
 
                         return true;
@@ -327,20 +332,6 @@ public class HomeActivity extends AppCompatActivity
 
         //setButtonTextSize(settingsButton);
     }
-
-    /**
-     * Requires permission granted to usage statistics in order to access statistics page
-     */
-    public void getPermissionForStatsPage(){
-        if (!checkUsagePermissionGranted()) {
-            showExplanation(this.getString(R.string.UsageStatisticsTitle), this.getString(R.string.UsageStatisticsPermissionRationalStats),
-                    MY_PERMISSIONS_REQUEST_READ_USAGE_STATISTICS);
-        }else{
-            Intent intent1 = new Intent(HomeActivity.this, StatisticsActivity.class);
-            startActivity(intent1);
-        }
-    }
-
 
 
     /**
@@ -445,6 +436,27 @@ public class HomeActivity extends AppCompatActivity
                 break;
             }
 
+        }
+
+    }
+
+
+    /**
+     * Permissions needed for App to work
+     */
+
+
+
+    /**
+     * Requires permission granted to usage statistics in order to access statistics page
+     */
+    public void getPermissionForStatsPage(){
+        if (!checkUsagePermissionGranted()) {
+            showExplanation(this.getString(R.string.UsageStatisticsTitle), this.getString(R.string.UsageStatisticsPermissionRationalStats),
+                    MY_PERMISSIONS_REQUEST_READ_USAGE_STATISTICS);
+        }else{
+            Intent intent1 = new Intent(HomeActivity.this, StatisticsActivity.class);
+            startActivity(intent1);
         }
     }
 
@@ -691,22 +703,6 @@ public class HomeActivity extends AppCompatActivity
 
     }
 
-    /**
-     * Changes the triviaDifficult of the app
-     * @param totalPhoneTime
-     */
-    public void setTriviaDifficulty(long totalPhoneTime){
-        Log.i("Total phone use time", Long.toString(totalPhoneTime));
-        //Set the trivia difficulty
-        if (totalPhoneTime <= 9600) {
-            TriviaAPI.questionDifficulty = "easy";
-        } else if (totalPhoneTime >= 9601 && totalPhoneTime <= 18000) {
-            TriviaAPI.questionDifficulty = "medium";
-        } else {
-            TriviaAPI.questionDifficulty = "hard";
-        }
-    }
-
 
     /**
      * Asks permission to read_Phone_state such as incoming and outgoing calls
@@ -771,5 +767,22 @@ public class HomeActivity extends AppCompatActivity
         return granted;
     }
 
+
+
+    /**
+     * Changes the triviaDifficult of the app
+     * @param totalPhoneTime
+     */
+    public void setTriviaDifficulty(long totalPhoneTime){
+        Log.i("Total phone use time", Long.toString(totalPhoneTime));
+        //Set the trivia difficulty
+        if (totalPhoneTime <= 9600) {
+            TriviaAPI.questionDifficulty = "easy";
+        } else if (totalPhoneTime >= 9601 && totalPhoneTime <= 18000) {
+            TriviaAPI.questionDifficulty = "medium";
+        } else {
+            TriviaAPI.questionDifficulty = "hard";
+        }
+    }
 
 }

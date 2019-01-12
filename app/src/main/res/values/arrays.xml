@@ -117,4 +117,15 @@
         <item>31</item>
         <item>32</item>
     </string-array>
+
+    <string-array name="trivia_style_entries">
+        <item>Trivia</item>
+        <item>Flashcards</item>
+    </string-array>
+
+    <string-array name="trivia_style_values">
+        <item>Trivia</item>
+        <item>Flashcards</item>
+    </string-array>
+
 </resources>

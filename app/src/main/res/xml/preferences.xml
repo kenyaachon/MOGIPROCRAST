@@ -16,6 +16,14 @@
         android:entryValues="@array/trivia_categories_values"
         android:defaultValue="@string/trivia_categories_default" />
 
+    <ListPreference
+        android:key="trivia_style"
+        android:title="@string/trivia_style"
+        android:dialogTitle="@string/trivia_style"
+        android:entries="@array/trivia_style_entries"
+        android:entryValues="@array/trivia_style_values"
+        android:defaultValue="@string/trivia_style_default" />
+
     <com.iruss.mogivisions.kiosk.TimePreference
         android:key="time_picker"
         android:title="Lockout Time"

@@ -105,19 +105,22 @@
             android:id="@+id/questionText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="10dp"
             android:textColor="@color/textColorDark"
             android:gravity="center"
-            android:text="TextView" />
+            android:text="TextView"
+
+            />
 
         <Button
             android:id="@+id/questionResponse1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="True"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/rounded_button_white"
             android:textColor="@color/textColorDark"
             android:visibility="visible"
+            android:layout_marginBottom="10dp"
             />
 
         <Button
@@ -125,9 +128,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="FALSE"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/rounded_button_white"
             android:textColor="@color/textColorDark"
             android:visibility="visible"
+            android:layout_marginBottom="10dp"
             />
 
         <Button
@@ -135,9 +139,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Button"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/rounded_button_white"
             android:textColor="@color/textColorDark"
             android:visibility="visible"
+            android:layout_marginBottom="10dp"
             />
 
         <Button
@@ -145,7 +150,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Button"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/rounded_button_white"
             android:textColor="@color/textColorDark"
             android:visibility="visible"
             android:layout_marginBottom="15dp"

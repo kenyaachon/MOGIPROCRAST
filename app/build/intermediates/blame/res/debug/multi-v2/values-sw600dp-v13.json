@@ -4,34 +4,7 @@
             "outputFile": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-sw600dp-v13\\values-sw600dp-v13.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-1.0.2.aar\\6126d0ee2a687c1404c10574fec1cfeb\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,124,193,263,337,413,472,543",
-                        "endColumns": "68,68,69,73,75,58,70,67",
-                        "endOffsets": "119,188,258,332,408,467,538,606"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\core-0.9.6.0.aar\\19a73544e944f32cc522fcca5499c78f\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "51",
-                        "endOffsets": "102"
-                    },
-                    "to": {
-                        "startLines": "24",
-                        "startColumns": "4",
-                        "startOffsets": "1434",
-                        "endColumns": "51",
-                        "endOffsets": "1481"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0.aar\\eb1128b52334a473d5cbcfc34f75000c\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
+                    "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0.aar\\02af12ce3ebd1dd5055178d8b943869a\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,10,11,12",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
@@ -41,48 +14,22 @@
                         "endOffsets": "110,180,251,323,381,439,548,612,675,847"
                     },
                     "to": {
-                        "startLines": "14,15,16,17,18,19,20,22,26,31",
+                        "startLines": "10,11,12,13,14,15,16,18,19,20",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "831,891,961,1032,1104,1162,1220,1329,1539,1758",
-                        "endLines": "14,15,16,17,18,19,21,22,26,34",
+                        "startOffsets": "611,671,741,812,884,942,1000,1109,1173,1236",
+                        "endLines": "10,11,12,13,14,15,17,18,19,23",
                         "endColumns": "59,69,70,71,57,57,10,63,62,10",
-                        "endOffsets": "886,956,1027,1099,1157,1215,1324,1388,1597,1925"
+                        "endOffsets": "666,736,807,879,937,995,1104,1168,1231,1403"
                     }
                 },
                 {
-                    "source": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\src\\main\\res\\values-sw600dp\\styles.xml",
+                    "source": "C:\\Users\\Moses\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\5dfc6b8b4352fada0c16d6402914fd6b\\res\\values-sw600dp-v13\\values-sw600dp-v13.xml",
                     "from": {
-                        "startLines": "3",
-                        "startColumns": "4",
-                        "startOffsets": "141",
-                        "endLines": "6",
-                        "endColumns": "12",
-                        "endOffsets": "295"
-                    },
-                    "to": {
-                        "startLines": "27",
-                        "startColumns": "4",
-                        "startOffsets": "1602",
-                        "endLines": "30",
-                        "endColumns": "12",
-                        "endOffsets": "1753"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Moses\\Documents\\businessmogi\\MOGIAPP3\\MOGIPROCRAST\\app\\src\\main\\res\\values-sw600dp\\dimens.xml",
-                    "from": {
-                        "startLines": "6,5,7,3,2,4",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "262,199,319,99,57,145",
-                        "endColumns": "55,61,56,44,40,52",
-                        "endOffsets": "313,256,371,139,93,193"
-                    },
-                    "to": {
-                        "startLines": "10,11,12,13,23,25",
-                        "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "611,667,729,786,1393,1486",
-                        "endColumns": "55,61,56,44,40,52",
-                        "endOffsets": "662,724,781,826,1429,1534"
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,124,193,263,337,413,472,543",
+                        "endColumns": "68,68,69,73,75,58,70,67",
+                        "endOffsets": "119,188,258,332,408,467,538,606"
                     }
                 }
             ]
