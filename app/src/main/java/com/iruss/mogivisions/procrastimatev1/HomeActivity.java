@@ -318,6 +318,13 @@ public class HomeActivity extends AppCompatActivity
                                 Intent intent1 = new Intent(HomeActivity.this, DeckListActivity.class);
                                 startActivity(intent1);
                                 break;
+
+                            case "Share App":
+                                Intent myIntent = new Intent(Intent.ACTION_SEND);
+                                myIntent.setType("text/plain");
+                                String sharebody = "Hey you should try out this app Procrasti Mate";
+                                myIntent.putExtra(Intent.EXTRA_TEXT, sharebody);
+                                startActivity(Intent.createChooser(myIntent, "Share using"));
                         }
 
                         return true;

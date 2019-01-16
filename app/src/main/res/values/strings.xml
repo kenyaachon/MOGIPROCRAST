@@ -94,6 +94,7 @@
     <!-- deck browser dialogs -->
     <string name="edit_card">Edit Card</string>
     <string name="delete_card">Delete Card</string>
+    <string name="be_tested_on_current_deck_dialog">Do you really want to be tested on this disk when you are unlocking your phone</string>
     <string name="really_shuffle_deck">Do you really want to shuffle the deck?</string>
     <string name="really_reverse_deck">Do you really want to reverse the order of the cards?</string>
     <string name="really_reset_strength">Reset the strength of all cards?</string>

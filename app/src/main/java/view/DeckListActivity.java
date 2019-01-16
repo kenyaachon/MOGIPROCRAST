@@ -98,8 +98,17 @@ public class DeckListActivity extends AppCompatActivity {
                 dialog.setMessage(getString(R.string.really_delete_deck, deckName));
                 dialog.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        deckCollection.deleteDeckFile(deckName);
-                        reloadDeckList();
+                        //deckCollection.deleteDeckFile(deckName);
+                        //reloadDeckList();
+                        if(deckCollection.getDeckInfos().size() >= 20){
+                            editor.putString("DeckName", deckName).apply();
+                        } else{
+                            editor.putString("DeckName", "Nothing").apply();
+                            Toast.makeText(DeckListActivity.this.getApplicationContext(),
+                                    "Cannot use this deck because it has less than 20 cards",
+                                    Toast.LENGTH_LONG).show();
+                        }
+
                         dialog.dismiss();
                     }
                 });

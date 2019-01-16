@@ -20,6 +20,13 @@
         android:title="Flashcards"
         android:icon="@drawable/ic_note_black_24dp"
         />
+    <item
+        android:id="@+id/shareappMenuItem"
+        android:title="Share App"
+        android:icon="@drawable/ic_share_black_24dp"
+        />
+
+
 
 
 </menu>
