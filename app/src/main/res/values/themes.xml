@@ -1,95 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="customTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">false</item>
-        <item name="android:windowTitleBackgroundStyle">@style/WindowTitleBackground</item>
-        <item name="android:popupMenuStyle">@style/PopupMenu</item>
+<style name="customTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="android:windowActionBar">false</item>
+    <item name="android:windowNoTitle">false</item>
+    <item name="android:windowTitleBackgroundStyle">@style/WindowTitleBackground</item>
+    <item name="android:popupMenuStyle">@style/PopupMenu</item>
 
-        <!-- Assign dialog style here.
-        <item name="alertDialogTheme">@style/MyAlertDialogStyle</item>
-        <item name="alertDialogStyle">@style/MyAlertDialogStyle</item>-->
+    <!-- Assign dialog style here.
+    <item name="alertDialogTheme">@style/MyAlertDialogStyle</item>
+    <item name="alertDialogStyle">@style/MyAlertDialogStyle</item>-->
 
-    </style>
-
-
-    <style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
-        <item name="android:popupBackground">#1c9d97</item>
-    </style>
+</style>
 
 
-    <style name="settingTheme" parent="Theme.AppCompat.Light">
-        <item name="android:windowActionBar">false</item>
+<style name="PopupMenu" parent="@android:style/Widget.PopupMenu">
+    <item name="android:popupBackground">#1c9d97</item>
+</style>
+
+
+<style name="settingTheme" parent="Theme.AppCompat.Light">
+    <item name="android:windowActionBar">false</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:textColor">#FFFFFF</item>
+    <item name="android:textSize">20sp</item>
+    <item name="android:alertDialogTheme">@style/DialogTheme</item>
+    <item name="android:windowTitleBackgroundStyle">@style/settingTitleBackground</item>
+    <item name="android:actionBarStyle"   tools:ignore="NewApi">@style/MyActionBar</item>
+    <item name="actionBarStyle">@style/MyActionBar</item>
+    <item name="titleTextStyle">@style/MyActionBarTitleText</item>
+</style>
+
+
+
+<style name="statisticsTheme" parent="Theme.AppCompat.Light">
+    <item name="android:windowActionBar">false</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:textColor">#FFFFFF</item>
+    <item name="android:textSize">20sp</item>
+    <item name="android:windowTitleBackgroundStyle">@style/statisticsTitleBackground</item>
+    <item name="android:actionBarStyle"   tools:ignore="NewApi">@style/MyActionBarStats2</item>
+    <item name="actionBarStyle">@style/MyActionBarStats2</item>
+    <item name="titleTextStyle">@style/MyActionBarTitleText</item>
+    <item name="android:timePickerStyle">@style/TimePicker</item>
+</style>
+
+    <style name="flashcardsTheme" parent="Theme.AppCompat.Light">
         <item name="android:windowNoTitle">true</item>
-        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/white</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:alertDialogTheme">@style/DialogTheme</item>
-        <item name="android:windowTitleBackgroundStyle">@style/settingTitleBackground</item>
-        <item name="android:actionBarStyle"   tools:ignore="NewApi">@style/MyActionBar</item>
-        <item name="actionBarStyle">@style/MyActionBar</item>
-        <item name="titleTextStyle">@style/MyActionBarTitleText</item>
-    </style>
-
-    <style name="statisticsTheme" parent="Theme.AppCompat.Light">
-        <item name="android:windowActionBar">false</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:textColor">#FFFFFF</item>
-        <item name="android:textSize">20sp</item>
-        <item name="android:windowTitleBackgroundStyle">@style/statisticsTitleBackground</item>
+        <item name="android:windowTitleBackgroundStyle">@style/flashcardsTitleBackground</item>
         <item name="android:actionBarStyle"   tools:ignore="NewApi">@style/MyActionBarStats</item>
         <item name="actionBarStyle">@style/MyActionBarStats</item>
         <item name="titleTextStyle">@style/MyActionBarTitleText</item>
         <item name="android:timePickerStyle">@style/TimePicker</item>
+        <item name="android:popupMenuStyle">@style/PopupMenuFlashcards</item>
+        <item name="actionBarPopupTheme">@style/PopupMenuFlashcards2</item>
     </style>
+
+    <style name="PopupMenuFlashcards" parent="@android:style/Widget.PopupMenu">
+        <item name="android:popupBackground">@color/flashcardsDialogBackgroundcolor</item>
+        <!-- Used for the buttons -->
+        <item name="colorAccent">#FFFFFF</item>
+        <!-- Used for the title and text -->
+        <item name="android:textColorPrimary">#FFFFFF</item>
+    </style>
+
+    <style name="FlashcardDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:textColor">#FFFFFF</item>
+        <!-- Used for the buttons -->
+        <item name="colorAccent">#FFFFFF</item>
+        <!-- Used for the title and text -->
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <!-- Used for the background -->
+        <item name="android:background">@color/flashcardsDialogBackgroundcolor</item>
+    </style>
+
+    <style name="PopupMenuFlashcards2" parent="Widget.AppCompat.ListPopupWindow">
+        <item name="android:background">@color/flashcardsDialogBackgroundcolor</item>
+        <!-- Used for the buttons -->
+        <item name="colorAccent">#FFFFFF</item>
+        <!-- Used for the title and text -->
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <!--Used for changing the color of the text -->
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
 
     <style name="TimePicker" parent="android:Widget.Material.Light.TimePicker">
-        <item name="android:headerBackground">#ff555555</item>
-        <item name="android:numbersSelectorColor">?android:attr/colorControlActivated</item>
-        <item name="android:numbersBackgroundColor">#ff555555</item>
-        <item name="android:amPmTextColor">?android:attr/textColorSecondary</item>
-        <item name="android:colorAccent">@color/settingTitleBackgroundcolor</item>
-    </style>
+    <item name="android:headerBackground">#ff555555</item>
+    <item name="android:numbersSelectorColor">?android:attr/colorControlActivated</item>
+    <item name="android:numbersBackgroundColor">#ff555555</item>
+    <item name="android:amPmTextColor">?android:attr/textColorSecondary</item>
+    <item name="android:colorAccent">@color/settingTitleBackgroundcolor</item>
+</style>
 
 
-    <style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <item name="android:background"  tools:ignore="NewApi">@color/settingTitleBackgroundcolor</item>
-        <item name="background">@color/settingTitleBackgroundcolor</item>
+<style name="MyActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+    <item name="android:background"  tools:ignore="NewApi">@color/settingTitleBackgroundcolor</item>
+    <item name="background">@color/settingTitleBackgroundcolor</item>
+    <item name="titleTextStyle">@style/MyActionBarTitleText</item>
+</style>
+
+<style name="MyActionBarStats" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+    <item name="android:background"  tools:ignore="NewApi">@color/settingTitleBackgroundcolor</item>
+    <item name="background">@color/settingTitleBackgroundcolor</item>
+    <item name="titleTextStyle">@style/MyActionBarTitleText</item>
+</style>
+
+    <style name="MyActionBarStats2" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background"  tools:ignore="NewApi">@color/titlebackgroundcolor</item>
+        <item name="background">@color/titlebackgroundcolor</item>
         <item name="titleTextStyle">@style/MyActionBarTitleText</item>
     </style>
 
-    <style name="MyActionBarStats" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <item name="android:background"  tools:ignore="NewApi">@color/statisticsTitleBackgroundcolor</item>
-        <item name="background">@color/statisticsTitleBackgroundcolor</item>
-        <item name="titleTextStyle">@style/MyActionBarTitleText</item>
-    </style>
 
+<style name="MyActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+    <item name="android:textColor">@color/titletextcolor</item>
+</style>
 
-    <style name="MyActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
-        <item name="android:textColor">@color/titletextcolor</item>
-    </style>
+<style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <item name="android:colorBackground">#055a9d</item>
+    <item name="android:headerBackground">@color/settingTitleBackgroundcolor</item>
+    <item name="android:background">@color/settingTitleBackgroundcolor</item>
+    <item name="android:textColor">#FFFFFF</item>
+    <item name="android:textColorPrimary">#FFFFFF</item>
+    <item name="android:textColorSecondary">#FFFFFF</item>
+    <item name="android:textColorHighlight">#FFFFFF</item>
+    <item name="android:textColorTertiary">#FFFFFF</item>
+    <item name="android:editTextColor">#FFFFFF</item>
+    <item name="color">#FFFFFF</item>
+</style>
 
-    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:colorBackground">#055a9d</item>
-        <item name="android:headerBackground">@color/settingTitleBackgroundcolor</item>
-        <item name="android:background">@color/settingTitleBackgroundcolor</item>
-        <item name="android:textColor">#FFFFFF</item>
-        <item name="android:textColorPrimary">#FFFFFF</item>
-        <item name="android:textColorSecondary">#FFFFFF</item>
-        <item name="android:textColorHighlight">#FFFFFF</item>
-        <item name="android:textColorTertiary">#FFFFFF</item>
-        <item name="android:editTextColor">#FFFFFF</item>
-        <item name="color">#FFFFFF</item>
-    </style>
-
-    <!--
-        <item name="android:textColor">#FF000000</item>
-        <item name="android:textColorPrimary">#FF000000</item>
-        <item name="android:textColorSecondary">#FF000000</item>
-        <item name="android:textColorHighlight">#FF000000</item>
-        <item name="android:textColorTertiary">#FF000000</item>
-        <item name="android:editTextColor">#FF000000</item>
-        <item name="color">#FF000000</item>
-    -->
+<!--
+    <item name="android:textColor">#FF000000</item>
+    <item name="android:textColorPrimary">#FF000000</item>
+    <item name="android:textColorSecondary">#FF000000</item>
+    <item name="android:textColorHighlight">#FF000000</item>
+    <item name="android:textColorTertiary">#FF000000</item>
+    <item name="android:editTextColor">#FF000000</item>
+    <item name="color">#FF000000</item>
+-->
 
 
 </resources>

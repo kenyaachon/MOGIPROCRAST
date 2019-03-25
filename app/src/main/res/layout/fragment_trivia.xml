@@ -14,7 +14,7 @@
         android:gravity="center"
         android:layout_marginBottom="15dp"
         android:text="Challenge"
-        android:textColor="@color/titletextcolor" />
+        android:textColor="#FFFFFF" />
 <!--
     <TextView
         android:id="@+id/trialsRemaining"
@@ -30,8 +30,15 @@
 
 
     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="@dimen/margin_large"
+        android:background="@drawable/rounded_button_white"
         android:layout_gravity="center_horizontal"
         >
 
@@ -43,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:gravity="center"
                 android:textSize="20sp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/textColorDark"
                 android:paddingRight="5dp"
@@ -54,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:gravity="center"
                 android:textSize="20sp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dp"
                 android:textColor="@color/textColorDark"
@@ -91,8 +98,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/triviaborder"
-        android:layout_marginTop="100dp"
+        android:background="@drawable/rounded_button_white"
+        android:layout_marginTop="150dp"
         android:paddingTop="15dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
@@ -105,19 +112,22 @@
             android:id="@+id/questionText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="10dp"
             android:textColor="@color/textColorDark"
             android:gravity="center"
-            android:text="TextView" />
+            android:text="TextView"
+
+            />
 
         <Button
             android:id="@+id/questionResponse1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="True"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/rounded_button_grey"
             android:textColor="@color/textColorDark"
             android:visibility="visible"
+            android:layout_marginBottom="10dp"
             />
 
         <Button
@@ -125,9 +135,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="FALSE"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/rounded_button_grey"
             android:textColor="@color/textColorDark"
             android:visibility="visible"
+            android:layout_marginBottom="10dp"
             />
 
         <Button
@@ -135,9 +146,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Button"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/rounded_button_grey"
             android:textColor="@color/textColorDark"
             android:visibility="visible"
+            android:layout_marginBottom="10dp"
             />
 
         <Button
@@ -145,7 +157,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Button"
-            android:background="@drawable/rounded_button"
+            android:background="@drawable/rounded_button_grey"
             android:textColor="@color/textColorDark"
             android:visibility="visible"
             android:layout_marginBottom="15dp"

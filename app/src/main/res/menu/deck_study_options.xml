@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/deleteMenuItem"
+        android:title="Delete this deck"
+        />
+
+    <item
+        android:id="@+id/renameMenuItem"
+        android:title="Rename this deck"
+        />
+
+    <item
+        android:id="@+id/selectForTriviaMenuItem"
+        android:title="Select this deck for the trivia challenge"
+        />
+
+    <!--
+    <item
+        android:id="@+id/addCardsItem"
+        android:title="Add more items to this deck"
+        />-->
+
+</menu>

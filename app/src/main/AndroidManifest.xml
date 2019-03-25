@@ -34,23 +34,57 @@
             android:theme="@style/settingTheme" />
         <activity
             android:name=".HomeActivity"
-            android:theme="@style/customTheme"/><!--
+            android:screenOrientation="portrait"
+            android:theme="@style/customTheme" >
+            <intent-filter android:autoVerify="true" >
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "https://www.procrastimate.tech” -->
+                <data android:scheme="http"
+                    android:host="www.procrastimate.tech"
+                    android:pathPrefix="/"
+                    />
+                <!-- note that the leading "/" is required for pathPrefix-->
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <!-- Accepts URIs that begin with "https://www.procrastimate.tech” -->
+                <data android:scheme="http"
+                    android:host="www.procrastimate.tech"
+                    />
+                <!-- note that the leading "/" is required for pathPrefix-->
+            </intent-filter>
+        </activity>
+
+        <!--
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>-->
-
+        <service
+            android:name="com.iruss.mogivisions.kiosk.JobSchedulerService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="true"/>
+        <service
+            android:name="com.iruss.mogivisions.kiosk.DelayService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="true"/>
         <service android:name="com.iruss.mogivisions.kiosk.KioskService" />
         <service android:name="com.iruss.mogivisions.kiosk.BroadcastService"/>
         <activity
             android:name="com.iruss.mogivisions.statistics.StatisticsActivity"
             android:label="Statistics"
             android:parentActivityName=".HomeActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/statisticsTheme" />
         <activity android:name=".SplashActivity"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:screenOrientation="portrait"
+            >
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -58,6 +92,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="view.DeckListActivity"
+            android:screenOrientation="portrait"
+            android:label="StackSRS"
+            android:theme="@style/flashcardsTheme"
+            android:parentActivityName=".HomeActivity"
+            >
+        </activity>
+        <activity
+            android:name="view.ReviewActivity"
+            android:theme="@style/flashcardsTheme"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="view.DeckDownloadActivity"
+            android:theme="@style/flashcardsTheme"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name="view.DeckBrowserActivity"
+            android:theme="@style/flashcardsTheme"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

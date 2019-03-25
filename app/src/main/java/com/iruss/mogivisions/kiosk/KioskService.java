@@ -3,6 +3,7 @@ package com.iruss.mogivisions.kiosk;
 
 import android.Manifest;
 import android.app.ActivityManager;
+import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -11,6 +12,7 @@ import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -21,9 +23,11 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.telecom.TelecomManager;
@@ -37,6 +41,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -45,16 +50,27 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.iruss.mogivisions.procrastimatev1.HomeActivity;
 import com.iruss.mogivisions.procrastimatev1.R;
 import com.iruss.mogivisions.procrastimatev1.TriviaAPI;
 import com.iruss.mogivisions.procrastimatev1.TriviaQuestion;
 
+import org.apache.commons.io.FileUtils;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 import java.util.SortedMap;
 import java.util.TreeMap;
+
+import model.Deck;
+import model.DeckCollection;
 
 import static android.support.v4.app.NotificationCompat.PRIORITY_MIN;
 
@@ -82,11 +98,21 @@ public class KioskService extends Service  {
     private Button unlock;
 
     private TextView questionView;
+    private TextView questionSubView;
     //Response buttons with questions
     private Button questionResponse1;
     private Button questionResponse2;
     private Button questionResponse3;
     private Button questionResponse4;
+
+    private TextView deckTitle;
+    private Button submit;
+    private Deck deck;
+    private TextToSpeech tts;
+    private TextView correctAnswer;
+    private EditText editText;
+    private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
 
 
     //Number of trials possible
@@ -121,6 +147,8 @@ public class KioskService extends Service  {
     // For phone calls
     private SimplePhoneStateListener phoneStateListener = new SimplePhoneStateListener();
 
+    //Trivia style chosen
+    private String trivaStyle = "";
 
 
     // Constants
@@ -166,76 +194,18 @@ public class KioskService extends Service  {
         loadKiosk();
 
         // Start listening for phone calls
-        TelephonyManager telephonyManager = (TelephonyManager) homeActivity.getSystemService(Context.TELEPHONY_SERVICE);
+        TelephonyManager telephonyManager = (TelephonyManager) getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
         telephonyManager.listen(phoneStateListener, PhoneStateListener.LISTEN_CALL_STATE);
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        trivaStyle = sharedPref.getString("trivia_style", "Trivia");
+
+        Log.i("Trivia Style", trivaStyle);
+
 
         return super.onStartCommand(intent, flags, startId);
     }
 
-
-    private void startForeground(Context context) {
-        String channelId = "";
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            channelId = createNotificationChannel(context);
-
-        }
-
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, channelId);
-        Notification notification = notificationBuilder.setOngoing(true)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setPriority(PRIORITY_MIN)
-                .setCategory(Notification.CATEGORY_SERVICE)
-                .build();
-        startForeground(101, notification);
-    }
-
-
-    private String createNotificationChannel(Context context){
-        String channelId = "KioskService";
-        String channelName = "My Background Service";
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel chan = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_NONE);
-            //chan.lightColor = Color.BLUE;
-            //chan.lockscreenVisibility = Notification.VISIBILITY_PRIVATE;
-            NotificationManager service = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-            service.createNotificationChannel(chan);
-        }
-        return channelId;
-    }
-
-
-
-    public void initChannels(Context context) {
-    if (Build.VERSION.SDK_INT < 26) {
-        return;
-    }
-    NotificationManager notificationManager =
-            (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-    NotificationChannel channel = new NotificationChannel("default",
-                                                          "KioskMode",
-                                                          NotificationManager.IMPORTANCE_DEFAULT);
-    channel.setDescription("KioskService for KioskMode");
-    notificationManager.createNotificationChannel(channel);
-
-    NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, ANDROID_CHANNEL_ID)
-            .setContentTitle(getString(R.string.app_name))
-            .setContentText("KioskMode restarted")
-            .setAutoCancel(true);
-    Notification notification = notificationBuilder.setOngoing(true)
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setPriority(PRIORITY_MIN)
-                .setCategory(Notification.CATEGORY_SERVICE)
-                .build();
-        startForeground(101, notification);
-   }
-
-
-    private void hideStatusBar(){
-    // Hide the status bar.
-        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        mView.setSystemUiVisibility(uiOptions);
-
-    }
 
 
     @Override
@@ -261,6 +231,86 @@ public class KioskService extends Service  {
         //}
         Log.i("KioskStatus", "KioskService is destroyed");
         super.onDestroy();
+    }
+
+
+    /**
+     * Loads the ads at the bottom of the page
+     * Checks if there is internet if not then ads are not loaded
+     */
+    private void loadAds(){
+        ConnectivityManager conMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        //Checks if there is internet
+        try {
+            NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
+            boolean isConnected = activeNetwork != null &&
+                    activeNetwork.isConnectedOrConnecting();
+            //if(isConnected && homeActivity != null){
+            if(isConnected){
+                Log.d("Network", "Network connection available");
+                //Loading unique ad id
+                //MobileAds.initialize(getApplicationContext(), "ca-app-pub-3940256099942544~3347511713");
+                //Test id
+
+                //MobileAds.initialize(homeActivity, "ca-app-pub-3940256099942544~3347511713");
+                //Real id
+                MobileAds.initialize(getApplicationContext(), "ca-app-pub-5475955576463045~8715927181");
+
+
+                //displaying the ads
+                mAdView = mView.findViewById(R.id.adView);
+                AdRequest adRequest = new AdRequest.Builder().build();
+                mAdView.loadAd(adRequest);
+            }
+
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+
+
+    private void startForeground(Context context) {
+        String channelId = "";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            channelId = createNotificationChannel(context);
+
+        }
+
+        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, channelId);
+        Notification notification = notificationBuilder.setOngoing(true)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setPriority(PRIORITY_MIN)
+                .setCategory(Notification.CATEGORY_SERVICE)
+                .build();
+        startForeground(101, notification);
+    }
+
+
+    private String createNotificationChannel(Context context){
+        String channelId = "KioskService";
+        String channelName = "My Background Service";
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel chan = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
+            //NotificationChannel chan = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_NONE);
+            //chan.lightColor = Color.BLUE;
+            //chan.lockscreenVisibility = Notification.VISIBILITY_PRIVATE;
+            NotificationManager service = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            service.createNotificationChannel(chan);
+        }
+        return channelId;
+    }
+
+
+    private void hideStatusBar(){
+        // Hide the status bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        mView.setSystemUiVisibility(uiOptions);
+
     }
 
     /**
@@ -336,6 +386,8 @@ public class KioskService extends Service  {
     }
 
 
+
+
     // Load the kiosk fragment
     public void loadKiosk() {
         // Remove existing
@@ -363,9 +415,14 @@ public class KioskService extends Service  {
     }
 
     public void toastMessage(String message){
-        Toast.makeText(homeActivity.getApplicationContext(),
+        Toast.makeText(getApplicationContext(),
                 message,
                 Toast.LENGTH_LONG).show();
+
+        /*
+        Toast.makeText(homeActivity.getApplicationContext(),
+                message,
+                Toast.LENGTH_LONG).show();*/
     }
 
 
@@ -397,40 +454,6 @@ public class KioskService extends Service  {
         button.setTextSize(textSize);
     }
 
-
-
-    /**
-     * Loads the ads at the bottom of the page
-     * Checks if there is internet if not then ads are not loaded
-     */
-    private void loadAds(){
-        ConnectivityManager conMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        //Checks if there is internet
-        try {
-            NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
-            boolean isConnected = activeNetwork != null &&
-                    activeNetwork.isConnectedOrConnecting();
-            if(isConnected && homeActivity != null){
-                Log.d("Network", "Network connection available");
-                //Loading unique ad id
-                //Test id
-                //MobileAds.initialize(homeActivity, "ca-app-pub-3940256099942544~3347511713");
-                //Real id
-                MobileAds.initialize(homeActivity, "ca-app-pub-5475955576463045~8715927181");
-
-
-                //displaying the ads
-                mAdView = mView.findViewById(R.id.adView);
-                AdRequest adRequest = new AdRequest.Builder().build();
-                mAdView.loadAd(adRequest);
-            }
-
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     /**
      * Carries the timer for how long the phone is locked
@@ -518,6 +541,7 @@ public class KioskService extends Service  {
                 // Break out!
                 stopSelf(-1);
 
+
                 // Take out of KioskMode
                 homeActivity.setShouldBeInKioskMode(false);
                 //Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
@@ -531,24 +555,177 @@ public class KioskService extends Service  {
 
     }
 
-    /**
-     * Need a button for going to the Challenge_Activity
-     * Reponse activated when user presses unlock phone button
-     */
-    public void response(){
-        if (mView != null) {
-            unlock = mView.findViewById(R.id.unlockPhone);
 
-            unlock.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    // Code here executes on main thread after user presses button
-                    loadTrivia();
-                }
-            });
-            setKioskButtonTextSize(unlock);
+
+    /*******************************
+     * Handle background apps
+     */
+
+    // Checks if you have an unauthorized app on top, and then
+    public void showViewIfNecessary() {
+        // If not created or already visible, don't need to do anything
+        if (mView == null || mView.getVisibility() == View.VISIBLE) {
+            return;
+        }
+
+        // Same for if you are just waiting for the launcher timer
+        if (waitingForLauncher) {
+            return;
+        }
+        // Get foreground package
+        String foregroundPackage = getForegroundTask();
+
+        // Handle special case for launcher, where it takes about 3 seconds for the phone or camera to appear
+        if (foregroundPackage.toLowerCase().contains(LAUNCHER)) {
+            waitingForLauncher = true;
+            new java.util.Timer().schedule(
+                    new java.util.TimerTask() {
+                        @Override
+                        public void run() {
+                            waitingForLauncher = false;
+                            Log.i("KioskService", "Timer fired");
+                            String foregroundPackage = getForegroundTask();
+                            if(!isForegroundPackageAcceptable(foregroundPackage)){
+                                // Change visibility in the UI thread
+                                /*
+                                mView.getHandler().post(new Runnable() {
+                                    public void run() {
+
+                                        mView.setVisibility(View.VISIBLE);
+                                    }
+                                });*/
+                                //updated for API 28+
+                                mView.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        mView.setVisibility(View.VISIBLE);
+                                    }
+                                });
+                            }
+                        }
+                    },
+                    LAUNCHER_DELAY
+            );
+            return;
+        }
+
+        // If top activity is not this, phone, or dialer, then make visible
+        if(!isForegroundPackageAcceptable(foregroundPackage)){
+            mView.setVisibility(View.VISIBLE);
         }
 
     }
+
+    // Returns whether the foreground package is valid or not
+    private boolean isForegroundPackageAcceptable(String foregroundPackage) {
+        Log.i("Package on top", foregroundPackage);
+        // Acceptable if it's this app
+        if (foregroundPackage.equals(getApplicationContext().getPackageName())) {
+            return true;
+        }
+
+        if(foregroundPackage.equalsIgnoreCase("NULL")){
+            //Notify user why they can't use their phone or camera app
+
+            Toast.makeText(getApplicationContext(),
+                    "Can't access phone or camera app because usage statistics permission have not been granted," +
+                            "which are necessary for keeping phone locked",
+                    Toast.LENGTH_LONG).show();
+            /*
+            Toast.makeText(homeActivity.getApplicationContext(),
+                    "Can't access phone or camera app because usage statistics permission have not been granted," +
+                            "which are necessary for keeping phone locked",
+                    Toast.LENGTH_LONG).show();*/
+        }
+        for (String acceptablePackage : ACCEPTABLE_PACKAGES) {
+            if (foregroundPackage.toLowerCase().contains(acceptablePackage)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Gets the foreground task. From https://stackoverflow.com/questions/30619349/android-5-1-1-and-above-getrunningappprocesses-returns-my-application-packag
+
+
+    private String getForegroundTask() {
+        String currentApp = "NULL";
+
+        //If permission for Usage statistictics is not granted, then getForegroundTask will return "NULL"
+        try {
+            if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                UsageStatsManager usm = (UsageStatsManager)this.getSystemService(Context.USAGE_STATS_SERVICE);
+                long time = System.currentTimeMillis();
+                List<UsageStats> appList = usm.queryUsageStats(UsageStatsManager.INTERVAL_DAILY,  time - 1000*1000, time);
+                if (appList != null && appList.size() > 0) {
+                    SortedMap<Long, UsageStats> mySortedMap = new TreeMap<Long, UsageStats>();
+                    for (UsageStats usageStats : appList) {
+                        mySortedMap.put(usageStats.getLastTimeUsed(), usageStats);
+                    }
+                    if (mySortedMap != null && !mySortedMap.isEmpty()) {
+                        currentApp = mySortedMap.get(mySortedMap.lastKey()).getPackageName();
+                    }
+                }
+            } else {
+                ActivityManager am = (ActivityManager)this.getSystemService(Context.ACTIVITY_SERVICE);
+                List<ActivityManager.RunningAppProcessInfo> tasks = am.getRunningAppProcesses();
+                currentApp = tasks.get(0).processName;
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+
+//        Log.d("KioskService", "Current App in foreground is: " + currentApp);
+        return currentApp;
+    }
+
+
+    //Pulls up the in callui when there is an coming call
+    public void callui(){
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if (ActivityCompat.checkSelfPermission(this,
+                    Manifest.permission.READ_PHONE_STATE)
+                    == PackageManager.PERMISSION_GRANTED){
+                Log.i("KioskService", "TelecomManger: showing InCall screen");
+                TelecomManager tm = (TelecomManager) getSystemService(Context.TELECOM_SERVICE);
+                tm.showInCallScreen(false);
+            }
+        }
+    }
+
+
+    // Class that listens to the phone state
+    class SimplePhoneStateListener extends PhoneStateListener {
+        @Override
+        public void onCallStateChanged(int state, String incomingNumber) {
+            super.onCallStateChanged(state, incomingNumber);
+            switch (state) {
+                case TelephonyManager.CALL_STATE_IDLE:
+                    Log.i("KioskService", "onCallStateChanged: CALL_STATE_IDLE");
+                    mView.setVisibility(View.VISIBLE);
+                    break;
+                case TelephonyManager.CALL_STATE_RINGING:
+                    Log.i("KioskService", "onCallStateChanged: CALL_STATE_RINGING");
+                    // Hide window
+                    mView.setVisibility(View.GONE);
+                    callui();
+                    break;
+                case TelephonyManager.CALL_STATE_OFFHOOK:
+                    Log.i("KioskService", "onCallStateChanged: CALL_STATE_OFFHOOK");
+                    // Hide window
+                    mView.setVisibility(View.GONE);
+                    break;
+                default:
+                    Log.i("KioskService", "UNKNOWN_STATE: " + state);
+                    break;
+            }
+        }
+    }
+
+
+    /********************************************************************************
+     * Extra features of Kiosk Mode: Camera/Phone
+     */
 
 
     /*
@@ -593,18 +770,18 @@ public class KioskService extends Service  {
                 //if (homeActivity.cameraCheck()) {
 
 
-                    // Make view invisible
-                    if (mView != null) {
-                        mView.setVisibility(View.GONE);
-                    }
+                // Make view invisible
+                if (mView != null) {
+                    mView.setVisibility(View.GONE);
+                }
 
-                    Intent cameraIntent = new Intent(android.provider.MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
+                Intent cameraIntent = new Intent(android.provider.MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
 
                 //Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                    //makes sure the camera is at the top of the activity stack
-                    cameraIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                //makes sure the camera is at the top of the activity stack
+                cameraIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-                    startActivity(cameraIntent);
+                startActivity(cameraIntent);
                 //}
             }
         });
@@ -613,7 +790,358 @@ public class KioskService extends Service  {
 
 
 
-    // Load the trivia fragment
+
+    /**********************************************************************
+     * Load Trivia Challenges
+     */
+
+
+    /**
+     * Need a button for going to the Challenge_Activity
+     * Reponse activated when user presses unlock phone button
+     */
+    public void response(){
+        if (mView != null) {
+            unlock = mView.findViewById(R.id.unlockPhone);
+
+            unlock.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    // Code here executes on main thread after user presses buttont
+                    if(trivaStyle.equalsIgnoreCase("Trivia".trim())){
+                        loadTrivia();
+                    }
+                    else {
+                        loadFlashCard();
+                    }
+
+
+                }
+            });
+            setKioskButtonTextSize(unlock);
+        }
+
+    }
+
+    /****************************************************************************************************
+     * Flashcards Challenge
+     *
+     */
+    //FlashCards Section
+    /**
+     * Loads the flashcard fragment
+     */
+    public void loadFlashCard(){
+        // Remove existing
+        if (mView != null) {
+            mWindowManager.removeViewImmediate(mView);
+        }
+
+        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mView = layoutInflater.inflate(R.layout.fragment_flashcard, null);
+
+        // Set up UI
+        questionView = mView.findViewById(R.id.questionText);
+        correctAnswer = mView.findViewById(R.id.correctAnswer);
+        questionSubView = mView.findViewById(R.id.questionSubText);
+
+
+        submit = mView.findViewById(R.id.submit);
+        editText = mView.findViewById(R.id.answerbox);
+        deckTitle = mView.findViewById(R.id.deckName);
+
+
+        //Gets the text that shows how many trials you have
+        trialsView = mView.findViewById(R.id.trialsRemaining);
+
+        //Gets the Successful Attempts text
+        successView = mView.findViewById(R.id.successes);
+
+        trialBar = mView.findViewById(R.id.trialBar);
+        trialBar.setRating(trials);
+
+        SharedPreferences mprefs = this.getSharedPreferences("Flashcard", Context.MODE_PRIVATE);
+
+        String name = mprefs.getString("DeckName", "Nothing");
+        Log.i("Deck", name);
+        if(name.trim().equalsIgnoreCase("Nothing")){
+            reloadRandomDeck(name);
+        }else{
+            reloadDeck(name);
+        }
+
+        /*
+        try {
+            DeckCollection deckCollectionTemp = new DeckCollection();
+            deckCollectionTemp.reload(provideStackSRSDir());
+            Log.i("Deck collection", Integer.toString(deckCollectionTemp.getDeckInfos().size()));
+        } catch (IOException e){
+            e.printStackTrace();
+        }*/
+
+        setFlashcardTextSize();
+
+        studyingIsOn();
+        // Now that it's loaded, display it
+        displayView();
+        hideStatusBar();
+    }
+
+    private File provideStackSRSDir(){
+        // if there is (possibly emulated) external storage available, we use it
+        if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+            return getApplicationContext().getExternalFilesDir(null);
+        } else { // otherwise we use an internal directory without access from the outside
+            return getApplicationContext().getDir("StackSRS", MODE_PRIVATE);
+        }
+    }
+
+    public void studyingIsOn(){
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkAnswer(editText.getText().toString());
+            }
+        });
+
+    }
+
+    /**
+     * Sets the text size of the trivia page when text size is changed in settings
+     */
+    public void setFlashcardTextSize(){
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String syncConnPref = sharedPref.getString("text_size", "11");
+
+        float textSize = Float.parseFloat(syncConnPref);
+        trialsView.setTextSize(textSize);
+        successView.setTextSize(textSize);
+        questionView.setTextSize(textSize);
+        questionSubView.setTextSize(textSize);
+        submit.setTextSize(textSize);
+        deckTitle.setTextSize(textSize);
+
+    }
+
+    public void checkAnswer(String response){
+        if(response.trim().equalsIgnoreCase(correctAnswer.toString())){
+            Log.d("Test", "Correct response chosen");
+            success += 1;
+            successBar.setRating(success);
+
+            editText.setBackgroundColor(Color.GREEN);
+            Log.i("Checkup", Integer.toString(success));
+            Log.i("Checkup", Integer.toString(attemptsMade));
+            if(success == 3) {
+                Toast.makeText(getApplicationContext(),
+                        "Trivia challenge solved successfully, phone is unlocked for 5 mins",
+                        Toast.LENGTH_LONG).show();
+                /*
+                homeActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(homeActivity.getApplicationContext(),
+                                "Trivia challenge solved successfully, phone is unlocked for 5 mins",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });*/
+                deck.saveDeck();
+                temporaryUnlock();
+            }else{
+                continueStudying();
+            }
+
+        }
+            else {
+            Log.i("Checkup", Integer.toString(success));
+            Log.i("Checkup", Integer.toString(attemptsMade));
+
+            //Code that shows the correct answer
+            Log.d("Test", "Incorrect response chosen");
+            editText.setBackgroundResource(R.drawable.rounded_button_red);
+            correctAnswer.setVisibility(View.VISIBLE);
+            if(attemptsMade >= trials){
+                //call kill
+                success = 0;
+                attemptsMade = 0;
+                //display a message to user that they are out of attempts and go back to KioskActivity
+                Log.d("Test", "You are out of attempts");
+
+                Toast.makeText(getApplicationContext(),
+                        "You failed to solve the trivia challenge, phone will not be unlocked",
+                        Toast.LENGTH_LONG).show();
+                /*
+                homeActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(homeActivity.getApplicationContext(),
+                                "You failed to solve the trivia challenge, phone will not be unlocked",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });*/
+                deck.saveDeck();
+                loadKiosk();
+            }else{
+                //continues the trivia but with a delay
+                continueStudying();
+            }
+        }
+    }
+
+    public void continueStudying(){
+        Handler myhandler = new Handler();
+        myhandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //Works on displaing the next set of questions
+                attemptsMade += 1;
+                int displayTrials = trials - attemptsMade;
+                trialBar.setRating(displayTrials);
+                //String trialsStr = "Trials remaining: " + Integer.toString(displayTrials) + "    Successes (need 3 to unlock): " + Integer.toString(success);
+                //changes how many trials there are left
+                //trialsView.setText(trialsStr);
+                deck.putReviewedCardBack(true);
+
+                questionView.setText(deck.getNextCardToReview().getFront());
+                correctAnswer.setText(deck.getNextCardToReview().getBack());
+
+                 resetFlashcardsButton();
+
+            }
+        }, 1000);
+    }
+
+    public void resetFlashcardsButton(){
+        correctAnswer.setVisibility(View.GONE);
+        editText.setBackgroundResource(R.drawable.rounded_button_grey);
+    }
+
+
+    private void reloadDeck(String deckName){
+        try {
+            DeckCollection deckCollectionTemp = new DeckCollection();
+            deckCollectionTemp.reload(provideStackSRSDir());
+            Log.i("Deck Chosen", deckName);
+
+            File file = new File(provideStackSRSDir() + "/" + deckName + ".json");
+            deckTitle.setText("DECK: " + deckName);
+            deck = gson.fromJson(FileUtils.readFileToString(file, Charset.forName("UTF-8")), Deck.class);
+
+
+            //deck = Deck.loadDeck(deckName);
+            if(!deck.isUsingTTS() && !deck.getLanguage().equals("") && deck.isNew())
+                askForTTSActivation();
+            if(deck.isUsingTTS())
+                initTTS();
+            //showNextCard();
+            questionView.setText(deck.getNextCardToReview().getFront());
+            correctAnswer.setText(deck.getNextCardToReview().getBack());
+        } catch(IOException e){
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), getString(R.string.deck_could_not_be_loaded),
+                    Toast.LENGTH_LONG).show();
+        } catch (NullPointerException e){
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), getString(R.string.deck_could_not_be_loaded),
+                    Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+
+    private void reloadRandomDeck(String deckName){
+        try {
+            DeckCollection deckCollectionTemp = new DeckCollection();
+            deckCollectionTemp.reload(provideStackSRSDir());
+            Log.i("Deck collection", Integer.toString(deckCollectionTemp.getDeckInfos().size()));
+
+            boolean noEligbleDeck = true;
+            Random rand = new Random();
+            /*
+            int position = rand.nextInt(deckCollectionTemp.getDeckInfos().size());
+            Log.i("Deck position", Integer.toString(position));
+            String name = deckCollectionTemp.getDeckInfos().get(position).getName();
+            File file = new File(provideStackSRSDir() + "/" + name + ".json");
+            deckTitle.setText("DECK: " + name);
+            deck = gson.fromJson(FileUtils.readFileToString(file, Charset.forName("UTF-8")), Deck.class);*/
+            while(noEligbleDeck){
+
+                Log.i("Deck selection", "Still looking for a suitable deck");
+                int position = rand.nextInt(deckCollectionTemp.getDeckInfos().size());
+                String name = deckCollectionTemp.getDeckInfos().get(position).getName();
+                Log.i("Deck name", name);
+
+                File file = new File(provideStackSRSDir() + "/" + name + ".json");
+                deckTitle.setText("DECK: " + name);
+                deck = gson.fromJson(FileUtils.readFileToString(file, Charset.forName("UTF-8")), Deck.class);
+
+                if(deck.getDeckStackSize() >= 20){
+                    noEligbleDeck = false;
+                }
+
+            }
+
+            questionView.setText(deck.getNextCardToReview().getFront());
+            correctAnswer.setText(deck.getNextCardToReview().getBack());
+        } catch(IOException e){
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), getString(R.string.deck_could_not_be_loaded),
+                    Toast.LENGTH_LONG).show();
+        } catch (IllegalArgumentException e){
+            this.loadKiosk();
+            e.printStackTrace();
+            Toast.makeText(getApplicationContext(), R.string.flashcards_could_not_be_loaded, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void askForTTSActivation(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.activate_tts_new_deck));
+        builder.setMessage(getString(R.string.want_activate_tts));
+        builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                deck.activateTTS();
+                initTTS();
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = builder.create();
+        //alert.show();
+    }
+
+    private void initTTS(){
+        final Locale locale = getLocaleForTTS();
+        if(locale != null){
+            tts = new TextToSpeech(this, new TextToSpeech.OnInitListener(){
+                @Override
+                public void onInit(int status) {
+                    if (status == TextToSpeech.SUCCESS) {
+                        tts.setLanguage(locale);
+                    }
+                }
+            });
+        }
+    }
+
+    private Locale getLocaleForTTS(){
+        String lang = deck.getLanguage();
+        if(lang == null || lang.equals(""))
+            return null;
+        String country = deck.getAccent();
+        if(country == null || country.equals(""))
+            return new Locale(lang);
+        return new Locale(lang, country);
+    }
+
+
+    /***********************************************************************************************
+     * Trivia challenge
+     */
 
     /**
      * Loads the trivia fragment
@@ -658,7 +1186,7 @@ public class KioskService extends Service  {
         //call the trivia Api
         //TriviaAPI triviaAPI = new TriviaAPI(this);
         //try{
-            new TriviaAPI(this);
+        new TriviaAPI(this);
 
             /*
         }
@@ -793,7 +1321,8 @@ public class KioskService extends Service  {
                 correctButton = questionResponse4;
                 break;
             default:
-                correctButton = new Button(homeActivity.getApplicationContext());
+                correctButton = new Button(getApplicationContext());
+                //correctButton = new Button(homeActivity.getApplicationContext());
                 Log.e("Error", "Not an available buttton");
                 break;
         }
@@ -810,21 +1339,27 @@ public class KioskService extends Service  {
 
         @Override
         public void onClick(View view) {
-            successBar = (RatingBar) mView.findViewById(R.id.successBar);
+            successBar = mView.findViewById(R.id.successBar);
             //trialBar = (RatingBar) mView.findViewById(R.id.trialBar);
             //trialBar.setRating(trials);
+
+
 
             Button tempButton = mView.findViewById(view.getId());
 
             //Checks to see if the answer the user is the correct one
             if(tempButton.getText().equals(triviaQuestion.getCorrectAnswer())){
                 Log.d("Test", "Correct response chosen");
-                tempButton.setBackgroundColor(Color.GREEN);
+                tempButton.setBackgroundResource(R.drawable.rounded_button_green);
                 success += 1;
                 successBar.setRating(success);
                 Log.i("Checkup", Integer.toString(success));
                 Log.i("Checkup", Integer.toString(attemptsMade));
                 if(success == 3) {
+                    Toast.makeText(getApplicationContext(),
+                            "Trivia challenge solved successfully, phone is unlocked for 5 mins",
+                            Toast.LENGTH_LONG).show();
+                    /*
                     homeActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -832,7 +1367,7 @@ public class KioskService extends Service  {
                                     "Trivia challenge solved successfully, phone is unlocked for 5 mins",
                                     Toast.LENGTH_LONG).show();
                         }
-                    });
+                    });*/
                     temporaryUnlock();
                 }else{
                     continueTrivia();
@@ -845,9 +1380,9 @@ public class KioskService extends Service  {
 
                 //Code that shows the correct answer
                 Log.d("Test", "This is the correct response ");
-                correctButton.setBackgroundColor(Color.GREEN);
+                correctButton.setBackgroundResource(R.drawable.rounded_button_green);
                 Log.d("Test", "Incorrect response chosen");
-                tempButton.setBackgroundColor(Color.RED);
+                tempButton.setBackgroundResource(R.drawable.rounded_button_red);
 
                 if(attemptsMade >= trials){
                     //call kill
@@ -855,6 +1390,11 @@ public class KioskService extends Service  {
                     attemptsMade = 0;
                     //display a message to user that they are out of attempts and go back to KioskActivity
                     Log.d("Test", "You are out of attempts");
+
+                    Toast.makeText(getApplicationContext(),
+                            "Trivia challenge solved successfully, phone is unlocked for 5 mins",
+                            Toast.LENGTH_LONG).show();
+                    /*
                     homeActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -862,7 +1402,7 @@ public class KioskService extends Service  {
                                     "You failed to solve the trivia challenge, phone will not be unlocked",
                                     Toast.LENGTH_LONG).show();
                         }
-                    });
+                    });*/
                     loadKiosk();
                 }else{
                     //continues the trivia but with a delay
@@ -872,6 +1412,10 @@ public class KioskService extends Service  {
         }
     };
 
+
+    /************************************************************************************************
+     * Temporary Unlock is used by both the Trivia and Flashcards challenge
+     */
     /**
      * Creates a temporary break for the user to use their phone after they have solved a challenge
      */
@@ -892,22 +1436,31 @@ public class KioskService extends Service  {
                 homeActivity.setShouldBeInKioskMode(true);
                 //resumes the KioskService
 
-                Intent service = new Intent(homeActivity, KioskService.class);
+                //Intent service = new Intent(homeActivity, KioskService.class);
 
+                Intent service = new Intent(KioskService.this, KioskService.class);
 
                 if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                     //ComponentName service = new ComponentName(getApplicationContext(), KioskService.class);
                     //ContextCompat.startForegroundService(homeActivity, service);
-                    homeActivity.startForegroundService(service);
+                    //homeActivity.startForegroundService(service);
+                    startForegroundService(service);
                 } else{
                     stopService(service);
                     startService(service);
                 }
 
+
                 //Tells the user that their phone break is over
-                Toast.makeText(homeActivity.getApplicationContext(),
+
+                Toast.makeText(getApplicationContext(),
                         "Your break is over, phone lock will continue",
                         Toast.LENGTH_LONG).show();
+                /*
+                Toast.makeText(homeActivity.getApplicationContext(),
+                        "Your break is over, phone lock will continue",
+                        Toast.LENGTH_LONG).show();*/
+
 
             }
         }, lockbreak);
@@ -940,10 +1493,10 @@ public class KioskService extends Service  {
      * Resets the buttons colors back to default after they have been changed
      */
     private void resetButtons(){
-        questionResponse1.setBackgroundResource(android.R.drawable.btn_default);
-        questionResponse2.setBackgroundResource(android.R.drawable.btn_default);
-        questionResponse3.setBackgroundResource(android.R.drawable.btn_default);
-        questionResponse4.setBackgroundResource(android.R.drawable.btn_default);
+        questionResponse1.setBackgroundResource(R.drawable.rounded_button_grey);
+        questionResponse2.setBackgroundResource(R.drawable.rounded_button_grey);
+        questionResponse3.setBackgroundResource(R.drawable.rounded_button_grey);
+        questionResponse4.setBackgroundResource(R.drawable.rounded_button_grey);
 
         //Reset the text of the button to make sure True or False questions only have 2 responses
         questionResponse1.setVisibility(View.GONE);
@@ -952,162 +1505,4 @@ public class KioskService extends Service  {
         questionResponse4.setVisibility(View.GONE);
     }
 
-    /*******************************
-     * Handle background apps
-     */
-
-    // Checks if you have an unauthorized app on top, and then
-    public void showViewIfNecessary() {
-        // If not created or already visible, don't need to do anything
-        if (mView == null || mView.getVisibility() == View.VISIBLE) {
-            return;
-        }
-
-        // Same for if you are just waiting for the launcher timer
-        if (waitingForLauncher) {
-            return;
-        }
-        // Get foreground package
-        String foregroundPackage = getForegroundTask();
-
-        // Handle special case for launcher, where it takes about 3 seconds for the phone or camera to appear
-        if (foregroundPackage.toLowerCase().contains(LAUNCHER)) {
-            waitingForLauncher = true;
-            new java.util.Timer().schedule(
-                    new java.util.TimerTask() {
-                        @Override
-                        public void run() {
-                            waitingForLauncher = false;
-                            Log.i("KioskService", "Timer fired");
-                            String foregroundPackage = getForegroundTask();
-                            if(!isForegroundPackageAcceptable(foregroundPackage)){
-                                // Change visibility in the UI thread
-                                /*
-                                mView.getHandler().post(new Runnable() {
-                                    public void run() {
-
-                                        mView.setVisibility(View.VISIBLE);
-                                    }
-                                });*/
-                                //updated for API 28+
-                                mView.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        mView.setVisibility(View.VISIBLE);
-                                    }
-                                });
-                            }
-                        }
-                    },
-                    LAUNCHER_DELAY
-            );
-            return;
-        }
-
-        // If top activity is not this, phone, or dialer, then make visible
-        if(!isForegroundPackageAcceptable(foregroundPackage)){
-            mView.setVisibility(View.VISIBLE);
-        }
-
-    }
-
-    // Returns whether the foreground package is valid or not
-    private boolean isForegroundPackageAcceptable(String foregroundPackage) {
-        Log.i("Package on top", foregroundPackage);
-        // Acceptable if it's this app
-        if (foregroundPackage.equals(getApplicationContext().getPackageName())) {
-            return true;
-        }
-
-        if(foregroundPackage.equalsIgnoreCase("NULL")){
-            //Notify user why they can't use their phone or camera app
-            Toast.makeText(homeActivity.getApplicationContext(),
-                    "Can't access phone or camera app because usage statistics permission have not been granted," +
-                            "which are necessary for keeping phone locked",
-                    Toast.LENGTH_LONG).show();
-        }
-        for (String acceptablePackage : ACCEPTABLE_PACKAGES) {
-            if (foregroundPackage.toLowerCase().contains(acceptablePackage)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    // Gets the foreground task. From https://stackoverflow.com/questions/30619349/android-5-1-1-and-above-getrunningappprocesses-returns-my-application-packag
-
-
-    private String getForegroundTask() {
-        String currentApp = "NULL";
-
-        //If permission for Usage statistictics is not granted, then getForegroundTask will return "NULL"
-        try {
-            if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                UsageStatsManager usm = (UsageStatsManager)this.getSystemService(Context.USAGE_STATS_SERVICE);
-                long time = System.currentTimeMillis();
-                List<UsageStats> appList = usm.queryUsageStats(UsageStatsManager.INTERVAL_DAILY,  time - 1000*1000, time);
-                if (appList != null && appList.size() > 0) {
-                    SortedMap<Long, UsageStats> mySortedMap = new TreeMap<Long, UsageStats>();
-                    for (UsageStats usageStats : appList) {
-                        mySortedMap.put(usageStats.getLastTimeUsed(), usageStats);
-                    }
-                    if (mySortedMap != null && !mySortedMap.isEmpty()) {
-                        currentApp = mySortedMap.get(mySortedMap.lastKey()).getPackageName();
-                    }
-                }
-            } else {
-                ActivityManager am = (ActivityManager)this.getSystemService(Context.ACTIVITY_SERVICE);
-                List<ActivityManager.RunningAppProcessInfo> tasks = am.getRunningAppProcesses();
-                currentApp = tasks.get(0).processName;
-            }
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
-
-//        Log.d("KioskService", "Current App in foreground is: " + currentApp);
-        return currentApp;
-    }
-
-
-    //Pulls up the in callui when there is an coming call
-    public void callui(){
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            if (ActivityCompat.checkSelfPermission(this,
-                    Manifest.permission.READ_PHONE_STATE)
-                    == PackageManager.PERMISSION_GRANTED){
-                Log.i("KioskService", "TelecomManger: showing InCall screen");
-                TelecomManager tm = (TelecomManager) getSystemService(Context.TELECOM_SERVICE);
-                tm.showInCallScreen(false);
-            }
-        }
-    }
-
-
-    // Class that listens to the phone state
-    class SimplePhoneStateListener extends PhoneStateListener {
-        @Override
-        public void onCallStateChanged(int state, String incomingNumber) {
-            super.onCallStateChanged(state, incomingNumber);
-            switch (state) {
-                case TelephonyManager.CALL_STATE_IDLE:
-                    Log.i("KioskService", "onCallStateChanged: CALL_STATE_IDLE");
-                    mView.setVisibility(View.VISIBLE);
-                    break;
-                case TelephonyManager.CALL_STATE_RINGING:
-                    Log.i("KioskService", "onCallStateChanged: CALL_STATE_RINGING");
-                    // Hide window
-                    mView.setVisibility(View.GONE);
-                    callui();
-                    break;
-                case TelephonyManager.CALL_STATE_OFFHOOK:
-                    Log.i("KioskService", "onCallStateChanged: CALL_STATE_OFFHOOK");
-                    // Hide window
-                    mView.setVisibility(View.GONE);
-                    break;
-                default:
-                    Log.i("KioskService", "UNKNOWN_STATE: " + state);
-                    break;
-            }
-        }
-    }
 }

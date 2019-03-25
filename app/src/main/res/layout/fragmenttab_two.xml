@@ -20,7 +20,7 @@
                 />
 
             <Spinner android:id="@+id/time_selector"
-                android:popupBackground="#da1418"
+                android:popupBackground="@color/titlebackgroundcolor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 

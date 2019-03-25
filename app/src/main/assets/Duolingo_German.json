@@ -1,0 +1,6570 @@
+{
+  "accent": "",
+  "front": "de",
+  "name": "Duolingo German",
+  "cards": [
+    {
+      "back": "man",
+      "front": "Mann",
+      "level": 2
+    },
+    {
+      "back": "woman",
+      "front": "Frau",
+      "level": 2
+    },
+    {
+      "back": "boy",
+      "front": "Junge",
+      "level": 2
+    },
+    {
+      "back": "girl",
+      "front": "Mädchen",
+      "level": 2
+    },
+    {
+      "back": "to be",
+      "front": "sein",
+      "level": 2
+    },
+    {
+      "back": "a",
+      "front": "ein",
+      "level": 2
+    },
+    {
+      "back": "the",
+      "front": "der/die/das",
+      "level": 2
+    },
+    {
+      "back": "I",
+      "front": "ich",
+      "level": 2
+    },
+    {
+      "back": "you",
+      "front": "du",
+      "level": 2
+    },
+    {
+      "back": "he",
+      "front": "er",
+      "level": 2
+    },
+    {
+      "back": "she",
+      "front": "sie (f)",
+      "level": 2
+    },
+    {
+      "back": "it",
+      "front": "es",
+      "level": 2
+    },
+    {
+      "back": "to eat",
+      "front": "essen",
+      "level": 2
+    },
+    {
+      "back": "to drink",
+      "front": "trinken",
+      "level": 2
+    },
+    {
+      "back": "apple",
+      "front": "Apfel",
+      "level": 2
+    },
+    {
+      "back": "bread",
+      "front": "Brot",
+      "level": 2
+    },
+    {
+      "back": "water",
+      "front": "Wasser",
+      "level": 2
+    },
+    {
+      "back": "we",
+      "front": "wir",
+      "level": 2
+    },
+    {
+      "back": "you",
+      "front": "ihr",
+      "level": 2
+    },
+    {
+      "back": "they",
+      "front": "sie (pl)",
+      "level": 2
+    },
+    {
+      "back": "newspaper",
+      "front": "Zeitung",
+      "level": 2
+    },
+    {
+      "back": "milk",
+      "front": "Milch",
+      "level": 2
+    },
+    {
+      "back": "sandwich",
+      "front": "Sandwich",
+      "level": 2
+    },
+    {
+      "back": "rice",
+      "front": "Reis",
+      "level": 2
+    },
+    {
+      "back": "child",
+      "front": "Kind",
+      "level": 2
+    },
+    {
+      "back": "children",
+      "front": "Kinder",
+      "level": 2
+    },
+    {
+      "back": "book",
+      "front": "Buch",
+      "level": 2
+    },
+    {
+      "back": "menu",
+      "front": "Speisekarte",
+      "level": 2
+    },
+    {
+      "back": "to have",
+      "front": "haben",
+      "level": 2
+    },
+    {
+      "back": "Hello!",
+      "front": "Hallo!",
+      "level": 2
+    },
+    {
+      "back": "Bye! / Goodbye!",
+      "front": "Tschüss!",
+      "level": 2
+    },
+    {
+      "back": "thanks",
+      "front": "danke",
+      "level": 2
+    },
+    {
+      "back": "yes",
+      "front": "ja",
+      "level": 2
+    },
+    {
+      "back": "no",
+      "front": "nein",
+      "level": 2
+    },
+    {
+      "back": "please",
+      "front": "bitte",
+      "level": 2
+    },
+    {
+      "back": "How are you?",
+      "front": "Wie geht es dir?",
+      "level": 2
+    },
+    {
+      "back": "I’m fine.",
+      "front": "Mir geht es gut.",
+      "level": 2
+    },
+    {
+      "back": "Good morning!",
+      "front": "Guten Morgen!",
+      "level": 2
+    },
+    {
+      "back": "Good night!",
+      "front": "Gute Nacht",
+      "level": 2
+    },
+    {
+      "back": "Welcome!",
+      "front": "Willkommen!",
+      "level": 2
+    },
+    {
+      "back": "Sorry! / Excuse me!",
+      "front": "entschuldigung",
+      "level": 2
+    },
+    {
+      "back": "not",
+      "front": "nicht",
+      "level": 2
+    },
+    {
+      "back": "to speak / to talk",
+      "front": "sprechen",
+      "level": 2
+    },
+    {
+      "back": "English",
+      "front": "Englisch",
+      "level": 2
+    },
+    {
+      "back": "Do you speak English?",
+      "front": "Sprechen Sie Englisch?",
+      "level": 2
+    },
+    {
+      "back": "fish",
+      "front": "Fisch",
+      "level": 2
+    },
+    {
+      "back": "orange",
+      "front": "Orange",
+      "level": 2
+    },
+    {
+      "back": "wine",
+      "front": "Wein",
+      "level": 2
+    },
+    {
+      "back": "coffee",
+      "front": "Kaffee",
+      "level": 2
+    },
+    {
+      "back": "egg",
+      "front": "Ei",
+      "level": 2
+    },
+    {
+      "back": "chicken",
+      "front": "Hähnchen",
+      "level": 2
+    },
+    {
+      "back": "plate",
+      "front": "Teller",
+      "level": 2
+    },
+    {
+      "back": "sugar",
+      "front": "Zucker",
+      "level": 2
+    },
+    {
+      "back": "lunch",
+      "front": "Mittagessen",
+      "level": 2
+    },
+    {
+      "back": "breakfast",
+      "front": "Frühstück",
+      "level": 2
+    },
+    {
+      "back": "dinner",
+      "front": "Abendessen",
+      "level": 2
+    },
+    {
+      "back": "cheese",
+      "front": "Käse",
+      "level": 2
+    },
+    {
+      "back": "fruit",
+      "front": "Frucht",
+      "level": 2
+    },
+    {
+      "back": "pasta",
+      "front": "Nudeln",
+      "level": 2
+    },
+    {
+      "back": "juice",
+      "front": "Saft",
+      "level": 2
+    },
+    {
+      "back": "beer",
+      "front": "Bier",
+      "level": 2
+    },
+    {
+      "back": "beef",
+      "front": "Rindfleisch",
+      "level": 2
+    },
+    {
+      "back": "soup",
+      "front": "Suppe",
+      "level": 2
+    },
+    {
+      "back": "tomato",
+      "front": "Tomate",
+      "level": 2
+    },
+    {
+      "back": "strawberry",
+      "front": "Erdbeere",
+      "level": 2
+    },
+    {
+      "back": "lemon",
+      "front": "Zitrone",
+      "level": 2
+    },
+    {
+      "back": "food",
+      "front": "Essen",
+      "level": 2
+    },
+    {
+      "back": "oil",
+      "front": "Öl",
+      "level": 2
+    },
+    {
+      "back": "salt",
+      "front": "Salz",
+      "level": 2
+    },
+    {
+      "back": "meat",
+      "front": "Fleisch",
+      "level": 2
+    },
+    {
+      "back": "meal",
+      "front": "Mahlzeit",
+      "level": 2
+    },
+    {
+      "back": "tea",
+      "front": "Tee",
+      "level": 2
+    },
+    {
+      "back": "pork",
+      "front": "Schweinefleisch",
+      "level": 2
+    },
+    {
+      "back": "vegetarian",
+      "front": "vegetarisch",
+      "level": 2
+    },
+    {
+      "back": "cat",
+      "front": "Katze",
+      "level": 2
+    },
+    {
+      "back": "dog",
+      "front": "Hund",
+      "level": 2
+    },
+    {
+      "back": "horse",
+      "front": "Pferd",
+      "level": 2
+    },
+    {
+      "back": "bird",
+      "front": "Vogel",
+      "level": 2
+    },
+    {
+      "back": "elephant",
+      "front": "Elefant",
+      "level": 2
+    },
+    {
+      "back": "duck",
+      "front": "Ente",
+      "level": 2
+    },
+    {
+      "back": "turtle",
+      "front": "Schildkröte",
+      "level": 2
+    },
+    {
+      "back": "crab",
+      "front": "Krabbe",
+      "level": 2
+    },
+    {
+      "back": "spider",
+      "front": "Spinne",
+      "level": 2
+    },
+    {
+      "back": "animal",
+      "front": "Tier",
+      "level": 2
+    },
+    {
+      "back": "bear",
+      "front": "Bär",
+      "level": 2
+    },
+    {
+      "back": "mouse",
+      "front": "Maus",
+      "level": 2
+    },
+    {
+      "back": "my",
+      "front": "mein",
+      "level": 2
+    },
+    {
+      "back": "your",
+      "front": "dein",
+      "level": 2
+    },
+    {
+      "back": "his",
+      "front": "sein (m)",
+      "level": 2
+    },
+    {
+      "back": "her",
+      "front": "ihr (f)",
+      "level": 2
+    },
+    {
+      "back": "its",
+      "front": "sein (n)",
+      "level": 2
+    },
+    {
+      "back": "our",
+      "front": "unser",
+      "level": 2
+    },
+    {
+      "back": "your",
+      "front": "euer",
+      "level": 2
+    },
+    {
+      "back": "their",
+      "front": "ihr (pl)",
+      "level": 2
+    },
+    {
+      "back": "It’s mine.",
+      "front": "Es ist mir.",
+      "level": 2
+    },
+    {
+      "back": "It’s yours.",
+      "front": "Es ist dir.",
+      "level": 2
+    },
+    {
+      "back": "It’s ours.",
+      "front": "Es ist uns.",
+      "level": 2
+    },
+    {
+      "back": "It’s theirs.",
+      "front": "Es ist ihnen.",
+      "level": 2
+    },
+    {
+      "back": "me",
+      "front": "mir/mich",
+      "level": 2
+    },
+    {
+      "back": "you",
+      "front": "dir/dich",
+      "level": 2
+    },
+    {
+      "back": "him",
+      "front": "ihm/ihn",
+      "level": 2
+    },
+    {
+      "back": "her",
+      "front": "ihr/sie",
+      "level": 2
+    },
+    {
+      "back": "it",
+      "front": "ihm/es",
+      "level": 2
+    },
+    {
+      "back": "us",
+      "front": "uns",
+      "level": 2
+    },
+    {
+      "back": "you",
+      "front": "euch",
+      "level": 2
+    },
+    {
+      "back": "them",
+      "front": "ihnen/sie",
+      "level": 2
+    },
+    {
+      "back": "you",
+      "front": "Ihnen/Sie",
+      "level": 2
+    },
+    {
+      "back": "to wear",
+      "front": "tragen (Kleidung)",
+      "level": 2
+    },
+    {
+      "back": "shirt",
+      "front": "Hemd",
+      "level": 2
+    },
+    {
+      "back": "shoe",
+      "front": "Schuh",
+      "level": 2
+    },
+    {
+      "back": "skirt",
+      "front": "Rock",
+      "level": 2
+    },
+    {
+      "back": "coat",
+      "front": "Mantel",
+      "level": 2
+    },
+    {
+      "back": "dress",
+      "front": "Kleid",
+      "level": 2
+    },
+    {
+      "back": "pants",
+      "front": "Hose",
+      "level": 2
+    },
+    {
+      "back": "clothes",
+      "front": "Kleidung",
+      "level": 2
+    },
+    {
+      "back": "suit",
+      "front": "Anzug",
+      "level": 2
+    },
+    {
+      "back": "hat",
+      "front": "Hut",
+      "level": 2
+    },
+    {
+      "back": "to write",
+      "front": "schreiben",
+      "level": 2
+    },
+    {
+      "back": "to do",
+      "front": "tun",
+      "level": 2
+    },
+    {
+      "back": "to walk",
+      "front": "laufen",
+      "level": 2
+    },
+    {
+      "back": "to swim",
+      "front": "schwimmen",
+      "level": 2
+    },
+    {
+      "back": "to see",
+      "front": "sehen",
+      "level": 2
+    },
+    {
+      "back": "to cook",
+      "front": "kochen",
+      "level": 2
+    },
+    {
+      "back": "to sleep",
+      "front": "schlafen",
+      "level": 2
+    },
+    {
+      "back": "to run",
+      "front": "rennen",
+      "level": 2
+    },
+    {
+      "back": "to want",
+      "front": "wollen",
+      "level": 2
+    },
+    {
+      "back": "to like",
+      "front": "mögen",
+      "level": 2
+    },
+    {
+      "back": "to pay",
+      "front": "bezahlen",
+      "level": 2
+    },
+    {
+      "back": "to go",
+      "front": "gehen",
+      "level": 2
+    },
+    {
+      "back": "to play",
+      "front": "spielen",
+      "level": 2
+    },
+    {
+      "back": "to use",
+      "front": "benutzen",
+      "level": 2
+    },
+    {
+      "back": "to love",
+      "front": "lieben",
+      "level": 2
+    },
+    {
+      "back": "it rains",
+      "front": "es regnet",
+      "level": 2
+    },
+    {
+      "back": "to touch",
+      "front": "berühren",
+      "level": 2
+    },
+    {
+      "back": "to hear",
+      "front": "hören",
+      "level": 2
+    },
+    {
+      "back": "to listen",
+      "front": "zuhören",
+      "level": 2
+    },
+    {
+      "back": "to say",
+      "front": "sagen",
+      "level": 2
+    },
+    {
+      "back": "to tell",
+      "front": "erzählen",
+      "level": 2
+    },
+    {
+      "back": "to make",
+      "front": "machen",
+      "level": 2
+    },
+    {
+      "back": "to find",
+      "front": "finden",
+      "level": 2
+    },
+    {
+      "back": "to work",
+      "front": "arbeiten",
+      "level": 2
+    },
+    {
+      "back": "to support",
+      "front": "unterstützen",
+      "level": 2
+    },
+    {
+      "back": "to know",
+      "front": "wissen",
+      "level": 2
+    },
+    {
+      "back": "to need",
+      "front": "brauchen",
+      "level": 2
+    },
+    {
+      "back": "to take",
+      "front": "nehmen",
+      "level": 2
+    },
+    {
+      "back": "to design",
+      "front": "gestalten",
+      "level": 2
+    },
+    {
+      "back": "to show",
+      "front": "zeigen",
+      "level": 2
+    },
+    {
+      "back": "red",
+      "front": "rot",
+      "level": 2
+    },
+    {
+      "back": "orange",
+      "front": "orange",
+      "level": 2
+    },
+    {
+      "back": "white",
+      "front": "weiß",
+      "level": 2
+    },
+    {
+      "back": "black",
+      "front": "schwarz",
+      "level": 2
+    },
+    {
+      "back": "blue",
+      "front": "blau",
+      "level": 2
+    },
+    {
+      "back": "yellow",
+      "front": "gelb",
+      "level": 2
+    },
+    {
+      "back": "green",
+      "front": "grün",
+      "level": 2
+    },
+    {
+      "back": "gray",
+      "front": "grau",
+      "level": 2
+    },
+    {
+      "back": "brown",
+      "front": "braun",
+      "level": 2
+    },
+    {
+      "back": "pink",
+      "front": "pink",
+      "level": 2
+    },
+    {
+      "back": "purple",
+      "front": "lila",
+      "level": 2
+    },
+    {
+      "back": "color",
+      "front": "Farbe",
+      "level": 2
+    },
+    {
+      "back": "colorful",
+      "front": "farbig",
+      "level": 2
+    },
+    {
+      "back": "What?",
+      "front": "Was?",
+      "level": 2
+    },
+    {
+      "back": "Where?",
+      "front": "Wo?",
+      "level": 2
+    },
+    {
+      "back": "How?",
+      "front": "Wie?",
+      "level": 2
+    },
+    {
+      "back": "Who?",
+      "front": "Wer?",
+      "level": 2
+    },
+    {
+      "back": "Why?",
+      "front": "Warum",
+      "level": 2
+    },
+    {
+      "back": "Whose?",
+      "front": "Wessen?",
+      "level": 2
+    },
+    {
+      "back": "Which?",
+      "front": "Welches?",
+      "level": 2
+    },
+    {
+      "back": "When?",
+      "front": "Wann?",
+      "level": 2
+    },
+    {
+      "back": "question",
+      "front": "Frage",
+      "level": 2
+    },
+    {
+      "back": "answer",
+      "front": "Antwort",
+      "level": 2
+    },
+    {
+      "back": "and",
+      "front": "und",
+      "level": 2
+    },
+    {
+      "back": "or",
+      "front": "oder",
+      "level": 2
+    },
+    {
+      "back": "but",
+      "front": "aber",
+      "level": 2
+    },
+    {
+      "back": "if",
+      "front": "wenn (falls)",
+      "level": 2
+    },
+    {
+      "back": "because",
+      "front": "weil",
+      "level": 2
+    },
+    {
+      "back": "when",
+      "front": "wenn (sobald)",
+      "level": 2
+    },
+    {
+      "back": "whenever",
+      "front": "immer wenn",
+      "level": 2
+    },
+    {
+      "back": "that",
+      "front": "dass",
+      "level": 2
+    },
+    {
+      "back": "from Germany",
+      "front": "aus Deutschland",
+      "level": 2
+    },
+    {
+      "back": "in",
+      "front": "in",
+      "level": 2
+    },
+    {
+      "back": "on",
+      "front": "auf",
+      "level": 2
+    },
+    {
+      "back": "at",
+      "front": "an",
+      "level": 2
+    },
+    {
+      "back": "of",
+      "front": "von",
+      "level": 2
+    },
+    {
+      "back": "between",
+      "front": "zwischen",
+      "level": 2
+    },
+    {
+      "back": "by me",
+      "front": "von mir",
+      "level": 2
+    },
+    {
+      "back": "for",
+      "front": "für",
+      "level": 2
+    },
+    {
+      "back": "a book about …",
+      "front": "ein Buch über …",
+      "level": 2
+    },
+    {
+      "back": "with",
+      "front": "mit",
+      "level": 2
+    },
+    {
+      "back": "without",
+      "front": "ohne",
+      "level": 2
+    },
+    {
+      "back": "to",
+      "front": "zu",
+      "level": 2
+    },
+    {
+      "back": "like for example",
+      "front": "wie zum Beispiel",
+      "level": 2
+    },
+    {
+      "back": "the same as",
+      "front": "dasselbe wie",
+      "level": 2
+    },
+    {
+      "back": "after",
+      "front": "nach",
+      "level": 2
+    },
+    {
+      "back": "out",
+      "front": "heraus",
+      "level": 2
+    },
+    {
+      "back": "under",
+      "front": "unter",
+      "level": 2
+    },
+    {
+      "back": "to turn off",
+      "front": "ausschalten",
+      "level": 2
+    },
+    {
+      "back": "during",
+      "front": "während",
+      "level": 2
+    },
+    {
+      "back": "among them",
+      "front": "unter ihnen",
+      "level": 2
+    },
+    {
+      "back": "behind",
+      "front": "hinter",
+      "level": 2
+    },
+    {
+      "back": "towards",
+      "front": "zu … hin",
+      "level": 2
+    },
+    {
+      "back": "near",
+      "front": "nahe bei",
+      "level": 2
+    },
+    {
+      "back": "over",
+      "front": "über",
+      "level": 2
+    },
+    {
+      "back": "except",
+      "front": "außer",
+      "level": 2
+    },
+    {
+      "back": "against",
+      "front": "gegen",
+      "level": 2
+    },
+    {
+      "back": "today",
+      "front": "heute",
+      "level": 2
+    },
+    {
+      "back": "tomorrow",
+      "front": "morgen",
+      "level": 2
+    },
+    {
+      "back": "tonight",
+      "front": "heute Abend",
+      "level": 2
+    },
+    {
+      "back": "night",
+      "front": "Nacht",
+      "level": 2
+    },
+    {
+      "back": "morning",
+      "front": "Morgen",
+      "level": 2
+    },
+    {
+      "back": "afternoon",
+      "front": "Nachmittag",
+      "level": 2
+    },
+    {
+      "back": "evening",
+      "front": "Abend",
+      "level": 2
+    },
+    {
+      "back": "time",
+      "front": "Zeit",
+      "level": 2
+    },
+    {
+      "back": "calendar",
+      "front": "Kalender",
+      "level": 2
+    },
+    {
+      "back": "Monday",
+      "front": "Montag",
+      "level": 2
+    },
+    {
+      "back": "Tuesday",
+      "front": "Dienstag",
+      "level": 2
+    },
+    {
+      "back": "Wednesday",
+      "front": "Mittwoch",
+      "level": 2
+    },
+    {
+      "back": "Thursday",
+      "front": "Donnerstag",
+      "level": 2
+    },
+    {
+      "back": "Friday",
+      "front": "Freitag",
+      "level": 2
+    },
+    {
+      "back": "Saturday",
+      "front": "Samstag",
+      "level": 2
+    },
+    {
+      "back": "Sunday",
+      "front": "Sonntag",
+      "level": 2
+    },
+    {
+      "back": "year",
+      "front": "Jahr",
+      "level": 2
+    },
+    {
+      "back": "age",
+      "front": "Alter",
+      "level": 2
+    },
+    {
+      "back": "week",
+      "front": "Woche",
+      "level": 2
+    },
+    {
+      "back": "month",
+      "front": "Monat",
+      "level": 2
+    },
+    {
+      "back": "hour",
+      "front": "Stunde",
+      "level": 2
+    },
+    {
+      "back": "January",
+      "front": "Januar",
+      "level": 2
+    },
+    {
+      "back": "February",
+      "front": "Februar",
+      "level": 2
+    },
+    {
+      "back": "March",
+      "front": "März",
+      "level": 2
+    },
+    {
+      "back": "April",
+      "front": "April",
+      "level": 2
+    },
+    {
+      "back": "May",
+      "front": "Mai",
+      "level": 2
+    },
+    {
+      "back": "June",
+      "front": "Juni",
+      "level": 2
+    },
+    {
+      "back": "July",
+      "front": "Juli",
+      "level": 2
+    },
+    {
+      "back": "August",
+      "front": "August",
+      "level": 2
+    },
+    {
+      "back": "September",
+      "front": "September",
+      "level": 2
+    },
+    {
+      "back": "October",
+      "front": "Oktober",
+      "level": 2
+    },
+    {
+      "back": "November",
+      "front": "November",
+      "level": 2
+    },
+    {
+      "back": "December",
+      "front": "Dezember",
+      "level": 2
+    },
+    {
+      "back": "date",
+      "front": "Datum",
+      "level": 2
+    },
+    {
+      "back": "season",
+      "front": "Jahreszeit",
+      "level": 2
+    },
+    {
+      "back": "winter",
+      "front": "Winter",
+      "level": 2
+    },
+    {
+      "back": "spring",
+      "front": "Frühling",
+      "level": 2
+    },
+    {
+      "back": "summer",
+      "front": "Sommer",
+      "level": 2
+    },
+    {
+      "back": "fall / autumn",
+      "front": "Herbst",
+      "level": 2
+    },
+    {
+      "back": "period",
+      "front": "Zeitspanne",
+      "level": 2
+    },
+    {
+      "back": "minute",
+      "front": "Minute",
+      "level": 2
+    },
+    {
+      "back": "century",
+      "front": "Jahrhundert",
+      "level": 2
+    },
+    {
+      "back": "party",
+      "front": "Feier",
+      "level": 2
+    },
+    {
+      "back": "stage",
+      "front": "Bühne",
+      "level": 2
+    },
+    {
+      "back": "generation",
+      "front": "Generation",
+      "level": 2
+    },
+    {
+      "back": "birth",
+      "front": "Geburt",
+      "level": 2
+    },
+    {
+      "back": "moment",
+      "front": "Moment",
+      "level": 2
+    },
+    {
+      "back": "fair",
+      "front": "Messe, Jahrmarkt",
+      "level": 2
+    },
+    {
+      "back": "decade",
+      "front": "Jahrzehnt",
+      "level": 2
+    },
+    {
+      "back": "second",
+      "front": "Sekunde",
+      "level": 2
+    },
+    {
+      "back": "a little / a bit",
+      "front": "ein bisschen",
+      "level": 2
+    },
+    {
+      "back": "until",
+      "front": "bis",
+      "level": 2
+    },
+    {
+      "back": "mother",
+      "front": "Mutter",
+      "level": 2
+    },
+    {
+      "back": "father",
+      "front": "Vater",
+      "level": 2
+    },
+    {
+      "back": "parents",
+      "front": "Eltern",
+      "level": 2
+    },
+    {
+      "back": "son",
+      "front": "Sohn",
+      "level": 2
+    },
+    {
+      "back": "daughter",
+      "front": "Tochter",
+      "level": 2
+    },
+    {
+      "back": "brother",
+      "front": "Bruder",
+      "level": 2
+    },
+    {
+      "back": "sister",
+      "front": "Schwester",
+      "level": 2
+    },
+    {
+      "back": "siblings",
+      "front": "Geschwister",
+      "level": 2
+    },
+    {
+      "back": "husband",
+      "front": "Ehemann",
+      "level": 2
+    },
+    {
+      "back": "wife",
+      "front": "Ehefrau",
+      "level": 2
+    },
+    {
+      "back": "uncle",
+      "front": "Onkel",
+      "level": 2
+    },
+    {
+      "back": "aunt",
+      "front": "Tante",
+      "level": 2
+    },
+    {
+      "back": "family",
+      "front": "Familie",
+      "level": 2
+    },
+    {
+      "back": "marriage",
+      "front": "Ehe",
+      "level": 2
+    },
+    {
+      "back": "wedding",
+      "front": "Hochzeit",
+      "level": 2
+    },
+    {
+      "back": "mom",
+      "front": "Mama",
+      "level": 2
+    },
+    {
+      "back": "dad",
+      "front": "Papa",
+      "level": 2
+    },
+    {
+      "back": "grandmother / grandma",
+      "front": "Großmutter",
+      "level": 2
+    },
+    {
+      "back": "grandfather / grandpa",
+      "front": "Großvater",
+      "level": 2
+    },
+    {
+      "back": "name",
+      "front": "Name",
+      "level": 2
+    },
+    {
+      "back": "pupil",
+      "front": "Schüler",
+      "level": 2
+    },
+    {
+      "back": "student",
+      "front": "Student",
+      "level": 2
+    },
+    {
+      "back": "doctor",
+      "front": "Doktor",
+      "level": 2
+    },
+    {
+      "back": "work",
+      "front": "Arbeit",
+      "level": 2
+    },
+    {
+      "back": "author",
+      "front": "Autor",
+      "level": 2
+    },
+    {
+      "back": "job",
+      "front": "Job",
+      "level": 2
+    },
+    {
+      "back": "model",
+      "front": "Model",
+      "level": 2
+    },
+    {
+      "back": "staff",
+      "front": "Personal",
+      "level": 2
+    },
+    {
+      "back": "director",
+      "front": "Direktor",
+      "level": 2
+    },
+    {
+      "back": "director",
+      "front": "Regisseur",
+      "level": 2
+    },
+    {
+      "back": "career",
+      "front": "Karriere",
+      "level": 2
+    },
+    {
+      "back": "police",
+      "front": "Polizei",
+      "level": 2
+    },
+    {
+      "back": "policeman",
+      "front": "Polizist",
+      "level": 2
+    },
+    {
+      "back": "artist",
+      "front": "Künstler",
+      "level": 2
+    },
+    {
+      "back": "secretary",
+      "front": "Sekretärin",
+      "level": 2
+    },
+    {
+      "back": "worker",
+      "front": "Arbeiter",
+      "level": 2
+    },
+    {
+      "back": "lawyer",
+      "front": "Anwalt",
+      "level": 2
+    },
+    {
+      "back": "professional",
+      "front": "professionell",
+      "level": 2
+    },
+    {
+      "back": "judge",
+      "front": "Richter",
+      "level": 2
+    },
+    {
+      "back": "writer",
+      "front": "Schriftsteller",
+      "level": 2
+    },
+    {
+      "back": "officer",
+      "front": "Beamter",
+      "level": 2
+    },
+    {
+      "back": "guard",
+      "front": "Wache",
+      "level": 2
+    },
+    {
+      "back": "actor",
+      "front": "Schauspieler",
+      "level": 2
+    },
+    {
+      "back": "actress",
+      "front": "Schauspielerin",
+      "level": 2
+    },
+    {
+      "back": "captain",
+      "front": "Kapitän",
+      "level": 2
+    },
+    {
+      "back": "soldier",
+      "front": "Soldat",
+      "level": 2
+    },
+    {
+      "back": "boss",
+      "front": "Chef",
+      "level": 2
+    },
+    {
+      "back": "profession / occupation",
+      "front": "Beruf",
+      "level": 2
+    },
+    {
+      "back": "farmer",
+      "front": "Bauer",
+      "level": 2
+    },
+    {
+      "back": "architect",
+      "front": "Architekt",
+      "level": 2
+    },
+    {
+      "back": "waiter",
+      "front": "Kellner",
+      "level": 2
+    },
+    {
+      "back": "waitress",
+      "front": "Kellnerin",
+      "level": 2
+    },
+    {
+      "back": "cook",
+      "front": "Koch",
+      "level": 2
+    },
+    {
+      "back": "tired",
+      "front": "müde",
+      "level": 2
+    },
+    {
+      "back": "bilingual",
+      "front": "zweisprachig",
+      "level": 2
+    },
+    {
+      "back": "the same",
+      "front": "dasselbe",
+      "level": 2
+    },
+    {
+      "back": "next",
+      "front": "nächste",
+      "level": 2
+    },
+    {
+      "back": "general",
+      "front": "generell",
+      "level": 2
+    },
+    {
+      "back": "real",
+      "front": "echt, wirklich (Adj.)",
+      "level": 2
+    },
+    {
+      "back": "local",
+      "front": "lokal",
+      "level": 2
+    },
+    {
+      "back": "special",
+      "front": "speziell",
+      "level": 2
+    },
+    {
+      "back": "previous",
+      "front": "vorherig",
+      "level": 2
+    },
+    {
+      "back": "open",
+      "front": "offen",
+      "level": 2
+    },
+    {
+      "back": "my own car",
+      "front": "mein eigenes Auto",
+      "level": 2
+    },
+    {
+      "back": "personal",
+      "front": "persönlich",
+      "level": 2
+    },
+    {
+      "back": "main",
+      "front": "Haupt-",
+      "level": 2
+    },
+    {
+      "back": "private",
+      "front": "privat",
+      "level": 2
+    },
+    {
+      "back": "clean",
+      "front": "sauber",
+      "level": 2
+    },
+    {
+      "back": "dirty",
+      "front": "dreckig",
+      "level": 2
+    },
+    {
+      "back": "different",
+      "front": "anders",
+      "level": 2
+    },
+    {
+      "back": "left",
+      "front": "links",
+      "level": 2
+    },
+    {
+      "back": "right",
+      "front": "rechts",
+      "level": 2
+    },
+    {
+      "back": "human",
+      "front": "menschlich",
+      "level": 2
+    },
+    {
+      "back": "the recent",
+      "front": "das letzte / neueste",
+      "level": 2
+    },
+    {
+      "back": "legal",
+      "front": "Rechts-",
+      "level": 2
+    },
+    {
+      "back": "important",
+      "front": "wichtig",
+      "level": 2
+    },
+    {
+      "back": "available",
+      "front": "verfügbar",
+      "level": 2
+    },
+    {
+      "back": "future",
+      "front": "zukünftig",
+      "level": 2
+    },
+    {
+      "back": "possible",
+      "front": "möglich",
+      "level": 2
+    },
+    {
+      "back": "popular",
+      "front": "beliebt",
+      "level": 2
+    },
+    {
+      "back": "well-known",
+      "front": "bekannt",
+      "level": 2
+    },
+    {
+      "back": "official",
+      "front": "offiziell",
+      "level": 2
+    },
+    {
+      "back": "final",
+      "front": "endgültig",
+      "level": 2
+    },
+    {
+      "back": "whole",
+      "front": "ganz",
+      "level": 2
+    },
+    {
+      "back": "necessary",
+      "front": "nötig",
+      "level": 2
+    },
+    {
+      "back": "military",
+      "front": "militärisch",
+      "level": 2
+    },
+    {
+      "back": "independent",
+      "front": "unanhängig",
+      "level": 2
+    },
+    {
+      "back": "responsible",
+      "front": "verantwortlich",
+      "level": 2
+    },
+    {
+      "back": "excellent",
+      "front": "vorzüglich",
+      "level": 2
+    },
+    {
+      "back": "perfect",
+      "front": "perfekt",
+      "level": 2
+    },
+    {
+      "back": "beautiful",
+      "front": "wunderbar, hübsch",
+      "level": 2
+    },
+    {
+      "back": "modern",
+      "front": "modern",
+      "level": 2
+    },
+    {
+      "back": "positive",
+      "front": "positiv",
+      "level": 2
+    },
+    {
+      "back": "normal",
+      "front": "normal",
+      "level": 2
+    },
+    {
+      "back": "minimum",
+      "front": "minimal",
+      "level": 2
+    },
+    {
+      "back": "maximum",
+      "front": "maximal",
+      "level": 2
+    },
+    {
+      "back": "traditional",
+      "front": "traditionell",
+      "level": 2
+    },
+    {
+      "back": "wrong",
+      "front": "falsch",
+      "level": 2
+    },
+    {
+      "back": "historical",
+      "front": "historisch",
+      "level": 2
+    },
+    {
+      "back": "cultural",
+      "front": "kulturell",
+      "level": 2
+    },
+    {
+      "back": "interesting",
+      "front": "interessant",
+      "level": 2
+    },
+    {
+      "back": "religious",
+      "front": "religiös",
+      "level": 2
+    },
+    {
+      "back": "serious",
+      "front": "ernst",
+      "level": 2
+    },
+    {
+      "back": "famous",
+      "front": "berühmt",
+      "level": 2
+    },
+    {
+      "back": "negative",
+      "front": "negativ",
+      "level": 2
+    },
+    {
+      "back": "efficient",
+      "front": "effizient",
+      "level": 2
+    },
+    {
+      "back": "effective",
+      "front": "effektiv",
+      "level": 2
+    },
+    {
+      "back": "expensive",
+      "front": "teuer",
+      "level": 2
+    },
+    {
+      "back": "to be familiar with sth.",
+      "front": "vertraut sein mit etw.",
+      "level": 2
+    },
+    {
+      "back": "impossible",
+      "front": "unmöglich",
+      "level": 2
+    },
+    {
+      "back": "alive",
+      "front": "lebendig",
+      "level": 2
+    },
+    {
+      "back": "convenient",
+      "front": "geeignet / praktisch",
+      "level": 2
+    },
+    {
+      "back": "opposite",
+      "front": "Gegenteil",
+      "level": 2
+    },
+    {
+      "back": "to be afraid of",
+      "front": "Angst haben vor",
+      "level": 2
+    },
+    {
+      "back": "sad",
+      "front": "traurig",
+      "level": 2
+    },
+    {
+      "back": "frequent",
+      "front": "häufig",
+      "level": 2
+    },
+    {
+      "back": "wooden",
+      "front": "aus Holz",
+      "level": 2
+    },
+    {
+      "back": "golden",
+      "front": "aus Gold",
+      "level": 2
+    },
+    {
+      "back": "to sign",
+      "front": "unterschreiben",
+      "level": 2
+    },
+    {
+      "back": "to open",
+      "front": "öffnen",
+      "level": 2
+    },
+    {
+      "back": "to think",
+      "front": "denken",
+      "level": 2
+    },
+    {
+      "back": "to change",
+      "front": "ändern",
+      "level": 2
+    },
+    {
+      "back": "to return",
+      "front": "umdrehen",
+      "level": 2
+    },
+    {
+      "back": "to call",
+      "front": "(an)rufen",
+      "level": 2
+    },
+    {
+      "back": "to save",
+      "front": "retten",
+      "level": 2
+    },
+    {
+      "back": "to save a file",
+      "front": "eine Datei speichern",
+      "level": 2
+    },
+    {
+      "back": "to look",
+      "front": "schauen",
+      "level": 2
+    },
+    {
+      "back": "to look",
+      "front": "aussehen",
+      "level": 2
+    },
+    {
+      "back": "to live",
+      "front": "leben",
+      "level": 2
+    },
+    {
+      "back": "to come",
+      "front": "kommen",
+      "level": 2
+    },
+    {
+      "back": "to study",
+      "front": "studieren",
+      "level": 2
+    },
+    {
+      "back": "to offer",
+      "front": "anbieten",
+      "level": 2
+    },
+    {
+      "back": "to give",
+      "front": "geben",
+      "level": 2
+    },
+    {
+      "back": "to try",
+      "front": "versuchen",
+      "level": 2
+    },
+    {
+      "back": "to include",
+      "front": "beinhalten",
+      "level": 2
+    },
+    {
+      "back": "to ask",
+      "front": "fragen",
+      "level": 2
+    },
+    {
+      "back": "to present",
+      "front": "präsentieren",
+      "level": 2
+    },
+    {
+      "back": "to mark",
+      "front": "markieren",
+      "level": 2
+    },
+    {
+      "back": "to feel",
+      "front": "fühlen",
+      "level": 2
+    },
+    {
+      "back": "to remember",
+      "front": "sich erinnern",
+      "level": 2
+    },
+    {
+      "back": "to stop",
+      "front": "anhalten",
+      "level": 2
+    },
+    {
+      "back": "to stop doing sth.",
+      "front": "mit etwas aufhören",
+      "level": 2
+    },
+    {
+      "back": "to wish",
+      "front": "wünschen",
+      "level": 2
+    },
+    {
+      "back": "to hope",
+      "front": "hoffen",
+      "level": 2
+    },
+    {
+      "back": "to search / to look for",
+      "front": "suchen",
+      "level": 2
+    },
+    {
+      "back": "to fail",
+      "front": "versagen",
+      "level": 2
+    },
+    {
+      "back": "to fail an exam",
+      "front": "durch eine Prüfung durchfallen",
+      "level": 2
+    },
+    {
+      "back": "to pass an exam",
+      "front": "eine Prüfung bestehen",
+      "level": 2
+    },
+    {
+      "back": "to raise",
+      "front": "erhöhen",
+      "level": 2
+    },
+    {
+      "back": "to believe",
+      "front": "glauben",
+      "level": 2
+    },
+    {
+      "back": "to follow",
+      "front": "folgen",
+      "level": 2
+    },
+    {
+      "back": "to thank",
+      "front": "danken",
+      "level": 2
+    },
+    {
+      "back": "to consider",
+      "front": "berücksichtigen",
+      "level": 2
+    },
+    {
+      "back": "to seem",
+      "front": "scheinen",
+      "level": 2
+    },
+    {
+      "back": "to rest",
+      "front": "ruhen",
+      "level": 2
+    },
+    {
+      "back": "to answer / to respond",
+      "front": "antworten",
+      "level": 2
+    },
+    {
+      "back": "to trust",
+      "front": "vertrauen",
+      "level": 2
+    },
+    {
+      "back": "to end",
+      "front": "enden",
+      "level": 2
+    },
+    {
+      "back": "to start / to begin",
+      "front": "anfangen",
+      "level": 2
+    },
+    {
+      "back": "there",
+      "front": "dort",
+      "level": 2
+    },
+    {
+      "back": "very",
+      "front": "sehr",
+      "level": 2
+    },
+    {
+      "back": "too / also",
+      "front": "auch",
+      "level": 2
+    },
+    {
+      "back": "now",
+      "front": "jetzt",
+      "level": 2
+    },
+    {
+      "back": "more",
+      "front": "mehr",
+      "level": 2
+    },
+    {
+      "back": "so",
+      "front": "so",
+      "level": 2
+    },
+    {
+      "back": "as",
+      "front": "wie",
+      "level": 2
+    },
+    {
+      "back": "never",
+      "front": "nie",
+      "level": 2
+    },
+    {
+      "back": "then",
+      "front": "dann",
+      "level": 2
+    },
+    {
+      "back": "here",
+      "front": "hier",
+      "level": 2
+    },
+    {
+      "back": "quite / fairly",
+      "front": "ziemlich",
+      "level": 2
+    },
+    {
+      "back": "always",
+      "front": "immer",
+      "level": 2
+    },
+    {
+      "back": "once",
+      "front": "einmal",
+      "level": 2
+    },
+    {
+      "back": "only / just",
+      "front": "nur",
+      "level": 2
+    },
+    {
+      "back": "well",
+      "front": "gut (Adv.)",
+      "level": 2
+    },
+    {
+      "back": "even",
+      "front": "sogar",
+      "level": 2
+    },
+    {
+      "back": "still",
+      "front": "immer noch",
+      "level": 2
+    },
+    {
+      "back": "however",
+      "front": "allerdings",
+      "level": 2
+    },
+    {
+      "back": "really",
+      "front": "wirklich (Adv.)",
+      "level": 2
+    },
+    {
+      "back": "again",
+      "front": "wieder",
+      "level": 2
+    },
+    {
+      "back": "not yet",
+      "front": "noch nicht",
+      "level": 2
+    },
+    {
+      "back": "away",
+      "front": "weg",
+      "level": 2
+    },
+    {
+      "back": "already",
+      "front": "schon",
+      "level": 2
+    },
+    {
+      "back": "at least",
+      "front": "wenigstens",
+      "level": 2
+    },
+    {
+      "back": "ever",
+      "front": "jemals",
+      "level": 2
+    },
+    {
+      "back": "else",
+      "front": "ansonsten",
+      "level": 2
+    },
+    {
+      "back": "usually / normally",
+      "front": "normalerweise",
+      "level": 2
+    },
+    {
+      "back": "far away",
+      "front": "weit weg",
+      "level": 2
+    },
+    {
+      "back": "currently",
+      "front": "im Moment",
+      "level": 2
+    },
+    {
+      "back": "later",
+      "front": "später",
+      "level": 2
+    },
+    {
+      "back": "enough",
+      "front": "genug",
+      "level": 2
+    },
+    {
+      "back": "soon",
+      "front": "bald",
+      "level": 2
+    },
+    {
+      "back": "almost",
+      "front": "fast",
+      "level": 2
+    },
+    {
+      "back": "late",
+      "front": "spät",
+      "level": 2
+    },
+    {
+      "back": "especially",
+      "front": "besonders",
+      "level": 2
+    },
+    {
+      "back": "finally",
+      "front": "endlich",
+      "level": 2
+    },
+    {
+      "back": "sometimes",
+      "front": "manchmal",
+      "level": 2
+    },
+    {
+      "back": "completely",
+      "front": "komplett",
+      "level": 2
+    },
+    {
+      "back": "approximately",
+      "front": "ungefähr",
+      "level": 2
+    },
+    {
+      "back": "anywhere",
+      "front": "irgendwo",
+      "level": 2
+    },
+    {
+      "back": "twice",
+      "front": "zweimal",
+      "level": 2
+    },
+    {
+      "back": "neither … nor",
+      "front": "weder … noch",
+      "level": 2
+    },
+    {
+      "back": "either … or",
+      "front": "entweder … oder",
+      "level": 2
+    },
+    {
+      "back": "not necessarily",
+      "front": "nicht unbedingt",
+      "level": 2
+    },
+    {
+      "back": "definitely",
+      "front": "definitiv",
+      "level": 2
+    },
+    {
+      "back": "together",
+      "front": "zusammen",
+      "level": 2
+    },
+    {
+      "back": "house",
+      "front": "Haus",
+      "level": 2
+    },
+    {
+      "back": "restaurant",
+      "front": "Restaurant",
+      "level": 2
+    },
+    {
+      "back": "beach",
+      "front": "Strand",
+      "level": 2
+    },
+    {
+      "back": "hotel",
+      "front": "Hotel",
+      "level": 2
+    },
+    {
+      "back": "yard",
+      "front": "Hof",
+      "level": 2
+    },
+    {
+      "back": "bathroom",
+      "front": "Badezimmer",
+      "level": 2
+    },
+    {
+      "back": "kitchen",
+      "front": "Küche",
+      "level": 2
+    },
+    {
+      "back": "airport",
+      "front": "Flughafen",
+      "level": 2
+    },
+    {
+      "back": "street",
+      "front": "Straße",
+      "level": 2
+    },
+    {
+      "back": "city",
+      "front": "Stadt (groß)",
+      "level": 2
+    },
+    {
+      "back": "church",
+      "front": "Kirche",
+      "level": 2
+    },
+    {
+      "back": "castle",
+      "front": "Burg",
+      "level": 2
+    },
+    {
+      "back": "country",
+      "front": "Land",
+      "level": 2
+    },
+    {
+      "back": "place",
+      "front": "Ort",
+      "level": 2
+    },
+    {
+      "back": "along",
+      "front": "entlang",
+      "level": 2
+    },
+    {
+      "back": "home",
+      "front": "nach Hause",
+      "level": 2
+    },
+    {
+      "back": "site",
+      "front": "Standort",
+      "level": 2
+    },
+    {
+      "back": "center",
+      "front": "Zentrum",
+      "level": 2
+    },
+    {
+      "back": "office",
+      "front": "Büro",
+      "level": 2
+    },
+    {
+      "back": "area / district",
+      "front": "Gebiet",
+      "level": 2
+    },
+    {
+      "back": "address",
+      "front": "Adresse",
+      "level": 2
+    },
+    {
+      "back": "department",
+      "front": "Abteilung",
+      "level": 2
+    },
+    {
+      "back": "property",
+      "front": "Eigentum",
+      "level": 2
+    },
+    {
+      "back": "room / space",
+      "front": "Raum",
+      "level": 2
+    },
+    {
+      "back": "market",
+      "front": "Markt",
+      "level": 2
+    },
+    {
+      "back": "park",
+      "front": "Park",
+      "level": 2
+    },
+    {
+      "back": "garden",
+      "front": "Garten",
+      "level": 2
+    },
+    {
+      "back": "region",
+      "front": "Region",
+      "level": 2
+    },
+    {
+      "back": "island",
+      "front": "Insel",
+      "level": 2
+    },
+    {
+      "back": "in front of",
+      "front": "vor",
+      "level": 2
+    },
+    {
+      "back": "bank",
+      "front": "Bank (Geld)",
+      "level": 2
+    },
+    {
+      "back": "bench",
+      "front": "Bank (sitzen)",
+      "level": 2
+    },
+    {
+      "back": "bar",
+      "front": "Bar",
+      "level": 2
+    },
+    {
+      "back": "inside",
+      "front": "innen",
+      "level": 2
+    },
+    {
+      "back": "stadium",
+      "front": "Stadion",
+      "level": 2
+    },
+    {
+      "back": "ground / soil",
+      "front": "Grund, Boden",
+      "level": 2
+    },
+    {
+      "back": "valley",
+      "front": "Tal",
+      "level": 2
+    },
+    {
+      "back": "museum",
+      "front": "Museum",
+      "level": 2
+    },
+    {
+      "back": "coast",
+      "front": "Küste",
+      "level": 2
+    },
+    {
+      "back": "zone",
+      "front": "Zone",
+      "level": 2
+    },
+    {
+      "back": "corner",
+      "front": "Ecke",
+      "level": 2
+    },
+    {
+      "back": "avenue / alley",
+      "front": "Allee",
+      "level": 2
+    },
+    {
+      "back": "route",
+      "front": "Route",
+      "level": 2
+    },
+    {
+      "back": "neighborhood",
+      "front": "Nachbarschaft",
+      "level": 2
+    },
+    {
+      "back": "border",
+      "front": "Grenze (geogr.)",
+      "level": 2
+    },
+    {
+      "back": "tower",
+      "front": "Turm",
+      "level": 2
+    },
+    {
+      "back": "prison",
+      "front": "Gefängnis",
+      "level": 2
+    },
+    {
+      "back": "palace",
+      "front": "Palast",
+      "level": 2
+    },
+    {
+      "back": "town",
+      "front": "Stadt",
+      "level": 2
+    },
+    {
+      "back": "capital",
+      "front": "Hauptstadt",
+      "level": 2
+    },
+    {
+      "back": "community",
+      "front": "Gemeinschaft",
+      "level": 2
+    },
+    {
+      "back": "port",
+      "front": "Hafen",
+      "level": 2
+    },
+    {
+      "back": "square",
+      "front": "Platz (Stadt)",
+      "level": 2
+    },
+    {
+      "back": "at the top",
+      "front": "oben",
+      "level": 2
+    },
+    {
+      "back": "at the bottom",
+      "front": "unten",
+      "level": 2
+    },
+    {
+      "back": "west",
+      "front": "Westen",
+      "level": 2
+    },
+    {
+      "back": "east",
+      "front": "Osten",
+      "level": 2
+    },
+    {
+      "back": "north",
+      "front": "Norden",
+      "level": 2
+    },
+    {
+      "back": "south",
+      "front": "Süden",
+      "level": 2
+    },
+    {
+      "back": "zoo",
+      "front": "Zoo",
+      "level": 2
+    },
+    {
+      "back": "farm",
+      "front": "Bauernhof",
+      "level": 2
+    },
+    {
+      "back": "building",
+      "front": "Gebäude",
+      "level": 2
+    },
+    {
+      "back": "cinema",
+      "front": "Kino",
+      "level": 2
+    },
+    {
+      "back": "table",
+      "front": "Tisch",
+      "level": 2
+    },
+    {
+      "back": "bed",
+      "front": "Bett",
+      "level": 2
+    },
+    {
+      "back": "chair",
+      "front": "Stuhl",
+      "level": 2
+    },
+    {
+      "back": "bowl",
+      "front": "Schüssel",
+      "level": 2
+    },
+    {
+      "back": "spoon",
+      "front": "Löffel",
+      "level": 2
+    },
+    {
+      "back": "bottle",
+      "front": "Flasche",
+      "level": 2
+    },
+    {
+      "back": "magazine",
+      "front": "Zeitschrift",
+      "level": 2
+    },
+    {
+      "back": "window",
+      "front": "Fenster",
+      "level": 2
+    },
+    {
+      "back": "television / TV",
+      "front": "Fernseher",
+      "level": 2
+    },
+    {
+      "back": "computer",
+      "front": "Computer",
+      "level": 2
+    },
+    {
+      "back": "radio",
+      "front": "Radio",
+      "level": 2
+    },
+    {
+      "back": "mirror",
+      "front": "Spiegel",
+      "level": 2
+    },
+    {
+      "back": "clock",
+      "front": "Uhr",
+      "level": 2
+    },
+    {
+      "back": "mobile phone / cellphone",
+      "front": "Handy",
+      "level": 2
+    },
+    {
+      "back": "watch",
+      "front": "Armbanduhr",
+      "level": 2
+    },
+    {
+      "back": "sofa",
+      "front": "Sofa",
+      "level": 2
+    },
+    {
+      "back": "lamp",
+      "front": "Lampe",
+      "level": 2
+    },
+    {
+      "back": "desk",
+      "front": "Schreibtisch",
+      "level": 2
+    },
+    {
+      "back": "basket",
+      "front": "Korb",
+      "level": 2
+    },
+    {
+      "back": "battery",
+      "front": "Batterie",
+      "level": 2
+    },
+    {
+      "back": "soap",
+      "front": "Seife",
+      "level": 2
+    },
+    {
+      "back": "bed sheet",
+      "front": "Bettlaken",
+      "level": 2
+    },
+    {
+      "back": "bedding",
+      "front": "Bettwäsche",
+      "level": 2
+    },
+    {
+      "back": "wallet / purse",
+      "front": "Portmonee",
+      "level": 2
+    },
+    {
+      "back": "door",
+      "front": "Tür",
+      "level": 2
+    },
+    {
+      "back": "box",
+      "front": "Kiste",
+      "level": 2
+    },
+    {
+      "back": "screen",
+      "front": "Bildschirm",
+      "level": 2
+    },
+    {
+      "back": "razor",
+      "front": "Rasierapparat",
+      "level": 2
+    },
+    {
+      "back": "toothpaste",
+      "front": "Zahnpasta",
+      "level": 2
+    },
+    {
+      "back": "telephone / phone",
+      "front": "Telefon",
+      "level": 2
+    },
+    {
+      "back": "wall",
+      "front": "Wand",
+      "level": 2
+    },
+    {
+      "back": "floor",
+      "front": "Fußboden",
+      "level": 2
+    },
+    {
+      "back": "bag",
+      "front": "Tasche",
+      "level": 2
+    },
+    {
+      "back": "wheel",
+      "front": "Rad",
+      "level": 2
+    },
+    {
+      "back": "umbrella",
+      "front": "Schirm",
+      "level": 2
+    },
+    {
+      "back": "roof",
+      "front": "Dach",
+      "level": 2
+    },
+    {
+      "back": "cupboard / cabinet",
+      "front": "Schrank",
+      "level": 2
+    },
+    {
+      "back": "letter",
+      "front": "Brief",
+      "level": 2
+    },
+    {
+      "back": "key",
+      "front": "Schlüssel",
+      "level": 2
+    },
+    {
+      "back": "pool",
+      "front": "Schwimmbad",
+      "level": 2
+    },
+    {
+      "back": "sponge",
+      "front": "Schwamm",
+      "level": 2
+    },
+    {
+      "back": "thing",
+      "front": "Ding",
+      "level": 2
+    },
+    {
+      "back": "bell",
+      "front": "Glocke",
+      "level": 2
+    },
+    {
+      "back": "scissors",
+      "front": "Schere",
+      "level": 2
+    },
+    {
+      "back": "glass",
+      "front": "Glas",
+      "level": 2
+    },
+    {
+      "back": "cup",
+      "front": "Tasse",
+      "level": 2
+    },
+    {
+      "back": "pan",
+      "front": "Pfanne",
+      "level": 2
+    },
+    {
+      "back": "paper",
+      "front": "Papier",
+      "level": 2
+    },
+    {
+      "back": "engine / motor",
+      "front": "Motor",
+      "level": 2
+    },
+    {
+      "back": "object",
+      "front": "Objekt",
+      "level": 2
+    },
+    {
+      "back": "machine",
+      "front": "Maschine",
+      "level": 2
+    },
+    {
+      "back": "string",
+      "front": "Schnur",
+      "level": 2
+    },
+    {
+      "back": "piece",
+      "front": "Stück",
+      "level": 2
+    },
+    {
+      "back": "a piece/sheet of paper",
+      "front": "ein Blatt Papier",
+      "level": 2
+    },
+    {
+      "back": "root",
+      "front": "Wurzel",
+      "level": 2
+    },
+    {
+      "back": "chain",
+      "front": "Kette",
+      "level": 2
+    },
+    {
+      "back": "flag",
+      "front": "Fahne",
+      "level": 2
+    },
+    {
+      "back": "novel",
+      "front": "Roman",
+      "level": 2
+    },
+    {
+      "back": "powder",
+      "front": "Puder",
+      "level": 2
+    },
+    {
+      "back": "comb",
+      "front": "Kamm",
+      "level": 2
+    },
+    {
+      "back": "through",
+      "front": "durch",
+      "level": 2
+    },
+    {
+      "back": "fork",
+      "front": "Gabel",
+      "level": 2
+    },
+    {
+      "back": "knife",
+      "front": "Messer",
+      "level": 2
+    },
+    {
+      "back": "toothbrush",
+      "front": "Zahnbürste",
+      "level": 2
+    },
+    {
+      "back": "person",
+      "front": "Person",
+      "level": 2
+    },
+    {
+      "back": "baby",
+      "front": "Baby",
+      "level": 2
+    },
+    {
+      "back": "friend",
+      "front": "Freund(in)",
+      "level": 2
+    },
+    {
+      "back": "boyfriend",
+      "front": "fester Freund",
+      "level": 2
+    },
+    {
+      "back": "girlfriend",
+      "front": "feste Freundin",
+      "level": 2
+    },
+    {
+      "back": "public",
+      "front": "öffentlich",
+      "level": 2
+    },
+    {
+      "back": "enemy",
+      "front": "Feind",
+      "level": 2
+    },
+    {
+      "back": "committee",
+      "front": "Ausschuss",
+      "level": 2
+    },
+    {
+      "back": "conference",
+      "front": "Konferenz",
+      "level": 2
+    },
+    {
+      "back": "culture",
+      "front": "Kultur",
+      "level": 2
+    },
+    {
+      "back": "foundation",
+      "front": "Stiftung",
+      "level": 2
+    },
+    {
+      "back": "relationship",
+      "front": "Beziehung",
+      "level": 2
+    },
+    {
+      "back": "village",
+      "front": "Dorf",
+      "level": 2
+    },
+    {
+      "back": "individual",
+      "front": "individuell",
+      "level": 2
+    },
+    {
+      "back": "couple",
+      "front": "Paar",
+      "level": 2
+    },
+    {
+      "back": "a pair of shoes",
+      "front": "ein Paar Schuhe",
+      "level": 2
+    },
+    {
+      "back": "some / a few / a couple of",
+      "front": "ein paar",
+      "level": 2
+    },
+    {
+      "back": "lady",
+      "front": "Dame",
+      "level": 2
+    },
+    {
+      "back": "gentleman",
+      "front": "Herr",
+      "level": 2
+    },
+    {
+      "back": "ladies and gentlemen",
+      "front": "meine Damen und Herren",
+      "level": 2
+    },
+    {
+      "back": "citizen",
+      "front": "Bürger",
+      "level": 2
+    },
+    {
+      "back": "victim",
+      "front": "Opfer",
+      "level": 2
+    },
+    {
+      "back": "people",
+      "front": "Menschen",
+      "level": 2
+    },
+    {
+      "back": "youth",
+      "front": "Jugend",
+      "level": 2
+    },
+    {
+      "back": "the travelling",
+      "front": "das Reisen",
+      "level": 2
+    },
+    {
+      "back": "to travel",
+      "front": "reisen",
+      "level": 2
+    },
+    {
+      "back": "car",
+      "front": "Auto",
+      "level": 2
+    },
+    {
+      "back": "bicycle / bike",
+      "front": "Fahrrad",
+      "level": 2
+    },
+    {
+      "back": "suitcase",
+      "front": "Koffer",
+      "level": 2
+    },
+    {
+      "back": "bus",
+      "front": "Bus",
+      "level": 2
+    },
+    {
+      "back": "train",
+      "front": "Zug",
+      "level": 2
+    },
+    {
+      "back": "motorcycle",
+      "front": "Motorrad",
+      "level": 2
+    },
+    {
+      "back": "boat",
+      "front": "Boot",
+      "level": 2
+    },
+    {
+      "back": "airplane / plane",
+      "front": "Flugzeug",
+      "level": 2
+    },
+    {
+      "back": "to drive",
+      "front": "fahren (Auto)",
+      "level": 2
+    },
+    {
+      "back": "backpack",
+      "front": "Rucksack",
+      "level": 2
+    },
+    {
+      "back": "guide",
+      "front": "Reiseführer",
+      "level": 2
+    },
+    {
+      "back": "visit",
+      "front": "Besuch",
+      "level": 2
+    },
+    {
+      "back": "Spanish",
+      "front": "Spanisch",
+      "level": 2
+    },
+    {
+      "back": "Portuguese",
+      "front": "Portugiesisch",
+      "level": 2
+    },
+    {
+      "back": "map",
+      "front": "Karte",
+      "level": 2
+    },
+    {
+      "back": "road",
+      "front": "Landstraße",
+      "level": 2
+    },
+    {
+      "back": "ship",
+      "front": "Schiff",
+      "level": 2
+    },
+    {
+      "back": "vehicle",
+      "front": "Fahrzeug",
+      "level": 2
+    },
+    {
+      "back": "transport / transportation",
+      "front": "Transport",
+      "level": 2
+    },
+    {
+      "back": "trip",
+      "front": "Ausflug",
+      "level": 2
+    },
+    {
+      "back": "Italian",
+      "front": "Italienisch",
+      "level": 2
+    },
+    {
+      "back": "French",
+      "front": "Französisch",
+      "level": 2
+    },
+    {
+      "back": "flight",
+      "front": "Flug",
+      "level": 2
+    },
+    {
+      "back": "adventure",
+      "front": "Abenteuer",
+      "level": 2
+    },
+    {
+      "back": "bridge",
+      "front": "Brücke",
+      "level": 2
+    },
+    {
+      "back": "journey",
+      "front": "Reise",
+      "level": 2
+    },
+    {
+      "back": "German",
+      "front": "Deutsch",
+      "level": 2
+    },
+    {
+      "back": "departure",
+      "front": "Abreise",
+      "level": 2
+    },
+    {
+      "back": "tourist",
+      "front": "Tourist",
+      "level": 2
+    },
+    {
+      "back": "subway",
+      "front": "U-Bahn",
+      "level": 2
+    },
+    {
+      "back": "America",
+      "front": "Amerika",
+      "level": 2
+    },
+    {
+      "back": "France",
+      "front": "Frankreich",
+      "level": 2
+    },
+    {
+      "back": "Germany",
+      "front": "Deutschland",
+      "level": 2
+    },
+    {
+      "back": "England",
+      "front": "England",
+      "level": 2
+    },
+    {
+      "back": "United Kingdom",
+      "front": "Vereinigtes Königreich",
+      "level": 2
+    },
+    {
+      "back": "Great Britain",
+      "front": "Großbritannien",
+      "level": 2
+    },
+    {
+      "back": "Europe",
+      "front": "Europa",
+      "level": 2
+    },
+    {
+      "back": "China",
+      "front": "China",
+      "level": 2
+    },
+    {
+      "back": "abroad",
+      "front": "im Ausland",
+      "level": 2
+    },
+    {
+      "back": "Chinese",
+      "front": "Chinesisch",
+      "level": 2
+    },
+    {
+      "back": "international",
+      "front": "international",
+      "level": 2
+    },
+    {
+      "back": "American",
+      "front": "amerikanisch",
+      "level": 2
+    },
+    {
+      "back": "European",
+      "front": "europäisch",
+      "level": 2
+    },
+    {
+      "back": "around the world",
+      "front": "um die Welt",
+      "level": 2
+    },
+    {
+      "back": "to turn",
+      "front": "drehen",
+      "level": 2
+    },
+    {
+      "back": "passport",
+      "front": "Reisepass",
+      "level": 2
+    },
+    {
+      "back": "this / these",
+      "front": "diese(r) hier",
+      "level": 2
+    },
+    {
+      "back": "that / those",
+      "front": "diese(r) dort",
+      "level": 2
+    },
+    {
+      "back": "one / you",
+      "front": "man",
+      "level": 2
+    },
+    {
+      "back": "all",
+      "front": "alle",
+      "level": 2
+    },
+    {
+      "back": "everybody / everyone",
+      "front": "jeder",
+      "level": 2
+    },
+    {
+      "back": "every day / each day",
+      "front": "jeden Tag",
+      "level": 2
+    },
+    {
+      "back": "some / any",
+      "front": "irgendein",
+      "level": 2
+    },
+    {
+      "back": "the other one",
+      "front": "der andere",
+      "level": 2
+    },
+    {
+      "back": "another one",
+      "front": "ein anderer",
+      "level": 2
+    },
+    {
+      "back": "something",
+      "front": "etwas",
+      "level": 2
+    },
+    {
+      "back": "such",
+      "front": "solche",
+      "level": 2
+    },
+    {
+      "back": "both",
+      "front": "beide",
+      "level": 2
+    },
+    {
+      "back": "few",
+      "front": "wenig",
+      "level": 2
+    },
+    {
+      "back": "everything",
+      "front": "alles",
+      "level": 2
+    },
+    {
+      "back": "none of this",
+      "front": "nichts davon",
+      "level": 2
+    },
+    {
+      "back": "somebody / someone",
+      "front": "jemand",
+      "level": 2
+    },
+    {
+      "back": "nothing",
+      "front": "nichts",
+      "level": 2
+    },
+    {
+      "back": "anything",
+      "front": "irgendetwas",
+      "level": 2
+    },
+    {
+      "back": "nobody / no one",
+      "front": "niemand",
+      "level": 2
+    },
+    {
+      "back": "anybody / anyone",
+      "front": "irgendjemand",
+      "level": 2
+    },
+    {
+      "back": "one",
+      "front": "1",
+      "level": 2
+    },
+    {
+      "back": "two",
+      "front": "2",
+      "level": 2
+    },
+    {
+      "back": "three",
+      "front": "3",
+      "level": 2
+    },
+    {
+      "back": "four",
+      "front": "4",
+      "level": 2
+    },
+    {
+      "back": "five",
+      "front": "5",
+      "level": 2
+    },
+    {
+      "back": "six",
+      "front": "6",
+      "level": 2
+    },
+    {
+      "back": "seven",
+      "front": "7",
+      "level": 2
+    },
+    {
+      "back": "eight",
+      "front": "8",
+      "level": 2
+    },
+    {
+      "back": "nine",
+      "front": "9",
+      "level": 2
+    },
+    {
+      "back": "ten",
+      "front": "10",
+      "level": 2
+    },
+    {
+      "back": "eleven",
+      "front": "11",
+      "level": 2
+    },
+    {
+      "back": "twelve",
+      "front": "12",
+      "level": 2
+    },
+    {
+      "back": "thirteen",
+      "front": "13",
+      "level": 2
+    },
+    {
+      "back": "fourteen",
+      "front": "14",
+      "level": 2
+    },
+    {
+      "back": "fifteen",
+      "front": "15",
+      "level": 2
+    },
+    {
+      "back": "sixteen",
+      "front": "16",
+      "level": 2
+    },
+    {
+      "back": "seventeen",
+      "front": "17",
+      "level": 2
+    },
+    {
+      "back": "eighteen",
+      "front": "18",
+      "level": 2
+    },
+    {
+      "back": "nineteen",
+      "front": "19",
+      "level": 2
+    },
+    {
+      "back": "twenty",
+      "front": "20",
+      "level": 2
+    },
+    {
+      "back": "twenty-one",
+      "front": "21",
+      "level": 2
+    },
+    {
+      "back": "thirty",
+      "front": "30",
+      "level": 2
+    },
+    {
+      "back": "forty",
+      "front": "40",
+      "level": 2
+    },
+    {
+      "back": "fifty",
+      "front": "50",
+      "level": 2
+    },
+    {
+      "back": "sixty",
+      "front": "60",
+      "level": 2
+    },
+    {
+      "back": "seventy",
+      "front": "70",
+      "level": 2
+    },
+    {
+      "back": "eighty",
+      "front": "80",
+      "level": 2
+    },
+    {
+      "back": "ninety",
+      "front": "90",
+      "level": 2
+    },
+    {
+      "back": "one hundred",
+      "front": "100",
+      "level": 2
+    },
+    {
+      "back": "one thousand",
+      "front": "1000",
+      "level": 2
+    },
+    {
+      "back": "thousands",
+      "front": "tausende",
+      "level": 2
+    },
+    {
+      "back": "one million",
+      "front": "1000000",
+      "level": 2
+    },
+    {
+      "back": "millions of people",
+      "front": "Millionen Menschen",
+      "level": 2
+    },
+    {
+      "back": "first",
+      "front": "erste",
+      "level": 2
+    },
+    {
+      "back": "second",
+      "front": "zweite",
+      "level": 2
+    },
+    {
+      "back": "third",
+      "front": "dritte",
+      "level": 2
+    },
+    {
+      "back": "forth",
+      "front": "vierte",
+      "level": 2
+    },
+    {
+      "back": "fifth",
+      "front": "fünfte",
+      "level": 2
+    },
+    {
+      "back": "sixth",
+      "front": "sechste",
+      "level": 2
+    },
+    {
+      "back": "seventh",
+      "front": "siebte",
+      "level": 2
+    },
+    {
+      "back": "eighth",
+      "front": "achte",
+      "level": 2
+    },
+    {
+      "back": "ninth",
+      "front": "neunte",
+      "level": 2
+    },
+    {
+      "back": "tenth",
+      "front": "zehnte",
+      "level": 2
+    },
+    {
+      "back": "some",
+      "front": "manche",
+      "level": 2
+    },
+    {
+      "back": "less",
+      "front": "weniger",
+      "level": 2
+    },
+    {
+      "back": "many / much / a lot of",
+      "front": "viel",
+      "level": 2
+    },
+    {
+      "back": "last",
+      "front": "letzte",
+      "level": 2
+    },
+    {
+      "back": "number",
+      "front": "Zahl",
+      "level": 2
+    },
+    {
+      "back": "amount of",
+      "front": "Menge an",
+      "level": 2
+    },
+    {
+      "back": "sum",
+      "front": "Summe",
+      "level": 2
+    },
+    {
+      "back": "majority",
+      "front": "Mehrheit",
+      "level": 2
+    },
+    {
+      "back": "minority",
+      "front": "Minderheit",
+      "level": 2
+    },
+    {
+      "back": "meter",
+      "front": "Meter",
+      "level": 2
+    },
+    {
+      "back": "average",
+      "front": "Durchschnitt",
+      "level": 2
+    },
+    {
+      "back": "half",
+      "front": "Hälfte",
+      "level": 2
+    },
+    {
+      "back": "kilometers per hour",
+      "front": "km/h",
+      "level": 2
+    },
+    {
+      "back": "to contain",
+      "front": "enthalten",
+      "level": 2
+    },
+    {
+      "back": "to get / to receive",
+      "front": "erhalten, bekommen",
+      "level": 2
+    },
+    {
+      "back": "to respect",
+      "front": "respektieren",
+      "level": 2
+    },
+    {
+      "back": "to agree",
+      "front": "zustimmen",
+      "level": 2
+    },
+    {
+      "back": "to appear",
+      "front": "erscheinen",
+      "level": 2
+    },
+    {
+      "back": "to watch",
+      "front": "beobachten",
+      "level": 2
+    },
+    {
+      "back": "to count",
+      "front": "zählen",
+      "level": 2
+    },
+    {
+      "back": "to miss",
+      "front": "verpassen",
+      "level": 2
+    },
+    {
+      "back": "to fill",
+      "front": "füllen",
+      "level": 2
+    },
+    {
+      "back": "to produce",
+      "front": "herstellen",
+      "level": 2
+    },
+    {
+      "back": "to reserve",
+      "front": "reservieren",
+      "level": 2
+    },
+    {
+      "back": "to mix",
+      "front": "mischen",
+      "level": 2
+    },
+    {
+      "back": "to dry",
+      "front": "trocknen",
+      "level": 2
+    },
+    {
+      "back": "to fly",
+      "front": "fliegen",
+      "level": 2
+    },
+    {
+      "back": "to import",
+      "front": "importieren",
+      "level": 2
+    },
+    {
+      "back": "to export",
+      "front": "exportieren",
+      "level": 2
+    },
+    {
+      "back": "to help",
+      "front": "helfen",
+      "level": 2
+    },
+    {
+      "back": "to spend time",
+      "front": "Zeit verbringen",
+      "level": 2
+    },
+    {
+      "back": "to continue",
+      "front": "weitermachen",
+      "level": 2
+    },
+    {
+      "back": "to deliver",
+      "front": "liefern",
+      "level": 2
+    },
+    {
+      "back": "to leave",
+      "front": "verlassen",
+      "level": 2
+    },
+    {
+      "back": "to hate",
+      "front": "hassen",
+      "level": 2
+    },
+    {
+      "back": "to assume",
+      "front": "annehmen",
+      "level": 2
+    },
+    {
+      "back": "to serve as",
+      "front": "dienen als",
+      "level": 2
+    },
+    {
+      "back": "to create",
+      "front": "erstellen",
+      "level": 2
+    },
+    {
+      "back": "to add",
+      "front": "hinzufügen",
+      "level": 2
+    },
+    {
+      "back": "to visit",
+      "front": "besuchen",
+      "level": 2
+    },
+    {
+      "back": "to introduce",
+      "front": "einführen, vorstellen",
+      "level": 2
+    },
+    {
+      "back": "to demand",
+      "front": "verlangen",
+      "level": 2
+    },
+    {
+      "back": "to explain",
+      "front": "erklären",
+      "level": 2
+    },
+    {
+      "back": "to arrive",
+      "front": "ankommen",
+      "level": 2
+    },
+    {
+      "back": "to win",
+      "front": "gewinnen",
+      "level": 2
+    },
+    {
+      "back": "to cut",
+      "front": "schneiden",
+      "level": 2
+    },
+    {
+      "back": "to put",
+      "front": "legen, stellen",
+      "level": 2
+    },
+    {
+      "back": "to announce",
+      "front": "ankündigen",
+      "level": 2
+    },
+    {
+      "back": "to fit",
+      "front": "passen",
+      "level": 2
+    },
+    {
+      "back": "to sing",
+      "front": "singen",
+      "level": 2
+    },
+    {
+      "back": "to allow",
+      "front": "erlauben",
+      "level": 2
+    },
+    {
+      "back": "to set sth.",
+      "front": "etw. setzen",
+      "level": 2
+    },
+    {
+      "back": "studies",
+      "front": "Studium",
+      "level": 2
+    },
+    {
+      "back": "teacher",
+      "front": "Lehrer",
+      "level": 2
+    },
+    {
+      "back": "note",
+      "front": "Notiz",
+      "level": 2
+    },
+    {
+      "back": "mark (BE) / grade (AE)",
+      "front": "Note (Schule)",
+      "level": 2
+    },
+    {
+      "back": "pen",
+      "front": "Stift",
+      "level": 2
+    },
+    {
+      "back": "school",
+      "front": "Schule",
+      "level": 2
+    },
+    {
+      "back": "program",
+      "front": "Programm",
+      "level": 2
+    },
+    {
+      "back": "education",
+      "front": "Bildung",
+      "level": 2
+    },
+    {
+      "back": "section",
+      "front": "Bereich",
+      "level": 2
+    },
+    {
+      "back": "course",
+      "front": "Kurs",
+      "level": 2
+    },
+    {
+      "back": "library",
+      "front": "Bibliothek",
+      "level": 2
+    },
+    {
+      "back": "test",
+      "front": "Test",
+      "level": 2
+    },
+    {
+      "back": "application",
+      "front": "Anwendung",
+      "level": 2
+    },
+    {
+      "back": "study",
+      "front": "Studie",
+      "level": 2
+    },
+    {
+      "back": "example / instance",
+      "front": "Beispiel",
+      "level": 2
+    },
+    {
+      "back": "class",
+      "front": "Klasse",
+      "level": 2
+    },
+    {
+      "back": "word",
+      "front": "Wort",
+      "level": 2
+    },
+    {
+      "back": "knowledge",
+      "front": "Wissen",
+      "level": 2
+    },
+    {
+      "back": "chapter",
+      "front": "Kapitel",
+      "level": 2
+    },
+    {
+      "back": "practice",
+      "front": "Praxis",
+      "level": 2
+    },
+    {
+      "back": "institute",
+      "front": "Institut",
+      "level": 2
+    },
+    {
+      "back": "idea",
+      "front": "Idee",
+      "level": 2
+    },
+    {
+      "back": "professor",
+      "front": "Professor",
+      "level": 2
+    },
+    {
+      "back": "presentation",
+      "front": "Präsentation",
+      "level": 2
+    },
+    {
+      "back": "preparation",
+      "front": "Vorbereitung",
+      "level": 2
+    },
+    {
+      "back": "university",
+      "front": "Universität",
+      "level": 2
+    },
+    {
+      "back": "lecture",
+      "front": "Vorlesung",
+      "level": 2
+    },
+    {
+      "back": "goal / aim / objective",
+      "front": "Ziel",
+      "level": 2
+    },
+    {
+      "back": "meaning",
+      "front": "Bedeutung",
+      "level": 2
+    },
+    {
+      "back": "teaching",
+      "front": "Lehre",
+      "level": 2
+    },
+    {
+      "back": "training",
+      "front": "Training",
+      "level": 2
+    },
+    {
+      "back": "history",
+      "front": "Geschichte",
+      "level": 2
+    },
+    {
+      "back": "page",
+      "front": "Seite (Buch)",
+      "level": 2
+    },
+    {
+      "back": "report",
+      "front": "Bericht",
+      "level": 2
+    },
+    {
+      "back": "explanation",
+      "front": "Erklärung",
+      "level": 2
+    },
+    {
+      "back": "difficulty",
+      "front": "Schwierigkeit",
+      "level": 2
+    },
+    {
+      "back": "document",
+      "front": "Dokument",
+      "level": 2
+    },
+    {
+      "back": "yesterday",
+      "front": "gestern",
+      "level": 2
+    },
+    {
+      "back": "recently",
+      "front": "neulich",
+      "level": 2
+    },
+    {
+      "back": "to rent",
+      "front": "mieten",
+      "level": 2
+    },
+    {
+      "back": "to sell",
+      "front": "verkaufen",
+      "level": 2
+    },
+    {
+      "back": "to place",
+      "front": "platzieren",
+      "level": 2
+    },
+    {
+      "back": "love",
+      "front": "Liebe",
+      "level": 2
+    },
+    {
+      "back": "part",
+      "front": "Teil",
+      "level": 2
+    },
+    {
+      "back": "service",
+      "front": "Dienstleistung",
+      "level": 2
+    },
+    {
+      "back": "list",
+      "front": "Liste",
+      "level": 2
+    },
+    {
+      "back": "system",
+      "front": "System",
+      "level": 2
+    },
+    {
+      "back": "review",
+      "front": "Rezension",
+      "level": 2
+    },
+    {
+      "back": "order",
+      "front": "Reihenfolge",
+      "level": 2
+    },
+    {
+      "back": "order",
+      "front": "Bestellung",
+      "level": 2
+    },
+    {
+      "back": "group",
+      "front": "Gruppe",
+      "level": 2
+    },
+    {
+      "back": "way",
+      "front": "Weg",
+      "level": 2
+    },
+    {
+      "back": "type",
+      "front": "Typ",
+      "level": 2
+    },
+    {
+      "back": "design",
+      "front": "Design",
+      "level": 2
+    },
+    {
+      "back": "case",
+      "front": "Fall",
+      "level": 2
+    },
+    {
+      "back": "version",
+      "front": "Version",
+      "level": 2
+    },
+    {
+      "back": "member",
+      "front": "Mitglied",
+      "level": 2
+    },
+    {
+      "back": "control",
+      "front": "Kontrolle",
+      "level": 2
+    },
+    {
+      "back": "change",
+      "front": "Wechsel",
+      "level": 2
+    },
+    {
+      "back": "call",
+      "front": "Anruf",
+      "level": 2
+    },
+    {
+      "back": "account",
+      "front": "Konto",
+      "level": 2
+    },
+    {
+      "back": "profile",
+      "front": "Profil",
+      "level": 2
+    },
+    {
+      "back": "level / stage",
+      "front": "Stufe",
+      "level": 2
+    },
+    {
+      "back": "description",
+      "front": "Beschreibung",
+      "level": 2
+    },
+    {
+      "back": "image / picture",
+      "front": "Bild",
+      "level": 2
+    },
+    {
+      "back": "content",
+      "front": "Inhalt",
+      "level": 2
+    },
+    {
+      "back": "value",
+      "front": "Wert",
+      "level": 2
+    },
+    {
+      "back": "category",
+      "front": "Kategorie",
+      "level": 2
+    },
+    {
+      "back": "act",
+      "front": "Akt",
+      "level": 2
+    },
+    {
+      "back": "equipment",
+      "front": "Ausrüstung",
+      "level": 2
+    },
+    {
+      "back": "problem",
+      "front": "Problem",
+      "level": 2
+    },
+    {
+      "back": "side",
+      "front": "Seite",
+      "level": 2
+    },
+    {
+      "back": "performance",
+      "front": "Leistung",
+      "level": 2
+    },
+    {
+      "back": "option",
+      "front": "Option",
+      "level": 2
+    },
+    {
+      "back": "activity",
+      "front": "Aktivität",
+      "level": 2
+    },
+    {
+      "back": "result",
+      "front": "Ergebnis",
+      "level": 2
+    },
+    {
+      "back": "issue",
+      "front": "Sachverhalt",
+      "level": 2
+    },
+    {
+      "back": "agreement",
+      "front": "Vereinbarung",
+      "level": 2
+    },
+    {
+      "back": "solution",
+      "front": "Lösung",
+      "level": 2
+    },
+    {
+      "back": "production",
+      "front": "Herstellung",
+      "level": 2
+    },
+    {
+      "back": "protection",
+      "front": "Schutz",
+      "level": 2
+    },
+    {
+      "back": "construction",
+      "front": "Bau",
+      "level": 2
+    },
+    {
+      "back": "response",
+      "front": "Rückmeldung",
+      "level": 2
+    },
+    {
+      "back": "entry",
+      "front": "Eintrag",
+      "level": 2
+    },
+    {
+      "back": "effect",
+      "front": "Effekt",
+      "level": 2
+    },
+    {
+      "back": "mind",
+      "front": "Verstand",
+      "level": 2
+    },
+    {
+      "back": "wish",
+      "front": "Wunsch",
+      "level": 2
+    },
+    {
+      "back": "hope",
+      "front": "Hoffnung",
+      "level": 2
+    },
+    {
+      "back": "union",
+      "front": "Vereinigung",
+      "level": 2
+    },
+    {
+      "back": "opportunity / occasion",
+      "front": "Gelegenheit",
+      "level": 2
+    },
+    {
+      "back": "choice",
+      "front": "Wahl, Entscheidung",
+      "level": 2
+    },
+    {
+      "back": "selection",
+      "front": "Auswahl",
+      "level": 2
+    },
+    {
+      "back": "degree",
+      "front": "Grad",
+      "level": 2
+    },
+    {
+      "back": "matter",
+      "front": "Angelegenheit",
+      "level": 2
+    },
+    {
+      "back": "voice",
+      "front": "Stimme",
+      "level": 2
+    },
+    {
+      "back": "evidence",
+      "front": "Beleg",
+      "level": 2
+    },
+    {
+      "back": "role",
+      "front": "Rolle",
+      "level": 2
+    },
+    {
+      "back": "purpose",
+      "front": "Zweck",
+      "level": 2
+    },
+    {
+      "back": "success",
+      "front": "Erfolg",
+      "level": 2
+    },
+    {
+      "back": "introduction",
+      "front": "Einführung",
+      "level": 2
+    },
+    {
+      "back": "charge",
+      "front": "Gebühr",
+      "level": 2
+    },
+    {
+      "back": "rest / recovery",
+      "front": "Erholung",
+      "level": 2
+    },
+    {
+      "back": "subject",
+      "front": "Subjekt",
+      "level": 2
+    },
+    {
+      "back": "darkness",
+      "front": "Dunkelheit",
+      "level": 2
+    },
+    {
+      "back": "alternative",
+      "front": "Alternative",
+      "level": 2
+    },
+    {
+      "back": "kind",
+      "front": "Sorte / Art",
+      "level": 2
+    },
+    {
+      "back": "record",
+      "front": "Aufnahme",
+      "level": 2
+    },
+    {
+      "back": "edge",
+      "front": "Kante",
+      "level": 2
+    },
+    {
+      "back": "bigger than",
+      "front": "größer als",
+      "level": 2
+    },
+    {
+      "back": "better",
+      "front": "besser",
+      "level": 2
+    },
+    {
+      "back": "best",
+      "front": "am besten",
+      "level": 2
+    },
+    {
+      "back": "worse",
+      "front": "schlechter",
+      "level": 2
+    },
+    {
+      "back": "worst",
+      "front": "am schlechtesten",
+      "level": 2
+    },
+    {
+      "back": "to cover",
+      "front": "bedecken",
+      "level": 2
+    },
+    {
+      "back": "to choose / to select",
+      "front": "auswählen",
+      "level": 2
+    },
+    {
+      "back": "to increase",
+      "front": "(sich) vergrößern",
+      "level": 2
+    },
+    {
+      "back": "to stay",
+      "front": "bleiben",
+      "level": 2
+    },
+    {
+      "back": "to build",
+      "front": "bauen",
+      "level": 2
+    },
+    {
+      "back": "to apply",
+      "front": "anwenden",
+      "level": 2
+    },
+    {
+      "back": "to improve",
+      "front": "verbessern",
+      "level": 2
+    },
+    {
+      "back": "to repeat",
+      "front": "wiederholen",
+      "level": 2
+    },
+    {
+      "back": "to wake up",
+      "front": "aufwachen",
+      "level": 2
+    },
+    {
+      "back": "to understand",
+      "front": "verstehen",
+      "level": 2
+    },
+    {
+      "back": "to let",
+      "front": "lassen",
+      "level": 2
+    },
+    {
+      "back": "to develop",
+      "front": "entwickeln",
+      "level": 2
+    },
+    {
+      "back": "to die",
+      "front": "sterben",
+      "level": 2
+    },
+    {
+      "back": "to accept",
+      "front": "akzeptieren",
+      "level": 2
+    },
+    {
+      "back": "to avoid / to prevent",
+      "front": "vermeiden",
+      "level": 2
+    },
+    {
+      "back": "to wait",
+      "front": "warten",
+      "level": 2
+    },
+    {
+      "back": "to define",
+      "front": "definieren",
+      "level": 2
+    },
+    {
+      "back": "to reach / to achieve",
+      "front": "erreichen",
+      "level": 2
+    },
+    {
+      "back": "to beat",
+      "front": "schlagen, besiegen",
+      "level": 2
+    },
+    {
+      "back": "to exist",
+      "front": "existieren",
+      "level": 2
+    },
+    {
+      "back": "to affect",
+      "front": "beeinflussen",
+      "level": 2
+    },
+    {
+      "back": "to lose",
+      "front": "verlieren",
+      "level": 2
+    },
+    {
+      "back": "to forget",
+      "front": "vergessen",
+      "level": 2
+    },
+    {
+      "back": "to prepare",
+      "front": "vorbereiten",
+      "level": 2
+    },
+    {
+      "back": "to introduce oneself to so.",
+      "front": "sich jm. vorstellen",
+      "level": 2
+    },
+    {
+      "back": "to shut / to close",
+      "front": "schließen",
+      "level": 2
+    },
+    {
+      "back": "to belong to",
+      "front": "gehören zu",
+      "level": 2
+    },
+    {
+      "back": "to suffer",
+      "front": "leiden",
+      "level": 2
+    },
+    {
+      "back": "to recover",
+      "front": "sich erholen",
+      "level": 2
+    },
+    {
+      "back": "to analyze",
+      "front": "analysieren",
+      "level": 2
+    },
+    {
+      "back": "to establish",
+      "front": "gründen, aufbauen",
+      "level": 2
+    },
+    {
+      "back": "to discover",
+      "front": "entdecken",
+      "level": 2
+    },
+    {
+      "back": "to earn",
+      "front": "verdienen",
+      "level": 2
+    },
+    {
+      "back": "respect",
+      "front": "Respekt",
+      "level": 2
+    },
+    {
+      "back": "title",
+      "front": "Titel",
+      "level": 2
+    },
+    {
+      "back": "benefit",
+      "front": "Gewinn",
+      "level": 2
+    },
+    {
+      "back": "situation",
+      "front": "Situation",
+      "level": 2
+    },
+    {
+      "back": "religion",
+      "front": "Religion",
+      "level": 2
+    },
+    {
+      "back": "effort",
+      "front": "Anstrengung",
+      "level": 2
+    },
+    {
+      "back": "attention",
+      "front": "Aufmerksamkeit",
+      "level": 2
+    },
+    {
+      "back": "interest",
+      "front": "Interesse",
+      "level": 2
+    },
+    {
+      "back": "competition / contest",
+      "front": "Wettbewerb",
+      "level": 2
+    },
+    {
+      "back": "life",
+      "front": "Leben",
+      "level": 2
+    },
+    {
+      "back": "load",
+      "front": "Ladung",
+      "level": 2
+    },
+    {
+      "back": "permission",
+      "front": "Erlaubnis",
+      "level": 2
+    },
+    {
+      "back": "faith",
+      "front": "Vertrauen",
+      "level": 2
+    },
+    {
+      "back": "truth",
+      "front": "Wahrheit",
+      "level": 2
+    },
+    {
+      "back": "failure",
+      "front": "Misserfolg",
+      "level": 2
+    },
+    {
+      "back": "signal",
+      "front": "Signal",
+      "level": 2
+    },
+    {
+      "back": "character",
+      "front": "Charakter",
+      "level": 2
+    },
+    {
+      "back": "reality",
+      "front": "Realität",
+      "level": 2
+    },
+    {
+      "back": "origin",
+      "front": "Ursprung",
+      "level": 2
+    },
+    {
+      "back": "damage",
+      "front": "Schaden",
+      "level": 2
+    },
+    {
+      "back": "secret",
+      "front": "Geheimnis",
+      "level": 2
+    },
+    {
+      "back": "direction",
+      "front": "Richtung",
+      "level": 2
+    },
+    {
+      "back": "lack of",
+      "front": "Nichtvorhandensein von",
+      "level": 2
+    },
+    {
+      "back": "scene",
+      "front": "Szene",
+      "level": 2
+    },
+    {
+      "back": "behavior",
+      "front": "Verhalten",
+      "level": 2
+    },
+    {
+      "back": "signature",
+      "front": "Unterschrift",
+      "level": 2
+    },
+    {
+      "back": "attempt",
+      "front": "Versuch",
+      "level": 2
+    },
+    {
+      "back": "circle",
+      "front": "Kreis",
+      "level": 2
+    },
+    {
+      "back": "exit",
+      "front": "Ausgang",
+      "level": 2
+    },
+    {
+      "back": "symbol",
+      "front": "Symbol",
+      "level": 2
+    },
+    {
+      "back": "position",
+      "front": "Position",
+      "level": 2
+    },
+    {
+      "back": "strength",
+      "front": "Stärke",
+      "level": 2
+    },
+    {
+      "back": "experience",
+      "front": "Erfahrung",
+      "level": 2
+    },
+    {
+      "back": "shape",
+      "front": "Form",
+      "level": 2
+    },
+    {
+      "back": "relation / connection",
+      "front": "Verbindung",
+      "level": 2
+    },
+    {
+      "back": "fear",
+      "front": "Furcht",
+      "level": 2
+    },
+    {
+      "back": "doubt",
+      "front": "Zweifel",
+      "level": 2
+    },
+    {
+      "back": "humor",
+      "front": "Humor",
+      "level": 2
+    },
+    {
+      "back": "hate",
+      "front": "Hass",
+      "level": 2
+    },
+    {
+      "back": "possibility",
+      "front": "Möglichkeit",
+      "level": 2
+    },
+    {
+      "back": "desire",
+      "front": "Verlangen",
+      "level": 2
+    },
+    {
+      "back": "existence",
+      "front": "Existenz",
+      "level": 2
+    },
+    {
+      "back": "pleasure",
+      "front": "Vergnügen",
+      "level": 2
+    },
+    {
+      "back": "responsibility",
+      "front": "Verantwortung",
+      "level": 2
+    },
+    {
+      "back": "surprise",
+      "front": "Überraschung",
+      "level": 2
+    },
+    {
+      "back": "tradition",
+      "front": "Tradition",
+      "level": 2
+    },
+    {
+      "back": "conversation",
+      "front": "Gespräch",
+      "level": 2
+    },
+    {
+      "back": "trend",
+      "front": "Trend",
+      "level": 2
+    },
+    {
+      "back": "fault",
+      "front": "Schuld",
+      "level": 2
+    },
+    {
+      "back": "favor",
+      "front": "Gefallen",
+      "level": 2
+    },
+    {
+      "back": "phrase",
+      "front": "Redewendung",
+      "level": 2
+    },
+    {
+      "back": "attitude",
+      "front": "Einstellung",
+      "level": 2
+    },
+    {
+      "back": "murder",
+      "front": "Mord",
+      "level": 2
+    },
+    {
+      "back": "murderer",
+      "front": "Mörder",
+      "level": 2
+    },
+    {
+      "back": "mistake / error",
+      "front": "Fehler",
+      "level": 2
+    },
+    {
+      "back": "honor",
+      "front": "Ehre",
+      "level": 2
+    },
+    {
+      "back": "smile",
+      "front": "Lächeln",
+      "level": 2
+    },
+    {
+      "back": "danger",
+      "front": "Gefahr",
+      "level": 2
+    },
+    {
+      "back": "joy",
+      "front": "Spaß",
+      "level": 2
+    },
+    {
+      "back": "entrance",
+      "front": "Eingang",
+      "level": 2
+    },
+    {
+      "back": "shadow",
+      "front": "Schatten",
+      "level": 2
+    },
+    {
+      "back": "memory",
+      "front": "Gedächtnis",
+      "level": 2
+    },
+    {
+      "back": "flower",
+      "front": "Blume",
+      "level": 2
+    },
+    {
+      "back": "tree",
+      "front": "Baum",
+      "level": 2
+    },
+    {
+      "back": "grass",
+      "front": "Gras",
+      "level": 2
+    },
+    {
+      "back": "sky",
+      "front": "Himmel (Natur)",
+      "level": 2
+    },
+    {
+      "back": "heaven",
+      "front": "Himmel (relig.)",
+      "level": 2
+    },
+    {
+      "back": "sea",
+      "front": "Meer",
+      "level": 2
+    },
+    {
+      "back": "lake",
+      "front": "See",
+      "level": 2
+    },
+    {
+      "back": "moon",
+      "front": "Mond",
+      "level": 2
+    },
+    {
+      "back": "sun",
+      "front": "Sonne",
+      "level": 2
+    },
+    {
+      "back": "world",
+      "front": "Welt",
+      "level": 2
+    },
+    {
+      "back": "rain",
+      "front": "Regen",
+      "level": 2
+    },
+    {
+      "back": "volcano",
+      "front": "Vulkan",
+      "level": 2
+    },
+    {
+      "back": "fire",
+      "front": "Feuer",
+      "level": 2
+    },
+    {
+      "back": "air",
+      "front": "Luft",
+      "level": 2
+    },
+    {
+      "back": "field",
+      "front": "Feld",
+      "level": 2
+    },
+    {
+      "back": "star",
+      "front": "Stern",
+      "level": 2
+    },
+    {
+      "back": "weather",
+      "front": "Wetter",
+      "level": 2
+    },
+    {
+      "back": "nature",
+      "front": "Natur",
+      "level": 2
+    },
+    {
+      "back": "river",
+      "front": "Fluss",
+      "level": 2
+    },
+    {
+      "back": "earth",
+      "front": "Erde",
+      "level": 2
+    },
+    {
+      "back": "mountain",
+      "front": "Berg",
+      "level": 2
+    },
+    {
+      "back": "wood",
+      "front": "Holz",
+      "level": 2
+    },
+    {
+      "back": "forest",
+      "front": "Wald",
+      "level": 2
+    },
+    {
+      "back": "stone",
+      "front": "Stein",
+      "level": 2
+    },
+    {
+      "back": "wind",
+      "front": "Wind",
+      "level": 2
+    },
+    {
+      "back": "heat",
+      "front": "Hitze",
+      "level": 2
+    },
+    {
+      "back": "rose",
+      "front": "Rose",
+      "level": 2
+    },
+    {
+      "back": "planet",
+      "front": "Planet",
+      "level": 2
+    },
+    {
+      "back": "up",
+      "front": "hoch",
+      "level": 2
+    },
+    {
+      "back": "down",
+      "front": "runter",
+      "level": 2
+    },
+    {
+      "back": "climate",
+      "front": "Klima",
+      "level": 2
+    },
+    {
+      "back": "universe",
+      "front": "Universum",
+      "level": 2
+    },
+    {
+      "back": "leaf",
+      "front": "Blatt (Baum)",
+      "level": 2
+    },
+    {
+      "back": "landscape",
+      "front": "Landschaft",
+      "level": 2
+    },
+    {
+      "back": "smoke",
+      "front": "Rauch",
+      "level": 2
+    },
+    {
+      "back": "grain / cereal",
+      "front": "Getreide",
+      "level": 2
+    },
+    {
+      "back": "crop / harvest",
+      "front": "Ernte",
+      "level": 2
+    },
+    {
+      "back": "gas",
+      "front": "Gas",
+      "level": 2
+    },
+    {
+      "back": "material",
+      "front": "Material",
+      "level": 2
+    },
+    {
+      "back": "plant",
+      "front": "Pflanze",
+      "level": 2
+    },
+    {
+      "back": "light",
+      "front": "Licht",
+      "level": 2
+    },
+    {
+      "back": "dust",
+      "front": "Staub",
+      "level": 2
+    },
+    {
+      "back": "sand",
+      "front": "Sand",
+      "level": 2
+    },
+    {
+      "back": "sports",
+      "front": "Sport",
+      "level": 2
+    },
+    {
+      "back": "ball",
+      "front": "Ball",
+      "level": 2
+    },
+    {
+      "back": "walk",
+      "front": "Spaziergang",
+      "level": 2
+    },
+    {
+      "back": "team",
+      "front": "Mannschaft",
+      "level": 2
+    },
+    {
+      "back": "player",
+      "front": "Spieler",
+      "level": 2
+    },
+    {
+      "back": "step",
+      "front": "Schritt",
+      "level": 2
+    },
+    {
+      "back": "path",
+      "front": "Pfad",
+      "level": 2
+    },
+    {
+      "back": "goal",
+      "front": "Tor (Fußball)",
+      "level": 2
+    },
+    {
+      "back": "point",
+      "front": "Punkt",
+      "level": 2
+    },
+    {
+      "back": "game",
+      "front": "Spiel",
+      "level": 2
+    },
+    {
+      "back": "to score a goal",
+      "front": "ein Tor erzielen",
+      "level": 2
+    },
+    {
+      "back": "score",
+      "front": "Spielstand",
+      "level": 2
+    },
+    {
+      "back": "football (BE) / soccer (AE)",
+      "front": "Fußball",
+      "level": 2
+    },
+    {
+      "back": "basketball",
+      "front": "Basketball",
+      "level": 2
+    },
+    {
+      "back": "tennis",
+      "front": "Tennis",
+      "level": 2
+    },
+    {
+      "back": "racket",
+      "front": "Schläger",
+      "level": 2
+    },
+    {
+      "back": "volleyball",
+      "front": "Volleyball",
+      "level": 2
+    },
+    {
+      "back": "to kick",
+      "front": "schießen",
+      "level": 2
+    },
+    {
+      "back": "to jump",
+      "front": "springen",
+      "level": 2
+    },
+    {
+      "back": "jump",
+      "front": "Sprung",
+      "level": 2
+    },
+    {
+      "back": "coach",
+      "front": "Trainer",
+      "level": 2
+    },
+    {
+      "back": "exercise",
+      "front": "Übung",
+      "level": 2
+    },
+    {
+      "back": "match",
+      "front": "Match",
+      "level": 2
+    },
+    {
+      "back": "marathon",
+      "front": "Marathon",
+      "level": 2
+    },
+    {
+      "back": "gym",
+      "front": "Sporthalle",
+      "level": 2
+    },
+    {
+      "back": "championship",
+      "front": "Meisterschaft",
+      "level": 2
+    },
+    {
+      "back": "athlete",
+      "front": "Athlet",
+      "level": 2
+    },
+    {
+      "back": "swimming",
+      "front": "Schwimmen",
+      "level": 2
+    },
+    {
+      "back": "violin",
+      "front": "Geige",
+      "level": 2
+    },
+    {
+      "back": "flute",
+      "front": "Flöte",
+      "level": 2
+    },
+    {
+      "back": "music",
+      "front": "Musik",
+      "level": 2
+    },
+    {
+      "back": "camera",
+      "front": "Kamera",
+      "level": 2
+    },
+    {
+      "back": "photo",
+      "front": "Foto",
+      "level": 2
+    },
+    {
+      "back": "film (BE) / movie (AE)",
+      "front": "Film",
+      "level": 2
+    },
+    {
+      "back": "art",
+      "front": "Kunst",
+      "level": 2
+    },
+    {
+      "back": "style",
+      "front": "Stil",
+      "level": 2
+    },
+    {
+      "back": "sound",
+      "front": "Geräusch",
+      "level": 2
+    },
+    {
+      "back": "figure",
+      "front": "Figur",
+      "level": 2
+    },
+    {
+      "back": "song",
+      "front": "Lied",
+      "level": 2
+    },
+    {
+      "back": "photography",
+      "front": "Fotografie",
+      "level": 2
+    },
+    {
+      "back": "dance",
+      "front": "Tanz",
+      "level": 2
+    },
+    {
+      "back": "instrument",
+      "front": "Instrument",
+      "level": 2
+    },
+    {
+      "back": "literature",
+      "front": "Literatur",
+      "level": 2
+    },
+    {
+      "back": "fashion",
+      "front": "Mode",
+      "level": 2
+    },
+    {
+      "back": "theater",
+      "front": "Theater",
+      "level": 2
+    },
+    {
+      "back": "poetry",
+      "front": "Poesie",
+      "level": 2
+    },
+    {
+      "back": "concert",
+      "front": "Konzert",
+      "level": 2
+    },
+    {
+      "back": "opening",
+      "front": "Eröffnung",
+      "level": 2
+    },
+    {
+      "back": "painting",
+      "front": "Gemälde",
+      "level": 2
+    },
+    {
+      "back": "to paint",
+      "front": "malen",
+      "level": 2
+    },
+    {
+      "back": "audience",
+      "front": "Publikum",
+      "level": 2
+    },
+    {
+      "back": "collection",
+      "front": "Sammlung",
+      "level": 2
+    },
+    {
+      "back": "band",
+      "front": "Band",
+      "level": 2
+    },
+    {
+      "back": "musical",
+      "front": "Musical",
+      "level": 2
+    },
+    {
+      "back": "search",
+      "front": "Suche",
+      "level": 2
+    },
+    {
+      "back": "information",
+      "front": "Information",
+      "level": 2
+    },
+    {
+      "back": "comment",
+      "front": "Kommentar",
+      "level": 2
+    },
+    {
+      "back": "network",
+      "front": "Netzwerk",
+      "level": 2
+    },
+    {
+      "back": "press",
+      "front": "Presse",
+      "level": 2
+    },
+    {
+      "back": "text",
+      "front": "Text",
+      "level": 2
+    },
+    {
+      "back": "channel",
+      "front": "Kanal",
+      "level": 2
+    },
+    {
+      "back": "communication",
+      "front": "Kommunikation",
+      "level": 2
+    },
+    {
+      "back": "news",
+      "front": "Nachrichten",
+      "level": 2
+    },
+    {
+      "back": "message",
+      "front": "Nachricht",
+      "level": 2
+    },
+    {
+      "back": "Internet",
+      "front": "Internet",
+      "level": 2
+    },
+    {
+      "back": "language",
+      "front": "Sprache",
+      "level": 2
+    },
+    {
+      "back": "stamp",
+      "front": "Briefmarke",
+      "level": 2
+    },
+    {
+      "back": "access",
+      "front": "Zugang",
+      "level": 2
+    },
+    {
+      "back": "journalist",
+      "front": "Journalist",
+      "level": 2
+    },
+    {
+      "back": "a story",
+      "front": "eine Geschichte",
+      "level": 2
+    },
+    {
+      "back": "postcard",
+      "front": "Postkarte",
+      "level": 2
+    },
+    {
+      "back": "sick / ill",
+      "front": "krank",
+      "level": 2
+    },
+    {
+      "back": "hand",
+      "front": "Hand",
+      "level": 2
+    },
+    {
+      "back": "eye",
+      "front": "Auge",
+      "level": 2
+    },
+    {
+      "back": "health",
+      "front": "Gesundheit",
+      "level": 2
+    },
+    {
+      "back": "care",
+      "front": "Pflege",
+      "level": 2
+    },
+    {
+      "back": "body",
+      "front": "Körper",
+      "level": 2
+    },
+    {
+      "back": "head",
+      "front": "Kopf",
+      "level": 2
+    },
+    {
+      "back": "help",
+      "front": "Hilfe",
+      "level": 2
+    },
+    {
+      "back": "emergency",
+      "front": "Notfall",
+      "level": 2
+    },
+    {
+      "back": "treatment",
+      "front": "Behandlung",
+      "level": 2
+    },
+    {
+      "back": "heart",
+      "front": "Herz",
+      "level": 2
+    },
+    {
+      "back": "face",
+      "front": "Gesicht",
+      "level": 2
+    },
+    {
+      "back": "cancer",
+      "front": "Krebs (Krankheit)",
+      "level": 2
+    },
+    {
+      "back": "medicine",
+      "front": "Medizin",
+      "level": 2
+    },
+    {
+      "back": "ambulance",
+      "front": "Krankenwagen",
+      "level": 2
+    },
+    {
+      "back": "blood",
+      "front": "Blut",
+      "level": 2
+    },
+    {
+      "back": "disease / illness",
+      "front": "Krankheit",
+      "level": 2
+    },
+    {
+      "back": "hair",
+      "front": "Haar",
+      "level": 2
+    },
+    {
+      "back": "patient",
+      "front": "Patient",
+      "level": 2
+    },
+    {
+      "back": "patience",
+      "front": "Geduld",
+      "level": 2
+    },
+    {
+      "back": "patient",
+      "front": "geduldig",
+      "level": 2
+    },
+    {
+      "back": "hospital",
+      "front": "Krankenhaus",
+      "level": 2
+    },
+    {
+      "back": "operation",
+      "front": "Operation",
+      "level": 2
+    },
+    {
+      "back": "skin",
+      "front": "Haut",
+      "level": 2
+    },
+    {
+      "back": "foot",
+      "front": "Fuß",
+      "level": 2
+    },
+    {
+      "back": "diet",
+      "front": "Diät",
+      "level": 2
+    },
+    {
+      "back": "sight / view",
+      "front": "Sicht",
+      "level": 2
+    },
+    {
+      "back": "pain",
+      "front": "Schmerz",
+      "level": 2
+    },
+    {
+      "back": "drug",
+      "front": "Droge",
+      "level": 2
+    },
+    {
+      "back": "virus",
+      "front": "Virus",
+      "level": 2
+    },
+    {
+      "back": "brain",
+      "front": "Gehirn",
+      "level": 2
+    },
+    {
+      "back": "arm",
+      "front": "Arm",
+      "level": 2
+    },
+    {
+      "back": "leg",
+      "front": "Bein",
+      "level": 2
+    },
+    {
+      "back": "mouth",
+      "front": "Mund",
+      "level": 2
+    },
+    {
+      "back": "dream",
+      "front": "Traum",
+      "level": 2
+    },
+    {
+      "back": "accident",
+      "front": "Unfall",
+      "level": 2
+    },
+    {
+      "back": "neck",
+      "front": "Hals",
+      "level": 2
+    },
+    {
+      "back": "finger",
+      "front": "Finger",
+      "level": 2
+    },
+    {
+      "back": "ear",
+      "front": "Ohr",
+      "level": 2
+    },
+    {
+      "back": "chest",
+      "front": "Brust",
+      "level": 2
+    },
+    {
+      "back": "tooth",
+      "front": "Zahn",
+      "level": 2
+    },
+    {
+      "back": "teeth",
+      "front": "Zähne",
+      "level": 2
+    },
+    {
+      "back": "tongue",
+      "front": "Zunge",
+      "level": 2
+    },
+    {
+      "back": "nose",
+      "front": "Nase",
+      "level": 2
+    },
+    {
+      "back": "lip",
+      "front": "Lippe",
+      "level": 2
+    },
+    {
+      "back": "back",
+      "front": "Rücken",
+      "level": 2
+    },
+    {
+      "back": "condition",
+      "front": "Zustand",
+      "level": 2
+    },
+    {
+      "back": "condition",
+      "front": "Bedingung",
+      "level": 2
+    },
+    {
+      "back": "appointment",
+      "front": "Termin",
+      "level": 2
+    },
+    {
+      "back": "nurse",
+      "front": "Krankenschwester",
+      "level": 2
+    },
+    {
+      "back": "security / safety",
+      "front": "Sicherheit",
+      "level": 2
+    },
+    {
+      "back": "law",
+      "front": "Gesetz",
+      "level": 2
+    },
+    {
+      "back": "government",
+      "front": "Regierung",
+      "level": 2
+    },
+    {
+      "back": "tax",
+      "front": "Steuer",
+      "level": 2
+    },
+    {
+      "back": "court",
+      "front": "Gericht",
+      "level": 2
+    },
+    {
+      "back": "war",
+      "front": "Krieg",
+      "level": 2
+    },
+    {
+      "back": "president",
+      "front": "Präsident",
+      "level": 2
+    },
+    {
+      "back": "national",
+      "front": "national",
+      "level": 2
+    },
+    {
+      "back": "nation",
+      "front": "Nation",
+      "level": 2
+    },
+    {
+      "back": "society",
+      "front": "Gesellschaft",
+      "level": 2
+    },
+    {
+      "back": "advice",
+      "front": "Rat",
+      "level": 2
+    },
+    {
+      "back": "investment",
+      "front": "Investition",
+      "level": 2
+    },
+    {
+      "back": "to vote",
+      "front": "wählen (polit.)",
+      "level": 2
+    },
+    {
+      "back": "vote",
+      "front": "Wählerstimme",
+      "level": 2
+    },
+    {
+      "back": "strategy",
+      "front": "Strategie",
+      "level": 2
+    },
+    {
+      "back": "opinion",
+      "front": "Meinung",
+      "level": 2
+    },
+    {
+      "back": "dept",
+      "front": "Schulden",
+      "level": 2
+    },
+    {
+      "back": "progress",
+      "front": "Fortschritt",
+      "level": 2
+    },
+    {
+      "back": "peace",
+      "front": "Frieden",
+      "level": 2
+    },
+    {
+      "back": "economy",
+      "front": "Wirtschaft",
+      "level": 2
+    },
+    {
+      "back": "army",
+      "front": "Armee",
+      "level": 2
+    },
+    {
+      "back": "demand",
+      "front": "Nachfrage",
+      "level": 2
+    },
+    {
+      "back": "crime",
+      "front": "Kriminalität",
+      "level": 2
+    },
+    {
+      "back": "leader",
+      "front": "Führer",
+      "level": 2
+    },
+    {
+      "back": "freedom",
+      "front": "Freiheit",
+      "level": 2
+    },
+    {
+      "back": "argument",
+      "front": "Streit",
+      "level": 2
+    },
+    {
+      "back": "campaign",
+      "front": "Kampagne",
+      "level": 2
+    },
+    {
+      "back": "congress",
+      "front": "Kongress",
+      "level": 2
+    },
+    {
+      "back": "election",
+      "front": "Wahl (polit.)",
+      "level": 2
+    },
+    {
+      "back": "queen",
+      "front": "Königin",
+      "level": 2
+    },
+    {
+      "back": "speech",
+      "front": "Rede",
+      "level": 2
+    },
+    {
+      "back": "violence",
+      "front": "Gewalt",
+      "level": 2
+    },
+    {
+      "back": "conflict",
+      "front": "Konflikt",
+      "level": 2
+    },
+    {
+      "back": "navy",
+      "front": "Marine",
+      "level": 2
+    },
+    {
+      "back": "candidate",
+      "front": "Kandidat",
+      "level": 2
+    },
+    {
+      "back": "threat",
+      "front": "Bedrohung",
+      "level": 2
+    },
+    {
+      "back": "governor",
+      "front": "Gouverneur",
+      "level": 2
+    },
+    {
+      "back": "senator",
+      "front": "Senator",
+      "level": 2
+    },
+    {
+      "back": "crisis",
+      "front": "Krise",
+      "level": 2
+    },
+    {
+      "back": "parliament",
+      "front": "Parlament",
+      "level": 2
+    },
+    {
+      "back": "strike",
+      "front": "Streik",
+      "level": 2
+    },
+    {
+      "back": "mayor",
+      "front": "Bürgermeister",
+      "level": 2
+    },
+    {
+      "back": "wealth",
+      "front": "Reichtum, Wohlstand",
+      "level": 2
+    },
+    {
+      "back": "to blame",
+      "front": "beschuldigen",
+      "level": 2
+    },
+    {
+      "back": "plan",
+      "front": "Plan",
+      "level": 2
+    },
+    {
+      "back": "decision",
+      "front": "Entscheidung",
+      "level": 2
+    },
+    {
+      "back": "king",
+      "front": "König",
+      "level": 2
+    },
+    {
+      "back": "cause",
+      "front": "Ursache",
+      "level": 2
+    },
+    {
+      "back": "weapon",
+      "front": "Waffe",
+      "level": 2
+    },
+    {
+      "back": "to arrest",
+      "front": "verhaften",
+      "level": 2
+    },
+    {
+      "back": "prince",
+      "front": "Prinz",
+      "level": 2
+    },
+    {
+      "back": "research",
+      "front": "Forschung",
+      "level": 2
+    },
+    {
+      "back": "line",
+      "front": "Linie",
+      "level": 2
+    },
+    {
+      "back": "detail",
+      "front": "Detail",
+      "level": 2
+    },
+    {
+      "back": "technology",
+      "front": "Technologie",
+      "level": 2
+    },
+    {
+      "back": "project",
+      "front": "Projekt",
+      "level": 2
+    },
+    {
+      "back": "size",
+      "front": "Größe",
+      "level": 2
+    },
+    {
+      "back": "article",
+      "front": "Artikel",
+      "level": 2
+    },
+    {
+      "back": "science",
+      "front": "Wissenschaft",
+      "level": 2
+    },
+    {
+      "back": "analysis",
+      "front": "Analyse",
+      "level": 2
+    },
+    {
+      "back": "energy",
+      "front": "Energie",
+      "level": 2
+    },
+    {
+      "back": "edition",
+      "front": "Edition",
+      "level": 2
+    },
+    {
+      "back": "unit",
+      "front": "Einheit",
+      "level": 2
+    },
+    {
+      "back": "weight",
+      "front": "Gewicht",
+      "level": 2
+    },
+    {
+      "back": "method",
+      "front": "Methode",
+      "level": 2
+    },
+    {
+      "back": "speed / velocity",
+      "front": "Geschwindigkeit",
+      "level": 2
+    },
+    {
+      "back": "volume",
+      "front": "Volumen",
+      "level": 2
+    },
+    {
+      "back": "length",
+      "front": "Länge",
+      "level": 2
+    },
+    {
+      "back": "sample",
+      "front": "Stichprobe",
+      "level": 2
+    },
+    {
+      "back": "distance",
+      "front": "Entfernung",
+      "level": 2
+    },
+    {
+      "back": "publication",
+      "front": "Veröffentlichung",
+      "level": 2
+    },
+    {
+      "back": "theory",
+      "front": "Theorie",
+      "level": 2
+    },
+    {
+      "back": "surface",
+      "front": "Oberfläche",
+      "level": 2
+    },
+    {
+      "back": "definition",
+      "front": "Definition",
+      "level": 2
+    },
+    {
+      "back": "scale",
+      "front": "Skala",
+      "level": 2
+    },
+    {
+      "back": "temperature",
+      "front": "Temperatur",
+      "level": 2
+    },
+    {
+      "back": "technique",
+      "front": "Technik",
+      "level": 2
+    },
+    {
+      "back": "mass",
+      "front": "Masse",
+      "level": 2
+    },
+    {
+      "back": "limit",
+      "front": "Grenze (techn.)",
+      "level": 2
+    },
+    {
+      "back": "quantity",
+      "front": "Menge",
+      "level": 2
+    },
+    {
+      "back": "task",
+      "front": "Aufgabe",
+      "level": 2
+    },
+    {
+      "back": "laboratory",
+      "front": "Labor",
+      "level": 2
+    },
+    {
+      "back": "depth",
+      "front": "Tiefe",
+      "level": 2
+    },
+    {
+      "back": "height",
+      "front": "Höhe",
+      "level": 2
+    },
+    {
+      "back": "physics",
+      "front": "Physik",
+      "level": 2
+    },
+    {
+      "back": "philosophy",
+      "front": "Philosophie",
+      "level": 2
+    },
+    {
+      "back": "measure",
+      "front": "Maß",
+      "level": 2
+    },
+    {
+      "back": "concept",
+      "front": "Konzept",
+      "level": 2
+    },
+    {
+      "back": "chemistry",
+      "front": "Chemue",
+      "level": 2
+    },
+    {
+      "back": "discovery",
+      "front": "Entdeckung",
+      "level": 2
+    },
+    {
+      "back": "formula",
+      "front": "Formel",
+      "level": 2
+    },
+    {
+      "back": "investigation / examination",
+      "front": "Untersuchung",
+      "level": 2
+    },
+    {
+      "back": "scientist",
+      "front": "Wissenschaftler",
+      "level": 2
+    },
+    {
+      "back": "geography",
+      "front": "Geographie",
+      "level": 2
+    },
+    {
+      "back": "electric",
+      "front": "elektisch",
+      "level": 2
+    },
+    {
+      "back": "electricity",
+      "front": "Elektrizität",
+      "level": 2
+    },
+    {
+      "back": "cycle",
+      "front": "Kreislauf",
+      "level": 2
+    },
+    {
+      "back": "conclusion",
+      "front": "Schlussfolgerung",
+      "level": 2
+    },
+    {
+      "back": "reason",
+      "front": "Grund",
+      "level": 2
+    },
+    {
+      "back": "decrease",
+      "front": "Abnahme",
+      "level": 2
+    },
+    {
+      "back": "alcohol",
+      "front": "Alkohol",
+      "level": 2
+    },
+    {
+      "back": "money",
+      "front": "Geld",
+      "level": 2
+    },
+    {
+      "back": "two dollars",
+      "front": "zwei Dollar",
+      "level": 2
+    },
+    {
+      "back": "business",
+      "front": "Geschäft",
+      "level": 2
+    },
+    {
+      "back": "product",
+      "front": "Produkt",
+      "level": 2
+    },
+    {
+      "back": "board",
+      "front": "Vorstand",
+      "level": 2
+    },
+    {
+      "back": "insurance",
+      "front": "Versicherung",
+      "level": 2
+    },
+    {
+      "back": "sale",
+      "front": "Verkauf",
+      "level": 2
+    },
+    {
+      "back": "credit card",
+      "front": "Kreditkarte",
+      "level": 2
+    },
+    {
+      "back": "industry",
+      "front": "Industrie",
+      "level": 2
+    },
+    {
+      "back": "offer",
+      "front": "Angebot",
+      "level": 2
+    },
+    {
+      "back": "gold",
+      "front": "Gold",
+      "level": 2
+    },
+    {
+      "back": "silver",
+      "front": "Silber",
+      "level": 2
+    },
+    {
+      "back": "trade",
+      "front": "Handel",
+      "level": 2
+    },
+    {
+      "back": "risk",
+      "front": "Risiko",
+      "level": 2
+    },
+    {
+      "back": "brand",
+      "front": "Marke",
+      "level": 2
+    },
+    {
+      "back": "contract",
+      "front": "Vertrag",
+      "level": 2
+    },
+    {
+      "back": "deal",
+      "front": "Geschäft, Abmachung",
+      "level": 2
+    },
+    {
+      "back": "budget",
+      "front": "Etat",
+      "level": 2
+    },
+    {
+      "back": "agent",
+      "front": "Vertreter",
+      "level": 2
+    },
+    {
+      "back": "worth",
+      "front": "wert",
+      "level": 2
+    },
+    {
+      "back": "currency",
+      "front": "Währung",
+      "level": 2
+    },
+    {
+      "back": "advertisement",
+      "front": "Werbung",
+      "level": 2
+    },
+    {
+      "back": "promotion",
+      "front": "Beförderung",
+      "level": 2
+    },
+    {
+      "back": "prize / award",
+      "front": "Preis (Wettbewerb)",
+      "level": 2
+    },
+    {
+      "back": "price",
+      "front": "Preis (einer Ware)",
+      "level": 2
+    },
+    {
+      "back": "firm",
+      "front": "Firma",
+      "level": 2
+    },
+    {
+      "back": "to advert",
+      "front": "werben",
+      "level": 2
+    },
+    {
+      "back": "costs",
+      "front": "Kosten",
+      "level": 2
+    },
+    {
+      "back": "organization",
+      "front": "Organisation",
+      "level": 2
+    },
+    {
+      "back": "interview",
+      "front": "Interview",
+      "level": 2
+    },
+    {
+      "back": "job interview",
+      "front": "Vorstellungsgespräch",
+      "level": 2
+    },
+    {
+      "back": "meeting",
+      "front": "Besprechung",
+      "level": 2
+    },
+    {
+      "back": "company",
+      "front": "Unternehmen",
+      "level": 2
+    },
+    {
+      "back": "global",
+      "front": "global",
+      "level": 2
+    },
+    {
+      "back": "action",
+      "front": "Aktion",
+      "level": 2
+    },
+    {
+      "back": "start",
+      "front": "Start",
+      "level": 2
+    },
+    {
+      "back": "delivery",
+      "front": "Lieferung",
+      "level": 2
+    },
+    {
+      "back": "discussion",
+      "front": "Diskussion",
+      "level": 2
+    },
+    {
+      "back": "death",
+      "front": "Tod",
+      "level": 2
+    },
+    {
+      "back": "traffic",
+      "front": "Verkehr",
+      "level": 2
+    },
+    {
+      "back": "attack",
+      "front": "Angriff",
+      "level": 2
+    },
+    {
+      "back": "battle",
+      "front": "Schlacht",
+      "level": 2
+    },
+    {
+      "back": "noise",
+      "front": "Lärm",
+      "level": 2
+    },
+    {
+      "back": "can / may",
+      "front": "kann / darf",
+      "level": 2
+    },
+    {
+      "back": "must",
+      "front": "muss",
+      "level": 2
+    },
+    {
+      "back": "shall",
+      "front": "soll",
+      "level": 2
+    },
+    {
+      "back": "must not",
+      "front": "darf nicht",
+      "level": 2
+    },
+    {
+      "back": "should",
+      "front": "sollte",
+      "level": 2
+    },
+    {
+      "back": "would",
+      "front": "würde",
+      "level": 2
+    },
+    {
+      "back": "could",
+      "front": "könnte",
+      "level": 2
+    },
+    {
+      "back": "power / force",
+      "front": "Kraft",
+      "level": 2
+    },
+    {
+      "back": "quality",
+      "front": "Qualität",
+      "level": 2
+    },
+    {
+      "back": "look",
+      "front": "Blick",
+      "level": 2
+    },
+    {
+      "back": "looks",
+      "front": "Aussehen",
+      "level": 2
+    },
+    {
+      "back": "beauty",
+      "front": "Schönheit",
+      "level": 2
+    },
+    {
+      "back": "difference",
+      "front": "Unterschied",
+      "level": 2
+    },
+    {
+      "back": "identity",
+      "front": "Identität",
+      "level": 2
+    },
+    {
+      "back": "impression",
+      "front": "Eindruck",
+      "level": 2
+    },
+    {
+      "back": "expression",
+      "front": "Ausdruck",
+      "level": 2
+    },
+    {
+      "back": "importance",
+      "front": "Wichtigkeit",
+      "level": 2
+    },
+    {
+      "back": "luck",
+      "front": "Glück (Zufall)",
+      "level": 2
+    },
+    {
+      "back": "happiness",
+      "front": "Glück (Gefühl)",
+      "level": 2
+    },
+    {
+      "back": "personality",
+      "front": "Persönlichkeit",
+      "level": 2
+    },
+    {
+      "back": "advantage",
+      "front": "Vorteil",
+      "level": 2
+    }
+  ],
+  "file": "Duolingo_German",
+  "back": "en",
+  "description": "Learning German for English speakers"
+}

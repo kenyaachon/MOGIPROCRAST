@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="350dp"
     android:layout_height="wrap_content"
-    android:background="@drawable/statisticsbackground"
+    android:background="@drawable/homebackground"
     android:padding="5dp"
     android:layout_gravity="center">
     <TextView

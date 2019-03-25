@@ -499,8 +499,6 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
             List<UsageStats> stats = mUsageStatsManager.queryUsageStats(intervalType, cal.getTimeInMillis(), System.currentTimeMillis());
 
 
-            //List<UsageStats> stats = mUsageStatsManager.queryUsageStats(intervalType, time - 1000 * 10, time);
-
             //Puts the data into a sorted map
             SortedMap<String, UsageStats> mySortedMap = new TreeMap<>();
             if (stats != null) {
@@ -553,6 +551,7 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
         return d;
 
     }
+
 
     //Sorts a map by its Values
     static <K,V extends Comparable<? super V>>

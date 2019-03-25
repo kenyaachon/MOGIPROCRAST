@@ -7,13 +7,29 @@
         android:id="@+id/settingsMenuItem"
         android:title="Settings"
         android:icon="@drawable/ic_settings_black_24dp"
-
         />
 
     <item
         android:id="@+id/statsMenuItem"
         android:title="Statistics"
         android:icon="@drawable/ic_insert_chart_black_24dp"
+        />
+    <item
+        android:id="@+id/flashcardMenuItem"
+        android:title="Flashcards"
+        android:icon="@drawable/ic_note_black_24dp"
+        />
+    <item
+        android:id="@+id/shareappMenuItem"
+        android:title="Share App"
+        android:icon="@drawable/ic_share_black_24dp"
+        />
+
+
+    <item
+        android:id="@+id/feedbackMenuItem"
+        android:title="Feedback"
+        android:icon="@drawable/ic_feedback_black_24dp"
         />
 
 

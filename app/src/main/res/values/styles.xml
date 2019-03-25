@@ -1,81 +1,84 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
+<!-- Base application theme. -->
+<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <!-- Customize your theme here. -->
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+</style>
 
 
-    <style name="FullscreenTheme" parent="AppTheme">
-        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
-        <item name="android:windowActionBarOverlay">true</item>
-        <item name="android:windowBackground">@null</item>
-        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
-        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
-    </style>
+<style name="FullscreenTheme" parent="AppTheme">
+    <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
+    <item name="android:windowActionBarOverlay">true</item>
+    <item name="android:windowBackground">@null</item>
+    <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+    <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+</style>
 
-    <!-- Dialog -
-    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="android:background">@color/titlebackgroundcolor</item>
-        <item name="buttonBarPositiveButtonStyle">@style/MyAlertDialogButtonStyle</item>
-        <item name="buttonBarNegativeButtonStyle">@style/MyAlertDialogButtonStyle</item>
-        <item name="buttonBarNeutralButtonStyle">@style/MyAlertDialogButtonStyle</item>
-    </style>
-
-    <style name="MyAlertDialogButtonStyle" parent="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog">
-        <item name="android:textColor">@color/colorAccent</item>
-        <item name="android:textSize">15dp</item>
-    </style>
-
-    <style name="MyDialogFadeAnimation">
-        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
-        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
-    </style>-->
+<!-- Dialog -
+<style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+    <item name="android:background">@color/titlebackgroundcolor</item>
+    <item name="buttonBarPositiveButtonStyle">@style/MyAlertDialogButtonStyle</item>
+    <item name="buttonBarNegativeButtonStyle">@style/MyAlertDialogButtonStyle</item>
+    <item name="buttonBarNeutralButtonStyle">@style/MyAlertDialogButtonStyle</item>
+</style>
+<style name="MyAlertDialogButtonStyle" parent="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog">
+    <item name="android:textColor">@color/colorAccent</item>
+    <item name="android:textSize">15dp</item>
+</style>
+<style name="MyDialogFadeAnimation">
+    <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+    <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+</style>-->
 
 
-    <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
-        <item name="android:background">@color/black_overlay</item>
-    </style>
+<style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
+    <item name="android:background">@color/black_overlay</item>
+</style>
 
-    <style name="UniversalTextSize">
-        <item name="android:textSize">11sp</item>
-    </style>
+<style name="UniversalTextSize">
+    <item name="android:textSize">11sp</item>
+</style>
 
 
-    <style name="WindowTitleBackground">
-        <item name="android:background">@color/titlebackgroundcolor</item>
-    </style>
+<style name="WindowTitleBackground">
+    <item name="android:background">@color/titlebackgroundcolor</item>
+</style>
 
-    <style name="settingTitleBackground">
+<style name="settingTitleBackground">
+    <item name="android:background">@color/settingTitleBackgroundcolor</item>
+    <item name="android:gravity">center_horizontal</item>
+</style>
+
+    <style name="flashcardsTitleBackground">
         <item name="android:background">@color/settingTitleBackgroundcolor</item>
         <item name="android:gravity">center_horizontal</item>
     </style>
 
 
-    <style name="statisticsTitleBackground">
-        <item name="android:background">@color/statisticsTitleBackgroundcolor</item>
-        <item name="android:gravity">center_horizontal</item>
-    </style>
+<style name="statisticsTitleBackground">
+    <item name="android:background">@color/titlebackgroundcolor</item>
+    <item name="android:gravity">center_horizontal</item>
+</style>
 
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
+<style name="AppTheme.NoActionBar">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+</style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+<style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
-    <style name="PackageNameFont" parent="@android:style/TextAppearance.Small">
-        <item name="android:textColor">#000000</item>
-    </style>
+<style name="PackageNameFont" parent="@android:style/TextAppearance.Small">
+    <item name="android:textColor">#000000</item>
+</style>
 
-    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowBackground">@drawable/background_splash</item>
-    </style>
+<style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+    <item name="android:windowBackground">@drawable/background_splash</item>
+</style>
 </resources>

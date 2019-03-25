@@ -270,7 +270,7 @@ public class TriviaAPI {
             if (requestedDB != null) {
                 triviaQuestion = new TriviaQuestion();
                 //parse the json data from the online triviaDB
-                triviaQuestionArrayList = triviaQuestion.createQuestionsFromJSON(requestedDB);
+                triviaQuestionArrayList = TriviaQuestion.createQuestionsFromJSON(requestedDB);
 
             } else {
                 //Gives an error message to say we can't download the triviaquestions

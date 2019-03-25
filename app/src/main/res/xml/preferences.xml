@@ -16,9 +16,29 @@
         android:entryValues="@array/trivia_categories_values"
         android:defaultValue="@string/trivia_categories_default" />
 
+    <ListPreference
+        android:key="trivia_style"
+        android:title="@string/trivia_style"
+        android:dialogTitle="@string/trivia_style"
+        android:entries="@array/trivia_style_entries"
+        android:entryValues="@array/trivia_style_values"
+        android:defaultValue="@string/trivia_style_default" />
+
+    <SwitchPreference
+        android:key="phone_usage_limit_notification"
+        android:summaryOff="OFF"
+        android:summaryOn="ON"
+        android:title="Phone Usage Limit Notification" />
+
+    <com.iruss.mogivisions.kiosk.TimePreference
+        android:key="phone_usage_limit"
+        android:title="@string/phone_usage_limit"
+        android:dialogTitle="@string/phone_usage_limit"
+        android:defaultValue="01:00" />
+
     <com.iruss.mogivisions.kiosk.TimePreference
         android:key="time_picker"
-        android:title="Lockout Time"
+        android:title="@string/lockout_time"
         android:dialogTitle="@string/lockout_time"
         android:defaultValue="01:00" />
 

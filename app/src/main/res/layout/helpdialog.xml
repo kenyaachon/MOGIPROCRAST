@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="350dp"
     android:layout_height="300dp"
-    android:background="@drawable/statisticsbackground"
+    android:background="@drawable/homebackground"
     android:paddingLeft="5dp"
     android:paddingRight="5dp"
     android:layout_gravity="center">

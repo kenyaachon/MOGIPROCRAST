@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="lightbuttonBackground">#dad6d6</color>
@@ -10,5 +10,9 @@
     <color name="settingTitleBackgroundcolor">#055a9d</color>
     <color name="titletextcolor">#ffffff</color>
     <color name="statisticsTitleBackgroundcolor">#da1418</color>
+    <color name="flashcardsTitleBackgroundcolor">#d9040f</color>
+    <color name="flashcardsDialogBackgroundcolor">#055a9d</color>
     <color name="tutorialFocalColor">#39b54a</color>
+    <color name="green">#23b100</color>
+
 </resources>

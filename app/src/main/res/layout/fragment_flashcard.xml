@@ -1,0 +1,189 @@
+
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/triviabackground"
+    android:paddingTop="30dp"
+
+    tools:context="com.iruss.mogivisions.procrastimatev1.HomeActivity">
+    <TextView
+        android:id="@+id/triviaTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_marginBottom="15dp"
+        android:text="Challenge"
+        android:textColor="@color/titletextcolor" />
+    <!--
+        <TextView
+            android:id="@+id/trialsRemaining"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/textColorDark"
+            android:text="Trials Remaing: 1" />-->
+
+
+
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="@dimen/margin_large"
+        android:background="@drawable/rounded_button_white"
+        android:layout_gravity="center_horizontal"
+        >
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+            <TextView
+                android:id="@+id/trialsRemaining"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/textColorDark"
+                android:paddingRight="5dp"
+                android:text="Trials Remaining"
+                android:layout_column="1"/>
+            <TextView
+                android:id="@+id/successes"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:textColor="@color/textColorDark"
+                android:text="Success Achieved"
+                android:layout_column="2"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+            <RatingBar
+                android:id="@+id/trialBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numStars="4"
+                android:isIndicator="true"
+                android:stepSize="1.0"
+                android:paddingRight="5dp"
+                android:layout_centerInParent = "true"
+                android:layout_column="1"/>
+            <RatingBar
+                android:id="@+id/successBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numStars="3"
+                android:isIndicator="true"
+                android:stepSize="1.0"
+                android:paddingLeft="5dp"
+                android:layout_centerInParent = "true"
+                android:layout_column="2"/>
+        </TableRow>
+    </TableLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_button_white"
+        android:layout_marginTop="140dp"
+        android:paddingTop="15dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/deckName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/textColorDark"
+            android:gravity="center"
+            android:background="@drawable/rounded_button_grey"
+
+            android:text="DECK: " />
+
+        <TextView
+            android:id="@+id/questionText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/textColorDark"
+            android:gravity="center"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/questionSubText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/textColorDark"
+            android:gravity="center"
+            android:text="@string/question" />
+
+        <TextView
+            android:id="@+id/correctAnswer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/textColorDark"
+            android:background="@drawable/rounded_button_green"
+            android:gravity="center"
+            android:visibility="gone"
+            android:text="Correct Answer" />
+
+
+        <EditText
+            android:id="@+id/answerbox"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:maxLines="5"
+            android:inputType="text"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"
+            android:layout_weight="10"
+            android:layout_marginBottom="@dimen/margin_pre_medium"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:background="@drawable/rounded_button_grey"
+            android:paddingLeft="15dp"
+            android:hint="response...">
+        </EditText>
+
+
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:background="@drawable/rounded_button_grey"
+            android:textColor="@color/textColorDark"
+            android:layout_marginBottom="15dp"
+            android:visibility="visible"
+            />
+
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/statisticsbackground"
+    android:background="@drawable/homebackground"
     tools:context="com.iruss.mogivisions.statistics.StatisticsActivity">
 
     <LinearLayout
@@ -18,12 +18,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabMode="fixed"
-            android:background="@color/statisticsTitleBackgroundcolor"
+            android:background="@color/titlebackgroundcolor"
             android:minHeight="?attr/actionBarSize"
             app:tabGravity="fill"
             app:tabTextColor="#FFF"
             app:tabSelectedTextColor="#FFF"
-            app:tabIndicatorColor="@color/settingTitleBackgroundcolor"
+            app:tabIndicatorColor="@color/titlebackgroundcolor"
 
             />-->
 

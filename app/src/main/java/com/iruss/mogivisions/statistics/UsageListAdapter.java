@@ -49,9 +49,9 @@ public class UsageListAdapter extends RecyclerView.Adapter<UsageListAdapter.View
 
         public ViewHolder(View v) {
             super(v);
-            mPackageName = (TextView) v.findViewById(R.id.textview_package_name);
-            mLastTimeUsed = (TextView) v.findViewById(R.id.textview_last_time_used);
-            mAppIcon = (ImageView) v.findViewById(R.id.app_icon);
+            mPackageName = v.findViewById(R.id.textview_package_name);
+            mLastTimeUsed = v.findViewById(R.id.textview_last_time_used);
+            mAppIcon = v.findViewById(R.id.app_icon);
             //Set the size of the icons
             mAppIcon.getLayoutParams().height = 100;
             mAppIcon.getLayoutParams().width = 100;

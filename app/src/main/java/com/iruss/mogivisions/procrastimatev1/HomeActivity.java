@@ -3,11 +3,10 @@ package com.iruss.mogivisions.procrastimatev1;
 //Copyright (c) 2017,2018   Mathijs Lagerberg, Pixplicity BV
 //Copyright (C) 2016-2018   Samuel Wall
 
+//
+
 import android.Manifest;
 import android.app.AppOpsManager;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.Context;
@@ -20,12 +19,12 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -43,14 +42,31 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.iruss.mogivisions.kiosk.KioskService;
 import com.iruss.mogivisions.statistics.StatisticsActivity;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.pixplicity.generate.OnFeedbackListener;
 import com.pixplicity.generate.Rate;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
+import cz.msebera.android.httpclient.Header;
+import model.Card;
+import model.Deck;
+import model.DeckCollection;
+import model.DownloadableDeckInfo;
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
+import view.DeckListActivity;
 
 public class HomeActivity extends AppCompatActivity
         implements ActivityCompat.OnRequestPermissionsResultCallback {
@@ -73,6 +89,16 @@ public class HomeActivity extends AppCompatActivity
 
     //Storing settings that are crucial for use
     private SharedPreferences mprefs;
+
+    private SharedPreferences.Editor editor;
+
+
+    //Download extra decks
+    private final String SERVER_URL = "https://stacksrs.droppages.com/";
+
+    private List<DownloadableDeckInfo> deckNames = new ArrayList<>();
+
+    private AsyncHttpClient httpClient = new AsyncHttpClient();
 
 
     public boolean isShouldBeInKioskMode() {
@@ -112,18 +138,14 @@ public class HomeActivity extends AppCompatActivity
 
         rateMe();
 
-        initializeNotification();
-
-        // TEMPORARY: Show notification
-        showNotification();
-
     }
 
         /**
          * Displays first time User
          */
     public void firstTimeUser(){
-        SharedPreferences.Editor editor = mprefs.edit();
+
+        editor = mprefs.edit();
         //make sure the firstTime preference is only created once
         if(mprefs.getBoolean("firstTime", true)) {
             Log.i("Tutorial", "Creating first time setting" );
@@ -137,6 +159,7 @@ public class HomeActivity extends AppCompatActivity
         if(mprefs.getBoolean("firstTime", true)){
             //turn off the tutorial after it is displayed
             editor.putBoolean("firstTime", false).apply();
+
             new MaterialTapTargetPrompt.Builder(HomeActivity.this)
                     .setTarget(R.id.settings)
                     .setBackgroundColour(getResources().getColor(R.color.titlebackgroundcolor))
@@ -151,15 +174,28 @@ public class HomeActivity extends AppCompatActivity
                             if (state == MaterialTapTargetPrompt.STATE_FOCAL_PRESSED)
                             {
                                 // User has pressed the prompt target
-                                Log.i("Tutorial", "User has pressed the prompt target");
+                                Log.i("Tutorial", "User has pressed the prompt target: Settings");
                             }
                             //userStats();
 
                         }
                     })
                     .show();
+            //downloadDeckList();
+            downloadDeckListPreload();
         }
+
+        /*
+        if(networkCheck()){
+            downloadDeckList();
+
+        }*/
+        downloadDeckListPreload();
+
+        printDeckCollectionInfo();
+
     }
+
 
 
     /**
@@ -327,6 +363,23 @@ public class HomeActivity extends AppCompatActivity
                                 startActivity(intent1);*/
                                 getPermissionForStatsPage();
                                 break;
+                            case "Flashcards":
+                                Intent intent1 = new Intent(HomeActivity.this, DeckListActivity.class);
+                                startActivity(intent1);
+                                break;
+
+                            case "Share App":
+                                Intent myIntent = new Intent(Intent.ACTION_SEND);
+                                myIntent.setType("text/plain");
+                                String sharebody = "Hey you should try out this app Procrasti Mate";
+                                myIntent.putExtra(Intent.EXTRA_TEXT, sharebody);
+                                startActivity(Intent.createChooser(myIntent, "Share using"));
+                                break;
+                            case "Feedback":
+                                Intent feedbackintent = new Intent(Intent.ACTION_VIEW);
+                                feedbackintent.setData(Uri.parse("mailto:mogivisionsapp@gmail.com"));
+                                feedbackintent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(feedbackintent);
                         }
 
                         return true;
@@ -341,20 +394,6 @@ public class HomeActivity extends AppCompatActivity
 
         //setButtonTextSize(settingsButton);
     }
-
-    /**
-     * Requires permission granted to usage statistics in order to access statistics page
-     */
-    public void getPermissionForStatsPage(){
-        if (!checkUsagePermissionGranted()) {
-            showExplanation(this.getString(R.string.UsageStatisticsTitle), this.getString(R.string.UsageStatisticsPermissionRationalStats),
-                    MY_PERMISSIONS_REQUEST_READ_USAGE_STATISTICS);
-        }else{
-            Intent intent1 = new Intent(HomeActivity.this, StatisticsActivity.class);
-            startActivity(intent1);
-        }
-    }
-
 
 
     /**
@@ -459,6 +498,27 @@ public class HomeActivity extends AppCompatActivity
                 break;
             }
 
+        }
+
+    }
+
+
+    /**
+     * Permissions needed for App to work
+     */
+
+
+
+    /**
+     * Requires permission granted to usage statistics in order to access statistics page
+     */
+    public void getPermissionForStatsPage(){
+        if (!checkUsagePermissionGranted()) {
+            showExplanation(this.getString(R.string.UsageStatisticsTitle), this.getString(R.string.UsageStatisticsPermissionRationalStats),
+                    MY_PERMISSIONS_REQUEST_READ_USAGE_STATISTICS);
+        }else{
+            Intent intent1 = new Intent(HomeActivity.this, StatisticsActivity.class);
+            startActivity(intent1);
         }
     }
 
@@ -705,22 +765,6 @@ public class HomeActivity extends AppCompatActivity
 
     }
 
-    /**
-     * Changes the triviaDifficult of the app
-     * @param totalPhoneTime
-     */
-    public void setTriviaDifficulty(long totalPhoneTime){
-        Log.i("Total phone use time", Long.toString(totalPhoneTime));
-        //Set the trivia difficulty
-        if (totalPhoneTime <= 9600) {
-            TriviaAPI.questionDifficulty = "easy";
-        } else if (totalPhoneTime >= 9601 && totalPhoneTime <= 18000) {
-            TriviaAPI.questionDifficulty = "medium";
-        } else {
-            TriviaAPI.questionDifficulty = "hard";
-        }
-    }
-
 
     /**
      * Asks permission to read_Phone_state such as incoming and outgoing calls
@@ -787,44 +831,300 @@ public class HomeActivity extends AppCompatActivity
 
 
     /**
-     * Sets up notification
+     * Changes the triviaDifficult of the app
+     * @param totalPhoneTime
      */
-    private void initializeNotification() {
-        // Set up intent for when notification is tapped
-        Intent intent = new Intent(this, HomeActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-
-        // Build notification
-        mBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_lock_outline_black_24dp)
-                .setContentTitle(getString(R.string.notification_title))
-                .setContentText(getString(R.string.notification_content))
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                // Set the intent that will fire when the user taps the notification
-                .setContentIntent(pendingIntent)
-                .setAutoCancel(true);
-
-        // Create a channel and set the importance
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = getString(R.string.channel_name);
-            String description = getString(R.string.channel_description);
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
-            channel.setDescription(description);
-            // Register the channel with the system; you can't change the importance
-            // or other notification behaviors after this
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
+    public void setTriviaDifficulty(long totalPhoneTime){
+        Log.i("Total phone use time", Long.toString(totalPhoneTime));
+        //Set the trivia difficulty
+        if (totalPhoneTime <= 9600) {
+            TriviaAPI.questionDifficulty = "easy";
+        } else if (totalPhoneTime >= 9601 && totalPhoneTime <= 18000) {
+            TriviaAPI.questionDifficulty = "medium";
+        } else {
+            TriviaAPI.questionDifficulty = "hard";
         }
     }
 
-    // Show the notification
-    private void showNotification() {
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
 
-        // notificationId is a unique int for each notification that you must define
-        notificationManager.notify(NOTIFICATION_ID, mBuilder.build());
+    /*
+     *Checks if there is an internet connection if there is it returns true
+     * and false otherwise
+     */
+    private boolean networkCheck(){
+        Log.d("attempt", "network attempt");
+
+
+        ConnectivityManager conMgr = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+
+            try {
+                if (conMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED
+                        || conMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+
+                    // notify user you are online
+                    Log.d("Network", "Network state connected");
+                    return true;
+                } else {
+
+                    //false if network check fails
+                    Log.d("Network", "No Network");
+                    return false;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            //Returns network state for older API's
+            try {
+                NetworkInfo activeNetwork = conMgr.getActiveNetworkInfo();
+                boolean isConnected = activeNetwork != null &&
+                        activeNetwork.isConnectedOrConnecting();
+                if(isConnected){
+                    Log.d("Network", "Network connection available");
+                }
+                return isConnected;
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        //false if network check fails
+        Log.d("Network", "No Network");
+        return false;
+
     }
 
+
+    /**
+     * List of language decks are loaded when there is internet
+     */
+    public void downloadDeckList() {
+
+        httpClient.get(SERVER_URL + "decks.txt", null, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                deckNames.clear();
+                try {
+                    JSONArray deckListArray = response.getJSONArray("decks");
+                    for (int i = 0; i < deckListArray.length(); ++i) {
+                        DownloadableDeckInfo deckInfo = new DownloadableDeckInfo(
+                                deckListArray.getJSONObject(i ));
+                        deckNames.add(deckInfo);
+                        downloadDeck(deckInfo.getFile(), 2, deckInfo.getName());
+                    }
+                } catch (JSONException e) {
+                    Log.i("DeckListActivity", Integer.toString(R.string.could_not_load_deck_list_from_server));
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString,
+                                  Throwable throwable) {
+
+                Log.i("DeckListActivity", Integer.toString(R.string.could_not_connect_to_server));
+
+            }
+        });
+    }
+
+    /**
+     * Preloaded Deck List
+     */
+    public void downloadDeckListPreload() {
+        //Attaining what are the important files
+        String[] decks = new String[]{"Essential_French.json", "Duolingo_German.json", "Duolingo_Swedish.json"};
+        for( int j = 0; j < decks.length; j++){
+            preloadDeck( 2, decks[j]);
+        }
+    }
+
+
+    /**
+     * Retrieving a specific level
+     * @param level, how important the deck is
+     */
+    public void preloadDeck(final int level, final String filename) {
+
+
+        try {
+            //Attain the JSON object of the file
+            JSONObject response = new JSONObject(loadJSONFromAsset(HomeActivity.this, filename));
+            DownloadableDeckInfo deckInfo = new DownloadableDeckInfo(response);
+            deckNames.add(deckInfo);
+
+
+            //Loading the directory for where Deck
+            DeckCollection deckCollection = new DeckCollection();
+            deckCollection.reload(provideStackSRSDir());
+            //Retrieving the name of the deck
+            String deckName = response.getString("name");
+
+            Deck newDeck = new Deck(deckName, response.getString("back"));
+
+            //Getting the list of flashcards
+            JSONArray cardArray = response.getJSONArray("cards");
+            List<Card> cards = new ArrayList<>();
+            //traversing the cardArray to get the contents of each cards
+            for (int i = 0; i < cardArray.length(); ++i) {
+                JSONObject cardObject = cardArray.getJSONObject(i);
+                Card c = new Card(cardObject.getString("front"),
+                        cardObject.getString("back"), level);
+                cards.add(c);
+            }
+            //Adding the cards to our new deck
+            newDeck.fillWithCards(cards);
+
+            Log.i("DeckListActivity deck:", deckName);
+
+        } catch (IOException e) {
+            Log.e("DeckListActivity", "exception", e);
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+    /**
+     * Retrieving a specific level
+     * @param file, the file that has the deckInfo
+     * @param level, how important the deck is
+     */
+    public void downloadDeck(final String file, final int level, final String filename) {
+
+
+        try {
+            JSONObject response = new JSONObject(loadJSONFromAsset(HomeActivity.this, filename));
+
+            DeckCollection deckCollection = new DeckCollection();
+            deckCollection.reload(provideStackSRSDir());
+            String deckName = response.getString("name");
+            Deck newDeck = new Deck(deckName, response.getString("back"));
+            JSONArray cardArray = response.getJSONArray("cards");
+            List<Card> cards = new ArrayList<>();
+            //retrieving the cards from the JSON file
+            for (int i = 0; i < cardArray.length(); ++i) {
+                JSONObject cardObject = cardArray.getJSONObject(i);
+                Card c = new Card(cardObject.getString("front"),
+                        cardObject.getString("back"), level);
+                cards.add(c);
+            }
+            newDeck.fillWithCards(cards);
+
+            Log.i("DeckListActivity deck:", deckName);
+
+        }catch (IOException e ) {
+            Log.e("DeckListActivity", "exception", e);
+            e.printStackTrace();
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+
+
+        /*
+        //retrieving the online deck from online
+        httpClient.get(SERVER_URL + file + ".txt", null, new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try {
+                    DeckCollection deckCollection = new DeckCollection();
+                    deckCollection.reload(provideStackSRSDir());
+                    String deckName = response.getString("name");
+                    Deck newDeck = new Deck(deckName, response.getString("back"));
+                    JSONArray cardArray = response.getJSONArray("cards");
+                    List<Card> cards = new ArrayList<>();
+                    //retrieving the cards from the JSON file
+                    for(int i = 0; i < cardArray.length(); ++i) {
+                        JSONObject cardObject = cardArray.getJSONObject(i);
+                        Card c = new Card(cardObject.getString("front"),
+                                cardObject.getString("back"), level);
+                        cards.add(c);
+                    }
+                    newDeck.fillWithCards(cards);
+
+
+                    Log.i("DeckListActivity deck:", deckName);
+                } catch(JSONException e) {
+                    Toast.makeText(getApplicationContext(), getString(R.string.could_not_load_deck),
+                            Toast.LENGTH_SHORT).show();
+                } catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString,
+                                  Throwable throwable) {
+                Toast.makeText(getApplicationContext(), getString(R.string.downloading_deck_failed),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });*/
+    }
+
+
+    /**
+     * Prints important deck info to confirm that the preloaded decks have been created
+     */
+    public void printDeckCollectionInfo(){
+        try{
+            DeckCollection deckCollection = new DeckCollection();
+            deckCollection.reload(provideStackSRSDir());
+
+            Log.i("Deck collection directory", DeckCollection.stackSRSDir.getPath());
+            Log.i("Deck Collection size", Integer.toString(deckCollection.getDeckInfos().size()));
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public String loadJSONFromAsset(Context context, String filename) {
+        String json = null;
+        try {
+            InputStream is = context.getAssets().open(filename);
+
+            int size = is.available();
+            Log.i("Deck Size", Integer.toString(size));
+
+            byte[] buffer = new byte[size];
+
+            is.read(buffer);
+
+            is.close();
+
+            json = new String(buffer, StandardCharsets.UTF_8);
+
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+
+    }
+
+
+    /**
+     * Identifies where the deck directory is
+     * @return, a file that contains the directory of where the decks are stored
+     */
+    private File provideStackSRSDir(){
+        // if there is (possibly emulated) external storage available, we use it
+        if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
+            return getApplicationContext().getExternalFilesDir(null);
+        } else { // otherwise we use an internal directory without access from the outside
+            return getApplicationContext().getDir("StackSRS", MODE_PRIVATE);
+        }
+    }
+
+
+
+
 }
+
