@@ -28,9 +28,6 @@
             android:textColor="@color/textColorDark"
             android:text="Trials Remaing: 1" />-->
 
-
-
-
     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,48 +47,61 @@
                 android:id="@+id/trialsRemaining"
                 android:layout_width="match_parent"
                 android:gravity="center"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:layout_marginTop="20dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/textColorDark"
-                android:paddingRight="5dp"
-                android:text="Trials Remaining"
+                android:paddingEnd="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:text="Flashcards Remaining"
                 android:layout_column="1"/>
             <TextView
                 android:id="@+id/successes"
                 android:layout_width="match_parent"
                 android:gravity="center"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:layout_marginTop="20dp"
                 android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginStart="25dp"
                 android:textColor="@color/textColorDark"
-                android:text="Success Achieved"
+                android:text="Correct Answers"
                 android:layout_column="2"/>
         </TableRow>
 
         <TableRow
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
-            <RatingBar
+            <TextView
                 android:id="@+id/trialBar"
                 android:layout_width="match_parent"
+                android:gravity="center"
+                android:textSize="25sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_height="wrap_content"
-                android:numStars="4"
-                android:isIndicator="true"
-                android:stepSize="1.0"
-                android:paddingRight="5dp"
-                android:layout_centerInParent = "true"
+                android:textColor="@color/textColorDark"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="-15dp"
+                android:text="30"
                 android:layout_column="1"/>
-            <RatingBar
+            <TextView
                 android:id="@+id/successBar"
                 android:layout_width="match_parent"
+                android:gravity="center"
+                android:textSize="25sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:layout_height="wrap_content"
-                android:numStars="3"
-                android:isIndicator="true"
-                android:stepSize="1.0"
-                android:paddingLeft="5dp"
-                android:layout_centerInParent = "true"
+                android:textColor="@color/green"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="-15dp"
+                android:text="0"
                 android:layout_column="2"/>
         </TableRow>
     </TableLayout>
@@ -185,5 +195,18 @@
 
 
     </LinearLayout>
+
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        ads:adSize="SMART_BANNER"
+        android:visibility="visible"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+    </com.google.android.gms.ads.AdView>
+    <!--ca-app-pub-3940256099942544/6300978111 testing-->
+    <!--ca-app-pub-5475955576463045/7019702137-->
 
 </FrameLayout>

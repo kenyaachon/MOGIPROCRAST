@@ -200,7 +200,7 @@ public class HomeActivity extends AppCompatActivity
 
     /**
      * Creates a Snackbar that asks user to rate the app
-     * Only popups after a couple days of use
+     * Only popups aflter a couple days of use
      */
     public void rateMe(){
         final SharedPreferences.Editor editor = mprefs.edit();
@@ -277,6 +277,7 @@ public class HomeActivity extends AppCompatActivity
      * Loads the ads at the bottom of the page
      * Checks if there is internet if not then ads are not loaded
      */
+
     private void loadAds(){
         ConnectivityManager conMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -290,9 +291,9 @@ public class HomeActivity extends AppCompatActivity
                         "ion available");
                 //Loading unique ad id
                 //Test id
-                //MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+                MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
                 //Real id
-                MobileAds.initialize(this, "ca-app-pub-5475955576463045~8715927181");
+               // MobileAds.initialize(this, "ca-app-pub-5475955576463045~8715927181");
 
 
                 //displaying the ads

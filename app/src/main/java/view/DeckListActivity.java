@@ -316,13 +316,13 @@ public class DeckListActivity extends AppCompatActivity implements PopupMenu.OnM
         final String deckName = deckListAdapter.getItem(position).getName();
         Log.i("DeckListActivity", deckName);
         AlertDialog.Builder dialog = new AlertDialog.Builder(DeckListActivity.this, R.style.FlashcardDialogStyle);
-        dialog.setTitle(getString(R.string.delete_deck));
-        dialog.setMessage(getString(R.string.really_delete_deck, deckName));
+        dialog.setTitle(getString(R.string.study_deck));
+        dialog.setMessage(getString(R.string.really_study_deck, deckName));
         dialog.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 //deckCollection.deleteDeckFile(deckName);
                 //reloadDeckList();
-                if(Integer.parseInt(deckListAdapter.getItem(position).getNumCards()) >= 20){
+                if(Integer.parseInt(deckListAdapter.getItem(position).getNumCards()) >= 30){
                     editor.putString("DeckName", deckName).apply();
                 } else{
                     editor.putString("DeckName", "Nothing").apply();
@@ -343,6 +343,10 @@ public class DeckListActivity extends AppCompatActivity implements PopupMenu.OnM
         dialog.create().show();
     }
 
+    /**
+     * Renames the deck the that was chosen
+     * @param position
+     */
     public void renameDeck(int position){
 
         final String deckName = deckListAdapter.getItem(position).getName();
@@ -418,6 +422,11 @@ public class DeckListActivity extends AppCompatActivity implements PopupMenu.OnM
 
     }
 
+    /**
+     * Create thes Menu that gives the user study options
+     * @param v
+     * @param position
+     */
     public void showPopupMenu(View v, int position){
         listItemPosition = position;
 
@@ -446,17 +455,22 @@ public class DeckListActivity extends AppCompatActivity implements PopupMenu.OnM
     }
 
 
+    /**
+     * Downloads a list of decks, that a user can choose from
+     */
     public void downloadDeckList() {
         httpClient.get(SERVER_URL + "decks.txt", null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 deckNames.clear();
                 try {
+                    //Converts the list of decks into a traversable JSON object
                     JSONArray deckListArray = response.getJSONArray("decks");
                     for (int i = 0; i < deckListArray.length(); ++i) {
                         DownloadableDeckInfo deckInfo = new DownloadableDeckInfo(
                                 deckListArray.getJSONObject(i));
                         //deckNames.add(deckInfo);
+
                         downloadDeck(deckInfo.getFile(), 2);
                     }
                 } catch (JSONException e) {
@@ -464,6 +478,7 @@ public class DeckListActivity extends AppCompatActivity implements PopupMenu.OnM
                             getString(R.string.could_not_load_deck_list_from_server),
                             Toast.LENGTH_SHORT).show();
                 }
+                //Refresh the Deck List
                 deckListAdapter.notifyDataSetChanged();
             }
 
@@ -477,11 +492,17 @@ public class DeckListActivity extends AppCompatActivity implements PopupMenu.OnM
         });
     }
 
+    /**
+     *Downloads a specific deck that has been chosen and then convert the data into a usable deck
+     * @param file, the extact file that is be downloaded
+     * @param level,
+     */
     public void downloadDeck(final String file, final int level) {
         httpClient.get(SERVER_URL + file + ".txt", null, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
+
                     String deckName = response.getString("name");
                     Deck newDeck = new Deck(deckName, response.getString("back"));
                     JSONArray cardArray = response.getJSONArray("cards");

@@ -49,7 +49,7 @@
                 android:id="@+id/trialsRemaining"
                 android:layout_width="match_parent"
                 android:gravity="center"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:layout_marginTop="20dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/textColorDark"
@@ -60,7 +60,7 @@
                 android:id="@+id/successes"
                 android:layout_width="match_parent"
                 android:gravity="center"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:layout_marginTop="20dp"
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dp"
@@ -94,7 +94,6 @@
                 android:layout_column="2"/>
         </TableRow>
     </TableLayout>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -164,5 +163,17 @@
             />
 
     </LinearLayout>
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/adView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        ads:adSize="SMART_BANNER"
+        android:visibility="visible"
+        ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
+    </com.google.android.gms.ads.AdView>
+    <!--ca-app-pub-3940256099942544/6300978111 testing-->
+    <!--ca-app-pub-5475955576463045/7019702137-->
 
 </FrameLayout>

@@ -8,9 +8,12 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
 import android.app.usage.UsageStats;
 import android.app.usage.UsageStatsManager;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -86,7 +89,14 @@ public class KioskService extends Service  {
     private View mView;
     private TextView timeView;
 
+    private int JOB_ID = 200260;
+
+
+
     public static final String BROADCAST_ACTION = "com.iruss.mogivisions.broadcastreceiver";
+
+
+    private SharedPreferences mprefs;
 
     private boolean isBroadCastRegistered = false;
 
@@ -117,6 +127,7 @@ public class KioskService extends Service  {
 
     //Number of trials possible
     private static final int trials = 4 ;
+    private static final int flashcardTrials = 30;
 
     private TextView trialsView;
 
@@ -139,8 +150,12 @@ public class KioskService extends Service  {
 
     //Display of success
     private RatingBar successBar;
+    private TextView successBarFlashcards;
+
+
     //Display of trials
     private RatingBar trialBar;
+    private TextView trialBarFlashcards;
 
     // Whether waiting for launcher to launch phone or camera
     private boolean waitingForLauncher = false;
@@ -191,7 +206,12 @@ public class KioskService extends Service  {
 
         mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
 
+
+        mprefs = this.getSharedPreferences("Timer", Context.MODE_PRIVATE);
+
+        //setBroadCastStatus(false, "startCommand: false");
         loadKiosk();
+
 
         // Start listening for phone calls
         TelephonyManager telephonyManager = (TelephonyManager) getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
@@ -201,8 +221,6 @@ public class KioskService extends Service  {
         trivaStyle = sharedPref.getString("trivia_style", "Trivia");
 
         Log.i("Trivia Style", trivaStyle);
-
-
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -222,6 +240,7 @@ public class KioskService extends Service  {
         //if(isBroadCastRegistered){
 
         try{
+            setBroadCastStatus(false, "onDestroy(): false");
             unregisterReceiver(br);
         }catch (IllegalArgumentException e){
             Log.e("KioskStatus", e.toString());
@@ -238,6 +257,7 @@ public class KioskService extends Service  {
      * Loads the ads at the bottom of the page
      * Checks if there is internet if not then ads are not loaded
      */
+
     private void loadAds(){
         ConnectivityManager conMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -250,12 +270,12 @@ public class KioskService extends Service  {
             if(isConnected){
                 Log.d("Network", "Network connection available");
                 //Loading unique ad id
-                //MobileAds.initialize(getApplicationContext(), "ca-app-pub-3940256099942544~3347511713");
+                MobileAds.initialize(getApplicationContext(), "ca-app-pub-3940256099942544~3347511713");
                 //Test id
 
                 //MobileAds.initialize(homeActivity, "ca-app-pub-3940256099942544~3347511713");
                 //Real id
-                MobileAds.initialize(getApplicationContext(), "ca-app-pub-5475955576463045~8715927181");
+                //MobileAds.initialize(getApplicationContext(), "ca-app-pub-5475955576463045~8715927181");
 
 
                 //displaying the ads
@@ -390,6 +410,7 @@ public class KioskService extends Service  {
 
     // Load the kiosk fragment
     public void loadKiosk() {
+        Log.i("SetBroadCastAttempt", "true");
         // Remove existing
         if (mView != null) {
             mWindowManager.removeViewImmediate(mView);
@@ -460,7 +481,7 @@ public class KioskService extends Service  {
      * Reads settings and changes how long the phone will be locked for
      *
      */
-    private void unlockPhone(){
+    private void unlockPhone() {
 
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         //String syncConnPref = sharedPref.getString("lockout_time", "1");
@@ -468,7 +489,7 @@ public class KioskService extends Service  {
         //converts an hours into seconds
 
         String timePick = sharedPref.getString("time_picker", "00:30");
-        Log.d("Settings", timePick );
+        Log.d("Settings", timePick);
         String[] timeSec = timePick.split(":");
         int timeLock = (Integer.parseInt(timeSec[0]) * 3600) + (Integer.parseInt(timeSec[1]) * 60);
         Log.d("Settings", Integer.toString(timeLock));
@@ -478,10 +499,66 @@ public class KioskService extends Service  {
 
 
         //Start the background timer
+
+        mprefs = this.getSharedPreferences("Timer", Context.MODE_PRIVATE);
+        Boolean isRegistered = mprefs.getBoolean("isBroadCastRegistered", false);
+
+        if (!isRegistered) {
+
+            //if the api is above then API 28, then we will
+            //use a different method for calling the
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                callLifeLongBroadCast("lockTime", timeLock);
+                registerReceiver(br, new IntentFilter(BroadcastService.COUNTDOWN_BR));
+
+            } else {
+                startService(new Intent(this, BroadcastService.class).putExtra("lockTime", timeLock));
+                registerReceiver(br, new IntentFilter(BroadcastService.COUNTDOWN_BR));
+            }
+
+
+            Log.i("isBroadCastRegistered", Boolean.toString(isRegistered));
+            setBroadCastStatus(true, "unlockPhone(): true");
+
+        /*
         startService(new Intent(this, BroadcastService.class).putExtra("lockTime", timeLock));
         registerReceiver(br, new IntentFilter(BroadcastService.COUNTDOWN_BR));
+        Log.i("BroadCastRegistered", "BroadCast has been registered");
+        */
+            isBroadCastRegistered = true;
+        }
+    }
 
-        isBroadCastRegistered = true;
+    public void callLifeLongBroadCast(String extraID, int extraValue) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+
+            //Create the job of calling the usage limit analyzer
+            ComponentName serviceName = new ComponentName(this, LongLifeBroadCastService.class);
+            JobInfo jobInfo = new JobInfo.Builder(JOB_ID, serviceName)
+                    .setRequiresCharging(false)
+                    .setPersisted(true)
+                    .setPeriodic(3600000)
+                    .build();
+
+            //.setPersisted()
+
+            //Schedule the job and make sure the scheduling has been successful
+            JobScheduler scheduler = (JobScheduler) this.getSystemService(JOB_SCHEDULER_SERVICE);
+            int result = scheduler.schedule(jobInfo);
+            if (result == JobScheduler.RESULT_SUCCESS) {
+                Log.i("KioskService", "Notification Job scheduled successfully");
+            }
+
+            //start the usage limit analyzer
+            Intent service = new Intent(this, LongLifeBroadCastService.class).putExtra(extraID, extraValue);
+            startService(service);
+        }
+    }
+
+    public void setBroadCastStatus(boolean status, String origin){
+        final SharedPreferences.Editor editor = mprefs.edit();
+        Log.i("SetBroadCastRegistered", origin);
+        editor.putBoolean("isBroadCastRegistered", status).apply();
     }
 
 
@@ -505,6 +582,7 @@ public class KioskService extends Service  {
         if (intent.getExtras() != null) {
             String millisUntilFinished = intent.getStringExtra("countdown");
             Log.i("KioskStatus", "Countdown seconds remaining: " +  millisUntilFinished);
+            Log.i("BroadCastRegistered", "Hello Bitch");
 
             //Checks to make sure remaining time is not zero before updating timeView
             if(!millisUntilFinished.trim().equalsIgnoreCase("No more time remaining".trim())){
@@ -529,6 +607,8 @@ public class KioskService extends Service  {
      * Button is revealed for unlocking Kiosk Mode
      */
     private void unLock(){
+        setBroadCastStatus(false, "unlock(): false");
+
         Button hiddenExit = mView.findViewById(R.id.exitButton);
         hiddenExit.setVisibility(View.VISIBLE);
         unlock.setVisibility(View.GONE);
@@ -540,18 +620,19 @@ public class KioskService extends Service  {
             public void onClick(View v) {
                 // Break out!
                 stopSelf(-1);
-
-
                 // Take out of KioskMode
                 homeActivity.setShouldBeInKioskMode(false);
                 //Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 //startActivity(intent);
             }
         });
+
+
         setKioskButtonTextSize(hiddenExit);
         //Unregisters time broadcast receiver
         unregisterReceiver(br);
         stopService(new Intent(this, BroadcastService.class));
+
 
     }
 
@@ -761,6 +842,7 @@ public class KioskService extends Service  {
     /**
      * camera() calls  the camera App when the User press the camera button
      */
+
     private void camera(){
         ImageButton cameraApp = mView.findViewById(R.id.camera);
         cameraApp.setOnClickListener(new View.OnClickListener() {
@@ -777,8 +859,10 @@ public class KioskService extends Service  {
 
                 Intent cameraIntent = new Intent(android.provider.MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
 
+
                 //Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                 //makes sure the camera is at the top of the activity stack
+                //cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT);
                 cameraIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                 startActivity(cameraIntent);
@@ -791,7 +875,7 @@ public class KioskService extends Service  {
 
 
 
-    /**********************************************************************
+    /*********************************************************************
      * Load Trivia Challenges
      */
 
@@ -856,8 +940,8 @@ public class KioskService extends Service  {
         //Gets the Successful Attempts text
         successView = mView.findViewById(R.id.successes);
 
-        trialBar = mView.findViewById(R.id.trialBar);
-        trialBar.setRating(trials);
+        trialBarFlashcards = mView.findViewById(R.id.trialBar);
+        trialBarFlashcards.setText(Integer.toString(flashcardTrials));
 
         SharedPreferences mprefs = this.getSharedPreferences("Flashcard", Context.MODE_PRIVATE);
 
@@ -882,6 +966,8 @@ public class KioskService extends Service  {
 
         studyingIsOn();
         // Now that it's loaded, display it
+        //loadAds();
+
         displayView();
         hideStatusBar();
     }
@@ -913,8 +999,8 @@ public class KioskService extends Service  {
         String syncConnPref = sharedPref.getString("text_size", "11");
 
         float textSize = Float.parseFloat(syncConnPref);
-        trialsView.setTextSize(textSize);
-        successView.setTextSize(textSize);
+        //trialsView.setTextSize(textSize);
+        //successView.setTextSize(textSize);
         questionView.setTextSize(textSize);
         questionSubView.setTextSize(textSize);
         submit.setTextSize(textSize);
@@ -922,18 +1008,97 @@ public class KioskService extends Service  {
 
     }
 
+    /**
+     * Checks the answer given from the flashcards
+     * @param response, the users response to a flashcard
+     */
     public void checkAnswer(String response){
         if(response.trim().equalsIgnoreCase(correctAnswer.toString())){
             Log.d("Test", "Correct response chosen");
             success += 1;
-            successBar.setRating(success);
+            successBarFlashcards.setText(Integer.toString(success));
 
             editText.setBackgroundColor(Color.GREEN);
             Log.i("Checkup", Integer.toString(success));
             Log.i("Checkup", Integer.toString(attemptsMade));
-            if(success == 3) {
+
+            /*
+            if(success >= 10) {
                 Toast.makeText(getApplicationContext(),
-                        "Trivia challenge solved successfully, phone is unlocked for 5 mins",
+                        "Flashcard challenge solved successfully, phone is unlocked for 5 mins",
+                        Toast.LENGTH_LONG).show();
+                /*
+                homeActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(homeActivity.getApplicationContext(),
+                                "Trivia challenge solved successfully, phone is unlocked for 5 mins",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });*/
+            /*
+                deck.saveDeck();
+                temporaryUnlock();
+            }else{
+                continueStudying();
+            }*/
+
+            continueStudying();
+
+    }
+            else {
+            Log.i("Checkup", Integer.toString(success));
+            Log.i("Checkup", Integer.toString(attemptsMade));
+
+            //Code that shows the correct answer
+            Log.d("Test", "Incorrect response chosen");
+            editText.setBackgroundResource(R.drawable.rounded_button_red);
+            correctAnswer.setVisibility(View.VISIBLE);
+
+            /*
+            if(attemptsMade >= flashcardsTrials){
+                //call kill
+                success = 0;
+                attemptsMade = 0;
+                //display a message to user that they are out of attempts and go back to KioskActivity
+                Log.d("Test", "You are out of attempts");
+
+                Toast.makeText(getApplicationContext(),
+                        "You failed to solve at least 10 deck cards, phone will not be unlocked",
+                        Toast.LENGTH_LONG).show();
+                /*
+                homeActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(homeActivity.getApplicationContext(),
+                                "You failed to solve the trivia challenge, phone will not be unlocked",
+                                Toast.LENGTH_LONG).show();
+                    }
+                });*/
+            /*
+                deck.saveDeck();
+                loadKiosk();
+            }else{
+                //continues the trivia but with a delay
+                continueStudying();
+            }*/
+
+            continueStudying();
+
+        }
+
+        finishedFlashcards();
+    }
+
+    /**
+     * Once the flashcards are done, checks to see if user has earned right to unlock their phone
+     */
+    public void finishedFlashcards(){
+
+        if(attemptsMade >= flashcardTrials){
+            if(success >= 10) {
+                Toast.makeText(getApplicationContext(),
+                        "Flashcard challenge solved successfully, phone is unlocked for 5 mins",
                         Toast.LENGTH_LONG).show();
                 /*
                 homeActivity.runOnUiThread(new Runnable() {
@@ -946,20 +1111,8 @@ public class KioskService extends Service  {
                 });*/
                 deck.saveDeck();
                 temporaryUnlock();
-            }else{
-                continueStudying();
             }
-
-        }
             else {
-            Log.i("Checkup", Integer.toString(success));
-            Log.i("Checkup", Integer.toString(attemptsMade));
-
-            //Code that shows the correct answer
-            Log.d("Test", "Incorrect response chosen");
-            editText.setBackgroundResource(R.drawable.rounded_button_red);
-            correctAnswer.setVisibility(View.VISIBLE);
-            if(attemptsMade >= trials){
                 //call kill
                 success = 0;
                 attemptsMade = 0;
@@ -967,25 +1120,14 @@ public class KioskService extends Service  {
                 Log.d("Test", "You are out of attempts");
 
                 Toast.makeText(getApplicationContext(),
-                        "You failed to solve the trivia challenge, phone will not be unlocked",
+                        "You failed to solve at least 10 deck cards, phone will not be unlocked",
                         Toast.LENGTH_LONG).show();
-                /*
-                homeActivity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(homeActivity.getApplicationContext(),
-                                "You failed to solve the trivia challenge, phone will not be unlocked",
-                                Toast.LENGTH_LONG).show();
-                    }
-                });*/
                 deck.saveDeck();
                 loadKiosk();
-            }else{
-                //continues the trivia but with a delay
-                continueStudying();
             }
         }
     }
+
 
     public void continueStudying(){
         Handler myhandler = new Handler();
@@ -994,8 +1136,8 @@ public class KioskService extends Service  {
             public void run() {
                 //Works on displaing the next set of questions
                 attemptsMade += 1;
-                int displayTrials = trials - attemptsMade;
-                trialBar.setRating(displayTrials);
+                int displayTrials = flashcardTrials - attemptsMade;
+                trialBarFlashcards.setText(Integer.toString(displayTrials));
                 //String trialsStr = "Trials remaining: " + Integer.toString(displayTrials) + "    Successes (need 3 to unlock): " + Integer.toString(success);
                 //changes how many trials there are left
                 //trialsView.setText(trialsStr);
@@ -1074,7 +1216,7 @@ public class KioskService extends Service  {
                 deckTitle.setText("DECK: " + name);
                 deck = gson.fromJson(FileUtils.readFileToString(file, Charset.forName("UTF-8")), Deck.class);
 
-                if(deck.getDeckStackSize() >= 20){
+                if(deck.getDeckStackSize() >= 30){
                     noEligbleDeck = false;
                 }
 
@@ -1203,6 +1345,8 @@ public class KioskService extends Service  {
         }*/
 
         // Now that it's loaded, display it
+        //loadAds();
+
         displayView();
         hideStatusBar();
     }
@@ -1216,8 +1360,8 @@ public class KioskService extends Service  {
         String syncConnPref = sharedPref.getString("text_size", "11");
 
         float textSize = Float.parseFloat(syncConnPref);
-        trialsView.setTextSize(textSize);
-        successView.setTextSize(textSize);
+        //trialsView.setTextSize(textSize);
+        //successView.setTextSize(textSize);
         questionView.setTextSize(textSize);
         questionResponse1.setTextSize(textSize);
         questionResponse2.setTextSize(textSize);
@@ -1416,6 +1560,9 @@ public class KioskService extends Service  {
     /************************************************************************************************
      * Temporary Unlock is used by both the Trivia and Flashcards challenge
      */
+
+
+
     /**
      * Creates a temporary break for the user to use their phone after they have solved a challenge
      */

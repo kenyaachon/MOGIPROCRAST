@@ -96,7 +96,9 @@
     <string name="illegal_deck_name">Illegal deck name.</string>
     <string name="deck_already_exists">A deck \"%1$s\" already exists!</string>
     <string name="delete_deck">Delete Deck</string>
+    <string name="study_deck">Select Deck For Studying</string>
     <string name="really_delete_deck">Do you really want to delete \"%1$s\"?</string>
+    <string name="really_study_deck">Do you really want to be tested on this deck \"%1$s\"?</string>
 
     <!-- deck browser dialogs -->
     <string name="edit_card">Edit Card</string>
