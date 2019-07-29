@@ -8,7 +8,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -22,6 +21,8 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -53,6 +54,8 @@ import java.util.SortedMap;
 import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
+
+//import android.support.v4.app.Fragment;
 
 /*
  * Copyright 2014 The Android Open Source Project
@@ -390,7 +393,7 @@ public class FragmentOne extends SimpleFragment implements OnChartGestureListene
         appName.setText(stats.getPackageName());
 
         TextView appTime = myDialog.findViewById(R.id.popupTime);
-        String time = Long.toString(stats.getTotalTimeInForeground()/ 60000) + "min(s)";
+        String time = stats.getTotalTimeInForeground() / 60000 + "min(s)";
         appTime.setText(time);
 
         TextView appLastUsed = myDialog.findViewById(R.id.popupLastUsed);

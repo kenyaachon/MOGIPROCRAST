@@ -11,12 +11,16 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.iruss.mogivisions.procrastimatev1.HomeActivity;
 import com.iruss.mogivisions.procrastimatev1.R;
+
+//import android.support.v4.app.NotificationCompat;
+//import android.support.v4.app.NotificationManagerCompat;
 
 
 public class LongLifeBroadCastService extends JobService {
@@ -29,7 +33,7 @@ public class LongLifeBroadCastService extends JobService {
     private int timeLimit = 0;
 
 
-    public static final String COUNTDOWN_BR = "com.iruss.mogivisions.kiosk.count_br";
+    public static final String COUNTDOWN_BR = "com.iruss.mogivisions.kiosk.longlife_count_br";
     Intent bi = new Intent(COUNTDOWN_BR);
 
     Intent kiosk;
@@ -38,6 +42,8 @@ public class LongLifeBroadCastService extends JobService {
     //Timer settings
     SharedPreferences mprefs;
     SharedPreferences.Editor editor;
+
+    int startId;
 
 
     @Override
@@ -49,6 +55,7 @@ public class LongLifeBroadCastService extends JobService {
         //startClock(intent, startId);
 
 
+        this.startId = startId;
 
         return START_NOT_STICKY;
     }
@@ -67,39 +74,29 @@ public class LongLifeBroadCastService extends JobService {
         return timeLock;
     }
 
-    //public void startClock(Intent intent, int startId){
-        //this.kiosk = intent;
 
     public void startClock(){
-
-        //bi = new Intent(getApplication().getBaseContext(), KioskService.class);
-
         Log.i(TAG, "Starting timer...");
-
-        //bi.setAction(KioskService.BROADCAST_ACTION);
-
         int time = getTime();
+
         /*
         if(intent != null){
             //time = this.kiosk.getIntExtra("lockTime", 600);
             time = getTime();
         }*/
-
-
         //bi = new Intent(getBaseContext(), KioskService.class);
-
         //Log.i(TAG, Integer.toString(startId));
+
 
         //prevent Timer from being started multiple times
         Log.i("Timer Started", Boolean.toString(mprefs.getBoolean("timerNotStarted", true)));
+        /*
         if(mprefs.getBoolean("timerNotStarted", true)){
             //Time started in the background
-            editor.putBoolean("timerNotStarted", false).apply();
+            editor.putBoolean("timerNotStarted", false).apply();*/
 
 
             //Selected lock time from setting preferences
-            //int time = this.kiosk.getIntExtra("lockTime", 600);
-
             cdt = new CountDownTimer(time * 1000, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
@@ -113,26 +110,23 @@ public class LongLifeBroadCastService extends JobService {
                     sendBroadcast(bi);
                 }
 
+                /**
+                 * onFinish is called when the CountDown timer is completed
+                 * Resets ability to start the timer, and kill the timer
+                 */
                 @Override
                 public void onFinish() {
                     bi.putExtra("countdown", "No more time remaining");
                     sendBroadcast(bi);
-                    //editor.putBoolean("timerNotStarted", true).apply();
-                    editor.putBoolean("timerTurnOff", true).apply();
+                    editor.putBoolean("timerNotStarted", true).apply();
+                    editor.putBoolean("timerNotTurnOff", true).apply();
+                    Log.i(TAG, "Timer status from onFinish: " + mprefs.getBoolean("timerNotTurnOff", true));
                     initializeNotification();
                     showNotification();
-                    //onDestroy();
+
                 }
             };
-
-
-            //Prevent timer from being started twice
-
             cdt.start();
-            editor.putBoolean("timerNotStarted", true).apply();
-
-
-        }
     }
 
     @Override
@@ -142,7 +136,7 @@ public class LongLifeBroadCastService extends JobService {
         setTimerStatus();
         startClock();
 
-        return false;
+        return true;
     }
 
 
@@ -155,6 +149,7 @@ public class LongLifeBroadCastService extends JobService {
         editor = mprefs.edit();
 
         //Checks to see if timerNotStarted and timerNotTurnOff are already created
+        Log.i(TAG, "Setting the timer status");
         //editor.putBoolean("timerNotStarted", true).apply();
 
         if(mprefs.getBoolean("timerNotTurnOff", true)) {
@@ -163,12 +158,6 @@ public class LongLifeBroadCastService extends JobService {
             editor.putBoolean("timerNotStarted", true).apply();
 
         }
-        /*
-        if(mprefs.getBoolean("jobNotStarted", true)){
-            Log.i(TAG, "Job has not been started");
-            editor.putBoolean("timerNotStarted", true).apply();
-            editor.putBoolean("jobNotStarted", false).apply();
-        }*/
 
     }
 
@@ -193,14 +182,37 @@ public class LongLifeBroadCastService extends JobService {
     @Override
     public boolean onStopJob(JobParameters params) {
         //prevent system from destroying timer unless the timer is over
+        Log.i(TAG, "Timer status: " + mprefs.getBoolean("timerNotTurnOff", true));
         if(mprefs.getBoolean("timerNotTurnOff", true)){
-            //editor.putBoolean("timerNotStarted", true).apply();
+            editor.putBoolean("timerNotStarted", true).apply();
+            editor.putBoolean("timerNotTurnOff", false).apply();
             cdt.cancel();
             Log.i(TAG, "Timer cancelled");
+            //stopService(new Intent(this, LongLifeBroadCastService.class));
             super.onDestroy();
 
+
         }
+        super.onDestroy();
         return false;
+    }
+
+
+    @Override
+    public void onDestroy(){
+        Log.i(TAG, "Timer status: " + mprefs.getBoolean("timerNotTurnOff", true));
+        if(mprefs.getBoolean("timerNotTurnOff", true)){
+            editor.putBoolean("timerNotStarted", true).apply();
+            editor.putBoolean("timerNotTurnOff", false).apply();
+            cdt.cancel();
+            Log.i(TAG, "Timer cancelled");
+            //stopService(new Intent(this, LongLifeBroadCastService.class));
+            //super.onDestroy();
+
+
+        }
+
+        super.onDestroy();
     }
 
 

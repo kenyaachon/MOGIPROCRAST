@@ -8,14 +8,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+
 import com.iruss.mogivisions.kiosk.DelayService;
+
+//import android.support.v4.app.NotificationCompat;
+//import android.support.v7.app.ActionBar;
+//import android.support.v7.app.AppCompatActivity;
 
 /**
  * Activity to show the settings

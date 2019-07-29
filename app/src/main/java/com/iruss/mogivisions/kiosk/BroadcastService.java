@@ -10,12 +10,16 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.IBinder;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.iruss.mogivisions.procrastimatev1.HomeActivity;
 import com.iruss.mogivisions.procrastimatev1.R;
+
+//import android.support.v4.app.NotificationCompat;
+//import android.support.v4.app.NotificationManagerCompat;
 
 public class BroadcastService extends Service {
     // For notifications
@@ -102,11 +106,11 @@ public class BroadcastService extends Service {
 
         //prevent Timer from being started multiple times
         Log.i("Timer Started", Boolean.toString(mprefs.getBoolean("timerNotStarted", true)));
-        if(mprefs.getBoolean("timerNotStarted", true)){
+        /*if(mprefs.getBoolean("timerNotStarted", true)){
             //Time started in the background
 
             //Selected lock time from setting preferences
-            //int time = this.kiosk.getIntExtra("lockTime", 600);
+            //int time = this.kiosk.getIntExtra("lockTime", 600);*/
 
             cdt = new CountDownTimer(time * 1000, 1000) {
                 @Override
@@ -140,7 +144,7 @@ public class BroadcastService extends Service {
 
             cdt.start();
 
-        }
+        //}
 
 
 

@@ -12,9 +12,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.iruss.mogivisions.procrastimatev1.R;
 import com.iruss.mogivisions.procrastimatev1.SplashActivity;
@@ -28,6 +29,9 @@ import java.util.SortedMap;
 import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
+
+//import android.support.v4.app.NotificationCompat;
+//import android.support.v4.app.NotificationManagerCompat;
 
 public class JobSchedulerService extends JobService {
 

@@ -31,8 +31,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.NotificationCompat;
 import android.telecom.TelecomManager;
 import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
@@ -49,6 +47,9 @@ import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -75,7 +76,11 @@ import java.util.TreeMap;
 import model.Deck;
 import model.DeckCollection;
 
-import static android.support.v4.app.NotificationCompat.PRIORITY_MIN;
+//import android.support.v4.app.ActivityCompat;
+//import android.support.v4.app.NotificationCompat;
+
+//import static android.support.v4.app.NotificationCompat.PRIORITY_MIN;
+
 
 public class KioskService extends Service  {
 
@@ -172,6 +177,9 @@ public class KioskService extends Service  {
     private final int LAUNCHER_DELAY = 3000; // msec
 
 
+    private JobScheduler scheduler;
+
+
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -240,6 +248,13 @@ public class KioskService extends Service  {
         //if(isBroadCastRegistered){
 
         try{
+            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                Log.i("KioskStatus", "KioskService is destroyed");
+                super.onDestroy();
+                return;
+            }
+
+
             setBroadCastStatus(false, "onDestroy(): false");
             unregisterReceiver(br);
         }catch (IllegalArgumentException e){
@@ -304,8 +319,8 @@ public class KioskService extends Service  {
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, channelId);
         Notification notification = notificationBuilder.setOngoing(true)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setPriority(PRIORITY_MIN)
                 .setCategory(Notification.CATEGORY_SERVICE)
+                .setPriority(NotificationCompat.PRIORITY_MIN)
                 .build();
         startForeground(101, notification);
     }
@@ -425,7 +440,7 @@ public class KioskService extends Service  {
         //setKioskTextSize();
 
 
-        unlockPhone();
+        //unlockPhone();
         response();
         call();
         camera();
@@ -433,7 +448,38 @@ public class KioskService extends Service  {
         hideStatusBar();
         // Now that it's loaded, display it
         displayView();
+
+
+        mprefs = this.getSharedPreferences("Tutorial", Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = mprefs.edit();
+        //editor.putBoolean("startTimer", true).apply();
+        //editor.putBoolean("timerFinished", true).apply();
+        Log.i("KioskService", "Start Timer status: " + mprefs.getBoolean("startTimer", true));
+        Log.i("KioskService", "Timer status: " + mprefs.getBoolean("timerFinished", true));
+
+        if(mprefs.getBoolean("timerFinished", true)){
+            //unLock();
+            killTimer();
+            timeView.setText("No More Time Remaining");
+        } else{
+            //Working on continuing the clock when the phone is awakened
+            if(mprefs.getBoolean("startTimer", true) ) {
+                editor.putBoolean("startTimer", false).apply();
+                Log.i("KioskService", "Starting the clock for locking the phone");
+                unlockPhone();
+
+            } else {
+                if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    registerReceiver(br, new IntentFilter(LongLifeBroadCastService.COUNTDOWN_BR));
+                } else {
+                    registerReceiver(br, new IntentFilter(BroadcastService.COUNTDOWN_BR));
+                }
+            }
+        }
+
     }
+
 
     public void toastMessage(String message){
         Toast.makeText(getApplicationContext(),
@@ -500,7 +546,7 @@ public class KioskService extends Service  {
 
         //Start the background timer
 
-        mprefs = this.getSharedPreferences("Timer", Context.MODE_PRIVATE);
+        //mprefs = this.getSharedPreferences("Timer", Context.MODE_PRIVATE);
         Boolean isRegistered = mprefs.getBoolean("isBroadCastRegistered", false);
 
         if (!isRegistered) {
@@ -509,7 +555,7 @@ public class KioskService extends Service  {
             //use a different method for calling the
             if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 callLifeLongBroadCast("lockTime", timeLock);
-                registerReceiver(br, new IntentFilter(BroadcastService.COUNTDOWN_BR));
+                registerReceiver(br, new IntentFilter(LongLifeBroadCastService.COUNTDOWN_BR));
 
             } else {
                 startService(new Intent(this, BroadcastService.class).putExtra("lockTime", timeLock));
@@ -529,6 +575,11 @@ public class KioskService extends Service  {
         }
     }
 
+    /**
+     *Calls the LongLifeBroadCastService to start the timer since it is a JobService which survives in the background as long as needed
+     * @param extraID
+     * @param extraValue
+     */
     public void callLifeLongBroadCast(String extraID, int extraValue) {
         if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
 
@@ -543,7 +594,7 @@ public class KioskService extends Service  {
             //.setPersisted()
 
             //Schedule the job and make sure the scheduling has been successful
-            JobScheduler scheduler = (JobScheduler) this.getSystemService(JOB_SCHEDULER_SERVICE);
+            scheduler = (JobScheduler) this.getSystemService(JOB_SCHEDULER_SERVICE);
             int result = scheduler.schedule(jobInfo);
             if (result == JobScheduler.RESULT_SUCCESS) {
                 Log.i("KioskService", "Notification Job scheduled successfully");
@@ -589,8 +640,10 @@ public class KioskService extends Service  {
                 timeView.setText(millisUntilFinished);
                 showViewIfNecessary();
             }else{
+                mprefs = KioskService.this.getSharedPreferences("Tutorial", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = mprefs.edit();
+                editor.putBoolean("timerFinished", true).apply();
                 timeView.setText(millisUntilFinished);
-                //stopService(new Intent(this, BroadcastService.class));
                 Log.i("KioskStatus", "Stopped service");
                 unLock();
             }
@@ -618,6 +671,10 @@ public class KioskService extends Service  {
         hiddenExit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mprefs = KioskService.this.getSharedPreferences("Tutorial", Context.MODE_PRIVATE);
+                final SharedPreferences.Editor editor = mprefs.edit();
+                editor.putBoolean("startTimer", true).apply();
+                editor.putBoolean("timerFinished", false).apply();
                 // Break out!
                 stopSelf(-1);
                 // Take out of KioskMode
@@ -630,12 +687,53 @@ public class KioskService extends Service  {
 
         setKioskButtonTextSize(hiddenExit);
         //Unregisters time broadcast receiver
-        unregisterReceiver(br);
-        stopService(new Intent(this, BroadcastService.class));
 
+        unregisterReceiver(br);
+
+        //Stops the Timer Service no matter the version of the Android OS
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            stopService(new Intent(this, LongLifeBroadCastService.class));
+        } else{
+            stopService(new Intent(this, BroadcastService.class));
+
+        }
 
     }
 
+
+    /**
+     * Kils the timer without needing to instantiate the UNLOCK button that is created for the KioskService
+     *
+     */
+    private void killTimer(){
+        setBroadCastStatus(false, "unlock(): false");
+
+        Button hiddenExit = mView.findViewById(R.id.exitButton);
+        hiddenExit.setVisibility(View.VISIBLE);
+        unlock.setVisibility(View.GONE);
+
+        TextView unlockText = mView.findViewById(R.id.kioskView);
+        unlockText.setText("PHONE IS UNLOCKED");
+        hiddenExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Only resets the ability to start the timer when the user has chosen to exit the Lock Page
+                mprefs = KioskService.this.getSharedPreferences("Tutorial", Context.MODE_PRIVATE);
+                final SharedPreferences.Editor editor = mprefs.edit();
+                editor.putBoolean("startTimer", true).apply();
+                editor.putBoolean("timerFinished", false).apply();
+                // Break out!
+                stopSelf(-1);
+                // Take out of KioskMode
+                homeActivity.setShouldBeInKioskMode(false);
+                //Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                //startActivity(intent);
+            }
+        });
+
+
+        setKioskButtonTextSize(hiddenExit);
+    }
 
 
     /*******************************
@@ -903,6 +1001,7 @@ public class KioskService extends Service  {
             });
             setKioskButtonTextSize(unlock);
         }
+
 
     }
 

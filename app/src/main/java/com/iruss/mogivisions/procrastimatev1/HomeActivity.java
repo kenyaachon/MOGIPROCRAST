@@ -22,11 +22,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.NotificationCompat;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -36,6 +31,12 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -67,6 +68,12 @@ import model.DeckCollection;
 import model.DownloadableDeckInfo;
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
 import view.DeckListActivity;
+
+//import android.support.annotation.NonNull;
+//import android.support.v4.app.ActivityCompat;
+//import android.support.v4.app.NotificationCompat;
+//import android.support.v7.app.AlertDialog;
+//import android.support.v7.app.AppCompatActivity;
 
 public class HomeActivity extends AppCompatActivity
         implements ActivityCompat.OnRequestPermissionsResultCallback {
@@ -1076,7 +1083,7 @@ public class HomeActivity extends AppCompatActivity
             DeckCollection deckCollection = new DeckCollection();
             deckCollection.reload(provideStackSRSDir());
 
-            Log.i("Deck collection directory", DeckCollection.stackSRSDir.getPath());
+            Log.i("Deckcollectiondirectory", DeckCollection.stackSRSDir.getPath());
             Log.i("Deck Collection size", Integer.toString(deckCollection.getDeckInfos().size()));
 
         }catch (IOException e){

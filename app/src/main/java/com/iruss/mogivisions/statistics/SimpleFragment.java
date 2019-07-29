@@ -3,11 +3,11 @@ package com.iruss.mogivisions.statistics;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.fragment.app.Fragment;
 
 import com.github.mikephil.charting.charts.ScatterChart;
 import com.github.mikephil.charting.data.BarData;
@@ -28,6 +28,8 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.github.mikephil.charting.utils.FileUtils;
 
 import java.util.ArrayList;
+
+//import android.support.v4.app.Fragment;
 
 /**
  * The Base Fragment for displaying a graph
